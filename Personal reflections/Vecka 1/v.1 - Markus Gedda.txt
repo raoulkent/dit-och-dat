@@ -1,1 +1,21 @@
- 
+
+What do I want to learn or understand better?
+
+I want to learn and understand to use Scrum agile process framework. I want to try to implement the job and/or object division in large software proect development. 
+I want to learn how I can use digital tools to work in an developed digital work environment; how to organize file structure and file sharing to creat a productive 
+deveopment environment. 
+
+How can I help someone else, or the entire team, to learn something new?
+
+I will had have started to learn about Scrum software development. I have implemented som of this stucture to the social contract. 
+This implementation will help our team to work in productive multi-entity environment. 
+
+What is my contribution towards the team’s application of scrum?
+
+I have started the discussion about how we were supposed to implement Scrum into our project. I have develpoed most of ou social contract and I have tried to 
+structure it to align with the scrum development process.
+
+What is my contribution towards the team’s deliveries?
+
+As I said earlier i was the main contributer to the creation of the social contract. I also created the reflection map structure in our GitHub. All this to help 
+organise and give structure to our groupwork.  
