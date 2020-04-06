@@ -1,0 +1,11 @@
+What do I want to learn or understand better?
+Eftersom vi har valt att göra en Android app ser jag framemot att lära mig det. Har lite kunskap idag men vill lära mig hur jag utveckar till Android mer.
+
+How can I help someone else, or the entire team, to learn something new?
+Eftersom jag har lite kunskap om Android och Git sen innan kan jag dela med mig av dessa kunskaper
+
+What is my contribution towards the team’s application of scrum?
+Jag har börjat göra Job Stories denna vecka
+
+What is my contribution towards the team’s deliveries?
+Jag var med och tog fram de inlämningar vi hade. 
