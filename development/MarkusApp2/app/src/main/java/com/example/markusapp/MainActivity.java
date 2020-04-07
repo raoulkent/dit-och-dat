@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-    }
+    } 
 }
 class player {                                         // Creates class player with name, id, number of strokes. plus methods to add and remove strokes
     int playerNr;
