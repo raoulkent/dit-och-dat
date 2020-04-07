@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">MarkusApp</string>
+    <string name="app_name">MarkusApp</string>'
+
+    <string name="old">Old</string>
+    <string name="next">next</string>
+    <string name="hole_nr">Hole Nr.</string>
+
+    <string name="_0">0</string>
+
+    <string name="add">+1</string>
+    <string name="remove">-1</string>
+
+
+
+    <string name="p1">P1</string>
+    <string name="p2">P2</string>
+    <string name="p3">P3</string>
+    <string name="p4">P4</string>
 </resources>
