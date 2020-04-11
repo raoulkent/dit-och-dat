@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/textCounterTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="Counter:"
+            android:textAlignment="textEnd"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/textCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="0"
+            android:textAlignment="textStart"
+            android:textSize="35sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCountUp"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:onClick="countUp"
+        android:text="Count Up"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnNextPage"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:onClick="nextPage"
+        android:text="Next page"
+        android:textSize="18sp" />
+</LinearLayout>
