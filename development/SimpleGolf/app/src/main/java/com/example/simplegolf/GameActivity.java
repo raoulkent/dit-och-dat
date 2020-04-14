@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.simplegolf.model.Scorecard;
+
 public class GameActivity extends AppCompatActivity {
 
     @Override
@@ -11,4 +13,6 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
     }
+
+
 }

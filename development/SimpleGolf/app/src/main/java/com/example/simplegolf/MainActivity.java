@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.simplegolf.model.Scorecard;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn_newgame = (Button) findViewById(R.id.btn_newgame);
-        btn_newgame.setOnClickListener(new View.OnClickListener() {
+        Button btn_newGame = (Button) findViewById(R.id.btn_newgame);
+        btn_newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 newGame(v);
