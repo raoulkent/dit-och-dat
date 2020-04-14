@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">SimpleGolf</string>
+    <!-- App-wide strings -->
+    <string name="app_name">Simple Golf</string>
+
+    <!-- Splash screen -->
+    <string name="welcome_message">Welcome to Simple Golf</string>
+    <string name="new_game_btn">Start new game</string>
 </resources>
