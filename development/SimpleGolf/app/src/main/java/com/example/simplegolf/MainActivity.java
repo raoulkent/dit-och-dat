@@ -13,9 +13,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button btn_newgame = (Button) findViewById(R.id.btn_newgame);
+        btn_newgame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newGame(v);
+            }
+        });
+
     }
 
+
     private void newGame(View view){
+
+        Intent startGame = new Intent(getApplicationContext(),GameActivity.class);
+        startActivity(startGame);
+
         // TODO: Create new activity and add to below intent
 //        Intent intent = new Intent(this, GameActivity.class);
 //        startActivity(intent);
