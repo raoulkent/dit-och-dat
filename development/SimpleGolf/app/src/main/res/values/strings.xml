@@ -5,4 +5,7 @@
     <!-- Splash screen -->
     <string name="welcome_message">Welcome to Simple Golf</string>
     <string name="new_game_btn">Start new game</string>
+    <string name="title_activity_game_overview">GameOverview</string>
+    <string name="title_strokes">Strokes</string>
+    <string name="title_scorecard">Scorecard</string>
 </resources>
