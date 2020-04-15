@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void newGame(View view){
         // TODO: Create new activity and add to below intent
-        //Intent intent = new Intent(this, GameOverview.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, GameOverview.class);
+        startActivity(intent);
     }
 }
