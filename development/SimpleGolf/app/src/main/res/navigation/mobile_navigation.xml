@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_strokes">
+
+    <fragment
+        android:id="@+id/navigation_strokes"
+        android:name="com.example.simplegolf.ui.strokes.StrokesFragment"
+        android:label="@string/title_strokes"
+        tools:layout="@layout/fragment_strokes" />
+
+    <fragment
+        android:id="@+id/navigation_scorecard"
+        android:name="com.example.simplegolf.ui.scorecard.ScorecardFragment"
+        android:label="@string/title_scorecard"
+        tools:layout="@layout/fragment_scorecard" />
+
+</navigation>
