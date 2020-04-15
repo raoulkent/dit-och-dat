@@ -2,6 +2,7 @@ package com.example.simplegolf;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -17,8 +18,6 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
-
         //TODO: Add functionality to button
         // method to generate the scorecard
     }
@@ -28,6 +27,10 @@ public class GameActivity extends AppCompatActivity {
         int nrHoles = Integer.parseInt(nrOfHoles.getText().toString());
         scorecard = new Scorecard(nrHoles);
 
+        //Send holes to GameOverview for now, this will change to game object
+        Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
+        startGame.putExtra("nHoles", nrHoles);
+        startActivity(startGame);
     }
 
 
