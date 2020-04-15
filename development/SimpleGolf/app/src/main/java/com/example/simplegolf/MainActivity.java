@@ -7,17 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.simplegolf.model.Scorecard;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button btn_newGame = (Button) findViewById(R.id.btn_newgame);
     }
 
+
+
     public void newGame(View view){
-        // TODO: Create new activity and add to below intent
-        Intent intent = new Intent(this, GameOverview.class);
-        startActivity(intent);
+        Intent startGame = new Intent(getApplicationContext(),GameActivity.class);
+        startActivity(startGame);
     }
 }
