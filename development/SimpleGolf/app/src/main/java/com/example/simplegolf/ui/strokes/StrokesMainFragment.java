@@ -47,7 +47,6 @@ public class StrokesMainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("SWIPER", "fragment id " + getId());
     }
 
     @Override

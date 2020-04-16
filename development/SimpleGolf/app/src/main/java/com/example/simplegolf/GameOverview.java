@@ -19,6 +19,8 @@ import androidx.navigation.ui.NavigationUI;
 
 public class GameOverview extends AppCompatActivity {
 
+    StrokesMainFragment mainFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,19 +36,24 @@ public class GameOverview extends AppCompatActivity {
 
     }
 
-
     private StrokesMainFragment getMainFragment() {
         Fragment navHostFragment = getSupportFragmentManager().getPrimaryNavigationFragment();
-        Fragment fragment = navHostFragment.getChildFragmentManager().getFragments().get(0);
 
-        return (StrokesMainFragment) fragment;
+        for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()) {
+            if (fragment instanceof StrokesMainFragment) {
+                return (StrokesMainFragment) fragment;
+            }
+        }
+        return null;
     }
 
     public void goToPreviousHole(View view) {
-        getMainFragment().goToPreviousHole(view);
+        mainFragment = getMainFragment();
+        mainFragment.goToPreviousHole(view);
     }
 
     public void goToNextHole(View view) {
-        getMainFragment().goToNextHole(view);
+        mainFragment = getMainFragment();
+        mainFragment.goToNextHole(view);
     }
 }

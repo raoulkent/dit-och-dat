@@ -33,7 +33,6 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         Bundle args = new Bundle();
         args.putInt(ARG_HOLE, holeNumber);
         fragment.setArguments(args);
-        Log.d("SWIPER", "FRAGMENT NEWINSTANCE" + holeNumber);
         return fragment;
     }
 
@@ -52,9 +51,6 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.d("SWIPER", "ON CREATE VIEW");
-
         return inflater.inflate(R.layout.fragment_strokes, container, false);
     }
 
@@ -65,8 +61,6 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         counter = view.findViewById(R.id.counter);
         add.setOnClickListener(this);
         remove.setOnClickListener(this);
-
-        Log.d("SWIPER", "VIEW CREATED");
     }
 
     @Override

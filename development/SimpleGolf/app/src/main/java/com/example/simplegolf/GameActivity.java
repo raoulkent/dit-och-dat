@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.example.simplegolf.model.Scorecard;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
     private Scorecard scorecard;
 
@@ -18,13 +19,17 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        //TODO: Add functionality to button
-        // method to generate the scorecard
+        NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
+        nrHolesPicker.setMinValue(1);
+        nrHolesPicker.setMaxValue(18);
+        nrHolesPicker.setValue(9);
+        nrHolesPicker.setOnValueChangedListener(this);
     }
 
     public void  onClickCreate(View view){
-        TextView nrOfHoles = findViewById(R.id.nrOfHoleSelect);
-        int nrHoles = Integer.parseInt(nrOfHoles.getText().toString());
+
+        NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
+        int nrHoles = nrHolesPicker.getValue();
         scorecard = new Scorecard(nrHoles);
 
         //Send holes to GameOverview for now, this will change to game object
@@ -33,5 +38,8 @@ public class GameActivity extends AppCompatActivity {
         startActivity(startGame);
     }
 
+    @Override
+    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
+    }
 }
