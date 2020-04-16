@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity {
         scorecard = new Scorecard(nrHoles);
 
         //Send holes to GameOverview for now, this will change to game object
-        Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
+        Intent startGame = new Intent(this, GameOverview.class);
         startGame.putExtra("nHoles", nrHoles);
         startActivity(startGame);
     }

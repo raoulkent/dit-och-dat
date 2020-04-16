@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_strokes">
+    app:startDestination="@+id/navigation_strokes_main">
 
     <fragment
-        android:id="@+id/navigation_strokes"
-        android:name="com.example.simplegolf.ui.strokes.StrokesFragment"
+        android:id="@+id/navigation_strokes_main"
+        android:name="com.example.simplegolf.ui.strokes.StrokesMainFragment"
         android:label="@string/title_strokes"
         tools:layout="@layout/fragment_strokes" />
+
 
     <fragment
         android:id="@+id/navigation_scorecard"
