@@ -1,12 +1,13 @@
 package com.example.simplegolf.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This class is responsible of holding the data of the game
  */
-public class Scorecard {
+public class Scorecard implements Serializable {
     private List<Hole> holes = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
 
