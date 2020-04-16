@@ -65,12 +65,30 @@ public class StrokesMainFragment extends Fragment {
             fragmentHoleList.add(fragment);
         }
 
+        textHoleNumber = view.findViewById(R.id.holeNumber);
+        textHoleNumber.setText("1");
+
         StrokesPageAdapter adapter = new StrokesPageAdapter(getFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
 
-        textHoleNumber = view.findViewById(R.id.holeNumber);
-        textHoleNumber.setText("1");
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentHole = position;
+                updateFragment();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     public void goToPreviousHole(View view) {
