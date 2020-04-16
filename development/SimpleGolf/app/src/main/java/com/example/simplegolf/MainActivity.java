@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.simplegolf.model.Scorecard;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,9 +17,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
+
     public void newGame(View view){
-        // TODO: Create new activity and add to below intent
-        Intent intent = new Intent(this, GameOverview.class);
-        startActivity(intent);
+        Intent startGame = new Intent(getApplicationContext(),GameActivity.class);
+        startActivity(startGame);
     }
 }

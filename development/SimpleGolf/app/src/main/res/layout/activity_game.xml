@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.scorecard.ScorecardFragment">
+    tools:context=".GameActivity">
 
-    <TableLayout
-        android:id="@+id/scorecardTable"
+    <EditText
+        android:id="@+id/nrOfHoleSelect"
+        android:layout_width="257dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:hint="How many holes will you play?"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/holesBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/holesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:onClick="onClickCreate"
+        android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
