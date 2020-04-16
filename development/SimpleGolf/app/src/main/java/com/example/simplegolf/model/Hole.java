@@ -4,21 +4,26 @@ package com.example.simplegolf.model;
  * This class is responsible of holding the information about a hole
  */
  class Hole {
-     private int shots ;
+     private int hcp ;
+     private int par;
 
     public Hole(){
-        this.shots=0;
+        this.hcp=0;
+        this.par=0;
     }
 
-    public int getShots(){
-        return shots;
+    public int getHcp(){
+        return hcp;
+    }
+    public int getPar(){
+        return par;
     }
 
-    public void setShots(int a){
-        shots=a;
+    public void setPar(int a){
+        par=a;
+    }
+    public void setHcp(int a){
+        hcp=a;
     }
 
-    public void increaseShot(){
-        shots++;
-    }
 }
