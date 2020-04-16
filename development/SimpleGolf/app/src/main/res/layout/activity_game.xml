@@ -6,17 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-    <EditText
-        android:id="@+id/nrOfHoleSelect"
-        android:layout_width="257dp"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="How many holes will you play?"
-        android:inputType="number"
+    <TextView
+        android:id="@+id/holesQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How many holes will you play?"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.213" />
+
+    <NumberPicker
+        android:id="@+id/nrHolesPicker"
+        android:layout_width="126dp"
+        android:layout_height="242dp"
+        android:scrollbarSize="4dp"
+        android:theme="@style/nrHolesPickerText"
         app:layout_constraintBottom_toTopOf="@+id/holesBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/holesQuestion"
+        app:layout_constraintVertical_bias="0.473" />
 
     <Button
         android:id="@+id/holesBtn"
@@ -26,7 +42,9 @@
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.783" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
