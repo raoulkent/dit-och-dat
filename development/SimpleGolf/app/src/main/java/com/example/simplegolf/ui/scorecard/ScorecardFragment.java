@@ -83,7 +83,7 @@ public class ScorecardFragment extends Fragment {
         TableRow row = new TableRow(getActivity());
         TextView tv = generateTextView(textSize, offset);
         // TODO : Make setText use the Strings Resources
-        tv.setText("hole");
+        tv.setText(R.string.hole);
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
@@ -129,7 +129,7 @@ public class ScorecardFragment extends Fragment {
             TextView tv = generateTextView(textSize, offset);
             if (p == 0) {
                 // TODO : Make setText use the Strings Resources
-                tv.setText("Tot:");
+                tv.setText(R.string.total_shortened);
             } else {
                 totalScoreTextViews.add(tv);
                 tv.setText("0");
