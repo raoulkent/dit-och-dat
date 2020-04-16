@@ -35,7 +35,7 @@ public class ScorecardFragment extends Fragment {
         //Update score
         for(ArrayList<TextView> p: scoreTextViews){
             for(TextView tv: p){
-                tv.setText(String.valueOf(i));
+                tv.setText("2");
             }
         }
         //Update total
