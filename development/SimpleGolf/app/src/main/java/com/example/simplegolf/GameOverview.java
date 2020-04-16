@@ -2,24 +2,20 @@ package com.example.simplegolf;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
-import com.example.simplegolf.ui.strokes.MyPagerAdapter;
-import com.example.simplegolf.ui.strokes.StrokesFragment;
 import com.example.simplegolf.ui.strokes.StrokesMainFragment;
-import com.example.simplegolf.ui.strokes.StrokesPageAdapter;
-import com.example.simplegolf.ui.strokes.TestFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.viewpager.widget.ViewPager;
 
 public class GameOverview extends AppCompatActivity {
 
@@ -34,5 +30,23 @@ public class GameOverview extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+
+    }
+
+
+    private StrokesMainFragment getMainFragment() {
+        Fragment navHostFragment = getSupportFragmentManager().getPrimaryNavigationFragment();
+        Fragment fragment = navHostFragment.getChildFragmentManager().getFragments().get(0);
+
+        return (StrokesMainFragment) fragment;
+    }
+
+    public void goToPreviousHole(View view) {
+        getMainFragment().goToPreviousHole(view);
+    }
+
+    public void goToNextHole(View view) {
+        getMainFragment().goToNextHole(view);
     }
 }

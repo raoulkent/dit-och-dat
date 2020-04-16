@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.simplegolf.R;
 
@@ -26,9 +27,8 @@ import java.util.List;
 public class StrokesMainFragment extends Fragment {
     private List<Fragment> fragmentHoleList = new ArrayList<>();
     private ViewPager viewPager;
-
-
-
+    private int currentHole = 0;
+    private TextView textHoleNumber;
 
     public StrokesMainFragment() {
         // Required empty public constructor
@@ -47,6 +47,7 @@ public class StrokesMainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("SWIPER", "fragment id " + getId());
     }
 
     @Override
@@ -67,5 +68,29 @@ public class StrokesMainFragment extends Fragment {
         StrokesPageAdapter adapter = new StrokesPageAdapter(getFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
+
+        textHoleNumber = view.findViewById(R.id.holeNumber);
+        textHoleNumber.setText("1");
+    }
+
+    public void goToPreviousHole(View view) {
+        if (!(currentHole > 0)) {
+            return;
+        }
+        currentHole--;
+        updateFragment();
+    }
+
+    public void goToNextHole(View view) {
+        if (!(currentHole < 17)) {
+            return;
+        }
+        currentHole++;
+        updateFragment();
+    }
+
+    public void updateFragment() {
+        viewPager.setCurrentItem(currentHole);
+        textHoleNumber.setText(currentHole + 1 + "");
     }
 }
