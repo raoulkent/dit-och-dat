@@ -6,14 +6,22 @@ import androidx.lifecycle.ViewModel;
 
 public class StrokesViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private int nHoles = 0;
+    private int currenthole = 0;
 
-    public StrokesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+    public int getnHoles() {
+        return nHoles;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setnHoles(int nHoles) {
+        this.nHoles = nHoles;
+    }
+
+    public int getCurrenthole() {
+        return currenthole;
+    }
+
+    public void setCurrenthole(int currenthole) {
+        this.currenthole = currenthole;
     }
 }

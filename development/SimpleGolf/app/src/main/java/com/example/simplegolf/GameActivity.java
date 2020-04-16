@@ -12,6 +12,8 @@ import com.example.simplegolf.model.Scorecard;
 
 public class GameActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
+    public static String N_HOLES = "nHoles";
+
     private Scorecard scorecard;
 
     @Override
@@ -34,7 +36,7 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(this, GameOverview.class);
-        startGame.putExtra("nHoles", nrHoles);
+        startGame.putExtra(N_HOLES, nrHoles);
         startActivity(startGame);
     }
 

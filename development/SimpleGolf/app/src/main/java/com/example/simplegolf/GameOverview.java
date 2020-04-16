@@ -5,13 +5,20 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.simplegolf.ui.strokes.StrokesMainFragment;
+import com.example.simplegolf.ui.strokes.StrokesViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
+import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavArgument;
 import androidx.navigation.NavController;
+import androidx.navigation.NavType;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -34,10 +41,13 @@ public class GameOverview extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
 
+        int nHoles = getIntent().getIntExtra(GameActivity.N_HOLES, 1);
+        StrokesViewModel viewModel = ViewModelProviders.of(this).get(StrokesViewModel.class);
+        viewModel.setnHoles(nHoles);
     }
 
     private StrokesMainFragment getMainFragment() {
-        Fragment navHostFragment = getSupportFragmentManager().getPrimaryNavigationFragment();
+        Fragment navHostFragment = getSupportFragmentManager().getPrimaryNavigationFragment(); // Requires view to be initialized.
 
         for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()) {
             if (fragment instanceof StrokesMainFragment) {

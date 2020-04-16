@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.simplegolf.GameActivity;
 import com.example.simplegolf.R;
 
 import java.util.ArrayList;
@@ -27,8 +30,8 @@ import java.util.List;
 public class StrokesMainFragment extends Fragment {
     private List<Fragment> fragmentHoleList = new ArrayList<>();
     private ViewPager viewPager;
-    private int currentHole = 0;
     private TextView textHoleNumber;
+    StrokesViewModel viewModel;
 
     public StrokesMainFragment() {
         // Required empty public constructor
@@ -47,6 +50,7 @@ public class StrokesMainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = ViewModelProviders.of(getActivity()).get(StrokesViewModel.class);
     }
 
     @Override
@@ -59,7 +63,7 @@ public class StrokesMainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < viewModel.getnHoles(); i++) {
             Fragment fragment = StrokesFragment.newInstance(i);
             fragmentHoleList.add(fragment);
         }
@@ -79,7 +83,7 @@ public class StrokesMainFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                currentHole = position;
+                viewModel.setCurrenthole(position);
                 updateFragment();
             }
 
@@ -90,24 +94,28 @@ public class StrokesMainFragment extends Fragment {
         });
     }
 
+
+
+
     public void goToPreviousHole(View view) {
-        if (!(currentHole > 0)) {
+        if (!(viewModel.getCurrenthole() > 0)) {
             return;
         }
-        currentHole--;
+        viewModel.setCurrenthole(viewModel.getCurrenthole() - 1);
         updateFragment();
     }
 
     public void goToNextHole(View view) {
-        if (!(currentHole < 17)) {
+        if (!(viewModel.getCurrenthole() < viewModel.getnHoles() - 1)) {
             return;
         }
-        currentHole++;
+        viewModel.setCurrenthole(viewModel.getCurrenthole() + 1);
         updateFragment();
     }
 
     public void updateFragment() {
-        viewPager.setCurrentItem(currentHole);
-        textHoleNumber.setText(currentHole + 1 + "");
+        Log.d("SWIPE", "CLICKED " + viewModel.getCurrenthole());
+        viewPager.setCurrentItem(viewModel.getCurrenthole());
+        textHoleNumber.setText(viewModel.getCurrenthole() + 1 + "");
     }
 }

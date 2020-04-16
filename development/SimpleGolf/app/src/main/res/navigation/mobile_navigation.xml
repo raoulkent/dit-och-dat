@@ -9,7 +9,8 @@
         android:id="@+id/navigation_strokes_main"
         android:name="com.example.simplegolf.ui.strokes.StrokesMainFragment"
         android:label="@string/title_strokes"
-        tools:layout="@layout/fragment_strokes_main" />
+        tools:layout="@layout/fragment_strokes_main" >
+    </fragment>
 
 
     <fragment
