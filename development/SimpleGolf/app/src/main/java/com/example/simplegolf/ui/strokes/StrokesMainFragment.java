@@ -31,7 +31,7 @@ public class StrokesMainFragment extends Fragment {
     private List<Fragment> fragmentHoleList = new ArrayList<>();
     private ViewPager viewPager;
     private TextView textHoleNumber;
-    StrokesViewModel viewModel;
+    private StrokesViewModel viewModel;
 
     public StrokesMainFragment() {
         // Required empty public constructor
@@ -116,7 +116,6 @@ public class StrokesMainFragment extends Fragment {
     }
 
     public void updateFragment() {
-        Log.d("SWIPE", "CLICKED " + viewModel.getCurrenthole());
         viewPager.setCurrentItem(viewModel.getCurrenthole());
         textHoleNumber.setText(viewModel.getCurrenthole() + 1 + "");
     }

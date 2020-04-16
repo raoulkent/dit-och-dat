@@ -12,16 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.simplegolf.R;
 
 public class StrokesFragment extends Fragment implements View.OnClickListener {
+
+    private StrokesViewModel viewModel;
     private static final String ARG_HOLE = "holeNumber";
     private int holeNumber;
 
-    Button add, remove;
-    TextView counter;
-    int hole=0;
+    private Button add, remove;
+    private TextView counter;
 
     /**
      * Factory method to create new instances of this fragment
@@ -46,6 +48,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         if (getArguments() != null) {
             holeNumber = getArguments().getInt(ARG_HOLE);
         }
+        viewModel = ViewModelProviders.of(getActivity()).get(StrokesViewModel.class);
     }
 
     @Override
@@ -64,18 +67,28 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.add: {
-                hole++;
-                counter.setText(String.valueOf(hole));
+                viewModel.incrementShots(holeNumber);
+                updateUI();
                 break;
             }
             case R.id.remove: {
-                hole--;
-                counter.setText(String.valueOf(hole));
+                viewModel.decrementShots(holeNumber);
+                updateUI();
                 break;
             }
         }
+    }
+
+    private void updateUI() {
+        counter.setText(String.valueOf(viewModel.getShots(holeNumber)));
     }
 }
