@@ -18,10 +18,13 @@ public class Scorecard {
 
     }
 
-
+public void addPLayerToList(Player p){
+        players.add(p);
+}
 public List <Hole>getHoles(){
     return holes;
 }
+
 public List<Player> getPlayers(){
     return players;
 }
