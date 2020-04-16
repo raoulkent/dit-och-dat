@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * This class is responsible of making a player
  */
-class Player implements Serializable {
+public class Player implements Serializable {
     private String initials;
     private int[] shots;
 

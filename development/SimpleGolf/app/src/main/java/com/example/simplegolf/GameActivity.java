@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
 public class GameActivity extends AppCompatActivity {
@@ -26,6 +27,10 @@ public class GameActivity extends AppCompatActivity {
         TextView nrOfHoles = findViewById(R.id.nrOfHoleSelect);
         int nrHoles = Integer.parseInt(nrOfHoles.getText().toString());
         scorecard = new Scorecard(nrHoles);
+
+        // TODO: Remove these test players
+        scorecard.addPLayerToList(new Player("LOL", nrHoles));
+        scorecard.addPLayerToList(new Player("WOW", nrHoles));
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Scorecard implements Serializable {
     private List<Hole> holes = new ArrayList<>();
-    private List<Player> players = new ArrayList<>();
+    private ArrayList<Player> players = new ArrayList<>();
 
     public Scorecard(int numberOfHoles) {
         while (numberOfHoles > 0) {
@@ -26,7 +26,7 @@ public class Scorecard implements Serializable {
         return holes;
     }
 
-    public List<Player> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 }

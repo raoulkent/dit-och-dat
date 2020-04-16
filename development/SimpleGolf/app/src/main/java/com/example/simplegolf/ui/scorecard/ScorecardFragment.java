@@ -13,10 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.simplegolf.R;
+import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -56,8 +58,6 @@ public class ScorecardFragment extends Fragment {
         //TODO: Calculate textSize and offset from resolution
         int textSize = 20;
         int offset = 30;
-//        int numPlayers = 4;
-//        int numHoles = getActivity().getIntent().getIntExtra("nHoles", 18);
 
         //Create ArrayLists for textViews
         totalScoreTextViews = new ArrayList<>();
@@ -68,8 +68,8 @@ public class ScorecardFragment extends Fragment {
 
         mTable.addView(makeHeaderRow(scorecard), params);
 
-        for (int i = 1; i <= Objects.requireNonNull(scorecard).getHoles().size(); i++) {
-            TableRow holeRow = makeHoleRow(scorecard, i);
+        for (int holeNum = 1; holeNum <= Objects.requireNonNull(scorecard).getHoles().size(); holeNum++) {
+            TableRow holeRow = makeHoleRow(scorecard, holeNum);
             mTable.addView(holeRow, params);
         }
 
@@ -88,9 +88,10 @@ public class ScorecardFragment extends Fragment {
         row.addView(tv);
 
         // TODO: Make dynamic by loading player initials from scorecard
-        for (int p = 1; p <= Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
+        ArrayList<Player> players = scorecard.getPlayers();
+        for (Player p : players) {
             tv = generateTextView(textSize, offset);
-            tv.setText("AK");
+            tv.setText(p.getInitials());
             tv.setBackgroundResource(R.drawable.table_row_bg);
             row.addView(tv);
         }
