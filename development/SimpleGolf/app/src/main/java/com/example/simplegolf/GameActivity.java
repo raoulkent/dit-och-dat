@@ -22,16 +22,14 @@ public class GameActivity extends AppCompatActivity {
         // method to generate the scorecard
     }
 
-    public void  onClickCreate(View view){
+    public void onClickCreate(View view) {
         TextView nrOfHoles = findViewById(R.id.nrOfHoleSelect);
         int nrHoles = Integer.parseInt(nrOfHoles.getText().toString());
         scorecard = new Scorecard(nrHoles);
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
-        startGame.putExtra("nHoles", nrHoles);
+        startGame.putExtra("scorecard", scorecard);
         startActivity(startGame);
     }
-
-
 }
