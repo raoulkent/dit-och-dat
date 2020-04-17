@@ -13,7 +13,7 @@ public class StrokesPageAdapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> fragmentList;
 
-    public StrokesPageAdapter(@NonNull FragmentManager fm, int behavior, List<Fragment> fragmentList) {
+    StrokesPageAdapter(@NonNull FragmentManager fm, int behavior, List<Fragment> fragmentList) {
         super(fm, behavior);
         this.fragmentList = fragmentList;
     }

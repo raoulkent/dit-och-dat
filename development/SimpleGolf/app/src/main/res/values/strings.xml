@@ -8,4 +8,8 @@
     <string name="title_activity_game_overview">GameOverview</string>
     <string name="title_strokes">Strokes</string>
     <string name="title_scorecard">Scorecard</string>
+    
+    <!-- ScoreCard table -->
+    <string name="hole">Hole</string>
+    <string name="total_shortened">Tot:</string>
 </resources>

@@ -1,12 +1,13 @@
 package com.example.simplegolf.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This class is responsible of making a player
  */
-class Player {
+public class Player implements Serializable {
     private String initials;
     private int[] shots;
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
 public class GameActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
@@ -28,15 +29,19 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         nrHolesPicker.setOnValueChangedListener(this);
     }
 
-    public void  onClickCreate(View view){
+    public void onClickCreate(View view) {
 
         NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
         int nrHoles = nrHolesPicker.getValue();
         scorecard = new Scorecard(nrHoles);
 
+        // TODO: Remove these test players
+        scorecard.addPLayerToList(new Player("LOL", nrHoles));
+        scorecard.addPLayerToList(new Player("WOW", nrHoles));
+
         //Send holes to GameOverview for now, this will change to game object
-        Intent startGame = new Intent(this, GameOverview.class);
-        startGame.putExtra(N_HOLES, nrHoles);
+        Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
+        startGame.putExtra("scorecard", scorecard);
         startActivity(startGame);
     }
 

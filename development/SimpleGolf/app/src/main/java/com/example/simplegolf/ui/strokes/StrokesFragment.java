@@ -22,15 +22,15 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_HOLE = "holeNumber";
     private int holeNumber;
 
-    private Button add, remove;
     private TextView counter;
 
     /**
      * Factory method to create new instances of this fragment
+     *
      * @param holeNumber
      * @return A new instance of StrokesFragment
      */
-    public static StrokesFragment newInstance(int holeNumber) {
+    static StrokesFragment newInstance(int holeNumber) {
         StrokesFragment fragment = new StrokesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_HOLE, holeNumber);
@@ -59,8 +59,8 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        remove = view.findViewById(R.id.remove);
-        add = view.findViewById(R.id.add);                       // Stroke counter for p1
+        Button remove = view.findViewById(R.id.remove);
+        Button add = view.findViewById(R.id.add);                       // Stroke counter for p1
         counter = view.findViewById(R.id.counter);
         add.setOnClickListener(this);
         remove.setOnClickListener(this);
@@ -74,7 +74,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.add: {
                 viewModel.incrementShots(holeNumber);
                 updateUI();

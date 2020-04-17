@@ -5,17 +5,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.simplegolf.GameActivity;
 import com.example.simplegolf.R;
 
 import java.util.ArrayList;
@@ -39,12 +36,12 @@ public class StrokesMainFragment extends Fragment {
 
     /**
      * Use this factory method to create a new instance.
+     *
      * @return A new instance of fragment StrokesMainFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static StrokesMainFragment newInstance() {
-        StrokesMainFragment fragment = new StrokesMainFragment();
-        return fragment;
+    private static StrokesMainFragment newInstance() {
+        return new StrokesMainFragment();
     }
 
     @Override
@@ -63,19 +60,19 @@ public class StrokesMainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        for (int i = 0; i < viewModel.getnHoles(); i++) {
+        for (int i = 0; i < viewModel.getNHoles(); i++) {
             Fragment fragment = StrokesFragment.newInstance(i);
             fragmentHoleList.add(fragment);
         }
 
         textHoleNumber = view.findViewById(R.id.holeNumber);
-        textHoleNumber.setText(viewModel.getCurrenthole() + 1 + "");
+        textHoleNumber.setText(getCurrentHoleNumber());
 
         StrokesPageAdapter adapter = new StrokesPageAdapter(getFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
 
-        viewPager.setCurrentItem(viewModel.getCurrenthole(), false);
+        viewPager.setCurrentItem(viewModel.getCurrentHole(), false);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -85,7 +82,7 @@ public class StrokesMainFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                viewModel.setCurrenthole(position);
+                viewModel.setCurrentHole(position);
                 updateFragment();
             }
 
@@ -97,26 +94,28 @@ public class StrokesMainFragment extends Fragment {
     }
 
 
-
-
     public void goToPreviousHole(View view) {
-        if (!(viewModel.getCurrenthole() > 0)) {
+        if (!(viewModel.getCurrentHole() > 0)) {
             return;
         }
-        viewModel.setCurrenthole(viewModel.getCurrenthole() - 1);
+        viewModel.setCurrentHole(viewModel.getCurrentHole() - 1);
         updateFragment();
     }
 
     public void goToNextHole(View view) {
-        if (!(viewModel.getCurrenthole() < viewModel.getnHoles() - 1)) {
+        if (!(viewModel.getCurrentHole() < viewModel.getNHoles() - 1)) {
             return;
         }
-        viewModel.setCurrenthole(viewModel.getCurrenthole() + 1);
+        viewModel.setCurrentHole(viewModel.getCurrentHole() + 1);
         updateFragment();
     }
 
-    public void updateFragment() {
-        viewPager.setCurrentItem(viewModel.getCurrenthole());
-        textHoleNumber.setText(viewModel.getCurrenthole() + 1 + "");
+    private void updateFragment() {
+        viewPager.setCurrentItem(viewModel.getCurrentHole());
+        textHoleNumber.setText(getCurrentHoleNumber());
+    }
+
+    private String getCurrentHoleNumber() {
+        return viewModel.getCurrentHole() + 1 + "";
     }
 }
