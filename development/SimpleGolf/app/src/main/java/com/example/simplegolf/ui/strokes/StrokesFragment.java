@@ -54,7 +54,6 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
             holeNumber = getArguments().getInt(ARG_HOLE);
         }
         viewModel = new ViewModelProvider(getActivity()).get(StrokesViewModel.class);
-        Log.d("SWIPE", "N HOLES" + viewModel.getNHoles());
     }
 
     @Override
