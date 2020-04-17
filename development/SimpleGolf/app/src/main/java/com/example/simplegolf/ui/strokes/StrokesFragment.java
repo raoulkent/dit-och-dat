@@ -15,6 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.simplegolf.R;
+import com.example.simplegolf.model.Scorecard;
+
+import java.util.Objects;
 
 public class StrokesFragment extends Fragment implements View.OnClickListener {
 
@@ -23,6 +26,8 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private int holeNumber;
 
     private TextView counter;
+
+    private Scorecard scorecard;
 
     /**
      * Factory method to create new instances of this fragment
@@ -54,6 +59,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        scorecard = (Scorecard) Objects.requireNonNull(getActivity()).getIntent().getSerializableExtra("scorecard");
         return inflater.inflate(R.layout.fragment_strokes, container, false);
     }
 
@@ -76,12 +82,12 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add: {
-                viewModel.incrementShots(holeNumber);
+                scorecard.getPlayers().get(0).incrementHole(holeNumber);
                 updateUI();
                 break;
             }
             case R.id.remove: {
-                viewModel.decrementShots(holeNumber);
+                scorecard.getPlayers().get(0).decrementHole(holeNumber);
                 updateUI();
                 break;
             }
@@ -89,6 +95,6 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     }
 
     private void updateUI() {
-        counter.setText(String.valueOf(viewModel.getShots(holeNumber)));
+        counter.setText(String.valueOf(scorecard.getPlayers().get(0).getShotsForHole(holeNumber)));
     }
 }

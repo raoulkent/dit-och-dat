@@ -40,4 +40,14 @@ public class Player implements Serializable {
             sum += value;
         return sum;
     }
+
+    public void incrementHole(int holeNumber){
+        this.shots[holeNumber]++;
+    }
+
+    public void decrementHole(int holeNumber){
+        if(this.shots[holeNumber] < 1)
+            return;
+        this.shots[holeNumber]--;
+    }
 }
