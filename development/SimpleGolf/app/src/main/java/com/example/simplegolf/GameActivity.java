@@ -36,8 +36,7 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         scorecard = new Scorecard(nrHoles);
 
         // TODO: Remove these test players
-        scorecard.addPLayerToList(new Player("LOL", nrHoles));
-        scorecard.addPLayerToList(new Player("WOW", nrHoles));
+        scorecard.addPlayer("ABC");
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
