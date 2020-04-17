@@ -1,0 +1,11 @@
+What do I want to learn or understand better?
+I want to learn how to connect fragments and activities, how to make dynamic scrollable lists and methods for data storage.
+
+How can I help someone else, or the entire team, to learn something new?
+Since we have been working collaboratively in different constellations there has been rom for transfer of different knowledge between members. I look forward to continuing working in the same way. 
+
+What is my contribution towards the team’s application of scrum?
+The past week has been characterized by great teamwork and positivity. I have been working on different tasks with different members of the group. The tasks I have been working on have been of increasing difficulty which has improved my understanding for Android Studio.
+
+What is my contribution towards the team’s deliveries?
+Taking responsibility for the tasks I have set out to do, along with the other group members that have done a lot of work, has made us able to achieve an MVP after a first sprint. 
