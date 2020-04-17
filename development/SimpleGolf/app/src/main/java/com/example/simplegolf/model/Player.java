@@ -2,6 +2,7 @@ package com.example.simplegolf.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,5 +32,12 @@ public class Player implements Serializable {
 
     public int getShotsForHole(int holeNumber) {
         return shots[holeNumber];
+    }
+
+    public int getTotalShots(){
+        int sum = 0;
+        for (int value : shots)
+            sum += value;
+        return sum;
     }
 }
