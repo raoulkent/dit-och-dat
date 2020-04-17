@@ -32,7 +32,7 @@ public class ScorecardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_scorecard, container, false);
         mTable = root.findViewById(R.id.scorecardTable);
-        scorecard = (Scorecard) Objects.requireNonNull(getActivity()).getIntent().getSerializableExtra("scorecard");
+        scorecard = (Scorecard) getActivity().getIntent().getSerializableExtra("scorecard");
         generateTable();
         updateTable();
         return root;

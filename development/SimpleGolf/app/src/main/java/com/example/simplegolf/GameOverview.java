@@ -12,6 +12,7 @@ import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -36,8 +37,8 @@ public class GameOverview extends AppCompatActivity {
 
 
         Scorecard scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
-        StrokesViewModel viewModel = ViewModelProviders.of(this).get(StrokesViewModel.class);
-        viewModel.setNHoles(Objects.requireNonNull(scorecard).getNumberOfHoles());
+        StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
+        viewModel.setNHoles(scorecard.getNumberOfHoles());
     }
 
     private StrokesMainFragment getMainFragment() {

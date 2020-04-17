@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Scorecard;
@@ -53,13 +53,14 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         if (getArguments() != null) {
             holeNumber = getArguments().getInt(ARG_HOLE);
         }
-        viewModel = ViewModelProviders.of(getActivity()).get(StrokesViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(StrokesViewModel.class);
+        Log.d("SWIPE", "N HOLES" + viewModel.getNHoles());
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        scorecard = (Scorecard) Objects.requireNonNull(getActivity()).getIntent().getSerializableExtra("scorecard");
+        scorecard = (Scorecard) requireActivity().getIntent().getSerializableExtra("scorecard");
         return inflater.inflate(R.layout.fragment_strokes, container, false);
     }
 

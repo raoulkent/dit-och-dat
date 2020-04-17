@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -47,7 +47,7 @@ public class StrokesMainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = ViewModelProviders.of(getActivity()).get(StrokesViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(StrokesViewModel.class);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class StrokesMainFragment extends Fragment {
         textHoleNumber = view.findViewById(R.id.holeNumber);
         textHoleNumber.setText(getCurrentHoleNumber());
 
-        StrokesPageAdapter adapter = new StrokesPageAdapter(getFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
+        StrokesPageAdapter adapter = new StrokesPageAdapter(getChildFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
 
