@@ -1,19 +1,38 @@
 package com.example.simplegolf.ui.strokes;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class StrokesViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private int nHoles = 0;
+    private int currentHole = 0;
+    private int[] shots = new int[18];
 
-    public StrokesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+    int getNHoles() {
+        return nHoles;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setNHoles(int nHoles) {
+        this.nHoles = nHoles;
+    }
+
+    int getCurrentHole() {
+        return currentHole;
+    }
+
+    void setCurrentHole(int currentHole) {
+        this.currentHole = currentHole;
+    }
+
+    int getShots(int holeNumber) {
+        return shots[holeNumber];
+    }
+
+    void incrementShots(int holeNumber) {
+        shots[holeNumber]++;
+    }
+
+    void decrementShots(int holeNumber) {
+        shots[holeNumber]--;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
  * This class is responsible of holding the data of the game
  */
 public class Scorecard implements Serializable {
-    private List<Hole> holes = new ArrayList<>();
+    private ArrayList<Hole> holes = new ArrayList<>();
     private ArrayList<Player> players = new ArrayList<>();
 
     public Scorecard(int numberOfHoles) {
@@ -22,8 +22,12 @@ public class Scorecard implements Serializable {
         players.add(p);
     }
 
-    public List<Hole> getHoles() {
+    public ArrayList<Hole> getHoles() {
         return holes;
+    }
+
+    public int getNumberOfHoles() {
+        return holes.size();
     }
 
     public ArrayList<Player> getPlayers() {

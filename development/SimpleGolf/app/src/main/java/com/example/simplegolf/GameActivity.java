@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+
+    public static String N_HOLES = "nHoles";
 
     private Scorecard scorecard;
 
@@ -19,13 +22,17 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        //TODO: Add functionality to button
-        // method to generate the scorecard
+        NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
+        nrHolesPicker.setMinValue(1);
+        nrHolesPicker.setMaxValue(18);
+        nrHolesPicker.setValue(9);
+        nrHolesPicker.setOnValueChangedListener(this);
     }
 
     public void onClickCreate(View view) {
-        TextView nrOfHoles = findViewById(R.id.nrOfHoleSelect);
-        int nrHoles = Integer.parseInt(nrOfHoles.getText().toString());
+
+        NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
+        int nrHoles = nrHolesPicker.getValue();
         scorecard = new Scorecard(nrHoles);
 
         // TODO: Remove these test players
@@ -36,5 +43,10 @@ public class GameActivity extends AppCompatActivity {
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
         startGame.putExtra("scorecard", scorecard);
         startActivity(startGame);
+    }
+
+    @Override
+    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+
     }
 }
