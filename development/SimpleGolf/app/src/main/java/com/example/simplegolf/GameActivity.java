@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -30,13 +31,12 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
     }
 
     public void onClickCreate(View view) {
-
         NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
+        EditText nameInput = findViewById(R.id.editTextName);
         int nrHoles = nrHolesPicker.getValue();
-        scorecard = new Scorecard(nrHoles);
 
-        // TODO: Remove these test players
-        scorecard.addPlayer("ABC");
+        scorecard = new Scorecard(nrHoles);
+        scorecard.addPlayer(nameInput.getText().toString());
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
