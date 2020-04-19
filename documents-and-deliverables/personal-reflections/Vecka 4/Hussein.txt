@@ -1,0 +1,12 @@
+﻿What do I want to learn or understand better?
+ I want to learn more about the project that we are doing and what are the  main needs for this course so we can know as group what to focus on more 
+
+
+ -How can I help someone else, or the entire team, to learn something new?
+I'm always open to help anyone who asks and this week I did  par coding with  different  team members so  i can know them better and even help each other . 
+ 
+-What is my contribution towards the team’s use of Scrum?
+I was able to be a part in everything that the group did from deciding User stories to this sprint till the end of the sprint .  
+ 
+ -What is my contribution towards the team’s deliveries?
+  I was responsible in doing the model package that include data classes and the activity to start the game and refactoring the data classes after we came with some changes and  of cures all that been done with par coding with some of  team members , and decision making  with the team .
