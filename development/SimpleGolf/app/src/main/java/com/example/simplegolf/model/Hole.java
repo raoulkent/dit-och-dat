@@ -18,16 +18,15 @@ class Hole implements Serializable {
         return hcp;
     }
 
+    public void setHcp(int hcp) {
+        this.hcp = hcp;
+    }
+
     public int getPar() {
         return par;
     }
 
-    public void setPar(int a) {
-        par = a;
+    public void setPar(int par) {
+        this.par = par;
     }
-
-    public void setHcp(int a) {
-        hcp = a;
-    }
-
 }
