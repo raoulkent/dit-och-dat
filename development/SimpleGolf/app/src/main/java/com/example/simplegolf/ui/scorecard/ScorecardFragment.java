@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ public class ScorecardFragment extends Fragment {
     private TableLayout mTable;
     private ArrayList<ArrayList> scoreTextViews;
     private ArrayList<TextView> totalScoreTextViews;
+    RadioGroup selector;
+    private Boolean showStrokes = true;
     private Scorecard scorecard;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,8 +37,27 @@ public class ScorecardFragment extends Fragment {
         mTable = root.findViewById(R.id.scorecardTable);
         scorecard = (Scorecard) getActivity().getIntent().getSerializableExtra("scorecard");
         generateTable();
+
+        selector = root.findViewById(R.id.gameTypeRadioGroup);
+        selector.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.strokesRadioButton){
+                    showStrokes = true;
+                }else if (checkedId == R.id.pointsRadioButton){
+                    showStrokes = false;
+                }
+                updateTable();
+            }
+        });
+
         updateTable();
         return root;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateTable();
     }
 
     //Update to correct scores
@@ -43,20 +65,25 @@ public class ScorecardFragment extends Fragment {
         //Update score
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
             for(int h = 0; h < scorecard.getNumberOfHoles(); h ++)
-                ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf( scorecard.getPlayers().get(p).getShotsForHole(h) ));
+                if(showStrokes) {
+                    ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(h)));
+                }else{
+                    ((TextView) scoreTextViews.get(p).get(h)).setText("0");
+                }
         }
         //Update total
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
-            totalScoreTextViews.get(p).setText(String.valueOf( scorecard.getPlayers().get(p).getTotalShots() ));
+            if(showStrokes) {
+                totalScoreTextViews.get(p).setText(String.valueOf( scorecard.getPlayers().get(p).getTotalShots() ));
+            }else{
+                totalScoreTextViews.get(p).setText("10");
+            }
         }
     }
 
     private void generateTable() {
         //Values
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
-        //TODO: Calculate textSize and offset from resolution
-        int textSize = 20;
-        int offset = 30;
 
         //Create ArrayLists for textViews
         totalScoreTextViews = new ArrayList<TextView>();
@@ -76,18 +103,15 @@ public class ScorecardFragment extends Fragment {
     }
 
     private TableRow makeHeaderRow() {
-        int textSize = 20;
-        int offset = 30;
-
         TableRow row = new TableRow(getActivity());
-        TextView tv = generateTextView(textSize, offset);
+        TextView tv = generateTextView();
         tv.setText(R.string.hole);
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
         ArrayList<Player> players = scorecard.getPlayers();
         for (Player p : players) {
-            tv = generateTextView(textSize, offset);
+            tv = generateTextView();
             tv.setText(p.getInitials());
             tv.setBackgroundResource(R.drawable.table_row_bg);
             row.addView(tv);
@@ -96,20 +120,17 @@ public class ScorecardFragment extends Fragment {
     }
 
     private TableRow makeHoleRow(int holeNumber) {
-        int textSize = 20;
-        int offset = 30;
-
         TableRow row = new TableRow(getActivity());
 
         //Hole column
-        TextView tv = generateTextView(textSize, offset);
+        TextView tv = generateTextView();
         tv.setText(String.valueOf(holeNumber));
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
         //Player columns
         for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
-            tv = generateTextView(textSize, offset);
+            tv = generateTextView();
             scoreTextViews.get(p).add(tv);
             tv.setText("0");
             tv.setBackgroundResource(R.drawable.table_row_bg);
@@ -119,12 +140,9 @@ public class ScorecardFragment extends Fragment {
     }
 
     private TableRow makeBottomRow(Scorecard scorecard) {
-        int textSize = 20;
-        int offset = 30;
-
         TableRow row = new TableRow(getActivity());
         for (int p = 0; p <= Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
-            TextView tv = generateTextView(textSize, offset);
+            TextView tv = generateTextView();
             if (p == 0) {
                 tv.setText(R.string.total_shortened);
             } else {
@@ -138,7 +156,11 @@ public class ScorecardFragment extends Fragment {
     }
 
     //Generate TextViews for generateTable method
-    private TextView generateTextView(int textSize, int offset) {
+    private TextView generateTextView() {
+        //TODO: Calculate textSize and offset from resolution
+        int textSize = 18;
+        int offset = 30;
+
         TextView tv = new TextView(getActivity());
         tv.setTextSize(textSize);
         tv.setPadding(offset, 0, offset, 0);
