@@ -9,7 +9,12 @@ public class TeeTest {
 
     @Before
     public void setUp() throws Exception {
-        tee = new Tee("Blue", 50.0, 60.0);
+        try {
+            tee = new Tee("Blue", 50.0, 60.0);
+        }
+        catch (Exception e) {
+            System.out.println("Could not construct a Tee");
+        }
     }
 
     @Test
