@@ -2,7 +2,9 @@ package com.example.simplegolf.ui.strokes;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Scorecard;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class StrokesFragment extends Fragment implements View.OnClickListener {
@@ -29,6 +32,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private Scorecard scorecard;
 
     private LinearLayout layout;
+    private ArrayList<TextView> counters;
 
     /**
      * Factory method to create new instances of this fragment
@@ -64,7 +68,9 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
         View root = inflater.inflate(R.layout.fragment_strokes, container, false);
         layout = root.findViewById(R.id.playerLayout);
-        addPlayers();
+        counters = new ArrayList<>();
+        addPlayers(root);
+        updateUI();
         return root;
     }
 
@@ -84,11 +90,57 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void addPlayers(){
+    private void addPlayers(View root){
 
+        for(int p=0; p<scorecard.getPlayers().size(); p++){
+            LinearLayout col = new LinearLayout(getActivity());
+            col.setOrientation(LinearLayout.VERTICAL);
+            col.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+            TextView name = new TextView(getActivity());
+            name.setText(scorecard.getPlayers().get(p).getInitials());
+            name.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            name.setTextSize(30);
+            col.addView(name);
+
+            Button addP1 = new Button(getActivity());
+            addP1.setText("add");
+            int finalP = p;
+            addP1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scorecard.getPlayers().get(finalP).incrementHole(holeNumber);
+                    updateUI();
+                }
+            });
+            col.addView(addP1);
+
+            TextView stat = new TextView(getActivity());
+            stat.setText("0");
+            stat.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            stat.setTextSize(60);
+            counters.add(stat);
+            col.addView(stat);
+
+
+            Button removeP1 = new Button(getActivity());
+            removeP1.setText("remove");
+            removeP1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scorecard.getPlayers().get(finalP).decrementHole(holeNumber);
+                    updateUI();
+                }
+            });
+            col.addView(removeP1);
+
+            layout.addView(col);
+        }
     }
 
     private void updateUI() {
-        //counter.setText(String.valueOf(scorecard.getPlayers().get(0).getShotsForHole(holeNumber)));
+        for(int p=0; p<scorecard.getPlayers().size(); p++){
+            counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
+        }
     }
 }
