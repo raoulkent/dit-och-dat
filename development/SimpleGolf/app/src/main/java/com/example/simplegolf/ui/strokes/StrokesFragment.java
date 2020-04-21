@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,9 +26,9 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_HOLE = "holeNumber";
     private int holeNumber;
 
-    private TextView counter;
-
     private Scorecard scorecard;
+
+    private LinearLayout layout;
 
     /**
      * Factory method to create new instances of this fragment
@@ -60,16 +61,16 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         scorecard = (Scorecard) requireActivity().getIntent().getSerializableExtra("scorecard");
-        return inflater.inflate(R.layout.fragment_strokes, container, false);
+
+        View root = inflater.inflate(R.layout.fragment_strokes, container, false);
+        layout = root.findViewById(R.id.playerLayout);
+        addPlayers();
+        return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Button remove = view.findViewById(R.id.remove);
-        Button add = view.findViewById(R.id.add);                       // Stroke counter for p1
-        counter = view.findViewById(R.id.counter);
-        add.setOnClickListener(this);
-        remove.setOnClickListener(this);
+
     }
 
     @Override
@@ -80,21 +81,14 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.add: {
-                scorecard.getPlayers().get(0).incrementHole(holeNumber);
-                updateUI();
-                break;
-            }
-            case R.id.remove: {
-                scorecard.getPlayers().get(0).decrementHole(holeNumber);
-                updateUI();
-                break;
-            }
-        }
+
+    }
+
+    private void addPlayers(){
+
     }
 
     private void updateUI() {
-        counter.setText(String.valueOf(scorecard.getPlayers().get(0).getShotsForHole(holeNumber)));
+        //counter.setText(String.valueOf(scorecard.getPlayers().get(0).getShotsForHole(holeNumber)));
     }
 }
