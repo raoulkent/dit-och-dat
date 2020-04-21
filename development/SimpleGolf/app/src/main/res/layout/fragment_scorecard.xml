@@ -11,9 +11,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/gameTypeRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/gameTypeRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/strokesRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_left"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/selectorTextStrokes"
+            android:textColor="@drawable/selector_text" />
+
+        <RadioButton
+            android:id="@+id/pointsRadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_right"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/selectorTextPoints"
+            android:textColor="@drawable/selector_text" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
