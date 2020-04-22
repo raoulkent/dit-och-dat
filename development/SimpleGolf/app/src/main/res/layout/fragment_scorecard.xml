@@ -30,25 +30,23 @@
         <RadioButton
             android:id="@+id/strokesRadioButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/selector_left"
             android:button="@android:color/transparent"
             android:checked="true"
             android:gravity="center"
-            android:padding="8dp"
             android:text="@string/selectorTextStrokes"
             android:textColor="@drawable/selector_text" />
 
         <RadioButton
             android:id="@+id/pointsRadioButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/selector_right"
             android:button="@android:color/transparent"
             android:gravity="center"
-            android:padding="8dp"
             android:text="@string/selectorTextPoints"
             android:textColor="@drawable/selector_text" />
     </RadioGroup>

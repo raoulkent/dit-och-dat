@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Scorecard;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -103,7 +104,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
             name.setTextSize(30);
             col.addView(name);
 
-            Button addP1 = new Button(getActivity());
+            Button addP1 = new MaterialButton(getActivity());
             addP1.setText("add");
             int finalP = p;
             addP1.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +124,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
             col.addView(stat);
 
 
-            Button removeP1 = new Button(getActivity());
+            Button removeP1 = new MaterialButton(getActivity());
             removeP1.setText("remove");
             removeP1.setOnClickListener(new View.OnClickListener() {
                 @Override
