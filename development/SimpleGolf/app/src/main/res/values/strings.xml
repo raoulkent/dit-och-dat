@@ -12,7 +12,13 @@
     <!-- Start game screen -->
     <string name="hint_select_course">Select a course</string>
     <string name="hint_select_tee">and tee</string>
-    
+    <string-array name="courses_array">
+        <item>Golfistan</item>
+        <item>Hole-in-1</item>
+        <item>Grug hit ball good</item>
+    </string-array>
+
+
     <!-- ScoreCard table -->
     <string name="hole">Hole</string>
     <string name="total_shortened">Tot:</string>

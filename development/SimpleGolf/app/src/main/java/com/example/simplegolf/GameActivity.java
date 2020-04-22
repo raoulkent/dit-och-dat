@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -28,6 +30,15 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         nrHolesPicker.setMaxValue(18);
         nrHolesPicker.setValue(9);
         nrHolesPicker.setOnValueChangedListener(this);
+
+        // Get a reference to the AutoCompleteTextView in the layout
+        AutoCompleteTextView textView = findViewById(R.id.autocomplete_course);
+        // Get the string array
+        String[] courses = getResources().getStringArray(R.array.courses_array);
+        // Create the adapter and set it to the AutoCompleteTextView
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courses);
+        textView.setAdapter(adapter);
     }
 
     public void onClickCreate(View view) {

@@ -5,7 +5,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -19,9 +18,6 @@ import com.example.simplegolf.R;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -166,7 +162,7 @@ public class ScorecardFragment extends Fragment {
             } else {
                 totalScoreTextViews.add(tv);
                 tv.setText("0");
-                tv.setBackgroundResource(R.drawable.tabel_row_bottom);
+                tv.setBackgroundResource(R.drawable.table_row_bottom);
             }
             row.addView(tv);
         }
