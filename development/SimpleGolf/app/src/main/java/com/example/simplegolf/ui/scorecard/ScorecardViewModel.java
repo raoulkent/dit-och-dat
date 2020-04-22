@@ -5,15 +5,18 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class ScorecardViewModel extends ViewModel {
-
-    private MutableLiveData<String> mText;
+    private Boolean showStrokes;
 
     public ScorecardViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        this.showStrokes = true;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setShowStrokes(Boolean showStrokes){
+        this.showStrokes = showStrokes;
     }
+
+    public Boolean getShowStrokes(){
+        return showStrokes;
+    }
+
 }
