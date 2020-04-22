@@ -34,7 +34,6 @@
             android:layout_weight="1"
             android:background="@drawable/selector_left"
             android:button="@android:color/transparent"
-            android:checked="true"
             android:gravity="center"
             android:text="@string/selectorTextStrokes"
             android:textColor="@drawable/selector_text" />

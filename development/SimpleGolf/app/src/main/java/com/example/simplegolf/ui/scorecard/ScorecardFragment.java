@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Player;
@@ -28,30 +30,25 @@ public class ScorecardFragment extends Fragment {
     private TableLayout mTable;
     private ArrayList<ArrayList> scoreTextViews;
     private ArrayList<TextView> totalScoreTextViews;
-    RadioGroup selector;
-    private Boolean showStrokes = true;
+    private RadioGroup selector;
     private Scorecard scorecard;
+    private ScorecardViewModel viewModel;
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(getActivity()).get(ScorecardViewModel.class);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_scorecard, container, false);
+
         mTable = root.findViewById(R.id.scorecardTable);
         scorecard = (Scorecard) getActivity().getIntent().getSerializableExtra("scorecard");
+
         generateTable();
-
-        selector = root.findViewById(R.id.gameTypeRadioGroup);
-        selector.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.strokesRadioButton){
-                    showStrokes = true;
-                }else if (checkedId == R.id.pointsRadioButton){
-                    showStrokes = false;
-                }
-                updateTable();
-            }
-        });
-
+        setupSelector(root);
         updateTable();
+
         return root;
     }
     @Override
@@ -60,22 +57,43 @@ public class ScorecardFragment extends Fragment {
         updateTable();
     }
 
+    private void setupSelector(View root){
+        this.selector = root.findViewById(R.id.gameTypeRadioGroup);
+
+        if(viewModel.getShowStrokes()){
+            selector.check(R.id.strokesRadioButton);
+        }else{
+            selector.check(R.id.pointsRadioButton);
+        }
+
+        selector.setOnCheckedChangeListener((group, checkedId) -> {
+            if(checkedId == R.id.strokesRadioButton){
+                viewModel.setShowStrokes(true);
+            }else if (checkedId == R.id.pointsRadioButton){
+                viewModel.setShowStrokes(false);
+            }
+            updateTable();
+        });
+    }
+
     //Update to correct scores
     private void updateTable() {
         //Update score
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
             for(int h = 0; h < scorecard.getNumberOfHoles(); h ++)
-                if(showStrokes) {
+                if(viewModel.getShowStrokes()) {
                     ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(h)));
                 }else{
+                    //TODO: Get points
                     ((TextView) scoreTextViews.get(p).get(h)).setText("0");
                 }
         }
         //Update total
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
-            if(showStrokes) {
+            if(viewModel.getShowStrokes()) {
                 totalScoreTextViews.get(p).setText(String.valueOf( scorecard.getPlayers().get(p).getTotalShots() ));
             }else{
+                //TODO: Get total points
                 totalScoreTextViews.get(p).setText("10");
             }
         }
