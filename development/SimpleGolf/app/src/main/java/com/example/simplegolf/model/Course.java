@@ -26,7 +26,7 @@ public class Course implements Serializable {
         }
 
         if (tees.isEmpty()) {
-            throw new Exception("No tees");
+            throw new Exception("No tees for course");
         }
 
         this.holes = holes;

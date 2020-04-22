@@ -8,6 +8,10 @@
     <string name="title_activity_game_overview">GameOverview</string>
     <string name="title_strokes">Strokes</string>
     <string name="title_scorecard">Scorecard</string>
+
+    <!-- Start game screen -->
+    <string name="hint_select_course">Select a course</string>
+    <string name="hint_select_tee">and tee</string>
     
     <!-- ScoreCard table -->
     <string name="hole">Hole</string>
