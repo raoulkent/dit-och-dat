@@ -6,20 +6,20 @@ import java.io.Serializable;
  * This class is responsible of holding the information about a hole
  */
 public class Hole implements Serializable {
-    private int hcp;
+    private int hcpIndex;
     private int par;
 
-    public Hole(int hcp, int par) {
-        this.hcp = hcp;
+    public Hole(int hcpIndex, int par) {
+        this.hcpIndex = hcpIndex;
         this.par = par;
     }
 
-    public int getHcp() {
-        return hcp;
+    public int getHcpIndex() {
+        return hcpIndex;
     }
 
-    public void setHcp(int hcp) {
-        this.hcp = hcp;
+    public void setHcpIndex(int hcpIndex) {
+        this.hcpIndex = hcpIndex;
     }
 
     public int getPar() {

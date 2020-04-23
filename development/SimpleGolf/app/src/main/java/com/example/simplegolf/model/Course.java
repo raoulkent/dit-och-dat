@@ -33,7 +33,7 @@ public class Course implements Serializable {
     private static boolean checkUniqueHoleHcpIndices(List<Hole> holes) {
         List<Integer> foundHcps = new ArrayList<>();
         for (Hole hole : holes) {
-            int hcp = hole.getHcp();
+            int hcp = hole.getHcpIndex();
             if (foundHcps.contains(hcp)) {
                 return false;
             }
@@ -44,6 +44,14 @@ public class Course implements Serializable {
 
     private static boolean checkCourseSize(List<Hole> holes) {
         return holes.size() > 0 && holes.size() <= 18;
+    }
+
+    public int getTotalPar() {
+        int i = 0;
+        for (Hole h : holes) {
+            i += h.getPar();
+        }
+        return i;
     }
 
     public String getName() {
