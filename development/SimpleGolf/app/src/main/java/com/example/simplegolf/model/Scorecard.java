@@ -15,7 +15,7 @@ public class Scorecard implements Serializable {
     public Scorecard(int numberOfHoles) {
         this.numberOfHoles = numberOfHoles;
         while (numberOfHoles > 0) {
-            holes.add(new Hole());
+            holes.add(new Hole(0,0));
             numberOfHoles--;
         }
     }

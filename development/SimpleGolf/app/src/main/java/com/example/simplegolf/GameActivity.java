@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
@@ -19,6 +20,7 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
     public static String N_HOLES = "nHoles";
 
     private Scorecard scorecard;
+    private Course course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +32,12 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         nrHolesPicker.setMaxValue(18);
         nrHolesPicker.setValue(9);
         nrHolesPicker.setOnValueChangedListener(this);
+    }
 
-
-        // TODO: Clean up this mess and make it dynamic.
-        //  Also remove the comments from below once they are not needed.
-
-        // Get a reference to the AutoCompleteTextView in the layout
-        AutoCompleteTextView textView = findViewById(R.id.autocomplete_course);
-        // Get the string array
-        String[] courses = getResources().getStringArray(R.array.courses_array);
-        // Create the adapter and set it to the AutoCompleteTextView
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, courses);
-        textView.setAdapter(adapter);
+    public void onClickSelectCourse(View view) {
+        Intent selectCourse = new Intent(getApplicationContext(), CourseSelectActivity.class);
+        selectCourse.putExtra("current_course", course);
+        startActivity(selectCourse);
     }
 
     public void onClickCreate(View view) {

@@ -6,43 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="409dp"
-        android:layout_height="89dp"
+<!--  TODO: This button may be replaced with a card that shows the selected course  -->
+<!--   Or possibly a dummy course if no course is selected  -->
+    <Button
+        android:id="@+id/select_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickSelectCourse"
+        android:text="@string/select_course"
         app:layout_constraintBottom_toTopOf="@+id/holesQuestion"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/autocomplete_course"
-            android:layout_width="190dp"
-            android:layout_height="40dp"
-            android:hint="@string/hint_select_course"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/teeSpinner"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <Spinner
-            android:id="@+id/teeSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/autocomplete_course"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/holesQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="How many holes will you play?"
+        android:text="@string/holes_quantity_question"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,29 +48,28 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:onClick="onClickCreate"
-        android:text="Next"
+        android:text="@string/next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your tag?"
+        android:text="@string/your_tag"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/holesBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nrHolesPicker"
-        app:layout_constraintVertical_bias="0.26999998" />
+        app:layout_constraintVertical_bias="0.27" />
 
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:hint="Tag"
+        android:hint="@string/tag"
         android:inputType="textPersonName"
         android:maxLength="3"
         android:textAlignment="center"

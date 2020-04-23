@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.R;
@@ -38,7 +39,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
 
     // Create new views (invoked by the layout manager)
-    @Override
+    @Override @NonNull
     public CourseListAdapter.CourseViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
         // create a new view
@@ -51,7 +52,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final CourseViewHolder holder, int position) {
-        // - get element from your dataset at this position
+        // - get element from your data set at this position
         // - replace the contents of the view with that element
         holder.courseName.setText(courses.get(position).getName());
 
