@@ -19,6 +19,7 @@ import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ScorecardFragment extends Fragment {
@@ -123,7 +124,7 @@ public class ScorecardFragment extends Fragment {
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
-        ArrayList<Player> players = scorecard.getPlayers();
+        List<Player> players = scorecard.getPlayers();
         for (Player p : players) {
             tv = generateTextView();
             tv.setText(p.getInitials());
