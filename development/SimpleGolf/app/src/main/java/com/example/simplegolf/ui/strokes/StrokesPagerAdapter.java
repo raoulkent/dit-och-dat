@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class MyPagerAdapter extends FragmentStatePagerAdapter {
+public class StrokesPagerAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> fragmentList;
 
-    public MyPagerAdapter(@NonNull FragmentManager fm, int behavior, List<Fragment> fragmentList) {
+    public StrokesPagerAdapter(@NonNull FragmentManager fm, int behavior, List<Fragment> fragmentList) {
         super(fm, behavior);
         this.fragmentList = fragmentList;
     }

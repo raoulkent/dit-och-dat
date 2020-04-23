@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Tee implements Serializable {
     private String name;
-    private double mensRating, womensRating;
+    private double courseRating, slopeRating;
 
-    public Tee(String name, double mensRating, double womensRating) {
+    public Tee(String name, double courseRating, double slopeRating) {
         this.name = name;
-        this.mensRating = mensRating;
-        this.womensRating = womensRating;
+        this.courseRating = courseRating;
+        this.slopeRating = slopeRating;
     }
 
     public String getName() {
@@ -20,19 +20,19 @@ public class Tee implements Serializable {
         this.name = name;
     }
 
-    public double getMensRating() {
-        return mensRating;
+    public double getCourseRating() {
+        return courseRating;
     }
 
-    public void setMensRating(double mensRating) {
-        this.mensRating = mensRating;
+    public void setCourseRating(double courseRating) {
+        this.courseRating = courseRating;
     }
 
-    public double getWomensRating() {
-        return womensRating;
+    public double getSlopeRating() {
+        return slopeRating;
     }
 
-    public void setWomensRating(double womensRating) {
-        this.womensRating = womensRating;
+    public void setSlopeRating(double slopeRating) {
+        this.slopeRating = slopeRating;
     }
 }

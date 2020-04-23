@@ -6,16 +6,13 @@ import java.util.List;
 
 public class Course implements Serializable {
     private String name;
-    private double courseRating;
     private List<Hole> holes;
     private List<Tee> tees;
 
     public Course(String name,
-                  double courseRating,
                   List<Hole> holes,
                   List<Tee> tees) throws Exception {
         this.name = name;
-        this.courseRating = courseRating;
 
         if (!checkCourseSize(holes)) {
             throw new Exception("Faulty course size");
@@ -47,5 +44,29 @@ public class Course implements Serializable {
 
     private static boolean checkCourseSize(List<Hole> holes) {
         return holes.size() > 0 && holes.size() <= 18;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Hole> getHoles() {
+        return holes;
+    }
+
+    public void setHoles(List<Hole> holes) {
+        this.holes = holes;
+    }
+
+    public List<Tee> getTees() {
+        return tees;
+    }
+
+    public void setTees(List<Tee> tees) {
+        this.tees = tees;
     }
 }

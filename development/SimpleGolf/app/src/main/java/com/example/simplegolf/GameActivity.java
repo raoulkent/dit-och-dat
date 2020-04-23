@@ -31,6 +31,10 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         nrHolesPicker.setValue(9);
         nrHolesPicker.setOnValueChangedListener(this);
 
+
+        // TODO: Clean up this mess and make it dynamic.
+        //  Also remove the comments from below once they are not needed.
+
         // Get a reference to the AutoCompleteTextView in the layout
         AutoCompleteTextView textView = findViewById(R.id.autocomplete_course);
         // Get the string array

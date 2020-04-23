@@ -30,23 +30,23 @@ public class TeeTest {
 
     @Test
     public void getMensRating() {
-        Assert.assertEquals(50.0, tee.getMensRating(),0.01);
+        Assert.assertEquals(50.0, tee.getCourseRating(),0.01);
     }
 
     @Test
     public void setMensRating() {
-        tee.setMensRating(83.6);
-        Assert.assertEquals(83.6, tee.getMensRating(), 0.01);
+        tee.setCourseRating(83.6);
+        Assert.assertEquals(83.6, tee.getCourseRating(), 0.01);
     }
 
     @Test
     public void getWomensRating() {
-        Assert.assertEquals(60.0, tee.getWomensRating(),0.01);
+        Assert.assertEquals(60.0, tee.getSlopeRating(),0.01);
     }
 
     @Test
     public void setWomensRating() {
-        tee.setWomensRating(93.6);
-        Assert.assertEquals(93.6, tee.getWomensRating(), 0.01);
+        tee.setSlopeRating(93.6);
+        Assert.assertEquals(93.6, tee.getSlopeRating(), 0.01);
     }
 }
