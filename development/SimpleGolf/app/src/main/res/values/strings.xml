@@ -11,6 +11,7 @@
     
     <!-- ScoreCard table -->
     <string name="hole">Hole</string>
+    <string name="par">Par</string>
     <string name="total_shortened">Tot:</string>
     <string name="selectorTextStrokes">Strokes</string>
     <string name="selectorTextPoints">Points</string>

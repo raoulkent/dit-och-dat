@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,42 +8,54 @@
     tools:context=".ui.strokes.StrokesMainFragment"
     android:id="@+id/fragment_strokes_main">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="15dp">
-
-        <Button
-            android:id="@+id/btnPreviousHole"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Previous"
-            android:onClick="goToPreviousHole"
-            style="?attr/materialButtonOutlinedStyle"/>
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/holeNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="0"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:layout_marginTop="5dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnNextHole"
-            android:layout_width="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Next"
             android:onClick="goToNextHole"
-            style="?attr/materialButtonOutlinedStyle"/>
-    </LinearLayout>
+            android:text="Next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/holeNumber"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnPreviousHole"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="goToPreviousHole"
+            android:text="Previous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/holeNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+    </androidx.viewpager.widget.ViewPager>
 </LinearLayout>
