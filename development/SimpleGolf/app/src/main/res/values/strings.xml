@@ -8,7 +8,16 @@
     <string name="title_activity_game_overview">GameOverview</string>
     <string name="title_strokes">Strokes</string>
     <string name="title_scorecard">Scorecard</string>
-    
+
+    <!-- Start game screen -->
+    <string name="select_course">Select a course</string>
+    <string name="select_tee">and tee</string>
+    <string name="next_button">Next</string>
+    <string name="your_tag">Your tag?</string>
+    <string name="tag">Tag</string>
+    <string name="holes_quantity_question">How many holes will you play?</string>
+
+
     <!-- ScoreCard table -->
     <string name="hole">Hole</string>
     <string name="par">Par</string>

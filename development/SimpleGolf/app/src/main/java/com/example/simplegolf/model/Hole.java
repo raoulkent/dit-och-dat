@@ -5,17 +5,21 @@ import java.io.Serializable;
 /**
  * This class is responsible of holding the information about a hole
  */
-class Hole implements Serializable {
-    private int hcp;
+public class Hole implements Serializable {
+    private int hcpIndex;
     private int par;
 
-    Hole() {
-        this.hcp = 0;
-        this.par = 0;
+    public Hole(int hcpIndex, int par) {
+        this.hcpIndex = hcpIndex;
+        this.par = par;
     }
 
-    public int getHcp() {
-        return hcp;
+    public int getHcpIndex() {
+        return hcpIndex;
+    }
+
+    public void setHcpIndex(int hcpIndex) {
+        this.hcpIndex = hcpIndex;
     }
 
     public int getPar() {
@@ -25,9 +29,4 @@ class Hole implements Serializable {
     public void setPar(int par) {
         this.par = par;
     }
-
-    public void setHcp(int hcp) {
-        this.hcp = hcp;
-    }
-
 }

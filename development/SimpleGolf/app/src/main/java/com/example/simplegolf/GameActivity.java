@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
@@ -17,6 +20,7 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
     public static String N_HOLES = "nHoles";
 
     private Scorecard scorecard;
+    private Course course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,12 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         nrHolesPicker.setMaxValue(18);
         nrHolesPicker.setValue(9);
         nrHolesPicker.setOnValueChangedListener(this);
+    }
+
+    public void onClickSelectCourse(View view) {
+        Intent selectCourse = new Intent(getApplicationContext(), CourseSelectActivity.class);
+        selectCourse.putExtra("current_course", course);
+        startActivity(selectCourse);
     }
 
     public void onClickCreate(View view) {
