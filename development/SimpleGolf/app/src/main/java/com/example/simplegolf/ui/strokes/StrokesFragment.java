@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
+import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 import com.google.android.material.button.MaterialButton;
 
@@ -65,13 +66,15 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        scorecard = (Scorecard) requireActivity().getIntent().getSerializableExtra("scorecard");
-
         View root = inflater.inflate(R.layout.fragment_strokes, container, false);
-        layout = root.findViewById(R.id.playerLayout);
+
+        scorecard = (Scorecard) requireActivity().getIntent().getSerializableExtra("scorecard");
         counters = new ArrayList<>();
+        layout = root.findViewById(R.id.playerLayout);
+
         addPlayers(root);
         updateUI();
+
         return root;
     }
 
@@ -92,51 +95,67 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     }
 
     private void addPlayers(View root){
-
-        for(int p=0; p<scorecard.getPlayers().size(); p++){
-            LinearLayout col = new LinearLayout(getActivity());
-            col.setOrientation(LinearLayout.VERTICAL);
-            col.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-
-            TextView name = new TextView(getActivity());
-            name.setText(scorecard.getPlayers().get(p).getInitials());
-            name.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-            name.setTextSize(30);
-            col.addView(name);
-
-            Button addP1 = new MaterialButton(getActivity());
-            addP1.setText("add");
-            int finalP = p;
-            addP1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    scorecard.getPlayers().get(finalP).incrementHole(holeNumber);
-                    updateUI();
-                }
-            });
-            col.addView(addP1);
-
-            TextView stat = new TextView(getActivity());
-            stat.setText("0");
-            stat.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-            stat.setTextSize(60);
-            counters.add(stat);
-            col.addView(stat);
-
-
-            Button removeP1 = new MaterialButton(getActivity());
-            removeP1.setText("remove");
-            removeP1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    scorecard.getPlayers().get(finalP).decrementHole(holeNumber);
-                    updateUI();
-                }
-            });
-            col.addView(removeP1);
-
-            layout.addView(col);
+        for(Player p: scorecard.getPlayers()){
+            layout.addView(createLayoutForPlayer(p));
         }
+    }
+
+    private LinearLayout createLayoutForPlayer(Player p){
+        LinearLayout layout = new LinearLayout(getActivity());
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        layout.setPadding(10,0,10,0);
+
+        layout.addView(createNameTextView(p));
+        layout.addView(createAddButton(p));
+        layout.addView(createCounterTextView());
+        layout.addView(createRemoveButton(p));
+
+        return layout;
+    }
+
+    private TextView createNameTextView(Player p){
+        TextView tv = new TextView(getActivity());
+        tv.setText(p.getInitials());
+        tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        tv.setTextSize(30);
+        return tv;
+    }
+
+    private Button createAddButton(Player p){
+        Button b = new MaterialButton(getActivity());
+        b.setText("add");
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                p.incrementHole(holeNumber);
+                updateUI();
+            }
+        });
+        return b;
+    }
+
+    private TextView createCounterTextView(){
+        TextView stat = new TextView(getActivity());
+        stat.setText("0");
+        stat.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        stat.setTextSize(60);
+        counters.add(stat);
+        return stat;
+    }
+
+    private Button createRemoveButton(Player p){
+        Button b = new MaterialButton(getActivity());
+        b.setText("remove");
+        b.setPadding(0,0,0,0);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                p.decrementHole(holeNumber);
+                updateUI();
+            }
+        });
+        return b;
     }
 
     private void updateUI() {

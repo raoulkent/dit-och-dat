@@ -124,6 +124,14 @@ public class ScorecardFragment extends Fragment {
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
+        //TODO Change false to (if par exists)
+        if(false){
+            tv = generateTextView();
+            tv.setText(R.string.par);
+            tv.setBackgroundResource(R.drawable.table_row_bg);
+            row.addView(tv);
+        }
+
         List<Player> players = scorecard.getPlayers();
         for (Player p : players) {
             tv = generateTextView();
@@ -143,6 +151,15 @@ public class ScorecardFragment extends Fragment {
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
+        //TODO Change false to (if par exists)
+        if(false){
+            tv = generateTextView();
+            //TODO fetch par from scorecard
+            tv.setText("0");
+            tv.setBackgroundResource(R.drawable.table_row_bg);
+            row.addView(tv);
+        }
+
         //Player columns
         for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
             tv = generateTextView();
@@ -156,15 +173,25 @@ public class ScorecardFragment extends Fragment {
 
     private TableRow makeBottomRow(Scorecard scorecard) {
         TableRow row = new TableRow(getActivity());
-        for (int p = 0; p <= Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
-            TextView tv = generateTextView();
-            if (p == 0) {
-                tv.setText(R.string.total_shortened);
-            } else {
-                totalScoreTextViews.add(tv);
-                tv.setText("0");
-                tv.setBackgroundResource(R.drawable.table_row_bottom);
-            }
+
+        TextView tv = generateTextView();
+        tv.setText("Tot:");
+        row.addView(tv);
+
+        //TODO Change false to (if par exists)
+        if(false){
+            tv = generateTextView();
+            //TODO fetch total par from scorecard
+            tv.setText("0");
+            tv.setBackgroundResource(R.drawable.table_row_bottom);
+            row.addView(tv);
+        }
+
+        for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
+            tv = generateTextView();
+            totalScoreTextViews.add(tv);
+            tv.setText("0");
+            tv.setBackgroundResource(R.drawable.table_row_bottom);
             row.addView(tv);
         }
         return row;
