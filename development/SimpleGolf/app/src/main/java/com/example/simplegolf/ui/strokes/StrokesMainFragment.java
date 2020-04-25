@@ -39,7 +39,6 @@ public class StrokesMainFragment extends Fragment {
      *
      * @return A new instance of fragment StrokesMainFragment.
      */
-    // TODO: Rename and change types and number of parameters
     private static StrokesMainFragment newInstance() {
         return new StrokesMainFragment();
     }
@@ -60,7 +59,7 @@ public class StrokesMainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        for (int i = 0; i < viewModel.getNHoles(); i++) {
+        for (int i = 0; i < viewModel.getScorecard().getNumberOfHoles(); i++) {
             Fragment fragment = StrokesFragment.newInstance(i);
             fragmentHoleList.add(fragment);
         }
@@ -103,7 +102,7 @@ public class StrokesMainFragment extends Fragment {
     }
 
     public void goToNextHole(View view) {
-        if (!(viewModel.getCurrentHole() < viewModel.getNHoles() - 1)) {
+        if (!(viewModel.getCurrentHole() < viewModel.getScorecard().getNumberOfHoles() - 1)) {
             return;
         }
         viewModel.setCurrentHole(viewModel.getCurrentHole() + 1);

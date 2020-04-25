@@ -81,8 +81,8 @@ public class ScorecardFragment extends Fragment {
                 if(viewModel.getShowStrokes()) {
                     ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(h)));
                 }else{
-                    //TODO: Get points
-                    ((TextView) scoreTextViews.get(p).get(h)).setText("0");
+                    int score = scorecard.getPlayers().get(p).getScoreForHole(h);
+                    ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf(score));
                 }
         }
         //Update total
@@ -90,8 +90,8 @@ public class ScorecardFragment extends Fragment {
             if(viewModel.getShowStrokes()) {
                 totalScoreTextViews.get(p).setText(String.valueOf( scorecard.getPlayers().get(p).getTotalShots() ));
             }else{
-                //TODO: Get total points
-                totalScoreTextViews.get(p).setText("10");
+                int totalScore = scorecard.getPlayers().get(p).getTotalScore();
+                totalScoreTextViews.get(p).setText(String.valueOf(totalScore));
             }
         }
     }
@@ -109,7 +109,7 @@ public class ScorecardFragment extends Fragment {
 
         mTable.addView(makeHeaderRow(), params);
 
-        for (int holeNum = 1; holeNum <= Objects.requireNonNull(scorecard).getHoles().size(); holeNum++) {
+        for (int holeNum = 0; holeNum < Objects.requireNonNull(scorecard).getHoles().size(); holeNum++) {
             TableRow holeRow = makeHoleRow(holeNum);
             mTable.addView(holeRow, params);
         }
@@ -124,13 +124,10 @@ public class ScorecardFragment extends Fragment {
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
-        //TODO Change false to (if par exists)
-        if(false){
-            tv = generateTextView();
-            tv.setText(R.string.par);
-            tv.setBackgroundResource(R.drawable.table_row_bg);
-            row.addView(tv);
-        }
+        tv = generateTextView();
+        tv.setText(R.string.par);
+        tv.setBackgroundResource(R.drawable.table_row_bg);
+        row.addView(tv);
 
         List<Player> players = scorecard.getPlayers();
         for (Player p : players) {
@@ -147,18 +144,14 @@ public class ScorecardFragment extends Fragment {
 
         //Hole column
         TextView tv = generateTextView();
-        tv.setText(String.valueOf(holeNumber));
+        tv.setText(String.valueOf(holeNumber + 1)); // +1 to show real hole number.
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
-        //TODO Change false to (if par exists)
-        if(false){
             tv = generateTextView();
-            //TODO fetch par from scorecard
-            tv.setText("0");
+            tv.setText(String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar()));
             tv.setBackgroundResource(R.drawable.table_row_bg);
             row.addView(tv);
-        }
 
         //Player columns
         for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
@@ -178,14 +171,10 @@ public class ScorecardFragment extends Fragment {
         tv.setText("Tot:");
         row.addView(tv);
 
-        //TODO Change false to (if par exists)
-        if(false){
-            tv = generateTextView();
-            //TODO fetch total par from scorecard
-            tv.setText("0");
-            tv.setBackgroundResource(R.drawable.table_row_bottom);
-            row.addView(tv);
-        }
+        tv = generateTextView();
+        tv.setText(String.valueOf(scorecard.getCourse().getTotalPar()));
+        tv.setBackgroundResource(R.drawable.table_row_bottom);
+        row.addView(tv);
 
         for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
             tv = generateTextView();

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
+import com.example.simplegolf.model.testcourses.TestCourses;
 
 public class GameActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
@@ -45,8 +46,14 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         EditText nameInput = findViewById(R.id.editTextName);
         int nrHoles = nrHolesPicker.getValue();
 
-        scorecard = new Scorecard(nrHoles);
-        scorecard.addPlayer(nameInput.getText().toString());
+        // Old scorecard.
+        // scorecard = new Scorecard(nrHoles);
+        // scorecard.addPlayer(nameInput.getText().toString());
+
+        //TODO: Add course dynamically. This is temporary.
+        Course chalmersCourse = TestCourses.INSTANCE.getCourseChalmers();
+        scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
+        scorecard.addPlayer("Test", chalmersCourse, chalmersCourse.getTees().get(1), 36.0);
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
