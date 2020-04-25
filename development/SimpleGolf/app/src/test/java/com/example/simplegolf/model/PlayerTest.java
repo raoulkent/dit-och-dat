@@ -160,6 +160,12 @@ public class PlayerTest {
         player.setShotsForHole(holeNumber, shots);
         int expected = 2;
         assertEquals(expected, player.getScoreForHole(holeNumber));
+
+        for (int i = 0; i < course.getHoles().size(); i++) {
+            player.setShotsForHole(i, course.getHoles().get(i).getPar());
+        }
+        expected = 4;
+        assertEquals(expected, player.getScoreForHole(1));
     }
 
     @Test

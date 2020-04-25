@@ -1,6 +1,7 @@
 package com.example.simplegolf.ui.scorecard;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;

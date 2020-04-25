@@ -57,6 +57,7 @@ public class Player implements Serializable {
         int totalPar = course.getTotalPar();
         int totalExtraShots = getShcp();
 
+
         // Distribute extra shots on each hole based on hcpIndex and schp.
         while (totalExtraShots != 0) {
             for (int i = 0; i < 18; i++) {
