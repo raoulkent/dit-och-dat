@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="164dp"
+        android:layout_marginEnd="162dp"
         android:layout_marginBottom="43dp"
         android:onClick="onClickCreate"
         android:text="@string/next_button" />
@@ -36,6 +36,7 @@
         android:layout_width="409dp"
         android:layout_height="400dp"
         android:layout_below="@+id/select_course"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
@@ -45,10 +46,10 @@
         android:id="@+id/addPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/recViewPlayers"
+        android:layout_above="@+id/holesBtn"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="149dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="33dp"
         android:onClick="showDialog"
         android:text="Add Player" />
 
