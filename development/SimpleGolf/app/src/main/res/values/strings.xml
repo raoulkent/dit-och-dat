@@ -24,4 +24,14 @@
     <string name="total_shortened">Tot:</string>
     <string name="selectorTextStrokes">Strokes</string>
     <string name="selectorTextPoints">Points</string>
+
+    <!-- Tees -->
+    <string-array name="Tees">
+        <item>Select Tee</item>
+        <item>Blue</item>
+        <item>White</item>
+        <item>Yellow</item>
+        <item>Red</item>
+    </string-array>
+
 </resources>

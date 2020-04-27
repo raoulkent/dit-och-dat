@@ -1,82 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-<!--  TODO: This button may be replaced with a card that shows the selected course  -->
-<!--   Or possibly a dummy course if no course is selected  -->
+    <!--  TODO: This button may be replaced with a card that shows the selected course  -->
+    <!--   Or possibly a dummy course if no course is selected  -->
+
     <Button
         android:id="@+id/select_course"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="130dp"
         android:onClick="onClickSelectCourse"
-        android:text="@string/select_course"
-        app:layout_constraintBottom_toTopOf="@+id/holesQuestion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/holesQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="@string/holes_quantity_question"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <NumberPicker
-        android:id="@+id/nrHolesPicker"
-        android:layout_width="126dp"
-        android:layout_height="242dp"
-        android:layout_marginTop="50dp"
-        android:scrollbarSize="4dp"
-        android:theme="@style/nrHolesPickerText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/holesQuestion" />
+        android:text="@string/select_course" />
 
     <Button
         android:id="@+id/holesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="43dp"
         android:onClick="onClickCreate"
-        android:text="@string/next_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="@string/next_button" />
 
-    <TextView
-        android:id="@+id/textViewName"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recViewPlayers"
+        android:layout_width="409dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/select_course"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp" />
+
+    <Button
+        android:id="@+id/addPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/your_tag"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/holesBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nrHolesPicker"
-        app:layout_constraintVertical_bias="0.27" />
+        android:layout_below="@+id/recViewPlayers"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="149dp"
+        android:onClick="showDialog"
+        android:text="Add Player" />
 
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/tag"
-        android:inputType="textPersonName"
-        android:maxLength="3"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/holesBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

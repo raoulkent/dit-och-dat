@@ -28,11 +28,11 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
-        nrHolesPicker.setMinValue(1);
-        nrHolesPicker.setMaxValue(18);
-        nrHolesPicker.setValue(9);
-        nrHolesPicker.setOnValueChangedListener(this);
+    }
+
+    public void showDialog(View view){
+        GameActivityDialog gameActivityDialog = new GameActivityDialog();
+        gameActivityDialog.show(getSupportFragmentManager(), "game activity dialog");
     }
 
     public void onClickSelectCourse(View view) {
@@ -42,9 +42,6 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
     }
 
     public void onClickCreate(View view) {
-        NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
-        EditText nameInput = findViewById(R.id.editTextName);
-        int nrHoles = nrHolesPicker.getValue();
 
         // Old scorecard.
         // scorecard = new Scorecard(nrHoles);
