@@ -2,17 +2,19 @@ package com.example.simplegolf.ui.strokes;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.simplegolf.model.Scorecard;
+
 public class StrokesViewModel extends ViewModel {
 
-    private int nHoles = 0;
+    private Scorecard scorecard;
     private int currentHole = 0;
 
-    int getNHoles() {
-        return nHoles;
+    public Scorecard getScorecard() {
+        return scorecard;
     }
 
-    public void setNHoles(int nHoles) {
-        this.nHoles = nHoles;
+    public void setScorecard(Scorecard scorecard) {
+        this.scorecard = scorecard;
     }
 
     int getCurrentHole() {

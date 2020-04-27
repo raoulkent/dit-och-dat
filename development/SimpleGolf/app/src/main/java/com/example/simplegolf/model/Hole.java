@@ -9,13 +9,13 @@ public class Hole implements Serializable {
     private int hcpIndex;
     private int par;
 
-    public Hole(int hcpIndex, int par) {
+    public Hole(int par, int hcpIndex) {
         this.hcpIndex = hcpIndex;
         this.par = par;
     }
 
     public int getHcpIndex() {
-        return hcpIndex;
+        return hcpIndex - 1;
     }
 
     public void setHcpIndex(int hcpIndex) {

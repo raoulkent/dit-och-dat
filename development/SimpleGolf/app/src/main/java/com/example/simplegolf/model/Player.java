@@ -27,11 +27,12 @@ public class Player implements Serializable {
         this.shots = new int[nHoles];
     }
 
-    public Player(String initials, Tee tee, Course course, double hcp) {
+    public Player(String initials, Course course, Tee tee, double hcp) {
         this.initials = initials;
         this.tee = tee;
         this.course = course;
         this.hcp = hcp;
+        this.shots = new int[course.getHoles().size()];
     }
 
     /**
@@ -55,6 +56,7 @@ public class Player implements Serializable {
         int[] extraShotsHole = new int[18];
         int totalPar = course.getTotalPar();
         int totalExtraShots = getShcp();
+
 
         // Distribute extra shots on each hole based on hcpIndex and schp.
         while (totalExtraShots != 0) {
@@ -106,11 +108,15 @@ public class Player implements Serializable {
         return totalScore;
     }
 
+    public int getScoreForHole(int holeNumber) {
+        return getScores()[holeNumber];
+    }
+
     public String getInitials() {
         return initials;
     }
 
-    public void setShotsShotsForHole(int holeNumber, int shots) {
+    public void setShotsForHole(int holeNumber, int shots) {
         this.shots[holeNumber] = shots;
     }
 
@@ -130,8 +136,6 @@ public class Player implements Serializable {
     }
 
     public void decrementHole(int holeNumber){
-        if(this.shots[holeNumber] < 1)
-            return;
         this.shots[holeNumber]--;
     }
 

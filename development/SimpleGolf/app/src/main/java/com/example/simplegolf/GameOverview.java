@@ -35,7 +35,7 @@ public class GameOverview extends AppCompatActivity {
 
         Scorecard scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
-        viewModel.setNHoles(scorecard.getNumberOfHoles());
+        viewModel.setScorecard(scorecard);
     }
 
     private StrokesMainFragment getMainFragment() {
