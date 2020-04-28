@@ -95,6 +95,9 @@ public class Player implements Serializable {
 
         return score;
     }
+    public int getStrokes(int holeNumber){
+        holes.holenumber
+    }
 
     /**
      * Calculates the current total score for the player.
@@ -136,7 +139,8 @@ public class Player implements Serializable {
     }
 
     public void decrementHole(int holeNumber){
-        this.shots[holeNumber]--;
+        if(this.shots[holeNumber]>0)
+            this.shots[holeNumber]--;
     }
 
     public void setInitials(String initials) {

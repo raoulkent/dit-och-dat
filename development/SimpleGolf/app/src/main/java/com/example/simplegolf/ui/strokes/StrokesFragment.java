@@ -107,11 +107,28 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         layout.setPadding(10,0,10,0);
 
         layout.addView(createNameTextView(p));
+        layout.addView(createCurrentPar(p));
         layout.addView(createAddButton(p));
         layout.addView(createCounterTextView());
         layout.addView(createRemoveButton(p));
+        layout.addView(createCurrentPoints(p));
 
         return layout;
+    }
+    private TextView createCurrentPar(Player p){
+        TextView par = new TextView(getActivity());
+        int [] plannedStrokes = p.getScores();
+        par.setText(String.valueOf(plannedStrokes[viewModel.getCurrentHole()]));
+        par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        par.setTextSize(20);
+        return par;
+    }
+    private TextView createCurrentPoints(Player p){
+        TextView point = new TextView(getActivity());
+        point.setText(String.valueOf(p.getTotalScore()));
+        point.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        point.setTextSize(20);
+        return point;
     }
 
     private TextView createNameTextView(Player p){

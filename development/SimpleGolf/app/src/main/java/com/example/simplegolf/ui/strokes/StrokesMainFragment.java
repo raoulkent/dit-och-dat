@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.simplegolf.R;
+import com.example.simplegolf.model.Hole;
+import com.example.simplegolf.model.Player;
+import com.example.simplegolf.model.Scorecard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ import java.util.List;
 public class StrokesMainFragment extends Fragment {
     private List<Fragment> fragmentHoleList = new ArrayList<>();
     private ViewPager viewPager;
-    private TextView textHoleNumber;
+    private TextView textHoleNumber,currentPar;
     private StrokesViewModel viewModel;
 
     public StrokesMainFragment() {
@@ -66,6 +69,9 @@ public class StrokesMainFragment extends Fragment {
 
         textHoleNumber = view.findViewById(R.id.holeNumber);
         textHoleNumber.setText(getCurrentHoleNumber());
+
+        currentPar = view.findViewById(R.id.CurrentPar);
+        currentPar.setText(getCurrentPar());
 
         StrokesPageAdapter adapter = new StrokesPageAdapter(getChildFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
@@ -112,9 +118,15 @@ public class StrokesMainFragment extends Fragment {
     private void updateFragment() {
         viewPager.setCurrentItem(viewModel.getCurrentHole());
         textHoleNumber.setText(getCurrentHoleNumber());
+        currentPar.setText(getCurrentPar());
     }
 
     private String getCurrentHoleNumber() {
         return viewModel.getCurrentHole() + 1 + "";
+    }
+    private String getCurrentPar(){
+        List<Hole> holes = viewModel.getScorecard().getCourse().getHoles();
+
+        return String.valueOf(holes.get(viewModel.getCurrentHole()).getPar());
     }
 }
