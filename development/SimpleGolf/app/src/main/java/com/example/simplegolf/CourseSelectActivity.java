@@ -1,8 +1,8 @@
 package com.example.simplegolf;
 
-import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +15,7 @@ import com.example.simplegolf.ui.courseSelect.CourseListAdapter;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class CourseSelectActivity extends Activity {
+public class CourseSelectActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -29,21 +29,15 @@ public class CourseSelectActivity extends Activity {
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
-//        try {
-//            mAdapter = new CourseListAdapter(courseArrBuilder());   // TODO: Replace this dummy set of courses with complete course loading
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        recyclerView.setAdapter(mAdapter);
-
+        // TODO: Replace dummy data with real data.
         ArrayList<Course> courses = new ArrayList<>();
+        courses.add(TestCourses.INSTANCE.getCourseChalmers());
         courses.add(TestCourses.INSTANCE.getCourseChalmers());
 
         CourseListAdapter courseAdapter = new CourseListAdapter(courses);

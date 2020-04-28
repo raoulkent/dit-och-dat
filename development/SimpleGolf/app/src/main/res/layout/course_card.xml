@@ -1,6 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -10,28 +12,23 @@
         android:elevation="3dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/course_thumbnail"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:scaleType="fitXY"
-                android:layout_height="50dp" />
+                android:scaleType="fitStart" />
 
             <TextView
                 android:id="@+id/course_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/course_thumbnail" />
-
-            <Spinner
-                android:id="@+id/tee_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_marginStart="0dp"
+                android:layout_toEndOf="@+id/course_thumbnail" />
 
         </RelativeLayout>
 

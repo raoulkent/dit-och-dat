@@ -60,7 +60,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         // - replace the contents of the view with that element
         holder.courseName.setText(courses.get(position).getName());
         holder.thumbnail.setImageResource(R.drawable.chgk_logo);
-        // TODO: Replace all relevant fields in the holder with actual data.
 
     }
 
