@@ -118,7 +118,9 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private TextView createCurrentPar(Player p){
         TextView par = new TextView(getActivity());
         int [] plannedStrokes = p.getScores();
-        par.setText(String.valueOf(plannedStrokes[viewModel.getCurrentHole()]));
+        //plannedStrokes[viewModel.getCurrentHole()]
+
+        par.setText(String.valueOf(p.getStrokes(viewModel.getCurrentHole()+1)));
         par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         par.setTextSize(20);
         return par;

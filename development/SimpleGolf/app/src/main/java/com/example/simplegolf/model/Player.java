@@ -14,6 +14,7 @@ public class Player implements Serializable {
     private Tee tee;
     private Course course;
     private double hcp; // -4.0 to 54.0
+    private int[] extraShotsHole = new int[18];
 
 
     /**
@@ -53,7 +54,6 @@ public class Player implements Serializable {
     public int[] getScores() {
         // Todo add support for dynamic course size. (Currently only supports 18 holes).
         List<Hole> holes = course.getHoles();
-        int[] extraShotsHole = new int[18];
         int totalPar = course.getTotalPar();
         int totalExtraShots = getShcp();
 
@@ -95,8 +95,10 @@ public class Player implements Serializable {
 
         return score;
     }
+
     public int getStrokes(int holeNumber){
-        holes.holenumber
+        List<Hole> holes = course.getHoles();
+        return holes.get(holeNumber).getPar()+extraShotsHole[holeNumber];
     }
 
     /**
