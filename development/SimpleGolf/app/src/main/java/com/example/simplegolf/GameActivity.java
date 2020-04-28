@@ -5,28 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.example.simplegolf.model.Course;
-import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.testcourses.TestCourses;
 
-public class GameActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+public class GameActivity extends AppCompatActivity implements GameActivityDialog.DialogListener {
 
     public static String N_HOLES = "nHoles";
 
     private Scorecard scorecard;
     private Course course;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
 
     }
 
@@ -58,8 +55,10 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         startActivity(startGame);
     }
 
+
+
     @Override
-    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+    public void applyPlayerInfo(String name, String abbr, double HCP, String tee) {
 
     }
 }
