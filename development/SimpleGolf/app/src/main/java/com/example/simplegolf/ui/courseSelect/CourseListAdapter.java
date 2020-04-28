@@ -1,5 +1,6 @@
 package com.example.simplegolf.ui.courseSelect;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,24 +16,27 @@ import com.example.simplegolf.model.Course;
 import java.util.List;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
+
     private List<Course> courses;
+    private Context context;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class CourseViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView courseName;
-        public ImageView thumbnail;
+    static class CourseViewHolder extends RecyclerView.ViewHolder {
+
+        TextView courseName;
+        ImageView thumbnail;
 
         CourseViewHolder(View v) {
             super(v);
-//            textView = v;
+            thumbnail = v.findViewById(R.id.course_thumbnail);
+            courseName = v.findViewById(R.id.course_name);
         }
     }
 
     // TODO: Give proper data to the Adapter
-    // Provide a suitable constructor (depends on the kind of dataset)
+    // Provide a suitable constructor (depends on the kind of data set)
     public CourseListAdapter(List<Course> courses) {
         this.courses = courses;
     }
@@ -43,10 +47,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     public CourseListAdapter.CourseViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
         // create a new view
-        View itemView = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.course_card, parent, false);
-
-        return new CourseViewHolder(itemView);
+        context = parent.getContext();
+        return new CourseViewHolder(view);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -55,7 +59,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         // - get element from your data set at this position
         // - replace the contents of the view with that element
         holder.courseName.setText(courses.get(position).getName());
-
+        holder.thumbnail.setImageResource(R.drawable.chgk_logo);
         // TODO: Replace all relevant fields in the holder with actual data.
 
     }

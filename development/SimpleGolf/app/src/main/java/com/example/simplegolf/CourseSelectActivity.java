@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Hole;
 import com.example.simplegolf.model.Tee;
+import com.example.simplegolf.model.testcourses.TestCourses;
 import com.example.simplegolf.ui.courseSelect.CourseListAdapter;
 
 import java.util.ArrayList;
@@ -35,13 +36,19 @@ public class CourseSelectActivity extends Activity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        try {
-            mAdapter = new CourseListAdapter(courseArrBuilder());   // TODO: Replace this dummy set of courses with complete course loading
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        recyclerView.setAdapter(mAdapter);
+//        try {
+//            mAdapter = new CourseListAdapter(courseArrBuilder());   // TODO: Replace this dummy set of courses with complete course loading
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        recyclerView.setAdapter(mAdapter);
 
+        ArrayList<Course> courses = new ArrayList<>();
+        courses.add(TestCourses.INSTANCE.getCourseChalmers());
+
+        CourseListAdapter courseAdapter = new CourseListAdapter(courses);
+
+        recyclerView.setAdapter(courseAdapter);
     }
 
     private ArrayList<Course> courseArrBuilder() throws Exception {
