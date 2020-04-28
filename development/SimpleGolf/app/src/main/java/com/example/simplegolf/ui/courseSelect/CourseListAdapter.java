@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.R;
@@ -43,9 +44,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
 
     // Create new views (invoked by the layout manager)
-    @Override @NonNull
+    @Override
+    @NonNull
     public CourseListAdapter.CourseViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+                                                                 int viewType) {
         // create a new view
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.course_card, parent, false);
@@ -60,7 +62,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         // - replace the contents of the view with that element
         holder.courseName.setText(courses.get(position).getName());
         holder.thumbnail.setImageResource(R.drawable.chgk_logo);
-
+        holder.thumbnail.setPadding(2,2,2,2);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -68,5 +70,4 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     public int getItemCount() {
         return courses.size();
     }
-
 }

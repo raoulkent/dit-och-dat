@@ -25,6 +25,8 @@ public class CourseSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_selection);
+        this.setTitle("Select a course");
+
         recyclerView = findViewById(R.id.course_recycler);
 
         // use this setting to improve performance if you know that changes
@@ -37,6 +39,7 @@ public class CourseSelectActivity extends AppCompatActivity {
 
         // TODO: Replace dummy data with real data.
         ArrayList<Course> courses = new ArrayList<>();
+
         courses.add(TestCourses.INSTANCE.getCourseChalmers());
         courses.add(TestCourses.INSTANCE.getCourseChalmers());
 
@@ -44,6 +47,8 @@ public class CourseSelectActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(courseAdapter);
     }
+
+
 
     private ArrayList<Course> courseArrBuilder() throws Exception {
         ArrayList<Tee> tees1, tees2;
