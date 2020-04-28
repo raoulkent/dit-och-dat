@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Scorecard implements Serializable {
     private Course course;
+    private String date;
 
     @Deprecated // Delete this vaiable when no longer used.
     private List<Hole> holes = new ArrayList<>();
@@ -36,8 +37,8 @@ public class Scorecard implements Serializable {
         players.add(new Player(name, numberOfHoles));
     }
 
-    public void addPlayer(String name, Course course, Tee tee, double hcp) {
-        players.add(new Player(name, course, tee, hcp));
+    public void addPlayer(String name, Tee tee, double hcp) {
+        players.add(new Player(name, this.course, tee, hcp));
     }
 
     public List<Hole> getHoles() {
@@ -55,5 +56,13 @@ public class Scorecard implements Serializable {
 
     public Course getCourse() {
         return course;
+    }
+
+    public void setDate(String date){
+        this.date = date;
+    }
+
+    public String getDate(){
+        return this.date;
     }
 }
