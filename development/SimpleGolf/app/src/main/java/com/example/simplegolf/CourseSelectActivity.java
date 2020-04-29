@@ -45,6 +45,7 @@ public class CourseSelectActivity extends AppCompatActivity {
 
         mAdapter.setOnItemClickListener(position -> {
             Course course = courses.get(position);
+
             selectCourse(course);
 
             // TODO: Remove console log

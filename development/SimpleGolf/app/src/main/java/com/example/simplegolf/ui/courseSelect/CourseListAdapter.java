@@ -18,8 +18,8 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     private List<Course> courses;
     private OnItemClickListener mListener;
 
-    public interface OnItemClickListener {
-        void onItemClick(int position);
+    public CourseListAdapter(List<Course> courses) {
+        this.courses = courses;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -29,10 +29,8 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    static class CourseViewHolder extends RecyclerView.ViewHolder {
-
+    static class CourseViewHolder extends RecyclerView.ViewHolder{
         TextView courseName;
-
         ImageView thumbnail;
 
         CourseViewHolder(View itemView, final OnItemClickListener listener) {
@@ -40,26 +38,21 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             thumbnail = itemView.findViewById(R.id.course_thumbnail);
             courseName = itemView.findViewById(R.id.course_name);
 
-            itemView.setOnClickListener(v1 -> {
+            itemView.setOnClickListener(itemView1 -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(position);
+
+                        // TODO: Remove console log
+                        System.out.println("Clicked on item " + position);
                     }
                 }
             });
         }
-
-    }
-    // TODO: Give proper data to the Adapter
-
-    // Provide a suitable constructor (depends on the kind of data set)
-    public CourseListAdapter(List<Course> courses) {
-        this.courses = courses;
     }
 
     // Create new views (invoked by the layout manager)
-
     @Override
     @NonNull
     public CourseListAdapter.CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -69,6 +62,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     }
 
     // Replace the contents of a view (invoked by the layout manager)
+
     @Override
     public void onBindViewHolder(final CourseViewHolder holder, int position) {
         // - get element from your data set at this position
@@ -77,8 +71,12 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         holder.thumbnail.setImageResource(R.drawable.chgk_logo); // TODO: Replace with dynamic logo loading
         holder.thumbnail.setPadding(2, 2, 2, 2);
     }
-
     // Return the size of your dataset (invoked by the layout manager)
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
     @Override
     public int getItemCount() {
         return courses.size();
