@@ -14,19 +14,17 @@ import com.example.simplegolf.model.Scorecard;
 
 import java.util.List;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+public class oldGamesRecyclerViewAdapter extends RecyclerView.Adapter<oldGamesRecyclerViewAdapter.ViewHolder> {
 
     private List<Scorecard> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, List<Scorecard> data) {
+    public oldGamesRecyclerViewAdapter(Context context, List<Scorecard> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
-    // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.oldgames_row, parent, false);
@@ -51,7 +49,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return res;
     }
 
-    // total number of rows
     @Override
     public int getItemCount() {
         return mData.size();
@@ -77,17 +74,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
     }
 
-    // convenience method for getting data at click position
     public Scorecard getItem(int id) {
         return mData.get(id);
     }
 
-    // allows clicks events to be caught
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }

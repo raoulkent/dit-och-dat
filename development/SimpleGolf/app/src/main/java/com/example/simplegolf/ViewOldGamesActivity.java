@@ -14,8 +14,9 @@ import com.example.simplegolf.ui.oldGamesSelect.*;
 
 import java.util.ArrayList;
 
-public class ViewOldGamesActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
-    MyRecyclerViewAdapter adapter;
+public class ViewOldGamesActivity extends AppCompatActivity implements oldGamesRecyclerViewAdapter.ItemClickListener {
+
+    oldGamesRecyclerViewAdapter adapter;
     ArrayList<Scorecard> oldGames;
 
     @Override
@@ -27,7 +28,7 @@ public class ViewOldGamesActivity extends AppCompatActivity implements MyRecycle
 
         RecyclerView recyclerView = findViewById(R.id.rv_oldGames);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, oldGames);
+        adapter = new oldGamesRecyclerViewAdapter(this, oldGames);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
