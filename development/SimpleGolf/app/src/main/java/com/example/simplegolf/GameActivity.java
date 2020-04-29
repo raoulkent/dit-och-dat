@@ -36,9 +36,9 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
     }
 
     public void onClickSelectCourse(View view) {
-        Intent selectCourse = new Intent(getApplicationContext(), CourseSelectActivity.class);
-        selectCourse.putExtra("current_course", course);
-        startActivity(selectCourse);
+        Intent goSelectCourse = new Intent(getApplicationContext(), CourseSelectActivity.class);
+        goSelectCourse.putExtra("current_course", course);
+        startActivity(goSelectCourse);
     }
 
     public void onClickCreate(View view) {
