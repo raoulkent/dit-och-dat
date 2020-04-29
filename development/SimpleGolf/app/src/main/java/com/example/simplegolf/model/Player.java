@@ -53,9 +53,9 @@ public class Player implements Serializable {
     public int[] getScores() {
         // Todo add support for dynamic course size. (Currently only supports 18 holes).
         List<Hole> holes = course.getHoles();
-        int[] extraShotsHole = new int[18];
         int totalPar = course.getTotalPar();
         int totalExtraShots = getShcp();
+        int[] extraShotsHole = new int[18];
 
 
         // Distribute extra shots on each hole based on hcpIndex and schp.
@@ -94,6 +94,36 @@ public class Player implements Serializable {
         }
 
         return score;
+    }
+    // Todo -
+    public int getPlayerPar(int holeNumber){
+        List<Hole> holes = course.getHoles();
+        int totalPar = course.getTotalPar();
+        int totalExtraShots = getShcp();
+        int[] extraShotsHole = new int[18];
+
+
+        // Distribute extra shots on each hole based on hcpIndex and schp.
+        while (totalExtraShots != 0) {
+            for (int i = 0; i < 18; i++) {
+                if (totalExtraShots == 0) {
+                    break;
+                }
+                for (int holeIndex = 0; holeIndex < 18; holeIndex++) {
+                    if (holes.get(holeIndex).getHcpIndex() == i) {
+                        if (totalExtraShots > 0) {
+                            extraShotsHole[holeIndex]++;
+                            totalExtraShots--;
+                        }
+                        else if (totalExtraShots < 0) {
+                            extraShotsHole[holeIndex]--;
+                            totalExtraShots++;
+                        }
+                    }
+                }
+            }
+        }
+        return course.getHoles().get(holeNumber).getPar()+extraShotsHole[holeNumber];
     }
 
     /**
@@ -136,7 +166,8 @@ public class Player implements Serializable {
     }
 
     public void decrementHole(int holeNumber){
-        this.shots[holeNumber]--;
+        if(this.shots[holeNumber]>0)
+            this.shots[holeNumber]--;
     }
 
     public void setInitials(String initials) {

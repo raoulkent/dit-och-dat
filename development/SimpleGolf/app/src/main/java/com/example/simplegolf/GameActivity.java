@@ -53,7 +53,7 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         //TODO: Add course dynamically. This is temporary.
         Course chalmersCourse = TestCourses.INSTANCE.getCourseChalmers();
         scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
-        scorecard.addPlayer("Test", chalmersCourse, chalmersCourse.getTees().get(2), 36.0);
+        scorecard.addPlayer("Test", chalmersCourse.getTees().get(2), 36.0);
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);

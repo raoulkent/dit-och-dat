@@ -21,4 +21,16 @@ public class MainActivity extends AppCompatActivity {
         Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
         startActivity(startGame);
     }
+
+    public void unFinishedGame(View v) {
+        Intent startOldGame = new Intent(getApplicationContext(), ViewOldGamesActivity.class);
+        startOldGame.putExtra("finished", false);
+        startActivity(startOldGame);
+    }
+
+    public void finishedGame(View v) {
+        Intent startOldGame = new Intent(getApplicationContext(), ViewOldGamesActivity.class);
+        startOldGame.putExtra("finished", true);
+        startActivity(startOldGame);
+    }
 }
