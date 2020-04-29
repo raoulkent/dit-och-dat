@@ -1,5 +1,7 @@
 package com.example.simplegolf.ui.courseSelect;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.simplegolf.GameActivity;
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Course;
 
@@ -16,14 +19,11 @@ import java.util.List;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
     private List<Course> courses;
-    private OnItemClickListener mListener;
+    private Context context;
 
-    public CourseListAdapter(List<Course> courses) {
+    public CourseListAdapter(List<Course> courses, Context context) {
         this.courses = courses;
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
+        this.context = context;
     }
 
     // Provide a reference to the views for each data item
@@ -33,22 +33,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         TextView courseName;
         ImageView thumbnail;
 
-        CourseViewHolder(View itemView, final OnItemClickListener listener) {
+        CourseViewHolder(View itemView) {
             super(itemView);
             thumbnail = itemView.findViewById(R.id.course_thumbnail);
             courseName = itemView.findViewById(R.id.course_name);
-
-            itemView.setOnClickListener(itemView1 -> {
-                if (listener != null) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(position);
-
-                        // TODO: Remove console log
-                        System.out.println("Clicked on item " + position);
-                    }
-                }
-            });
         }
     }
 
@@ -58,7 +46,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     public CourseListAdapter.CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_card, parent, false);
-        return new CourseViewHolder(view, mListener);
+        return new CourseViewHolder(view);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -70,11 +58,15 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         holder.courseName.setText(courses.get(position).getName());
         holder.thumbnail.setImageResource(R.drawable.chgk_logo); // TODO: Replace with dynamic logo loading
         holder.thumbnail.setPadding(2, 2, 2, 2);
-    }
-    // Return the size of your dataset (invoked by the layout manager)
 
-    public interface OnItemClickListener {
-        void onItemClick(int position);
+        holder.itemView.setOnClickListener(v -> selectCourse(holder));
+    }
+
+    private void selectCourse(CourseViewHolder holder) {
+        Course course = courses.get(holder.getAdapterPosition());
+        Intent goGameActivity = new Intent(context.getApplicationContext(), GameActivity.class);
+        goGameActivity.putExtra("course", course);
+        context.startActivity(goGameActivity);
     }
 
     @Override
