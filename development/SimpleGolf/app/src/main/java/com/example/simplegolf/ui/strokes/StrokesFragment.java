@@ -35,6 +35,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private LinearLayout layout;
     private ArrayList<TextView> counters;
+    private ArrayList<TextView> points;
 
     /**
      * Factory method to create new instances of this fragment
@@ -70,6 +71,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
         scorecard = (Scorecard) requireActivity().getIntent().getSerializableExtra("scorecard");
         counters = new ArrayList<>();
+        points = new ArrayList<>();
         layout = root.findViewById(R.id.playerLayout);
 
         addPlayers(root);
@@ -115,21 +117,21 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
         return layout;
     }
+
     private TextView createCurrentPar(Player p){
         TextView par = new TextView(getActivity());
-        int [] plannedStrokes = p.getScores();
-        //plannedStrokes[viewModel.getCurrentHole()]
-
-        par.setText(String.valueOf(p.getStrokes(viewModel.getCurrentHole()+1)));
+        par.setText(String.valueOf(p.getPlayerPar(holeNumber)));
         par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         par.setTextSize(20);
         return par;
     }
+
     private TextView createCurrentPoints(Player p){
         TextView point = new TextView(getActivity());
         point.setText(String.valueOf(p.getTotalScore()));
         point.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         point.setTextSize(20);
+        points.add(point);
         return point;
     }
 
@@ -180,6 +182,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private void updateUI() {
         for(int p=0; p<scorecard.getPlayers().size(); p++){
             counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
+            points.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalScore()));
         }
     }
 }
