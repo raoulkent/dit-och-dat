@@ -126,8 +126,8 @@ public class PlayerTest {
         assertEquals(5, scores[11]);
         assertEquals(5, scores[5]);
         assertEquals(5, scores[16]);
-
     }
+
 
     @Test
     public void testGetScoresPlusHcp() {
@@ -234,4 +234,15 @@ public class PlayerTest {
         player.setHcp(expected);
         assertEquals(expected, player.getHcp(), delta);
     }
+
+
+    // TODO Fix test
+    @Test
+    public void testGetExtraHoles() {
+        System.out.println("Test");
+        player.getExtraShots();
+        assertEquals(1, 1);
+    }
+
+    // TODO Needs tests for 9-hole courses
 }

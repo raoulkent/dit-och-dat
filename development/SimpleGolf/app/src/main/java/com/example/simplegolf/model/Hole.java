@@ -33,10 +33,19 @@ public class Hole implements Serializable {
     }
 
     public int getHoleNumber() {
-        return holeNumber;
+        return holeNumber - 1;
     }
 
     public void setHoleNumber(int holeNumber) {
         this.holeNumber = holeNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Hole{" +
+                "holeNumber=" + holeNumber +
+                ", hcpIndex=" + getHcpIndex() +
+                ", par=" + par +
+                '}';
     }
 }

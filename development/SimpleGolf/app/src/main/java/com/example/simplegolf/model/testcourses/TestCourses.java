@@ -17,7 +17,6 @@ public enum TestCourses {
     INSTANCE;
 
     private Course courseChalmers;
-    private Course courseChalmers9Holes;
 
     /**
      * Generates test courses
@@ -62,31 +61,10 @@ public enum TestCourses {
             e.printStackTrace();
         }
 
-        // Chalmers real 9 hole course.
-        holes = new ArrayList<>();
-        holes.add(new Hole(1, 4, 6));
-        holes.add(new Hole(2, 3, 18));
-        holes.add(new Hole(3, 4, 16));
-        holes.add(new Hole(4, 5, 10));
-        holes.add(new Hole(5, 4, 12));
-        holes.add(new Hole(6, 5, 2));
-        holes.add(new Hole(7, 3, 4));
-        holes.add(new Hole(8, 4, 8));
-        holes.add(new Hole(9, 3, 14));
-
-        try {
-            courseChalmers9Holes = new Course("Chalmers GK - 9 hål", holes, tees);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     public Course getCourseChalmers() {
         return courseChalmers;
     }
 
-    public Course getCourseChalmers9Holes() {
-        return courseChalmers9Holes;
-    }
 }
