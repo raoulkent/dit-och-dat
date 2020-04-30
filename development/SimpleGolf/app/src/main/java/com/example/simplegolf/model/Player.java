@@ -1,8 +1,12 @@
 package com.example.simplegolf.model;
 
+import com.example.simplegolf.model.comparators.HcpIndexComparator;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -46,84 +50,67 @@ public class Player implements Serializable {
         return (int) Math.round(shcp);
     }
 
+
+    public int[] getExtraShots() {
+        // Distribute extra shots on each hole based on hcpIndex and schp.
+
+        int[] extraShotsHole = new int[course.getHoles().size()];
+
+        // todo this variable might need to be adjusted for 9-hole courses.
+        int totalExtraShots = getShcp();
+
+        // Make copy of list so we don't overwrite the original when sorting.
+        List<Hole> holesHcpIndexOrdered = new ArrayList<>(course.getHoles());
+        Collections.sort(holesHcpIndexOrdered, new HcpIndexComparator());
+
+        while (totalExtraShots != 0) {
+            for (int i = 0; i < holesHcpIndexOrdered.size(); i++) {
+                if (totalExtraShots > 0) {
+                    extraShotsHole[holesHcpIndexOrdered.get(i).getHoleNumber()]++;
+                    totalExtraShots--;
+                }
+                else if (totalExtraShots < 0) {
+                    extraShotsHole[holesHcpIndexOrdered.get(i).getHoleNumber()]--;
+                    totalExtraShots++;
+                }
+                else {
+                    return extraShotsHole;
+                }
+            }
+        }
+        return extraShotsHole;
+    }
+
     /**
      * Calculates the current scores on each hole.
      * @return Returns an integer array that consists of current scores on each hole.
      */
     public int[] getScores() {
-        // Todo add support for dynamic course size. (Currently only supports 18 holes).
         List<Hole> holes = course.getHoles();
-        int totalPar = course.getTotalPar();
-        int totalExtraShots = getShcp();
-        int[] extraShotsHole = new int[18];
 
-
-        // Distribute extra shots on each hole based on hcpIndex and schp.
-        while (totalExtraShots != 0) {
-            for (int i = 0; i < 18; i++) {
-                if (totalExtraShots == 0) {
-                    break;
-                }
-                for (int holeIndex = 0; holeIndex < 18; holeIndex++) {
-                    if (holes.get(holeIndex).getHcpIndex() == i) {
-                        if (totalExtraShots > 0) {
-                            extraShotsHole[holeIndex]++;
-                            totalExtraShots--;
-                        }
-                        else if (totalExtraShots < 0) {
-                            extraShotsHole[holeIndex]--;
-                            totalExtraShots++;
-                        }
-                    }
-                }
-            }
-        }
-
+        int[] extraShotsHole = getExtraShots();
         // Calculate points for each hole given the extra shots from above.
         // Takes hcp and course into account.
-        int[] score = new int[18];
-        for (int i = 0; i < 18; i++) {
+        int[] score = new int[course.getHoles().size()];
+        for (int i = 0; i < score.length; i++) {
             // Poäng = par + extra slag - slag + 2
             if (shots[i] == 0) {
                 continue; // Don't count points for holes not played.
             }
             int points = holes.get(i).getPar() + extraShotsHole[i] - shots[i] + 2;
             if (points > 0) {
-                score[i] = holes.get(i).getPar() + extraShotsHole[i] - shots[i] + 2;
+                score[i] = points;
             }
         }
 
         return score;
     }
-    // Todo -
-    public int getPlayerPar(int holeNumber){
-        List<Hole> holes = course.getHoles();
-        int totalPar = course.getTotalPar();
-        int totalExtraShots = getShcp();
-        int[] extraShotsHole = new int[18];
 
-
-        // Distribute extra shots on each hole based on hcpIndex and schp.
-        while (totalExtraShots != 0) {
-            for (int i = 0; i < 18; i++) {
-                if (totalExtraShots == 0) {
-                    break;
-                }
-                for (int holeIndex = 0; holeIndex < 18; holeIndex++) {
-                    if (holes.get(holeIndex).getHcpIndex() == i) {
-                        if (totalExtraShots > 0) {
-                            extraShotsHole[holeIndex]++;
-                            totalExtraShots--;
-                        }
-                        else if (totalExtraShots < 0) {
-                            extraShotsHole[holeIndex]--;
-                            totalExtraShots++;
-                        }
-                    }
-                }
-            }
-        }
-        return course.getHoles().get(holeNumber).getPar()+extraShotsHole[holeNumber];
+    public int getPlayerPar(int holeNumber) {
+        int[] extraShotsHole = getExtraShots();
+        int par = course.getHoles().get(holeNumber).getPar();
+        int playerPar = par + extraShotsHole[holeNumber];
+        return playerPar;
     }
 
     /**

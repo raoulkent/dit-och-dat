@@ -1,9 +1,6 @@
 package com.example.simplegolf.ui.strokes;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +20,6 @@ import com.example.simplegolf.model.Scorecard;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class StrokesFragment extends Fragment implements View.OnClickListener {
 
@@ -120,6 +116,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private TextView createCurrentPar(Player p){
         TextView par = new TextView(getActivity());
+        // TODO update gePlayerPar
         par.setText(String.valueOf(p.getPlayerPar(holeNumber)));
         par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         par.setTextSize(20);

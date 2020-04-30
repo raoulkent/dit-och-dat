@@ -67,7 +67,7 @@ public class CourseSelectActivity extends Activity {
     private ArrayList<Hole> holeBuilder(int numberOfHoles) {
         ArrayList<Hole> holes = new ArrayList<>();
         for (int i = 0; i <= numberOfHoles; i++) {
-            holes.add(new Hole(new Random().nextInt(10), new Random().nextInt(10)));
+            holes.add(new Hole(i, new Random().nextInt(10), new Random().nextInt(10)));
         }
         return holes;
     }
