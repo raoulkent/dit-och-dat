@@ -1,16 +1,18 @@
 package com.example.simplegolf.model.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import io.reactivex.Completable;
 
 import java.util.List;
 
 @Dao
 public interface EntityDAO {
     @Query("SELECT * FROM testentity")
-    List<TestEntity> getAll();
+    LiveData<List<TestEntity>> getAll();
 
     @Query("SELECT * FROM testentity WHERE uid IN (:userIds)")
     List<TestEntity> loadAllByIds(int[] userIds);
@@ -20,7 +22,7 @@ public interface EntityDAO {
     TestEntity findByName(String first, String last);
 
     @Insert
-    void insertAll(TestEntity... users);
+    Completable insertAll(TestEntity... entities);
 
     @Delete
     void delete(TestEntity user);

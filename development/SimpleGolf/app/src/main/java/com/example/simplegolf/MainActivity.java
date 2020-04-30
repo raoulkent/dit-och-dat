@@ -2,15 +2,17 @@ package com.example.simplegolf;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-
-import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.database.AppDatabase;
 import com.example.simplegolf.model.database.TestEntity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +22,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").fallbackToDestructiveMigration().allowMainThreadQueries().build();
-        db.entityDAO().insertAll(new TestEntity("first", "last"));
+                AppDatabase.class, "database-name").fallbackToDestructiveMigration().build();
+
+
+        db.entityDAO().insertAll(new TestEntity("aa", "bb"))
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+
+
+        db.entityDAO().getAll().observe(this, data -> {
+            Log.d("LOGDb", "Size:  " + data.size());
+
+            for (TestEntity t : data) {
+                Log.d("LOGDb", "id " + t.uid + " name: " + t.firstName);
+            }
+        });
 
     }
 
