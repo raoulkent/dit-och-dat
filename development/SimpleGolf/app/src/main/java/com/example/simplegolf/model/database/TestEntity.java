@@ -15,8 +15,7 @@ public class TestEntity {
     @ColumnInfo(name = "last_name")
     public String lastName;
 
-    public TestEntity(int uid, String firstName, String lastName) {
-        this.uid = uid;
+    public TestEntity(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

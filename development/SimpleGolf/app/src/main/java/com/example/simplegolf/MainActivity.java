@@ -20,11 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
-
-
-
-        db.entityDAO().insertAll(new TestEntity(4, "first", "last"));
+                AppDatabase.class, "database-name").fallbackToDestructiveMigration().allowMainThreadQueries().build();
+        db.entityDAO().insertAll(new TestEntity("first", "last"));
 
     }
 
