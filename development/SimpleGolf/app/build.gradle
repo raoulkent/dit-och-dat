@@ -59,6 +59,6 @@ dependencies {
 
 
     // To debug database in webbrowser, doesn't work with emulator...
-    //debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }
 

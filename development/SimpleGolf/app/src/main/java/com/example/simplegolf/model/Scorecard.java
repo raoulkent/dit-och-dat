@@ -10,6 +10,7 @@ import java.util.List;
 public class Scorecard implements Serializable {
     private Course course;
     private String date;
+    private boolean finishedRound = false;
 
     private List<Player> players = new ArrayList<>();
 

@@ -2,9 +2,14 @@ package com.example.simplegolf.model;
 
 import java.io.Serializable;
 
+
 public class Tee implements Serializable {
     private String name;
-    private double courseRating, slopeRating;
+    private double courseRating;
+    private double slopeRating;
+
+    public Tee() {
+    }
 
     public Tee(String name, double courseRating, double slopeRating) {
         this.name = name;
@@ -35,4 +40,6 @@ public class Tee implements Serializable {
     public void setSlopeRating(double slopeRating) {
         this.slopeRating = slopeRating;
     }
+
+
 }

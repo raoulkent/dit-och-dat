@@ -2,18 +2,27 @@ package com.example.simplegolf.model;
 
 import java.io.Serializable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 /**
  * This class is responsible of holding the information about a hole
  */
+
 public class Hole implements Serializable {
+
+    private String course;
     private int holeNumber;
-    private int hcpIndex;
     private int par;
+    private int hcpIndex;
+
+    public Hole() {
+    }
 
     public Hole(int holeNumber, int par, int hcpIndex) {
         this.holeNumber = holeNumber;
-        this.hcpIndex = hcpIndex;
         this.par = par;
+        this.hcpIndex = hcpIndex;
     }
 
     public int getHcpIndex() {
@@ -48,4 +57,5 @@ public class Hole implements Serializable {
                 ", par=" + par +
                 '}';
     }
+
 }

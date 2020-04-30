@@ -1,31 +1,33 @@
 package com.example.simplegolf.model;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.Relation;
+
+@Entity
 public class Course implements Serializable {
+    @PrimaryKey
+    @NonNull
     private String name;
+
+    @Relation(parentColumn = "name", entityColumn = "course")
     private List<Hole> holes;
+    @Ignore
     private List<Tee> tees;
 
-    public Course(String name,
-                  List<Hole> holes,
-                  List<Tee> tees) throws Exception {
+    public Course() {
+    }
+
+    public Course(String name, ArrayList<Hole> holes, List<Tee> tees) {
         this.name = name;
-
-        if (!checkCourseSize(holes)) {
-            throw new Exception("Faulty course size");
-        }
-
-        if (!checkUniqueHoleHcpIndices(holes)) {
-            throw new Exception("Duplicate handicap indices");
-        }
-
-        if (tees.isEmpty()) {
-            throw new Exception("No tees for course");
-        }
-
         this.holes = holes;
         this.tees = tees;
     }
@@ -62,11 +64,11 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public List<Hole> getHoles() {
+    public ArrayList<Hole> getHoles() {
         return holes;
     }
 
-    public void setHoles(List<Hole> holes) {
+    public void setHoles(ArrayList<Hole> holes) {
         this.holes = holes;
     }
 
