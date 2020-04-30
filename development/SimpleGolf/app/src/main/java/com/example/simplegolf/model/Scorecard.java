@@ -11,7 +11,7 @@ public class Scorecard implements Serializable {
     private Course course;
     private String date;
 
-    @Deprecated // Delete this vaiable when no longer used.
+    @Deprecated // Delete this variable when no longer used.
     private List<Hole> holes = new ArrayList<>();
 
     private List<Player> players = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Scorecard implements Serializable {
         this.course = course;
     }
 
-    @Deprecated
+    @Deprecated // Delete method when no longer used.
     public void addPlayer(String name) {
         players.add(new Player(name, numberOfHoles));
     }
