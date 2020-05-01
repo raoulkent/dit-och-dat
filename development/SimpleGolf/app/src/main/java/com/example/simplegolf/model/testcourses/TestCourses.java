@@ -19,30 +19,33 @@ public enum TestCourses {
     private Course courseChalmers;
 
     /**
-     * Generates courses
+     * Generates test courses
      */
     TestCourses() {
+
+        // Chalmers real 18 hole course
         List<Hole> holes = new ArrayList<>();
         List<Tee> tees = new ArrayList<>();
-        holes.add(new Hole(4, 6));
-        holes.add(new Hole(3, 18));
-        holes.add(new Hole(4, 16));
-        holes.add(new Hole(5, 10));
-        holes.add(new Hole(4, 12));
-        holes.add(new Hole(5, 2));
-        holes.add(new Hole(3, 4));
-        holes.add(new Hole(4, 8));
-        holes.add(new Hole(3, 14));
 
-        holes.add(new Hole(4, 9));
-        holes.add(new Hole(3, 17));
-        holes.add(new Hole(5, 1));
-        holes.add(new Hole(4, 11));
-        holes.add(new Hole(4, 13));
-        holes.add(new Hole(3, 5));
-        holes.add(new Hole(4, 15));
-        holes.add(new Hole(5, 3));
-        holes.add(new Hole(4, 7));
+        holes.add(new Hole(1, 4, 6));
+        holes.add(new Hole(2, 3, 18));
+        holes.add(new Hole(3, 4, 16));
+        holes.add(new Hole(4, 5, 10));
+        holes.add(new Hole(5, 4, 12));
+        holes.add(new Hole(6, 5, 2));
+        holes.add(new Hole(7, 3, 4));
+        holes.add(new Hole(8, 4, 8));
+        holes.add(new Hole(9, 3, 14));
+
+        holes.add(new Hole(10, 4, 9));
+        holes.add(new Hole(11, 3, 17));
+        holes.add(new Hole(12, 5, 1));
+        holes.add(new Hole(13, 4, 11));
+        holes.add(new Hole(14, 4, 13));
+        holes.add(new Hole(15, 3, 5));
+        holes.add(new Hole(16, 4, 15));
+        holes.add(new Hole(17, 5, 3));
+        holes.add(new Hole(18, 4, 7));
 
         tees.add(new Tee("Röd - Herrar", 66.1, 118));
         tees.add(new Tee("Blå - Herrar", 67.4, 120));
@@ -53,13 +56,15 @@ public enum TestCourses {
         tees.add(new Tee("Blå - Damer", 73.2, 125));
         tees.add(new Tee("Gul - Damer", 76.3, 132));
         try {
-            courseChalmers = new Course("Chalmers GK", holes, tees);
+            courseChalmers = new Course("Chalmers GK - 18 hål", holes, tees);
         } catch (Exception e) {
-            Log.e("Exception", e.getMessage());
+            e.printStackTrace();
         }
+
     }
 
     public Course getCourseChalmers() {
         return courseChalmers;
     }
+
 }

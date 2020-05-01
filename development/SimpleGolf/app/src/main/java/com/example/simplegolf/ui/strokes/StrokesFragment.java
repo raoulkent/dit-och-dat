@@ -1,9 +1,6 @@
 package com.example.simplegolf.ui.strokes;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +20,6 @@ import com.example.simplegolf.model.Scorecard;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class StrokesFragment extends Fragment implements View.OnClickListener {
 
@@ -35,6 +31,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private LinearLayout layout;
     private ArrayList<TextView> counters;
+    private ArrayList<TextView> points;
 
     /**
      * Factory method to create new instances of this fragment
@@ -70,6 +67,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
         scorecard = (Scorecard) requireActivity().getIntent().getSerializableExtra("scorecard");
         counters = new ArrayList<>();
+        points = new ArrayList<>();
         layout = root.findViewById(R.id.playerLayout);
 
         addPlayers(root);
@@ -107,11 +105,31 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         layout.setPadding(10,0,10,0);
 
         layout.addView(createNameTextView(p));
+        layout.addView(createCurrentPar(p));
         layout.addView(createAddButton(p));
         layout.addView(createCounterTextView());
         layout.addView(createRemoveButton(p));
+        layout.addView(createCurrentPoints(p));
 
         return layout;
+    }
+
+    private TextView createCurrentPar(Player p){
+        TextView par = new TextView(getActivity());
+        // TODO update gePlayerPar
+        par.setText(String.valueOf(p.getPlayerPar(holeNumber)));
+        par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        par.setTextSize(20);
+        return par;
+    }
+
+    private TextView createCurrentPoints(Player p){
+        TextView point = new TextView(getActivity());
+        point.setText(String.valueOf(p.getTotalScore()));
+        point.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        point.setTextSize(20);
+        points.add(point);
+        return point;
     }
 
     private TextView createNameTextView(Player p){
@@ -161,6 +179,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private void updateUI() {
         for(int p=0; p<scorecard.getPlayers().size(); p++){
             counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
+            points.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalScore()));
         }
     }
 }
