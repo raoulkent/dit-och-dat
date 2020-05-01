@@ -1,15 +1,20 @@
 package com.example.simplegolf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
-
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.testcourses.TestCourses;
+import com.google.android.material.card.MaterialCardView;
 
 public class GameActivity extends AppCompatActivity implements GameActivityDialog.DialogListener {
 
@@ -18,11 +23,15 @@ public class GameActivity extends AppCompatActivity implements GameActivityDialo
     private Scorecard scorecard;
     private Course course;
 
+    private RecyclerView recViewPlayers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        recViewPlayers = findViewById(R.id.recViewPlayers);
 
 
     }
@@ -59,6 +68,46 @@ public class GameActivity extends AppCompatActivity implements GameActivityDialo
 
     @Override
     public void applyPlayerInfo(String name, String abbr, double HCP, String tee) {
+
+        MaterialCardView playerCard = new MaterialCardView(this);
+
+        LayoutParams params = new LayoutParams(
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT
+        );
+
+        playerCard.setLayoutParams(params);
+
+        playerCard.setContentPadding(15,15,15,15);
+
+        // Set CardView corner radius
+        playerCard.setRadius(9);
+
+        // Set cardView content padding
+
+
+        // Set a background color for CardView
+        playerCard.setCardBackgroundColor(Color.parseColor("#FFC6D6C3"));
+
+        // Set the CardView maximum elevation
+        playerCard.setMaxCardElevation(15);
+
+        // Set CardView elevation
+        playerCard.setCardElevation(9);
+
+
+        TextView tvName = new TextView(this);
+       // tvName.setLayoutParams(params);
+        tvName.setLayoutParams(params);
+        tvName.setText(name);
+
+
+        playerCard.addView(tvName);
+
+        recViewPlayers.addView(tvName);
+
+
+
 
     }
 }
