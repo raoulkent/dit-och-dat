@@ -8,9 +8,6 @@ public class Tee implements Serializable {
     private double courseRating;
     private double slopeRating;
 
-    public Tee() {
-    }
-
     public Tee(String name, double courseRating, double slopeRating) {
         this.name = name;
         this.courseRating = courseRating;

@@ -10,14 +10,10 @@ import androidx.room.PrimaryKey;
  */
 
 public class Hole implements Serializable {
-
-    private String course;
     private int holeNumber;
     private int par;
     private int hcpIndex;
 
-    public Hole() {
-    }
 
     public Hole(int holeNumber, int par, int hcpIndex) {
         this.holeNumber = holeNumber;
@@ -49,13 +45,5 @@ public class Hole implements Serializable {
         this.holeNumber = holeNumber;
     }
 
-    @Override
-    public String toString() {
-        return "Hole{" +
-                "holeNumber=" + holeNumber +
-                ", hcpIndex=" + getHcpIndex() +
-                ", par=" + par +
-                '}';
-    }
 
 }

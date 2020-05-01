@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.database.AppDatabase;
 import com.example.simplegolf.model.database.TestEntity;
@@ -27,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         repository.getDb().courseDAO().insert(TestCourses.INSTANCE.getCourseChalmers())
                 .subscribeOn(Schedulers.io())
                 .subscribe();
+
+
+        repository.getDb().courseDAO().getAll().observe(this, data -> {
+            for (Course c : data) {
+                Log.d("DebugDB", c.getName());
+                Log.d("DebugDB", c.getHoles().size() + "");
+                Log.d("DebugDB", c.getTees().get(2).getName());
+            }
+        });
 
     }
 

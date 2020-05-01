@@ -1,5 +1,8 @@
 package com.example.simplegolf.model;
 
+import com.example.simplegolf.model.converters.HoleConverter;
+import com.example.simplegolf.model.converters.TeeConverter;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -11,6 +14,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
+import androidx.room.TypeConverters;
 
 @Entity
 public class Course implements Serializable {
@@ -18,15 +22,14 @@ public class Course implements Serializable {
     @NonNull
     private String name;
 
-    @Relation(parentColumn = "name", entityColumn = "course")
+    @TypeConverters(HoleConverter.class)
     private List<Hole> holes;
-    @Ignore
+
+    @TypeConverters(TeeConverter.class)
     private List<Tee> tees;
 
-    public Course() {
-    }
 
-    public Course(String name, ArrayList<Hole> holes, List<Tee> tees) {
+    public Course(String name, List<Hole> holes, List<Tee> tees) {
         this.name = name;
         this.holes = holes;
         this.tees = tees;
@@ -64,11 +67,11 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public ArrayList<Hole> getHoles() {
+    public List<Hole> getHoles() {
         return holes;
     }
 
-    public void setHoles(ArrayList<Hole> holes) {
+    public void setHoles(List<Hole> holes) {
         this.holes = holes;
     }
 

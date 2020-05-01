@@ -24,7 +24,7 @@ public enum TestCourses {
     TestCourses() {
 
         // Chalmers real 18 hole course
-        ArrayList<Hole> holes = new ArrayList<>();
+        List<Hole> holes = new ArrayList<>();
         List<Tee> tees = new ArrayList<>();
 
         holes.add(new Hole(1, 4, 6));
