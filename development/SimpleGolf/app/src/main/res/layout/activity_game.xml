@@ -31,19 +31,6 @@
         android:onClick="onClickCreate"
         android:text="@string/next_button" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recViewPlayers"
-        android:layout_width="409dp"
-        android:layout_height="400dp"
-        android:layout_below="@+id/select_course"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp" >
-
-    </androidx.recyclerview.widget.RecyclerView>
-
     <Button
         android:id="@+id/addPlayer"
         android:layout_width="wrap_content"
@@ -54,5 +41,15 @@
         android:layout_marginBottom="33dp"
         android:onClick="showDialog"
         android:text="Add Player" />
+
+    <LinearLayout
+        android:id="@+id/playerList"
+        android:layout_width="match_parent"
+        android:layout_height="407dp"
+        android:layout_above="@+id/addPlayer"
+        android:layout_below="@+id/select_course"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="38dp"
+        android:orientation="vertical"></LinearLayout>
 
 </RelativeLayout>

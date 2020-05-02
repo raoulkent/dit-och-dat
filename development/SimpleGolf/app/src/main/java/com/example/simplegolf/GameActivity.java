@@ -7,23 +7,33 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import com.example.simplegolf.model.Course;
+import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
+import com.example.simplegolf.model.Tee;
 import com.example.simplegolf.model.testcourses.TestCourses;
 import com.google.android.material.card.MaterialCardView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameActivity extends AppCompatActivity implements GameActivityDialog.DialogListener {
 
     public static String N_HOLES = "nHoles";
 
+    private List<Player> players = new ArrayList<>();
+
     private Scorecard scorecard;
     private Course course;
 
-    private RecyclerView recViewPlayers;
+    private LinearLayout playerList;
 
 
     @Override
@@ -31,7 +41,7 @@ public class GameActivity extends AppCompatActivity implements GameActivityDialo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        recViewPlayers = findViewById(R.id.recViewPlayers);
+        playerList = findViewById(R.id.playerList);
 
 
     }
@@ -56,7 +66,10 @@ public class GameActivity extends AppCompatActivity implements GameActivityDialo
         //TODO: Add course dynamically. This is temporary.
         Course chalmersCourse = TestCourses.INSTANCE.getCourseChalmers();
         scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
-        scorecard.addPlayer("Test", chalmersCourse.getTees().get(2), 36.0);
+
+        for (Player x:players)
+            scorecard.addPlayer(x.getName(), x.getInitials(), x.getTee(), x.getHcp());
+
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
@@ -69,42 +82,22 @@ public class GameActivity extends AppCompatActivity implements GameActivityDialo
     @Override
     public void applyPlayerInfo(String name, String abbr, double HCP, String tee) {
 
-        MaterialCardView playerCard = new MaterialCardView(this);
 
-        LayoutParams params = new LayoutParams(
-                LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT
-        );
+        Tee temp = null;
+        for(Tee x: TestCourses.INSTANCE.getCourseChalmers().getTees()){
+            if(x.getName().equals(tee))
+                temp = x;
+        }
 
-        playerCard.setLayoutParams(params);
-
-        playerCard.setContentPadding(15,15,15,15);
-
-        // Set CardView corner radius
-        playerCard.setRadius(9);
-
-        // Set cardView content padding
+        players.add(new Player(name, abbr, TestCourses.INSTANCE.getCourseChalmers(), temp, HCP));
 
 
-        // Set a background color for CardView
-        playerCard.setCardBackgroundColor(Color.parseColor("#FFC6D6C3"));
+        TextView tv = new TextView(this);
+        tv.setText(name);
+        tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        tv.setTextSize(40);
 
-        // Set the CardView maximum elevation
-        playerCard.setMaxCardElevation(15);
-
-        // Set CardView elevation
-        playerCard.setCardElevation(9);
-
-
-        TextView tvName = new TextView(this);
-       // tvName.setLayoutParams(params);
-        tvName.setLayoutParams(params);
-        tvName.setText(name);
-
-
-        playerCard.addView(tvName);
-
-        recViewPlayers.addView(tvName);
+        playerList.addView(tv);
 
 
 

@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class Player implements Serializable {
     private String initials; // 3 letter name
+    private String name;
     private int[] shots;
     private Tee tee;
     private Course course;
@@ -31,7 +32,8 @@ public class Player implements Serializable {
         this.shots = new int[nHoles];
     }
 
-    public Player(String initials, Course course, Tee tee, double hcp) {
+    public Player(String name, String initials, Course course, Tee tee, double hcp) {
+        this.name = name;
         this.initials = initials;
         this.tee = tee;
         this.course = course;
@@ -160,6 +162,8 @@ public class Player implements Serializable {
     public void setInitials(String initials) {
         this.initials = initials;
     }
+
+    public String getName(){return name;}
 
     public int[] getShots() {
         return shots;

@@ -30,10 +30,13 @@
     <!-- Tees -->
     <string-array name="Tees">
         <item>Select Tee</item>
-        <item>Blue</item>
-        <item>White</item>
-        <item>Yellow</item>
-        <item>Red</item>
+        <item>Röd - Herrar</item>
+        <item>Vit - Herrar</item>
+        <item>Blå - Herrar</item>
+        <item>Gul - Herrar</item>
+        <item>Röd - Damer</item>
+        <item>Blå - Damer</item>
+        <item>Gul - Damer</item>
     </string-array>
 
 </resources>
