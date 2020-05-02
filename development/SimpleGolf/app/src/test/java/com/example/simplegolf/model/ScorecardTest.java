@@ -29,21 +29,22 @@ public class ScorecardTest {
         assertEquals(actual, expected);
 
     }
+
     @Test
     public void testGetHoles(){
-        int expected = 5;
+        int expected = 18;
         Scorecard scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
         int actual = scorecard.getHoles().size();
-        assertEquals(actual,expected);
+        assertEquals(actual, expected);
 
     }
 
     @Test
     public void testGetNumberOfHoles(){
-        int expected = 5;
+        int expected = 18;
         Scorecard scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
         int actual = scorecard.getNumberOfHoles();
-        assertEquals(actual,expected);
+        assertEquals(actual, expected);
     }
 
     @Test

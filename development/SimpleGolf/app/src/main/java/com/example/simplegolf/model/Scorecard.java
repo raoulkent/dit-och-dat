@@ -48,7 +48,7 @@ public class Scorecard implements Serializable {
     }
 
     public void addPlayer(Player player) {
-
+        players.add(player);
     }
 
     public void addPlayers(List<Player> players) {
