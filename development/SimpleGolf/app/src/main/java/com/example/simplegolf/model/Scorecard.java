@@ -47,6 +47,10 @@ public class Scorecard implements Serializable {
         players.add(new Player(name,initials, this.course, tee, hcp));
     }
 
+    public void addPlayer(Player player) {
+
+    }
+
     public void addPlayers(List<Player> players) {
         this.players.addAll(players);
     }

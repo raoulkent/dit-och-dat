@@ -17,15 +17,12 @@ public class PlayerTest {
     public void setUp() {
         course = TestCourses.INSTANCE.getCourseChalmers();
         tee = course.getTees().get(2); // Gul tee
-        player = new Player("PHT", course, tee, 36.0);
+        player = new Player("Player1", "P1", course, tee, 36.0);
     }
 
     @Test
-    public void testGetInitials(){
-        String expected = "HUS";
-        Player player = new Player(expected, course, tee, 36.0);
-        String actual= player.getInitials();
-        assertEquals(actual,expected);
+    public void testGetInitials() {
+        assertEquals(player.getInitials(), "P1");
     }
 
     @Test

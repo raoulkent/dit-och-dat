@@ -2,20 +2,31 @@ package com.example.simplegolf.model;
 
 import com.example.simplegolf.model.testcourses.TestCourses;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class ScorecardTest {
 
+    private Player player;
+    private Course course;
+    private Tee tee;
+
+    @Before
+    public void setUp() {
+        course = TestCourses.INSTANCE.getCourseChalmers();
+        tee = course.getTees().get(2); // Gul tee
+        player = new Player("Player1", "P1", course, tee, 36.0);
+    }
 
     @Test
     public void testAddPlayer(){
         Scorecard scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
-        String expected = "Hus";
-        scorecard.addPlayer(expected, scorecard.getCourse().getTees().get(0), 36.0);
+        String expected = "P1";
+        scorecard.addPlayer(player);
         String actual = scorecard.getPlayers().get(0).getInitials();
-        assertEquals(actual,expected);
+        assertEquals(actual, expected);
 
     }
     @Test
