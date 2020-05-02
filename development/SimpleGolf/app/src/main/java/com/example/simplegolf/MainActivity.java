@@ -1,13 +1,18 @@
 package com.example.simplegolf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.reactivex.schedulers.Schedulers;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
+import com.example.simplegolf.model.Course;
+import com.example.simplegolf.model.Player;
+import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
+import com.example.simplegolf.model.testcourses.TestCourses;
 
 public class MainActivity extends AppCompatActivity {
 

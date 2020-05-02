@@ -4,9 +4,7 @@ import com.example.simplegolf.model.comparators.HcpIndexComparator;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -20,6 +18,13 @@ public class Player implements Serializable {
     private Course course;
     private double hcp; // -4.0 to 54.0
 
+    /**
+     * Avoid using this constructor, all the variables must be set individually.
+     * initials, shots[], tee, course, hcp
+     * This constructor exist for using Room db.
+     */
+    public Player() {
+    }
 
     /**
      * Deprecated: Use Player(String initials, Tee tee, Course course, double hcp) instead.

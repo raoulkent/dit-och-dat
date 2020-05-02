@@ -1,8 +1,10 @@
 package com.example.simplegolf;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.ui.strokes.StrokesMainFragment;
 import com.example.simplegolf.ui.strokes.StrokesViewModel;
@@ -19,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 public class GameOverview extends AppCompatActivity {
 
     StrokesMainFragment mainFragment;
+    private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class GameOverview extends AppCompatActivity {
         Scorecard scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
+
     }
 
     private StrokesMainFragment getMainFragment() {
