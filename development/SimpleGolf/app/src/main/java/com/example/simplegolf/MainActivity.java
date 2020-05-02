@@ -10,13 +10,13 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.simplegolf.model.Course;
+import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Repository;
-import com.example.simplegolf.model.database.AppDatabase;
-import com.example.simplegolf.model.database.TestEntity;
+import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.testcourses.TestCourses;
 
-
 public class MainActivity extends AppCompatActivity {
+    Course course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +29,26 @@ public class MainActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .subscribe();
 
-
         repository.getDb().courseDAO().getAll().observe(this, data -> {
-            for (Course c : data) {
-                Log.d("DebugDB", c.getName());
-                Log.d("DebugDB", c.getHoles().size() + "");
-                Log.d("DebugDB", c.getTees().get(2).getName());
-            }
+            course = data.get(0);
+
+            repository.getDb().playerDAO().get(1).observe(this, data2 -> {
+                data2.setCourse(course);
+                data2.setTee(course.getTees().get(0));
+            });
         });
+
+        Player p = new Player("PHT", TestCourses.INSTANCE.getCourseChalmers(), TestCourses.INSTANCE.getCourseChalmers().getTees().get(0), 36.0);
+
+        repository.getDb().playerDAO().insert(p)
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+
+        Scorecard scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
+
+        repository.getDb().scorecardDAO().insert(scorecard).subscribeOn(Schedulers.io()).subscribe();
+
+
 
     }
 

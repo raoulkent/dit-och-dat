@@ -2,13 +2,13 @@ package com.example.simplegolf.model;
 
 import java.io.Serializable;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
  * This class is responsible of holding the information about a hole
  */
-
 public class Hole implements Serializable {
     private int holeNumber;
     private int par;
@@ -44,6 +44,4 @@ public class Hole implements Serializable {
     public void setHoleNumber(int holeNumber) {
         this.holeNumber = holeNumber;
     }
-
-
 }
