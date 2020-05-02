@@ -1,5 +1,7 @@
 package com.example.simplegolf.model;
 
+import com.example.simplegolf.model.converters.PlayerConverter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ import androidx.room.Ignore;
 import androidx.room.Insert;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
+import androidx.room.TypeConverters;
 
 /**
  * This class is responsible of holding the data of the game
@@ -23,8 +26,7 @@ public class Scorecard implements Serializable {
     private String date;
     private boolean finishedRound = false;
 
-
-    @Ignore
+    @TypeConverters(PlayerConverter.class)
     private List<Player> players = new ArrayList<>();
 
 

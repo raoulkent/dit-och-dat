@@ -9,9 +9,8 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 
-@Database(entities = {Course.class, Player.class, Scorecard.class}, version = 5)
+@Database(entities = {Course.class, Scorecard.class}, version = 7)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract CourseDAO courseDAO();
-    public abstract PlayerDAO playerDAO();
     public abstract ScorecardDAO scorecardDAO();
 }

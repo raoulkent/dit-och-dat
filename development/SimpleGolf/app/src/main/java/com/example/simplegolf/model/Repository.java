@@ -29,12 +29,19 @@ public class Repository {
 }
 
 /* Examples how to use:
-// INSERTS
+// INSERT & SELECT / This version seems to work best.
+new Thread(() -> {
+    db.entityDAO.insert(...); // Insert
+    Xyz xyz = db.entityDAO.getXyz(); // Select
+}).start();
+
+
+// INSERTS / Completable
 db.entityDAO().insert(...)
         .subscribeOn(Schedulers.io())
         .subscribe();
 
-// SELECTS
+// SELECTS / LiveData
 db.entityDAO().get(...).observe(this, data -> {
       // Do stuff here, Data is the callback variable.
 });*/

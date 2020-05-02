@@ -1,35 +1,19 @@
 package com.example.simplegolf.model;
 
 import com.example.simplegolf.model.comparators.HcpIndexComparator;
-import com.example.simplegolf.model.converters.IntArrayConverter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
-import androidx.room.Embedded;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 /**
  * This class is responsible of making a player
  */
-@Entity
 public class Player implements Serializable {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
     private String initials; // 3 letter name
-    @TypeConverters(IntArrayConverter.class)
     private int[] shots;
-
-    @Embedded
     private Tee tee;
-    @Ignore
     private Course course;
     private double hcp; // -4.0 to 54.0
 
@@ -212,13 +196,5 @@ public class Player implements Serializable {
 
     public void setHcp(double hcp) {
         this.hcp = hcp;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
