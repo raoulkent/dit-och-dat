@@ -36,7 +36,7 @@ public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRe
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tvPlayers.setText(generatePlayersString(mData.get(0).getPlayers()));
+        holder.tvPlayers.setText(generatePlayersString(mData.get(position).getPlayers()));
         holder.tvCourseName.setText(mData.get(position).getCourse().getName());
         holder.tvDate.setText(mData.get(position).getDate());
     }

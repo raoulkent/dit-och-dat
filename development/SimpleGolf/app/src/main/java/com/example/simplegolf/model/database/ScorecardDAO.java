@@ -16,7 +16,7 @@ import io.reactivex.Completable;
 @Dao
 public interface ScorecardDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Scorecard scorecard);
+    long insert(Scorecard scorecard);
 
     @Query("SELECT * FROM Scorecard WHERE finishedRound = 0")
     List<Scorecard> getUnfinishedRounds();
@@ -32,4 +32,7 @@ public interface ScorecardDAO {
 
     @Query("DELETE From Scorecard")
     void deleteAll();
+
+    @Query("SELECT * From Scorecard WHERE id = :id")
+    Scorecard getById(long id);
 }
