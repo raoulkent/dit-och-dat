@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Player;
+import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.google.android.material.button.MaterialButton;
 
@@ -32,6 +33,8 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private LinearLayout layout;
     private ArrayList<TextView> counters;
     private ArrayList<TextView> points;
+
+    private Repository repository;
 
     /**
      * Factory method to create new instances of this fragment
@@ -58,6 +61,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
             holeNumber = getArguments().getInt(ARG_HOLE);
         }
         viewModel = new ViewModelProvider(getActivity()).get(StrokesViewModel.class);
+        repository = Repository.getRepository(getActivity());
     }
 
     @Override
@@ -177,9 +181,17 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     }
 
     private void updateUI() {
+        updateDB();
         for(int p=0; p<scorecard.getPlayers().size(); p++){
             counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
             points.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalScore()));
         }
+    }
+
+    // Saves new scores etc.
+    private void updateDB() {
+        new Thread(() -> {
+            repository.getDb().scorecardDAO().update(scorecard);
+        }).start();
     }
 }

@@ -23,4 +23,7 @@ public interface CourseDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Course course);
+
+    @Query("DELETE FROM Course")
+    void deleteAll();
 }

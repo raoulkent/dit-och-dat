@@ -6,6 +6,7 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -20,6 +21,15 @@ public interface ScorecardDAO {
     @Query("SELECT * FROM Scorecard WHERE finishedRound = 0")
     List<Scorecard> getUnfinishedRounds();
 
+    @Query("SELECT * FROM Scorecard WHERE finishedRound = 1 ")
+    List<Scorecard> getFinishedRounds();
+
     @Update
-    void  update(Scorecard scorecard);
+    void update(Scorecard scorecard);
+
+    @Delete
+    void delete(Scorecard scorecard);
+
+    @Query("DELETE From Scorecard")
+    void deleteAll();
 }

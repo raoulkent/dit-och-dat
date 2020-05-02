@@ -20,21 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Repository repository = Repository.getRepository(this);
-
-        new Thread(() -> {
-            repository.getDb().scorecardDAO().insert(new Scorecard(TestCourses.INSTANCE.getCourseChalmers()));
-        }).start();
-
-        repository.getDb().scorecardDAO().getUnfinishedRounds().observe(this, data -> {
-            Log.d("DebugDB", "Course: " + data.get(0).getPlayers().get(0).getShotsForHole(0));
-
-        });
-
-
-
-
     }
 
     public void newGame(View view) {

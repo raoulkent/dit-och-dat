@@ -14,13 +14,13 @@ import com.example.simplegolf.model.Scorecard;
 
 import java.util.List;
 
-public class oldGamesRecyclerViewAdapter extends RecyclerView.Adapter<oldGamesRecyclerViewAdapter.ViewHolder> {
+public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRecyclerViewAdapter.ViewHolder> {
 
     private List<Scorecard> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    public oldGamesRecyclerViewAdapter(Context context, List<Scorecard> data) {
+    public OldGamesRecyclerViewAdapter(Context context, List<Scorecard> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -30,6 +30,8 @@ public class oldGamesRecyclerViewAdapter extends RecyclerView.Adapter<oldGamesRe
         View view = mInflater.inflate(R.layout.oldgames_row, parent, false);
         return new ViewHolder(view);
     }
+
+
 
     // binds the data to the TextView in each row
     @Override
@@ -48,6 +50,8 @@ public class oldGamesRecyclerViewAdapter extends RecyclerView.Adapter<oldGamesRe
                 res += ", " + players.get(p).getInitials();
         return res;
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -84,5 +88,10 @@ public class oldGamesRecyclerViewAdapter extends RecyclerView.Adapter<oldGamesRe
 
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+    }
+
+    public void update(List<Scorecard> scorecards) {
+        mData = scorecards;
+        notifyDataSetChanged();
     }
 }

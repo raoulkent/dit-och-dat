@@ -4,50 +4,73 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 
+import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.testGames.TestGame;
 import com.example.simplegolf.ui.oldGamesSelect.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ViewOldGamesActivity extends AppCompatActivity implements oldGamesRecyclerViewAdapter.ItemClickListener {
+public class ViewOldGamesActivity extends AppCompatActivity implements OldGamesRecyclerViewAdapter.ItemClickListener {
 
-    oldGamesRecyclerViewAdapter adapter;
-    ArrayList<Scorecard> oldGames;
+    private OldGamesRecyclerViewAdapter adapter;
+    private List<Scorecard> oldGames = new ArrayList<>();
+    private Repository repository;
+    private boolean finishedGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_old_games);
 
-        setOldGames(getIntent().getExtras().getBoolean("finished", false));
-
         RecyclerView recyclerView = findViewById(R.id.rv_oldGames);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new oldGamesRecyclerViewAdapter(this, oldGames);
+        adapter = new OldGamesRecyclerViewAdapter(this, oldGames);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        repository  = Repository.getRepository(this);
+
+        finishedGame = getIntent().getExtras().getBoolean("finished", false);
+        setOldGames();
+
     }
 
-    private void setOldGames(Boolean finished){
-        //TODO: Fetch data from DB
-        if(finished){
-            oldGames = new ArrayList<Scorecard>();
-            oldGames.add(TestGame.INSTANCE.getGame());
-        }else{
-            oldGames = new ArrayList<Scorecard>();
-            oldGames.add(TestGame.INSTANCE.getGame());
-        }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setOldGames();
+    }
+
+    private void setOldGames() {
+        new Thread(() -> {
+            if (!finishedGame) {
+                oldGames = repository.getDb().scorecardDAO().getUnfinishedRounds();
+            }
+            else {
+                oldGames = repository.getDb().scorecardDAO().getFinishedRounds();
+            }
+
+            this.runOnUiThread(() -> {
+                adapter.update(oldGames);
+            });
+        }).start();
     }
 
     @Override
     public void onItemClick(View view, int position) {
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
-        startGame.putExtra("scorecard",oldGames.get(position));
+        startGame.putExtra("scorecard", oldGames.get(position));
         startActivity(startGame);
     }
 }
