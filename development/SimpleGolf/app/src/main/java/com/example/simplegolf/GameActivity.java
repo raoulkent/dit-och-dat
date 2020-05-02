@@ -1,38 +1,54 @@
 package com.example.simplegolf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.NumberPicker;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
-
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
+import com.example.simplegolf.model.Tee;
 import com.example.simplegolf.model.testcourses.TestCourses;
+import com.google.android.material.card.MaterialCardView;
 
-public class GameActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameActivity extends AppCompatActivity implements GameActivityDialog.DialogListener {
 
     public static String N_HOLES = "nHoles";
 
+    private List<Player> players = new ArrayList<>();
+
     private Scorecard scorecard;
     private Course course;
+
+    private LinearLayout playerList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
-        nrHolesPicker.setMinValue(1);
-        nrHolesPicker.setMaxValue(18);
-        nrHolesPicker.setValue(9);
-        nrHolesPicker.setOnValueChangedListener(this);
+        playerList = findViewById(R.id.playerList);
+
+
+    }
+
+    public void showDialog(View view){
+        GameActivityDialog gameActivityDialog = new GameActivityDialog();
+        gameActivityDialog.show(getSupportFragmentManager(), "game activity dialog");
     }
 
     public void onClickSelectCourse(View view) {
@@ -42,9 +58,6 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
     }
 
     public void onClickCreate(View view) {
-        NumberPicker nrHolesPicker = findViewById(R.id.nrHolesPicker);
-        EditText nameInput = findViewById(R.id.editTextName);
-        int nrHoles = nrHolesPicker.getValue();
 
         // Old scorecard.
         // scorecard = new Scorecard(nrHoles);
@@ -53,7 +66,10 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         //TODO: Add course dynamically. This is temporary.
         Course chalmersCourse = TestCourses.INSTANCE.getCourseChalmers();
         scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
-        scorecard.addPlayer("Test", chalmersCourse.getTees().get(2), 36.0);
+
+        for (Player x:players)
+            scorecard.addPlayer(x.getName(), x.getInitials(), x.getTee(), x.getHcp());
+
 
         //Send holes to GameOverview for now, this will change to game object
         Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
@@ -61,8 +77,30 @@ public class GameActivity extends AppCompatActivity implements NumberPicker.OnVa
         startActivity(startGame);
     }
 
+
+
     @Override
-    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+    public void applyPlayerInfo(String name, String abbr, double HCP, String tee) {
+
+
+        Tee temp = null;
+        for(Tee x: TestCourses.INSTANCE.getCourseChalmers().getTees()){
+            if(x.getName().equals(tee))
+                temp = x;
+        }
+
+        players.add(new Player(name, abbr, TestCourses.INSTANCE.getCourseChalmers(), temp, HCP));
+
+
+        TextView tv = new TextView(this);
+        tv.setText(name);
+        tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        tv.setTextSize(40);
+
+        playerList.addView(tv);
+
+
+
 
     }
 }

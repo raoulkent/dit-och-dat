@@ -34,8 +34,8 @@ public class Scorecard implements Serializable {
         this.course = course;
     }
 
-    public void addPlayer(String name, Tee tee, double hcp) {
-        players.add(new Player(name, this.course, tee, hcp));
+    public void addPlayer(String name,String initials, Tee tee, double hcp) {
+        players.add(new Player(name,initials, this.course, tee, hcp));
     }
 
     public List<Hole> getHoles() {
