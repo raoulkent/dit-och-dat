@@ -5,7 +5,7 @@ import com.example.simplegolf.model.database.AppDatabase;
 import androidx.room.Room;
 
 /**
- * Singleton Repository
+ * Singleton Repository, holds Database and Remote service
  */
 public class Repository {
     private static Repository INSTANCE;
@@ -16,6 +16,11 @@ public class Repository {
                 .fallbackToDestructiveMigration().build();
     }
 
+    /**
+     * Gets a single instance of the repository, improves performance.
+     * @param context Context of the activity calling this method
+     * @return The repository instance
+     */
     public static Repository getRepository(Context context) {
         if (INSTANCE == null) {
             INSTANCE = new Repository(context);
@@ -23,6 +28,10 @@ public class Repository {
         return INSTANCE;
     }
 
+    /**
+     * Gets access to the database
+     * @return database object
+     */
     public AppDatabase getDb() {
         return db;
     }
@@ -36,6 +45,7 @@ new Thread(() -> {
 }).start();
 
 
+// Old methods below, not working great. See above instead.
 // INSERTS / Completable
 db.entityDAO().insert(...)
         .subscribeOn(Schedulers.io())

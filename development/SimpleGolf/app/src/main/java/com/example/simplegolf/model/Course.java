@@ -17,6 +17,10 @@ import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 import androidx.room.TypeConverters;
 
+/**
+ * Holds course name, holes and tees. This is used to calculate scores
+ * and to display correct amount of holes.
+ */
 @Entity
 public class Course implements Serializable {
     @PrimaryKey
@@ -36,6 +40,11 @@ public class Course implements Serializable {
         this.tees = tees;
     }
 
+    /**
+     * Verifies if the hcpIndexes are unique
+     * @param holes List of holes to check
+     * @return true if verification is a success
+     */
     private static boolean checkUniqueHoleHcpIndices(List<Hole> holes) {
         List<Integer> foundHcps = new ArrayList<>();
         for (Hole hole : holes) {
@@ -48,10 +57,19 @@ public class Course implements Serializable {
         return true;
     }
 
+    /**
+     * Verifies that a list of holes are between 1 and 18
+     * @param holes List of holes to verify
+     * @return true if verification is a success
+     */
     private static boolean checkCourseSize(List<Hole> holes) {
         return holes.size() > 0 && holes.size() <= 18;
     }
 
+    /**
+     * Calculates the total amount of par for the course. Is used to calculate Shcp.
+     * @return total par for the course
+     */
     public int getTotalPar() {
         int i = 0;
         for (Hole h : holes) {

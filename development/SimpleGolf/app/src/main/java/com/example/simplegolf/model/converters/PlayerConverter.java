@@ -9,6 +9,10 @@ import java.util.List;
 
 import androidx.room.TypeConverter;
 
+/**
+ * Used to convert a list of Player into JSON and from JSON to a list of Player.
+ * Required for Room to handle lists
+ */
 public class PlayerConverter {
     private static Gson gson = new Gson();
 

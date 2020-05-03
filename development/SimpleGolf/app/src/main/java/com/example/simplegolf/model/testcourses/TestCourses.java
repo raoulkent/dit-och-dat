@@ -63,6 +63,10 @@ public enum TestCourses {
 
     }
 
+    /**
+     * Gets a fully working course based on Chalmers GK - 18 hole course
+     * @return chalmers gk - 18 hole course
+     */
     public Course getCourseChalmers() {
         return courseChalmers;
     }

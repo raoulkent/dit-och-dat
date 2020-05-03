@@ -10,6 +10,10 @@ import java.util.List;
 
 import androidx.room.TypeConverter;
 
+/**
+ * Used to convert a list of Tee into JSON and from JSON to a list of Tee.
+ * Required for Room to handle lists
+ */
 public class TeeConverter {
     private static Gson gson = new Gson();
 

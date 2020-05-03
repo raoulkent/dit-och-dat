@@ -8,6 +8,9 @@ import java.util.function.ToDoubleFunction;
 import java.util.function.ToIntFunction;
 import java.util.function.ToLongFunction;
 
+/**
+ * Can be used to sort a list of Hole by holeNumber in ascending order
+ */
 public class HoleNumberComparator implements Comparator<Hole> {
 
     @Override

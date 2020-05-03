@@ -12,6 +12,10 @@ import java.util.List;
 
 import androidx.room.TypeConverter;
 
+/**
+ * Used to convert a list of Hole into JSON and from JSON to a list of Hole.
+ * Required for Room to handle lists
+ */
 public class HoleConverter {
     private static Gson gson = new Gson();
 
