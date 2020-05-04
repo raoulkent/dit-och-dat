@@ -14,6 +14,14 @@
         <item name="buttonBarNeutralButtonStyle">@style/Alert.Button.Neutral</item>
     </style>
 
+    <style name="CardViewStyle.Light" parent="Widget.MaterialComponents.CardView">
+<!--        <item name="strokeWidth">0.1dp</item>-->
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="cardElevation">1dp</item>
+    </style>
+    
     <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">@color/colorPrimaryDark</item>
         <item name="rippleColor">@color/colorAccent</item>
