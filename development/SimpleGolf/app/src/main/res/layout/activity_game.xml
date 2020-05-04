@@ -9,17 +9,6 @@
 
 <!--  TODO: This button may be replaced with a card that shows the selected course  -->
 <!--   Or possibly a dummy course if no course is selected  -->
-    <Button
-        android:id="@+id/select_course"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickSelectCourse"
-        android:text="@string/select_course"
-        app:layout_constraintBottom_toTopOf="@+id/holesQuestion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/holesQuestion"
