@@ -71,7 +71,7 @@ public class StrokesMainFragment extends Fragment {
         textHoleNumber.setText(getCurrentHoleNumber());
 
         currentPar = view.findViewById(R.id.CurrentPar);
-        currentPar.setText(getCurrentPar());
+        currentPar.setText("Par " + getCurrentPar());
 
         StrokesPageAdapter adapter = new StrokesPageAdapter(getChildFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
@@ -118,12 +118,13 @@ public class StrokesMainFragment extends Fragment {
     private void updateFragment() {
         viewPager.setCurrentItem(viewModel.getCurrentHole());
         textHoleNumber.setText(getCurrentHoleNumber());
-        currentPar.setText(getCurrentPar());
+        currentPar.setText("Par " + getCurrentPar());
     }
 
     private String getCurrentHoleNumber() {
         return viewModel.getCurrentHole() + 1 + "";
     }
+
     private String getCurrentPar(){
         List<Hole> holes = viewModel.getScorecard().getCourse().getHoles();
 

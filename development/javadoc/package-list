@@ -1,0 +1,11 @@
+com.example.simplegolf
+com.example.simplegolf.model
+com.example.simplegolf.model.comparators
+com.example.simplegolf.model.converters
+com.example.simplegolf.model.database
+com.example.simplegolf.model.testGames
+com.example.simplegolf.model.testcourses
+com.example.simplegolf.ui.courseSelect
+com.example.simplegolf.ui.oldGamesSelect
+com.example.simplegolf.ui.scorecard
+com.example.simplegolf.ui.strokes

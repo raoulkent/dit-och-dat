@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/editPlName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:hint="Enter name" />
+
+
+    <EditText
+        android:id="@+id/editPlAbbr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter abbreviation"
+        android:layout_below="@id/editPlName"/>
+
+
+    <EditText
+        android:id="@+id/editPlHCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editPlAbbr"
+        android:hint="HCP"
+        android:inputType="numberDecimal" />
+
+    <Spinner
+        android:id="@+id/spinTee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/Tees"
+        android:layout_below="@id/editPlHCP" />
+
+
+</RelativeLayout>

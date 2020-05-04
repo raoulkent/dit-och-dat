@@ -17,15 +17,12 @@ public class PlayerTest {
     public void setUp() {
         course = TestCourses.INSTANCE.getCourseChalmers();
         tee = course.getTees().get(2); // Gul tee
-        player = new Player("PHT", course, tee, 36.0);
+        player = new Player("Player1", "P1", course, tee, 36.0);
     }
 
     @Test
-    public void testGetInitials(){
-        String expected = "HUS";
-        Player player = new Player(expected, course, tee, 36.0);
-        String actual= player.getInitials();
-        assertEquals(actual,expected);
+    public void testGetInitials() {
+        assertEquals(player.getInitials(), "P1");
     }
 
     @Test
@@ -126,8 +123,8 @@ public class PlayerTest {
         assertEquals(5, scores[11]);
         assertEquals(5, scores[5]);
         assertEquals(5, scores[16]);
-
     }
+
 
     @Test
     public void testGetScoresPlusHcp() {
@@ -234,4 +231,15 @@ public class PlayerTest {
         player.setHcp(expected);
         assertEquals(expected, player.getHcp(), delta);
     }
+
+
+    // TODO Fix test
+    @Test
+    public void testGetExtraHoles() {
+        System.out.println("Test");
+        player.getExtraShots();
+        assertEquals(1, 1);
+    }
+
+    // TODO Needs tests for 9-hole courses
 }
