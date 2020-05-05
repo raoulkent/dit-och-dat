@@ -45,6 +45,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() {
                 Intent startScreen = new Intent(getApplicationContext(), StartScreenActivity.class);
+                startScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(startScreen);
             }
         };
