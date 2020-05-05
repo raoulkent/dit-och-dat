@@ -28,8 +28,9 @@ public class Player implements Serializable {
 
     /**
      * Deprecated: Use Player(...) instead.
+     *
      * @param initials name
-     * @param nHoles number of holes
+     * @param nHoles   number of holes
      */
     @Deprecated // Delete constructor when it's no longer used.
     public Player(String initials, int nHoles) {
@@ -39,11 +40,12 @@ public class Player implements Serializable {
 
     /**
      * The constructor to use for creating a Player object
-     * @param name The player's name
+     *
+     * @param name     The player's name
      * @param initials The player's initials
-     * @param course The course the player will play on
-     * @param tee The tee the player chose to play from
-     * @param hcp The player's individual handicap
+     * @param course   The course the player will play on
+     * @param tee      The tee the player chose to play from
+     * @param hcp      The player's individual handicap
      */
     public Player(String name, String initials, Course course, Tee tee, double hcp) {
         this.name = name;
@@ -58,6 +60,7 @@ public class Player implements Serializable {
      * Calculates the "Spelhandicap" for the player
      * based on exact handicap, slope rating, course rating and course pars.
      * Formula: Spelhandicap = Exakthandicap * (Slopevärde / 113) + (Banvärde - Banans par)
+     *
      * @return Returns "Spelhandicap" in integer.
      */
     public int getShcp() {
@@ -69,6 +72,7 @@ public class Player implements Serializable {
     /**
      * Extrashots is the number of extra shots a player can be credited on each hole
      * based on the 'Spelhandicap'
+     *
      * @return Returns credited extra shots on each hole
      */
     public int[] getExtraShots() {
@@ -88,12 +92,10 @@ public class Player implements Serializable {
                 if (totalExtraShots > 0) {
                     extraShotsHole[holesHcpIndexOrdered.get(i).getHoleNumber()]++;
                     totalExtraShots--;
-                }
-                else if (totalExtraShots < 0) {
+                } else if (totalExtraShots < 0) {
                     extraShotsHole[holesHcpIndexOrdered.get(i).getHoleNumber()]--;
                     totalExtraShots++;
-                }
-                else {
+                } else {
                     return extraShotsHole;
                 }
             }
@@ -103,6 +105,7 @@ public class Player implements Serializable {
 
     /**
      * Calculates the current scores on each hole.
+     *
      * @return Returns an integer array that consists of current scores on each hole.
      */
     public int[] getScores() {
@@ -128,6 +131,7 @@ public class Player implements Serializable {
 
     /**
      * Gets the players individual Par for a given hole based on handicap
+     *
      * @param holeNumber The hole number
      * @return Individual Par on hole based on shcp
      */
@@ -140,6 +144,7 @@ public class Player implements Serializable {
 
     /**
      * Calculates the current total score for the player.
+     *
      * @return Returns an integer with the current total score.
      */
     public int getTotalScore() {
@@ -152,6 +157,7 @@ public class Player implements Serializable {
 
     /**
      * Calculates the current score for a given hole
+     *
      * @param holeNumber The hole number
      * @return The current score for the given hole
      */
@@ -174,9 +180,10 @@ public class Player implements Serializable {
 
     /**
      * Sums up all shots for the current round
+     *
      * @return The total number of shots for the current round
      */
-    public int getTotalShots(){
+    public int getTotalShots() {
         int sum = 0;
         for (int value : shots)
             sum += value;
@@ -185,18 +192,20 @@ public class Player implements Serializable {
 
     /**
      * Increases the shots by one for a given hole
+     *
      * @param holeNumber The hole number of which to increase the shot count.
      */
-    public void incrementHole(int holeNumber){
+    public void incrementHole(int holeNumber) {
         this.shots[holeNumber]++;
     }
 
     /**
      * Decreases the shots by one for a given hole
+     *
      * @param holeNumber The hole number of which to decrease the shot count.
      */
-    public void decrementHole(int holeNumber){
-        if(this.shots[holeNumber]>0)
+    public void decrementHole(int holeNumber) {
+        if (this.shots[holeNumber] > 0)
             this.shots[holeNumber]--;
     }
 
@@ -204,10 +213,13 @@ public class Player implements Serializable {
         this.initials = initials;
     }
 
-    public String getName(){return name;}
+    public String getName() {
+        return name;
+    }
 
     /**
      * Gets all shots for each hole
+     *
      * @return array of shots for each hole
      */
     public int[] getShots() {

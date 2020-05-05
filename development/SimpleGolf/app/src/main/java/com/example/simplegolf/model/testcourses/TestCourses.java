@@ -1,7 +1,5 @@
 package com.example.simplegolf.model.testcourses;
 
-import android.util.Log;
-
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Hole;
 import com.example.simplegolf.model.Tee;
@@ -65,6 +63,7 @@ public enum TestCourses {
 
     /**
      * Gets a fully working course based on Chalmers GK - 18 hole course
+     *
      * @return chalmers gk - 18 hole course
      */
     public Course getCourseChalmers() {

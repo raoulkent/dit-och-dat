@@ -1,23 +1,21 @@
 package com.example.simplegolf.model.database;
 
-import com.example.simplegolf.model.Course;
-
-import java.util.List;
-
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
-import io.reactivex.Completable;
+
+import com.example.simplegolf.model.Course;
+
+import java.util.List;
 
 @Dao
 public interface CourseDAO {
 
     /**
      * Gets a single course from the DB based on its unique name
+     *
      * @param name The course name
      * @return a course
      */
@@ -26,6 +24,7 @@ public interface CourseDAO {
 
     /**
      * Gets all courses from the DB
+     *
      * @return list of all courses in the DB
      */
     @Query("SELECT * FROM Course order by name")
@@ -33,6 +32,7 @@ public interface CourseDAO {
 
     /**
      * Saves a single course to the database
+     *
      * @param course the course
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -46,6 +46,7 @@ public interface CourseDAO {
 
     /**
      * Deletes a single course from the DB. Does not affect saved Scorecards
+     *
      * @param course
      */
     @Delete

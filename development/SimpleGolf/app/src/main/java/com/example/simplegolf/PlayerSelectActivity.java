@@ -1,13 +1,13 @@
 package com.example.simplegolf;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
@@ -32,7 +32,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_select_player);
 
         playerList = findViewById(R.id.playerList);
 

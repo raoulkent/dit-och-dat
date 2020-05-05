@@ -11,7 +11,7 @@ public class StartScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_start_menu);
     }
 
     public void newGame(View view) {
@@ -20,13 +20,13 @@ public class StartScreenActivity extends AppCompatActivity {
     }
 
     public void unFinishedGame(View v) {
-        Intent startOldGame = new Intent(getApplicationContext(), ViewOldGamesActivity.class);
+        Intent startOldGame = new Intent(getApplicationContext(), GameHistoryActivity.class);
         startOldGame.putExtra("finished", false);
         startActivity(startOldGame);
     }
 
     public void finishedGame(View v) {
-        Intent startOldGame = new Intent(getApplicationContext(), ViewOldGamesActivity.class);
+        Intent startOldGame = new Intent(getApplicationContext(), GameHistoryActivity.class);
         startOldGame.putExtra("finished", true);
         startActivity(startOldGame);
     }

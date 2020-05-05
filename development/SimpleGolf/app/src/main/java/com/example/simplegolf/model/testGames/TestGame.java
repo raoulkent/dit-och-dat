@@ -26,19 +26,19 @@ public enum TestGame {
 
         oldGame.setDate("2020-04-28");
 
-        oldGame.addPlayer("P1","1", TestCourses.INSTANCE.getCourseChalmers().getTees().get(0), 36.0);
-        oldGame.addPlayer("P2","2", TestCourses.INSTANCE.getCourseChalmers().getTees().get(1), 36.0);
-        oldGame.addPlayer("P3","3", TestCourses.INSTANCE.getCourseChalmers().getTees().get(2), 36.0);
-        oldGame.addPlayer("P4","4", TestCourses.INSTANCE.getCourseChalmers().getTees().get(3), 36.0);
+        oldGame.addPlayer("P1", "1", TestCourses.INSTANCE.getCourseChalmers().getTees().get(0), 36.0);
+        oldGame.addPlayer("P2", "2", TestCourses.INSTANCE.getCourseChalmers().getTees().get(1), 36.0);
+        oldGame.addPlayer("P3", "3", TestCourses.INSTANCE.getCourseChalmers().getTees().get(2), 36.0);
+        oldGame.addPlayer("P4", "4", TestCourses.INSTANCE.getCourseChalmers().getTees().get(3), 36.0);
 
-        for(Player p: oldGame.getPlayers()){
-            for(int i = 0; i < p.getShots().length; i ++){
+        for (Player p : oldGame.getPlayers()) {
+            for (int i = 0; i < p.getShots().length; i++) {
                 p.setShotsForHole(i, (int) (Math.random() * 10 + 1));
             }
         }
     }
 
-    public Scorecard getGame(){
+    public Scorecard getGame() {
         return oldGame;
     }
 }

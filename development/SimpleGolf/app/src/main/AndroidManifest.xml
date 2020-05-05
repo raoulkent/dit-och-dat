@@ -9,14 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewOldGamesActivity"></activity>
-        <activity android:name=".PlayerSelectActivity"></activity>
+        <activity android:name=".GameHistoryActivity">
+        </activity>
+        <activity android:name=".PlayerSelectActivity">
+        </activity>
         <activity
             android:name=".GameActivity"
-            android:label="@string/title_activity_game_overview"></activity>
+            android:label="@string/title_game_activity">
+        </activity>
         <activity
             android:name=".CourseSelectActivity"
-            android:label="CourseSelect"></activity>
+            android:label="CourseSelect">
+        </activity>
         <activity android:name=".StartScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
