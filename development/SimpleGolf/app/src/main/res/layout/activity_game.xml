@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
+    tools:context=".PlayerSelectActivity">
 
     <!--  TODO: This button may be replaced with a card that shows the selected course  -->
     <!--   Or possibly a dummy course if no course is selected  -->

@@ -4,18 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
-import com.example.simplegolf.model.testGames.TestGame;
 import com.example.simplegolf.ui.oldGamesSelect.*;
 
 import java.util.ArrayList;
@@ -39,7 +33,7 @@ public class ViewOldGamesActivity extends AppCompatActivity implements OldGamesR
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        repository  = Repository.getRepository(this);
+        repository = Repository.getRepository(this);
 
         finishedGame = getIntent().getExtras().getBoolean("finished", false);
         setOldGames();
@@ -56,8 +50,7 @@ public class ViewOldGamesActivity extends AppCompatActivity implements OldGamesR
         new Thread(() -> {
             if (!finishedGame) {
                 oldGames = repository.getDb().scorecardDAO().getUnfinishedRounds();
-            }
-            else {
+            } else {
                 oldGames = repository.getDb().scorecardDAO().getFinishedRounds();
             }
 
@@ -69,7 +62,7 @@ public class ViewOldGamesActivity extends AppCompatActivity implements OldGamesR
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
+        Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
         startGame.putExtra("scorecard", oldGames.get(position));
         startActivity(startGame);
     }

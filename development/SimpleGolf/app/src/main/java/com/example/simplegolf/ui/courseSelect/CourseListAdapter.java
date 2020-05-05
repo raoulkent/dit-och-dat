@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.simplegolf.GameActivity;
+import com.example.simplegolf.PlayerSelectActivity;
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Course;
 
@@ -64,7 +64,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     private void selectCourse(CourseViewHolder holder) {
         Course course = courses.get(holder.getAdapterPosition());
-        Intent goGameActivity = new Intent(context.getApplicationContext(), GameActivity.class);
+        Intent goGameActivity = new Intent(context.getApplicationContext(), PlayerSelectActivity.class);
         goGameActivity.putExtra("course", course);
         context.startActivity(goGameActivity);
     }
