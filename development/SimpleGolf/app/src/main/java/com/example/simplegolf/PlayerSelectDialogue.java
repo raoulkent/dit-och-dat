@@ -1,15 +1,12 @@
 package com.example.simplegolf;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +14,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-public class GameActivityDialog extends AppCompatDialogFragment {
+public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
     private EditText edit_PlName;
     private EditText edit_PlAbbr;
@@ -29,25 +26,19 @@ public class GameActivityDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity(),R.style.AlertDialogTheme);
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity(), R.style.AlertDialogTheme);
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.activity_game_dialog, null);
+        View view = inflater.inflate(R.layout.dialogue_select_player, null);
 
         builder.setView(view).setTitle("Please enter player details")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                .setNegativeButton("Cancel", (dialogInterface, i) -> {
 
-                    }
-                }).setPositiveButton("Add player", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                    String name = edit_PlName.getText().toString();
-                    String abbr = edit_PlAbbr.getText().toString();
-                    double hcp = Double.parseDouble(HCP.getText().toString());
-                    String tee = Tee.getSelectedItem().toString();
-                    listener.applyPlayerInfo(name, abbr, hcp, tee);
-            }
+                }).setPositiveButton("Add player", (dialogInterface, i) -> {
+            String name = edit_PlName.getText().toString();
+            String abbr = edit_PlAbbr.getText().toString();
+            double hcp = Double.parseDouble(HCP.getText().toString());
+            String tee = Tee.getSelectedItem().toString();
+            listener.applyPlayerInfo(name, abbr, hcp, tee);
         });
 
         edit_PlName = view.findViewById(R.id.editPlName);
@@ -56,7 +47,6 @@ public class GameActivityDialog extends AppCompatDialogFragment {
         Tee = view.findViewById(R.id.spinTee);
 
         return builder.create();
-
 
 
     }// onCreateDialog
@@ -72,7 +62,7 @@ public class GameActivityDialog extends AppCompatDialogFragment {
         }
     }
 
-    public interface DialogListener{
+    public interface DialogListener {
         void applyPlayerInfo(String name, String abbr, double HCP, String tee);
     }
 

@@ -1,4 +1,4 @@
-package com.example.simplegolf.ui.oldGamesSelect;
+package com.example.simplegolf.ui.gameHistory;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,13 +14,13 @@ import com.example.simplegolf.model.Scorecard;
 
 import java.util.List;
 
-public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRecyclerViewAdapter.ViewHolder> {
+public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.ViewHolder> {
 
     private List<Scorecard> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    public OldGamesRecyclerViewAdapter(Context context, List<Scorecard> data) {
+    public GameHistoryAdapter(Context context, List<Scorecard> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -30,7 +30,6 @@ public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRe
         View view = mInflater.inflate(R.layout.oldgames_row, parent, false);
         return new ViewHolder(view);
     }
-
 
 
     // binds the data to the TextView in each row
@@ -43,8 +42,8 @@ public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRe
 
     private String generatePlayersString(List<Player> players) {
         String res = "";
-        for(int p = 0; p < players.size(); p++)
-            if(p == 0)
+        for (int p = 0; p < players.size(); p++)
+            if (p == 0)
                 res += players.get(p).getInitials();
             else
                 res += ", " + players.get(p).getInitials();
@@ -52,12 +51,11 @@ public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRe
     }
 
 
-
     @Override
     public int getItemCount() {
         return mData.size();
     }
-    
+
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvPlayers;

@@ -48,25 +48,26 @@ public class ScorecardFragment extends Fragment {
 
         return root;
     }
+
     @Override
     public void onResume() {
         super.onResume();
         updateTable();
     }
 
-    private void setupSelector(View root){
+    private void setupSelector(View root) {
         this.selector = root.findViewById(R.id.gameTypeRadioGroup);
 
-        if(viewModel.getShowStrokes()){
+        if (viewModel.getShowStrokes()) {
             selector.check(R.id.strokesRadioButton);
-        }else{
+        } else {
             selector.check(R.id.pointsRadioButton);
         }
 
         selector.setOnCheckedChangeListener((group, checkedId) -> {
-            if(checkedId == R.id.strokesRadioButton){
+            if (checkedId == R.id.strokesRadioButton) {
                 viewModel.setShowStrokes(true);
-            }else if (checkedId == R.id.pointsRadioButton){
+            } else if (checkedId == R.id.pointsRadioButton) {
                 viewModel.setShowStrokes(false);
             }
             updateTable();
@@ -77,19 +78,19 @@ public class ScorecardFragment extends Fragment {
     private void updateTable() {
         //Update score
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
-            for(int h = 0; h < scorecard.getNumberOfHoles(); h ++)
-                if(viewModel.getShowStrokes()) {
+            for (int h = 0; h < scorecard.getNumberOfHoles(); h++)
+                if (viewModel.getShowStrokes()) {
                     ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(h)));
-                }else{
+                } else {
                     int score = scorecard.getPlayers().get(p).getScoreForHole(h);
                     ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf(score));
                 }
         }
         //Update total
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
-            if(viewModel.getShowStrokes()) {
-                totalScoreTextViews.get(p).setText(String.valueOf( scorecard.getPlayers().get(p).getTotalShots() ));
-            }else{
+            if (viewModel.getShowStrokes()) {
+                totalScoreTextViews.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalShots()));
+            } else {
                 int totalScore = scorecard.getPlayers().get(p).getTotalScore();
                 totalScoreTextViews.get(p).setText(String.valueOf(totalScore));
             }
@@ -148,10 +149,10 @@ public class ScorecardFragment extends Fragment {
         tv.setBackgroundResource(R.drawable.table_row_left);
         row.addView(tv);
 
-            tv = generateTextView();
-            tv.setText(String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar()));
-            tv.setBackgroundResource(R.drawable.table_row_bg);
-            row.addView(tv);
+        tv = generateTextView();
+        tv.setText(String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar()));
+        tv.setBackgroundResource(R.drawable.table_row_bg);
+        row.addView(tv);
 
         //Player columns
         for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {

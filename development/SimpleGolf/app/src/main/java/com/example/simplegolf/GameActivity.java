@@ -1,115 +1,75 @@
 package com.example.simplegolf;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
-import android.widget.TextView;
-import com.example.simplegolf.model.Course;
-import com.example.simplegolf.model.Player;
+
+import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
-import com.example.simplegolf.model.Tee;
-import com.example.simplegolf.model.testcourses.TestCourses;
-import com.google.android.material.card.MaterialCardView;
+import com.example.simplegolf.ui.strokes.StrokesMainFragment;
+import com.example.simplegolf.ui.strokes.StrokesViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
+public class GameActivity extends AppCompatActivity {
 
-public class GameActivity extends AppCompatActivity implements GameActivityDialog.DialogListener {
-
-    private List<Player> players = new ArrayList<>();
-
-    private Scorecard scorecard;
-    private Course course;
-
-    private LinearLayout playerList;
-
+    StrokesMainFragment mainFragment;
+    private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_game_overview);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_strokes_main, R.id.navigation_scorecard).build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
 
-        playerList = findViewById(R.id.playerList);
 
+        Scorecard scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
+        StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
+        viewModel.setScorecard(scorecard);
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent startScreen = new Intent(getApplicationContext(), StartScreenActivity.class);
+                startActivity(startScreen);
+            }
+        };
+
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    public void showDialog(View view){
-        GameActivityDialog gameActivityDialog = new GameActivityDialog();
-        gameActivityDialog.show(getSupportFragmentManager(), "game activity dialog");
-    }
+    private StrokesMainFragment getMainFragment() {
+        Fragment navHostFragment = getSupportFragmentManager().getPrimaryNavigationFragment(); // Requires view to be initialized.
 
-    public void onClickSelectCourse(View view) {
-        Intent goSelectCourse = new Intent(getApplicationContext(), CourseSelectActivity.class);
-        goSelectCourse.putExtra("current_course", course);
-        startActivity(goSelectCourse);
-    }
-
-    public void onClickCreate(View view) {
-
-        // Old scorecard.
-        // scorecard = new Scorecard(nrHoles);
-        // scorecard.addPlayer(nameInput.getText().toString());
-
-        //TODO: Add course dynamically. This is temporary.
-        Course chalmersCourse = TestCourses.INSTANCE.getCourseChalmers();
-        scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
-        scorecard.addPlayers(players);
-        /*
-        for (Player player : players) {
-            scorecard.addPlayer(player.getName(), player.getInitials(), player.getTee(), player.getHcp());
-        } */
-
-        // Save to DB and fetch to get correct ID, allows course to be updated/saved in the future.
-        new Thread(() -> {
-            Repository repository = Repository.getRepository(this);
-
-            long scoreCardId = repository.getDb().scorecardDAO().insert(scorecard); // Save to DB
-            Scorecard savedScorecard = repository.getDb().scorecardDAO().getById(scoreCardId); // Fetch from DB to include the new autogenerated ID.
-
-            runOnUiThread(() -> { // Start activity after DB operations are done.
-                Intent startGame = new Intent(getApplicationContext(), GameOverview.class);
-                startGame.putExtra("scorecard", savedScorecard);
-                startActivity(startGame);
-            });
-        }).start();
-    }
-
-
-
-    @Override
-    public void applyPlayerInfo(String name, String abbr, double HCP, String tee) {
-
-
-        Tee temp = null;
-        for(Tee x: TestCourses.INSTANCE.getCourseChalmers().getTees()){
-            if(x.getName().equals(tee))
-                temp = x;
+        for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()) {
+            if (fragment instanceof StrokesMainFragment) {
+                return (StrokesMainFragment) fragment;
+            }
         }
+        return null;
+    }
 
-        players.add(new Player(name, abbr, TestCourses.INSTANCE.getCourseChalmers(), temp, HCP));
+    public void goToPreviousHole(View view) {
+        mainFragment = getMainFragment();
+        mainFragment.goToPreviousHole(view);
+    }
 
-
-        TextView tv = new TextView(this);
-        tv.setText(name);
-        tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        tv.setTextSize(40);
-
-        playerList.addView(tv);
-
-
-
-
+    public void goToNextHole(View view) {
+        mainFragment = getMainFragment();
+        mainFragment.goToNextHole(view);
     }
 }
