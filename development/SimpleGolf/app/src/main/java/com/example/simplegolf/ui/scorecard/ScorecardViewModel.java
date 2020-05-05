@@ -1,7 +1,5 @@
 package com.example.simplegolf.ui.scorecard;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class ScorecardViewModel extends ViewModel {
@@ -11,11 +9,11 @@ public class ScorecardViewModel extends ViewModel {
         this.showStrokes = true;
     }
 
-    public void setShowStrokes(Boolean showStrokes){
+    public void setShowStrokes(Boolean showStrokes) {
         this.showStrokes = showStrokes;
     }
 
-    public Boolean getShowStrokes(){
+    public Boolean getShowStrokes() {
         return showStrokes;
     }
 

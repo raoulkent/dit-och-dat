@@ -1,8 +1,10 @@
 package com.example.simplegolf.model;
 
 import android.content.Context;
-import com.example.simplegolf.model.database.AppDatabase;
+
 import androidx.room.Room;
+
+import com.example.simplegolf.model.database.AppDatabase;
 
 /**
  * Singleton Repository, holds Database and Remote service
@@ -18,6 +20,7 @@ public class Repository {
 
     /**
      * Gets a single instance of the repository, improves performance.
+     *
      * @param context Context of the activity calling this method
      * @return The repository instance
      */
@@ -30,6 +33,7 @@ public class Repository {
 
     /**
      * Gets access to the database
+     *
      * @return database object
      */
     public AppDatabase getDb() {

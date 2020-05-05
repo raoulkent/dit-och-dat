@@ -1,6 +1,10 @@
 package com.example.simplegolf.ui.strokes;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,15 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Hole;
-import com.example.simplegolf.model.Player;
-import com.example.simplegolf.model.Scorecard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +27,7 @@ import java.util.List;
 public class StrokesMainFragment extends Fragment {
     private List<Fragment> fragmentHoleList = new ArrayList<>();
     private ViewPager viewPager;
-    private TextView textHoleNumber,currentPar;
+    private TextView textHoleNumber, currentPar;
     private StrokesViewModel viewModel;
 
     public StrokesMainFragment() {
@@ -125,7 +122,7 @@ public class StrokesMainFragment extends Fragment {
         return viewModel.getCurrentHole() + 1 + "";
     }
 
-    private String getCurrentPar(){
+    private String getCurrentPar() {
         List<Hole> holes = viewModel.getScorecard().getCourse().getHoles();
 
         return String.valueOf(holes.get(viewModel.getCurrentHole()).getPar());

@@ -2,10 +2,6 @@ package com.example.simplegolf.model;
 
 import java.io.Serializable;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 /**
  * Holds hole numner, par and hcpIndex.
  * hcpIndex is used to distribute extra shots for each player based on their shcp.
@@ -18,9 +14,10 @@ public class Hole implements Serializable {
 
     /**
      * Constructor for Hole
+     *
      * @param holeNumber Ranges from 1 - 18
-     * @param par the assigned par for each hole
-     * @param hcpIndex Ranges from 1 - 18
+     * @param par        the assigned par for each hole
+     * @param hcpIndex   Ranges from 1 - 18
      */
     public Hole(int holeNumber, int par, int hcpIndex) {
         this.holeNumber = holeNumber;
@@ -30,6 +27,7 @@ public class Hole implements Serializable {
 
     /**
      * Each hole stores a hcpIndex from 1 to 18 though for coherency with lists, -1 is applied
+     *
      * @return hcpIndex - 1 (Ranging from 0 to 17)
      */
     public int getHcpIndex() {
@@ -38,6 +36,7 @@ public class Hole implements Serializable {
 
     /**
      * Sets hcpIndex range from 1 to 18
+     *
      * @param hcpIndex range must be 1 to 18
      */
     public void setHcpIndex(int hcpIndex) {
@@ -54,6 +53,7 @@ public class Hole implements Serializable {
 
     /**
      * Each hole stores a hcpIndex from 1 to 18 though for coherency with lists, -1 is applied
+     *
      * @return hcpIndex - 1 (Ranging from 0 to 17)
      */
     public int getHoleNumber() {
@@ -62,6 +62,7 @@ public class Hole implements Serializable {
 
     /**
      * Sets holeNumber, Must range from 1 to 18
+     *
      * @param holeNumber range must be 1 to 18
      */
     public void setHoleNumber(int holeNumber) {

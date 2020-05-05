@@ -32,7 +32,6 @@ public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRe
     }
 
 
-
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
@@ -43,8 +42,8 @@ public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRe
 
     private String generatePlayersString(List<Player> players) {
         String res = "";
-        for(int p = 0; p < players.size(); p++)
-            if(p == 0)
+        for (int p = 0; p < players.size(); p++)
+            if (p == 0)
                 res += players.get(p).getInitials();
             else
                 res += ", " + players.get(p).getInitials();
@@ -52,12 +51,11 @@ public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRe
     }
 
 
-
     @Override
     public int getItemCount() {
         return mData.size();
     }
-    
+
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvPlayers;
