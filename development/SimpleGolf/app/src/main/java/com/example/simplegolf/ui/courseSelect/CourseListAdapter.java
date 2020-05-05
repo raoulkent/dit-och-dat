@@ -29,7 +29,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    static class CourseViewHolder extends RecyclerView.ViewHolder{
+    static class CourseViewHolder extends RecyclerView.ViewHolder {
         TextView courseName;
         ImageView thumbnail;
 

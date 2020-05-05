@@ -1,17 +1,15 @@
 package com.example.simplegolf.model.database;
 
-import com.example.simplegolf.model.Scorecard;
-
-import java.util.List;
-
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
-import io.reactivex.Completable;
+
+import com.example.simplegolf.model.Scorecard;
+
+import java.util.List;
 
 /**
  * This interface generates classes that manages the Scorecard in the database
@@ -21,6 +19,7 @@ public interface ScorecardDAO {
 
     /**
      * Inserts a scorecard into the DB
+     *
      * @param scorecard the scorecard to insert
      * @return the auto generated id of the newly inserted scorecard
      */
@@ -29,6 +28,7 @@ public interface ScorecardDAO {
 
     /**
      * Gets all unfinished scorecards from the DB
+     *
      * @return A list of all unfinished scorecards
      */
     @Query("SELECT * FROM Scorecard WHERE finishedRound = 0")
@@ -36,6 +36,7 @@ public interface ScorecardDAO {
 
     /**
      * Gets all finished scorecards from the DB
+     *
      * @return A list of all finished scorecards
      */
     @Query("SELECT * FROM Scorecard WHERE finishedRound = 1 ")
@@ -43,6 +44,7 @@ public interface ScorecardDAO {
 
     /**
      * Updates an existing scorecard in the DB, such as an ongoing round
+     *
      * @param scorecard the updated scorecard to save
      */
     @Update
@@ -50,6 +52,7 @@ public interface ScorecardDAO {
 
     /**
      * Deletes a single scorecard in the DB
+     *
      * @param scorecard the scorecard to delete
      */
     @Delete
@@ -63,6 +66,7 @@ public interface ScorecardDAO {
 
     /**
      * Gets a single scorecard from the DB based on its ID
+     *
      * @param id the id of the scorecard
      * @return a scorecard
      */

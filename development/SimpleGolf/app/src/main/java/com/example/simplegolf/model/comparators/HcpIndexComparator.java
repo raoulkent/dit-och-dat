@@ -12,8 +12,7 @@ public class HcpIndexComparator implements Comparator<Hole> {
     public int compare(Hole hole1, Hole hole2) {
         if (hole1.getHcpIndex() < hole2.getHcpIndex()) {
             return -1;
-        }
-        else if (hole1.getHcpIndex() > hole2.getHcpIndex()) {
+        } else if (hole1.getHcpIndex() > hole2.getHcpIndex()) {
             return 1;
         }
         return 0;

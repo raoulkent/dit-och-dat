@@ -1,13 +1,11 @@
 package com.example.simplegolf.ui.strokes;
 
-import android.util.Log;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import java.util.List;
 
 public class StrokesPageAdapter extends FragmentStatePagerAdapter {
 

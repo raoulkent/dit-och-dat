@@ -13,9 +13,10 @@ public class Tee implements Serializable {
 
     /**
      * Tee constructor
-     * @param name The tee name i.e  "Red - Male"
+     *
+     * @param name         The tee name i.e  "Red - Male"
      * @param courseRating The course rating for the tee
-     * @param slopeRating The slope rating for the tee
+     * @param slopeRating  The slope rating for the tee
      */
     public Tee(String name, double courseRating, double slopeRating) {
         this.name = name;

@@ -1,21 +1,21 @@
 package com.example.simplegolf;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
-import com.example.simplegolf.ui.oldGamesSelect.*;
+import com.example.simplegolf.ui.oldGamesSelect.OldGamesRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewOldGamesActivity extends AppCompatActivity implements OldGamesRecyclerViewAdapter.ItemClickListener {
+public class GameHistoryActivity extends AppCompatActivity implements OldGamesRecyclerViewAdapter.ItemClickListener {
 
     private OldGamesRecyclerViewAdapter adapter;
     private List<Scorecard> oldGames = new ArrayList<>();
@@ -25,7 +25,7 @@ public class ViewOldGamesActivity extends AppCompatActivity implements OldGamesR
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_old_games);
+        setContentView(R.layout.activity_game_history);
 
         RecyclerView recyclerView = findViewById(R.id.rv_oldGames);
         adapter = new OldGamesRecyclerViewAdapter(this, oldGames);

@@ -96,17 +96,17 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void addPlayers(View root){
-        for(Player p: scorecard.getPlayers()){
+    private void addPlayers(View root) {
+        for (Player p : scorecard.getPlayers()) {
             layout.addView(createLayoutForPlayer(p));
         }
     }
 
-    private LinearLayout createLayoutForPlayer(Player p){
+    private LinearLayout createLayoutForPlayer(Player p) {
         LinearLayout layout = new LinearLayout(getActivity());
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        layout.setPadding(10,0,10,0);
+        layout.setPadding(10, 0, 10, 0);
 
         layout.addView(createNameTextView(p));
         layout.addView(createCurrentPar(p));
@@ -118,7 +118,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         return layout;
     }
 
-    private TextView createCurrentPar(Player p){
+    private TextView createCurrentPar(Player p) {
         TextView par = new TextView(getActivity());
         // TODO update gePlayerPar
         par.setText(String.valueOf(p.getPlayerPar(holeNumber)));
@@ -127,7 +127,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         return par;
     }
 
-    private TextView createCurrentPoints(Player p){
+    private TextView createCurrentPoints(Player p) {
         TextView point = new TextView(getActivity());
         point.setText(String.valueOf(p.getTotalScore()));
         point.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
@@ -136,7 +136,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         return point;
     }
 
-    private TextView createNameTextView(Player p){
+    private TextView createNameTextView(Player p) {
         TextView tv = new TextView(getActivity());
         tv.setText(p.getInitials());
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
@@ -144,7 +144,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         return tv;
     }
 
-    private Button createAddButton(Player p){
+    private Button createAddButton(Player p) {
         Button b = new MaterialButton(getActivity());
         b.setText("add");
         b.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +157,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         return b;
     }
 
-    private TextView createCounterTextView(){
+    private TextView createCounterTextView() {
         TextView stat = new TextView(getActivity());
         stat.setText("0");
         stat.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
@@ -166,10 +166,10 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         return stat;
     }
 
-    private Button createRemoveButton(Player p){
+    private Button createRemoveButton(Player p) {
         Button b = new MaterialButton(getActivity());
         b.setText("remove");
-        b.setPadding(0,0,0,0);
+        b.setPadding(0, 0, 0, 0);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,7 +182,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private void updateUI() {
         updateDB();
-        for(int p=0; p<scorecard.getPlayers().size(); p++){
+        for (int p = 0; p < scorecard.getPlayers().size(); p++) {
             counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
             points.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalScore()));
         }

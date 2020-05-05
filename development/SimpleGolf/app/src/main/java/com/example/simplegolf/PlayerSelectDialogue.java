@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -29,7 +28,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity(), R.style.AlertDialogTheme);
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.activity_game_dialog, null);
+        View view = inflater.inflate(R.layout.dialogue_select_player, null);
 
         builder.setView(view).setTitle("Please enter player details")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> {

@@ -3,12 +3,6 @@ package com.example.simplegolf;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.simplegolf.model.Repository;
-import com.example.simplegolf.model.Scorecard;
-import com.example.simplegolf.ui.strokes.StrokesMainFragment;
-import com.example.simplegolf.ui.strokes.StrokesViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,6 +10,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.example.simplegolf.model.Repository;
+import com.example.simplegolf.model.Scorecard;
+import com.example.simplegolf.ui.strokes.StrokesMainFragment;
+import com.example.simplegolf.ui.strokes.StrokesViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class GameActivity extends AppCompatActivity {
 

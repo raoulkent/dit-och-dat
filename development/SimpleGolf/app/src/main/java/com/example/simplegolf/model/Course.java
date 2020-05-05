@@ -1,21 +1,16 @@
 package com.example.simplegolf.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import com.example.simplegolf.model.converters.HoleConverter;
 import com.example.simplegolf.model.converters.TeeConverter;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.room.Embedded;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-import androidx.room.Relation;
-import androidx.room.TypeConverters;
 
 /**
  * Holds course name, holes and tees. This is used to calculate scores
@@ -42,6 +37,7 @@ public class Course implements Serializable {
 
     /**
      * Verifies if the hcpIndexes are unique
+     *
      * @param holes List of holes to check
      * @return true if verification is a success
      */
@@ -59,6 +55,7 @@ public class Course implements Serializable {
 
     /**
      * Verifies that a list of holes are between 1 and 18
+     *
      * @param holes List of holes to verify
      * @return true if verification is a success
      */
@@ -68,6 +65,7 @@ public class Course implements Serializable {
 
     /**
      * Calculates the total amount of par for the course. Is used to calculate Shcp.
+     *
      * @return total par for the course
      */
     public int getTotalPar() {
