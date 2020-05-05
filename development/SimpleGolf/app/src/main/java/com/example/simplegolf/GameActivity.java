@@ -1,8 +1,10 @@
 package com.example.simplegolf;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -39,6 +41,15 @@ public class GameActivity extends AppCompatActivity {
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent startScreen = new Intent(getApplicationContext(), StartScreenActivity.class);
+                startActivity(startScreen);
+            }
+        };
+
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private StrokesMainFragment getMainFragment() {
