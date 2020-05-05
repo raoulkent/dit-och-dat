@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
-import com.example.simplegolf.ui.oldGamesSelect.OldGamesRecyclerViewAdapter;
+import com.example.simplegolf.ui.gameHistory.GameHistoryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameHistoryActivity extends AppCompatActivity implements OldGamesRecyclerViewAdapter.ItemClickListener {
+public class GameHistoryActivity extends AppCompatActivity implements GameHistoryAdapter.ItemClickListener {
 
-    private OldGamesRecyclerViewAdapter adapter;
+    private GameHistoryAdapter adapter;
     private List<Scorecard> oldGames = new ArrayList<>();
     private Repository repository;
     private boolean finishedGame;
@@ -28,7 +28,7 @@ public class GameHistoryActivity extends AppCompatActivity implements OldGamesRe
         setContentView(R.layout.activity_game_history);
 
         RecyclerView recyclerView = findViewById(R.id.rv_oldGames);
-        adapter = new OldGamesRecyclerViewAdapter(this, oldGames);
+        adapter = new GameHistoryAdapter(this, oldGames);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

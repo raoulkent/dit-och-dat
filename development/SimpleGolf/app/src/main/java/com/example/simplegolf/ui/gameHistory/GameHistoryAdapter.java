@@ -1,4 +1,4 @@
-package com.example.simplegolf.ui.oldGamesSelect;
+package com.example.simplegolf.ui.gameHistory;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,13 +14,13 @@ import com.example.simplegolf.model.Scorecard;
 
 import java.util.List;
 
-public class OldGamesRecyclerViewAdapter extends RecyclerView.Adapter<OldGamesRecyclerViewAdapter.ViewHolder> {
+public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.ViewHolder> {
 
     private List<Scorecard> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    public OldGamesRecyclerViewAdapter(Context context, List<Scorecard> data) {
+    public GameHistoryAdapter(Context context, List<Scorecard> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
