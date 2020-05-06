@@ -1,10 +1,13 @@
 package com.example.simplegolf;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +18,13 @@ import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.Tee;
 import com.example.simplegolf.model.testcourses.TestCourses;
+import com.example.simplegolf.ui.playerSelect.PlayerSelectDialogue;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerSelectActivity extends AppCompatActivity implements PlayerSelectDialogue.DialogListener {
+
 
     private List<Player> players = new ArrayList<>();
 
@@ -27,6 +32,9 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
     private Course course;
 
     private LinearLayout playerList;
+    private Spinner tees;
+
+    private Context context;
 
 
     @Override
@@ -36,10 +44,38 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
 
         playerList = findViewById(R.id.playerList);
 
+        if(getIntent().hasExtra("course"))
+            course =(Course) getIntent().getSerializableExtra("course");
+
+
+        //tees = findViewById(R.id.spinTee);
+        //addSpinnerTees(course, tees);
+
 
     }
+/*
+    public void addSpinnerTees(Course c, Spinner s){
+        List<String> spinnerArray =  new ArrayList<String>();
+
+        for (Tee tee:c.getTees())
+            spinnerArray.add(tee.getName());
+
+        ArrayAdapter<String> teeAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        teeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        s.setAdapter(teeAdapter);
+    }
+
+ */
 
     public void showDialog(View view) {
+
+      //  Intent playerDialogue = new Intent(context.getApplicationContext(), PlayerSelectDialogue.class);
+       // playerDialogue.putExtra("courseTees", course);
+//        context.startActivity(playerDialogue);
+
         PlayerSelectDialogue playerSelectDialogue = new PlayerSelectDialogue();
         playerSelectDialogue.show(getSupportFragmentManager(), "game activity dialog");
     }
@@ -57,8 +93,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
         // scorecard.addPlayer(nameInput.getText().toString());
 
         //TODO: Add course dynamically. This is temporary.
-        Course chalmersCourse = TestCourses.INSTANCE.getCourseChalmers();
-        scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
+        scorecard = new Scorecard(course);
         scorecard.addPlayers(players);
         /*
         for (Player player : players) {
@@ -84,14 +119,13 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
     @Override
     public void applyPlayerInfo(String name, String abbr, double HCP, String tee) {
 
-
         Tee temp = null;
-        for (Tee x : TestCourses.INSTANCE.getCourseChalmers().getTees()) {
+        for (Tee x : course.getTees()) {
             if (x.getName().equals(tee))
                 temp = x;
         }
 
-        players.add(new Player(name, abbr, TestCourses.INSTANCE.getCourseChalmers(), temp, HCP));
+        players.add(new Player(name, abbr, course, temp, HCP));
 
 
         TextView tv = new TextView(this);

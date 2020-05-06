@@ -33,8 +33,7 @@
         android:id="@+id/spinTee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/Tees"
         android:layout_below="@id/editPlHCP" />
-
+    <!--android:entries="@array/Tees"-->
 
 </RelativeLayout>

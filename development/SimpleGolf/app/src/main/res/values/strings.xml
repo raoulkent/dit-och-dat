@@ -28,7 +28,8 @@
     <string name="selectorTextPoints">Points</string>
 
     <!-- Tees -->
-    <string-array name="Tees">
+     <!-- This will be lest until the tees are added dynamically
+     <string-array name="Tees">
         <item>Select Tee</item>
         <item>Röd - Herrar</item>
         <item>Vit - Herrar</item>
@@ -38,5 +39,8 @@
         <item>Blå - Damer</item>
         <item>Gul - Damer</item>
     </string-array>
+
+    -->
+
 
 </resources>
