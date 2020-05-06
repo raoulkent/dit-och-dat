@@ -53,28 +53,12 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
 
 
     }
-/*
-    public void addSpinnerTees(Course c, Spinner s){
-        List<String> spinnerArray =  new ArrayList<String>();
-
-        for (Tee tee:c.getTees())
-            spinnerArray.add(tee.getName());
-
-        ArrayAdapter<String> teeAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, spinnerArray);
-
-        teeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        s.setAdapter(teeAdapter);
-    }
-
- */
 
     public void showDialog(View view) {
 
-      //  Intent playerDialogue = new Intent(context.getApplicationContext(), PlayerSelectDialogue.class);
-       // playerDialogue.putExtra("courseTees", course);
-//        context.startActivity(playerDialogue);
+        //Intent playerDialogue = new Intent(context.getApplicationContext(), PlayerSelectDialogue.class);
+        //playerDialogue.putExtra("course", course);
+        //context.startActivity(playerDialogue);
 
         PlayerSelectDialogue playerSelectDialogue = new PlayerSelectDialogue();
         playerSelectDialogue.show(getSupportFragmentManager(), "game activity dialog");

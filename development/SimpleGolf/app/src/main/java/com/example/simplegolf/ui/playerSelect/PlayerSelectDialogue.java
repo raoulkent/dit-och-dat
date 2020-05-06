@@ -50,15 +50,15 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         });
 
 
-//        if(getActivity().getIntent().hasExtra("courseTees"))
-  //          course =(Course) getActivity().getIntent().getSerializableExtra("courseTees");
+  if(getActivity().getIntent().hasExtra("course"))
+          course =(Course) getActivity().getIntent().getSerializableExtra("course");
 
         edit_PlName = view.findViewById(R.id.editPlName);
         edit_PlAbbr = view.findViewById(R.id.editPlAbbr);
         HCP = view.findViewById(R.id.editPlHCP);
         Tee = view.findViewById(R.id.spinTee);
 
-     //   addSpinnerTees(course, Tee);
+        addSpinnerTees(course, Tee);
 
 
         return builder.create();
@@ -67,7 +67,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     }// onCreateDialog
 
 
-    /*
+
     public void addSpinnerTees(Course c, Spinner s){
         List<String> spinnerArray =  new ArrayList<String>();
 
@@ -80,7 +80,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
         s.setAdapter(adapter);
     }
-*/
+
 
     @Override
     public void onAttach(@NonNull Context context) {
