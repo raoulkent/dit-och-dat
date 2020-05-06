@@ -27,7 +27,7 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.oldgames_row, parent, false);
+        View view = mInflater.inflate(R.layout.history_card, parent, false);
         return new ViewHolder(view);
     }
 

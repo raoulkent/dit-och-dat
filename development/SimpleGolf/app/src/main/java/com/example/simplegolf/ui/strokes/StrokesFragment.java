@@ -15,12 +15,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
+import com.example.simplegolf.model.Hole;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StrokesFragment extends Fragment implements View.OnClickListener {
 
@@ -29,6 +31,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private int holeNumber;
 
     private Scorecard scorecard;
+    private TextView currentPar;
 
     private LinearLayout layout;
     private ArrayList<TextView> counters;
@@ -74,6 +77,10 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         points = new ArrayList<>();
         layout = root.findViewById(R.id.playerLayout);
 
+        currentPar = root.findViewById(R.id.CurrentPar);
+        currentPar.setText("Par " + getCurrentPar());
+
+
         addPlayers(root);
         updateUI();
 
@@ -100,6 +107,11 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         for (Player p : scorecard.getPlayers()) {
             layout.addView(createLayoutForPlayer(p));
         }
+    }
+    private String getCurrentPar() {
+        List<Hole> holes = viewModel.getScorecard().getCourse().getHoles();
+
+        return String.valueOf(holes.get(viewModel.getCurrentHole()).getPar());
     }
 
     private LinearLayout createLayoutForPlayer(Player p) {
@@ -186,6 +198,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
             counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
             points.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalScore()));
         }
+        currentPar.setText("Par " + getCurrentPar());
     }
 
     // Saves new scores etc.
