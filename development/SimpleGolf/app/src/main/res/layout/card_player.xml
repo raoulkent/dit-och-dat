@@ -1,0 +1,60 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/player_card_view"
+    style="@style/CardViewStyle.Light"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="true"
+    android:focusable="true">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="1dp">
+
+        <TextView
+            android:id="@+id/player_abbreviation"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="0dp"
+            android:text="ABR"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/player_name"
+            android:layout_width="100dp"
+            android:layout_height="12sp"
+            android:layout_below="@id/player_abbreviation"
+            android:text="FULL NAME"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/player_handicap"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="25dp"
+            android:layout_toEndOf="@+id/player_abbreviation"
+            android:text="HCP"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/handicap_text"
+            android:layout_width="100dp"
+            android:layout_height="12sp"
+            android:layout_below="@id/player_handicap"
+            android:layout_toEndOf="@id/player_name"
+            android:text=""
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/player_tee"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp" />
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
