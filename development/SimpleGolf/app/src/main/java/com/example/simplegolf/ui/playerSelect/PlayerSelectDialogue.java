@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Course;
@@ -29,14 +30,16 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     private Spinner Tee;
     private DialogListener listener;
     private Course course;
+    private PlayerSelectViewModel viewModel;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity(), R.style.AlertDialogTheme);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialogue_select_player, null);
+
+        viewModel = new ViewModelProvider(getActivity()).get(PlayerSelectViewModel.class);
 
         builder.setView(view).setTitle("Please enter player details")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> {
@@ -49,9 +52,8 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
             listener.applyPlayerInfo(name, abbr, hcp, tee);
         });
 
-
-  if(getActivity().getIntent().hasExtra("course"))
-          course =(Course) getActivity().getIntent().getSerializableExtra("course");
+        if (getActivity().getIntent().hasExtra("course"))
+            course = (Course) getActivity().getIntent().getSerializableExtra("course");
 
         edit_PlName = view.findViewById(R.id.editPlName);
         edit_PlAbbr = view.findViewById(R.id.editPlAbbr);
@@ -60,18 +62,15 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
         addSpinnerTees(course, Tee);
 
-
         return builder.create();
+    }
 
 
-    }// onCreateDialog
+    // TODO: Implement that the spinner is populated with the values from the ViewModel
+    private void addSpinnerTees(Course c, Spinner s) {
+        List<String> spinnerArray = new ArrayList<>();
 
-
-
-    public void addSpinnerTees(Course c, Spinner s){
-        List<String> spinnerArray =  new ArrayList<String>();
-
-        for (Tee tee:c.getTees())
+        for (Tee tee : c.getTees())
             spinnerArray.add(tee.getName());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerArray);

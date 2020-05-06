@@ -1,88 +1,49 @@
 package com.example.simplegolf;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.Tee;
-import com.example.simplegolf.model.testcourses.TestCourses;
 import com.example.simplegolf.ui.playerSelect.PlayerSelectDialogue;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.simplegolf.ui.playerSelect.PlayerSelectViewModel;
 
 public class PlayerSelectActivity extends AppCompatActivity implements PlayerSelectDialogue.DialogListener {
 
-
-    private List<Player> players = new ArrayList<>();
-
-    private Scorecard scorecard;
-    private Course course;
-
+    private PlayerSelectViewModel viewModel;
     private LinearLayout playerList;
-    private Spinner tees;
-
-    private Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_player);
+        viewModel = new ViewModelProvider(this).get(PlayerSelectViewModel.class);
 
+        if (getIntent().hasExtra("course")) {
+            Course course = (Course) getIntent().getSerializableExtra("course");
+            viewModel.setCourse(course);
+        }
         playerList = findViewById(R.id.playerList);
-
-        if(getIntent().hasExtra("course"))
-            course =(Course) getIntent().getSerializableExtra("course");
-
-
-        //tees = findViewById(R.id.spinTee);
-        //addSpinnerTees(course, tees);
-
-
     }
 
     public void showDialog(View view) {
-
-        //Intent playerDialogue = new Intent(context.getApplicationContext(), PlayerSelectDialogue.class);
-        //playerDialogue.putExtra("course", course);
-        //context.startActivity(playerDialogue);
-
         PlayerSelectDialogue playerSelectDialogue = new PlayerSelectDialogue();
         playerSelectDialogue.show(getSupportFragmentManager(), "game activity dialog");
     }
 
-    public void onClickSelectCourse(View view) {
-        Intent goSelectCourse = new Intent(getApplicationContext(), CourseSelectActivity.class);
-        goSelectCourse.putExtra("current_course", course);
-        startActivity(goSelectCourse);
-    }
-
     public void onClickCreate(View view) {
-
-        // Old scorecard.
-        // scorecard = new Scorecard(nrHoles);
-        // scorecard.addPlayer(nameInput.getText().toString());
-
-        //TODO: Add course dynamically. This is temporary.
-        scorecard = new Scorecard(course);
-        scorecard.addPlayers(players);
-        /*
-        for (Player player : players) {
-            scorecard.addPlayer(player.getName(), player.getInitials(), player.getTee(), player.getHcp());
-        } */
+        Scorecard scorecard = viewModel.buildScorecard();
 
         // Save to DB and fetch to get correct ID, allows course to be updated/saved in the future.
         new Thread(() -> {
@@ -102,6 +63,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
 
     @Override
     public void applyPlayerInfo(String name, String abbr, double HCP, String tee) {
+        Course course = viewModel.getCourse();
 
         Tee temp = null;
         for (Tee x : course.getTees()) {
@@ -109,8 +71,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
                 temp = x;
         }
 
-        players.add(new Player(name, abbr, course, temp, HCP));
-
+        viewModel.addPlayer(new Player(name, abbr, course, temp, HCP));
 
         TextView tv = new TextView(this);
         tv.setText(name);
@@ -118,7 +79,5 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
         tv.setTextSize(40);
 
         playerList.addView(tv);
-
-
     }
 }
