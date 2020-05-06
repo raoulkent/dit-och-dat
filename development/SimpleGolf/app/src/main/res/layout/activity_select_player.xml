@@ -1,55 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PlayerSelectActivity">
+    android:layout_height="match_parent">
 
-    <!--  TODO: This button may be replaced with a card that shows the selected course  -->
-    <!--   Or possibly a dummy course if no course is selected  -->
-
-    <Button
-        android:id="@+id/select_course"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="130dp"
-        android:onClick="onClickSelectCourse"
-        android:text="@string/select_course" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/playerList"
+        android:layout_width="412dp"
+        android:layout_height="516dp"
+        android:layout_above="@+id/add_player_btn"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/holesBtn"
+        android:id="@+id/create_game_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="43dp"
         android:onClick="onClickCreate"
-        android:text="@string/next_button" />
+        android:text="@string/next_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_player_btn" />
 
     <Button
-        android:id="@+id/addPlayer"
+        android:id="@+id/add_player_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/holesBtn"
+        android:layout_above="@+id/create_game_btn"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginTop="32dp"
         android:onClick="showDialog"
-        android:text="Add Player"/>
+        android:text="@string/add_player"
+        app:layout_constraintBottom_toTopOf="@+id/create_game_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerList" />
 
-    <LinearLayout
-        android:id="@+id/playerList"
-        android:layout_width="match_parent"
-        android:layout_height="407dp"
-        android:layout_above="@+id/addPlayer"
-        android:layout_below="@+id/select_course"
-        android:layout_marginTop="42dp"
-        android:layout_marginBottom="38dp"
-        android:orientation="vertical">
-    </LinearLayout>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
