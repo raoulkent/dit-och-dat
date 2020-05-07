@@ -5,7 +5,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +105,10 @@ public class ScorecardFragment extends Fragment {
         //Values
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
 
+        for(int p = 0; p < scorecard.getPlayers().size(); p++)
+            mTable.setColumnStretchable(p+2,true);
+
+
         //Create ArrayLists for textViews
         totalScoreTextViews = new ArrayList<TextView>();
         scoreTextViews = new ArrayList<ArrayList>();
@@ -114,12 +122,12 @@ public class ScorecardFragment extends Fragment {
             TableRow holeRow = makeHoleRow(holeNum);
             mTable.addView(holeRow, params);
         }
-
         mTable.addView(makeBottomRow(scorecard), params);
     }
 
     private TableRow makeHeaderRow() {
         TableRow row = new TableRow(getActivity());
+
         TextView tv = generateTextView();
         tv.setText(R.string.hole);
         tv.setBackgroundResource(R.drawable.table_row_left);
@@ -153,6 +161,7 @@ public class ScorecardFragment extends Fragment {
         tv.setText(String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar()));
         tv.setBackgroundResource(R.drawable.table_row_bg);
         row.addView(tv);
+
 
         //Player columns
         for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
@@ -190,7 +199,7 @@ public class ScorecardFragment extends Fragment {
     //Generate TextViews for generateTable method
     private TextView generateTextView() {
         //TODO: Calculate textSize and offset from resolution
-        int textSize = 18;
+        int textSize = 25;
         int offset = 30;
 
         TextView tv = new TextView(getActivity());
