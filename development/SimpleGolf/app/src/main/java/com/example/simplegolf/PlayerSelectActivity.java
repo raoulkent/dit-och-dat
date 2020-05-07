@@ -2,26 +2,28 @@ package com.example.simplegolf;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.Tee;
+import com.example.simplegolf.ui.playerSelect.PlayerListAdapter;
 import com.example.simplegolf.ui.playerSelect.PlayerSelectDialogue;
 import com.example.simplegolf.ui.playerSelect.PlayerSelectViewModel;
 
 public class PlayerSelectActivity extends AppCompatActivity implements PlayerSelectDialogue.DialogListener {
 
     private PlayerSelectViewModel viewModel;
-    private LinearLayout playerList;
+    private RecyclerView mRecyclerView;
+    private PlayerListAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
@@ -34,15 +36,25 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
             Course course = (Course) getIntent().getSerializableExtra("course");
             viewModel.setCourse(course);
         }
-        playerList = findViewById(R.id.playerList);
+
+        buildRecyclerView();
     }
 
+    private void buildRecyclerView() {
+        mRecyclerView = findViewById(R.id.player_recycler);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new PlayerListAdapter(viewModel.getPlayers(), this);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+    }
     public void showDialog(View view) {
         PlayerSelectDialogue playerSelectDialogue = new PlayerSelectDialogue();
         playerSelectDialogue.show(getSupportFragmentManager(), "game activity dialog");
     }
 
-    public void onClickCreate(View view) {
+    public void onClickCreateScorecard(View view) {
         Scorecard scorecard = viewModel.buildScorecard();
 
         // Save to DB and fetch to get correct ID, allows course to be updated/saved in the future.
@@ -60,24 +72,18 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
         }).start();
     }
 
-
     @Override
-    public void applyPlayerInfo(String name, String abbr, double HCP, String tee) {
+    public void applyPlayerInfo(String name, String abbr, double hcp, String tee) {
         Course course = viewModel.getCourse();
 
         Tee temp = null;
-        for (Tee x : course.getTees()) {
-            if (x.getName().equals(tee))
-                temp = x;
+        for (Tee t : course.getTees()) {
+            if (t.getName().equals(tee))
+                temp = t;
         }
 
-        viewModel.addPlayer(new Player(name, abbr, course, temp, HCP));
+        viewModel.addPlayer(new Player(name, abbr, course, temp, hcp));
 
-        TextView tv = new TextView(this);
-        tv.setText(name);
-        tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        tv.setTextSize(40);
-
-        playerList.addView(tv);
+        mAdapter.notifyDataSetChanged();
     }
 }

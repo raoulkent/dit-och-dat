@@ -26,8 +26,8 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
     private EditText edit_PlName;
     private EditText edit_PlAbbr;
-    private EditText HCP;
-    private Spinner Tee;
+    private EditText hdcp;
+    private Spinner tee;
     private DialogListener listener;
     private Course course;
     private PlayerSelectViewModel viewModel;
@@ -47,20 +47,20 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
                 }).setPositiveButton("Add player", (dialogInterface, i) -> {
             String name = edit_PlName.getText().toString();
             String abbr = edit_PlAbbr.getText().toString();
-            double hcp = Double.parseDouble(HCP.getText().toString());
-            String tee = Tee.getSelectedItem().toString();
+            double hcp = Double.parseDouble(hdcp.getText().toString());
+            String tee = this.tee.getSelectedItem().toString();
             listener.applyPlayerInfo(name, abbr, hcp, tee);
         });
 
         if (getActivity().getIntent().hasExtra("course"))
-            course = (Course) getActivity().getIntent().getSerializableExtra("course");
+            course = viewModel.getCourse();
 
         edit_PlName = view.findViewById(R.id.editPlName);
         edit_PlAbbr = view.findViewById(R.id.editPlAbbr);
-        HCP = view.findViewById(R.id.editPlHCP);
-        Tee = view.findViewById(R.id.spinTee);
+        hdcp = view.findViewById(R.id.editPlHCP);
+        tee = view.findViewById(R.id.spinTee);
 
-        addSpinnerTees(course, Tee);
+        addSpinnerTees(course, tee);
 
         return builder.create();
     }
@@ -73,7 +73,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         for (Tee tee : c.getTees())
             spinnerArray.add(tee.getName());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -93,7 +93,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     }
 
     public interface DialogListener {
-        void applyPlayerInfo(String name, String abbr, double HCP, String tee);
+        void applyPlayerInfo(String name, String abbr, double hcp, String tee);
     }
 
 }

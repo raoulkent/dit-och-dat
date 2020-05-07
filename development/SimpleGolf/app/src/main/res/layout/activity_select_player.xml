@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/playerList"
+        android:id="@+id/player_recycler"
         android:layout_width="412dp"
         android:layout_height="516dp"
         android:layout_above="@+id/add_player_btn"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:onClick="onClickCreate"
+        android:onClick="onClickCreateScorecard"
         android:text="@string/next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +42,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerList" />
+        app:layout_constraintTop_toBottomOf="@+id/player_recycler" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

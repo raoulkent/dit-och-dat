@@ -234,6 +234,10 @@ public class Player implements Serializable {
         return tee;
     }
 
+    public String getTeeName() {
+        return this.getTee().getName();
+    }
+
     public void setTee(Tee tee) {
         this.tee = tee;
     }
