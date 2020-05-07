@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/player_name"
             android:layout_width="100dp"
-            android:layout_height="12sp"
+            android:layout_height="16sp"
             android:layout_below="@id/player_abbreviation"
             android:text="FULL NAME"
             android:textSize="12sp" />
@@ -43,7 +43,7 @@
         <TextView
             android:id="@+id/handicap_text"
             android:layout_width="100dp"
-            android:layout_height="12sp"
+            android:layout_height="16sp"
             android:layout_below="@id/player_handicap"
             android:layout_toEndOf="@id/player_name"
             android:text=""
