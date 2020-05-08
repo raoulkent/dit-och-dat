@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -16,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Course;
+import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Tee;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,12 +28,18 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     private TextInputLayout diaPlayerName;
 
     // made this one public because checkPlayerAbbr() method didn't find this field.
-    public TextInputLayout diaPlayerAbbr;
+    private TextInputLayout diaPlayerAbbr;
     private TextInputLayout diaPlayerHCP;
-    private Spinner tee;
+    private Spinner spinner;
     private DialogListener listener;
     private Course course;
     private PlayerSelectViewModel viewModel;
+
+    public PlayerSelectDialogue(Player player) {
+    }
+
+    public PlayerSelectDialogue() {
+    }
 
     @NonNull
     @Override
@@ -50,12 +56,13 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
                 }).setPositiveButton("Add player", (dialogInterface, i) -> {
             String name = diaPlayerName.getEditText().getText().toString();
             String abbr = diaPlayerAbbr.getEditText().getText().toString();
+            String teeString = this.spinner.getSelectedItem().toString();
             double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
-            String tee = this.tee.getSelectedItem().toString();
 
-
-            if(checkPlayerAbbr()|checkPlayerName())
-            listener.applyPlayerInfo(name, abbr, hcp, tee);
+            if (checkPlayerAbbr() | checkPlayerName()) {
+                Tee tee = matchStringToTee(teeString);
+                listener.applyPlayerInfo(name, abbr, hcp, tee);
+            }
         });
 
         if (getActivity().getIntent().hasExtra("course"))
@@ -64,15 +71,14 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         diaPlayerName = view.findViewById(R.id.diaPlayerName);
         diaPlayerAbbr = view.findViewById(R.id.diaPlayerAbbr);
         diaPlayerHCP = view.findViewById(R.id.diaPlayerHCP);
-        tee = view.findViewById(R.id.diaSpinTee);
+        spinner = view.findViewById(R.id.diaSpinTee);
 
-        addSpinnerTees(course, tee);
+        addSpinnerTees(course, spinner);
 
         return builder.create();
     }
 
 
-    // TODO: Implement that the spinner is populated with the values from the ViewModel
     private void addSpinnerTees(Course c, Spinner s) {
         List<String> spinnerArray = new ArrayList<>();
 
@@ -86,6 +92,13 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         s.setAdapter(adapter);
     }
 
+    private Tee matchStringToTee(String teeName) {
+        for (Tee t : course.getTees()) {
+            if (t.getName().equals(teeName))
+                return t;
+        }
+        return null;
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -99,47 +112,39 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     }
 
     public interface DialogListener {
-        void applyPlayerInfo(String name, String abbr, double hcp, String tee);
+        void applyPlayerInfo(String name, String abbr, double hcp, Tee tee);
     }
 
-    // Below are the methods for checking correct input
-
-    public boolean checkPlayerName(){
+    public boolean checkPlayerName() {
         String playerName = diaPlayerName.getEditText().getText().toString();
 
-        if(playerName.isEmpty()) {
+        if (playerName.isEmpty()) {
             diaPlayerName.setError("A player name must be entered");
             return false;
-        }
-        else if(playerName.length()>25){
+        } else if (playerName.length() > 25) {
             diaPlayerName.setError("Player name must be under 25 characters");
-        }
-        else{
+        } else {
             diaPlayerName.setError(null);
         }
         return true;
     }
 
-    public boolean checkPlayerAbbr(){
+    public boolean checkPlayerAbbr() {
 
         String playerAbbr = diaPlayerAbbr.getEditText().getText().toString();
-        if(playerAbbr.isEmpty()) {
+        if (playerAbbr.isEmpty()) {
             diaPlayerName.setError("A player name must be entered");
             return false;
-        }
-        else if(playerAbbr.length()>3){
+        } else if (playerAbbr.length() > 3) {
             diaPlayerName.setError("Maximum 3 characters");
-        }
-        else{
+        } else {
             diaPlayerName.setError(null);
         }
         return true;
     }
 
-    public boolean checkPlayerHCP(){
-
+    public boolean checkPlayerHCP() {
         double playerHCP = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
-
 
         return false;
     }

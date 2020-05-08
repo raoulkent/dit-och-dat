@@ -49,6 +49,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
+
     public void showDialog(View view) {
         PlayerSelectDialogue playerSelectDialogue = new PlayerSelectDialogue();
         playerSelectDialogue.show(getSupportFragmentManager(), "game activity dialog");
@@ -73,16 +74,10 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
     }
 
     @Override
-    public void applyPlayerInfo(String name, String abbr, double hcp, String tee) {
+    public void applyPlayerInfo(String name, String abbr, double hcp, Tee tee) {
         Course course = viewModel.getCourse();
 
-        Tee temp = null;
-        for (Tee t : course.getTees()) {
-            if (t.getName().equals(tee))
-                temp = t;
-        }
-
-        viewModel.addPlayer(new Player(name, abbr, course, temp, hcp));
+        viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
 
         mAdapter.notifyDataSetChanged();
     }
