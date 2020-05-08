@@ -18,15 +18,18 @@ import com.example.simplegolf.R;
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Tee;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
-    private EditText edit_PlName;
-    private EditText edit_PlAbbr;
-    private EditText hdcp;
+    private TextInputLayout diaPlayerName;
+
+    // made this one public because checkPlayerAbbr() method didn't find this field.
+    public TextInputLayout diaPlayerAbbr;
+    private TextInputLayout diaPlayerHCP;
     private Spinner tee;
     private DialogListener listener;
     private Course course;
@@ -45,20 +48,23 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
                 .setNegativeButton("Cancel", (dialogInterface, i) -> {
 
                 }).setPositiveButton("Add player", (dialogInterface, i) -> {
-            String name = edit_PlName.getText().toString();
-            String abbr = edit_PlAbbr.getText().toString();
-            double hcp = Double.parseDouble(hdcp.getText().toString());
+            String name = diaPlayerName.getEditText().getText().toString();
+            String abbr = diaPlayerAbbr.getEditText().getText().toString();
+            double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
             String tee = this.tee.getSelectedItem().toString();
+
+
+            if(checkPlayerAbbr()|checkPlayerName())
             listener.applyPlayerInfo(name, abbr, hcp, tee);
         });
 
         if (getActivity().getIntent().hasExtra("course"))
             course = viewModel.getCourse();
 
-        edit_PlName = view.findViewById(R.id.editPlName);
-        edit_PlAbbr = view.findViewById(R.id.editPlAbbr);
-        hdcp = view.findViewById(R.id.editPlHCP);
-        tee = view.findViewById(R.id.spinTee);
+        diaPlayerName = view.findViewById(R.id.diaPlayerName);
+        diaPlayerAbbr = view.findViewById(R.id.diaPlayerAbbr);
+        diaPlayerHCP = view.findViewById(R.id.diaPlayerHCP);
+        tee = view.findViewById(R.id.diaSpinTee);
 
         addSpinnerTees(course, tee);
 
@@ -94,6 +100,48 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
     public interface DialogListener {
         void applyPlayerInfo(String name, String abbr, double hcp, String tee);
+    }
+
+    // Below are the methods for checking correct input
+
+    public boolean checkPlayerName(){
+        String playerName = diaPlayerName.getEditText().getText().toString();
+
+        if(playerName.isEmpty()) {
+            diaPlayerName.setError("A player name must be entered");
+            return false;
+        }
+        else if(playerName.length()>25){
+            diaPlayerName.setError("Player name must be under 25 characters");
+        }
+        else{
+            diaPlayerName.setError(null);
+        }
+        return true;
+    }
+
+    public boolean checkPlayerAbbr(){
+
+        String playerAbbr = diaPlayerAbbr.getEditText().getText().toString();
+        if(playerAbbr.isEmpty()) {
+            diaPlayerName.setError("A player name must be entered");
+            return false;
+        }
+        else if(playerAbbr.length()>3){
+            diaPlayerName.setError("Maximum 3 characters");
+        }
+        else{
+            diaPlayerName.setError(null);
+        }
+        return true;
+    }
+
+    public boolean checkPlayerHCP(){
+
+        double playerHCP = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
+
+
+        return false;
     }
 
 }

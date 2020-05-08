@@ -2,11 +2,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/diaPlayerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Player name"
+        app:counterMaxLength="25"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/diaPlayerAbbr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Initials"
+        app:errorEnabled="true"
+        app:counterMaxLength="3"
+        android:layout_below="@id/diaPlayerName">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/diaPlayerHCP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Handicap"
+        app:errorEnabled="true"
+        android:layout_below="@id/diaPlayerAbbr">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/diaSpinTee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/diaPlayerHCP" />
+
+    <!-- OLD CODE:
     <EditText
-        android:id="@+id/editPlName"
+        android:id="@+id/diaPlayerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -14,26 +70,26 @@
 
 
     <EditText
-        android:id="@+id/editPlAbbr"
+        android:id="@+id/diaPlayerAbbr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter abbreviation"
-        android:layout_below="@id/editPlName"/>
+        android:layout_below="@id/diaPlayerName"/>
 
 
     <EditText
-        android:id="@+id/editPlHCP"
+        android:id="@+id/diaPlayerHCP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editPlAbbr"
+        android:layout_below="@id/diaPlayerAbbr"
         android:hint="HCP"
         android:inputType="numberDecimal" />
 
     <Spinner
-        android:id="@+id/spinTee"
+        android:id="@+id/diaSpinTee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editPlHCP" />
-    <!--android:entries="@array/Tees"-->
+        android:layout_below="@id/diaPlayerHCP" />
 
+-->
 </RelativeLayout>
