@@ -5,9 +5,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,18 +15,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
+import com.example.simplegolf.model.Hole;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class ScorecardFragment extends Fragment {
 
-    private TableLayout mTable;
+    private TableLayout header;
+    private TableLayout holes;
+    private TableLayout bottom;
     private ArrayList<ArrayList> scoreTextViews;
     private ArrayList<TextView> totalScoreTextViews;
     private RadioGroup selector;
@@ -43,10 +40,13 @@ public class ScorecardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_scorecard, container, false);
 
-        mTable = root.findViewById(R.id.scorecardTable);
+        header = root.findViewById(R.id.scorecardTableHeader);
+        holes = root.findViewById(R.id.scorecardTableHole);
+        bottom = root.findViewById(R.id.scorecardTableBottom);
+
         scorecard = (Scorecard) getActivity().getIntent().getSerializableExtra("scorecard");
 
-        generateTable();
+        createTable();
         setupSelector(root);
         updateTable();
 
@@ -101,111 +101,100 @@ public class ScorecardFragment extends Fragment {
         }
     }
 
-    private void generateTable() {
-        //Values
-        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
-
-        for(int p = 0; p < scorecard.getPlayers().size(); p++)
-            mTable.setColumnStretchable(p+2,true);
-
-
-        //Create ArrayLists for textViews
+    private void createTable(){
+        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
         totalScoreTextViews = new ArrayList<TextView>();
         scoreTextViews = new ArrayList<ArrayList>();
-        for (int p = 1; p <= Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
+
+        for(Player p: scorecard.getPlayers()){
             scoreTextViews.add(new ArrayList<TextView>());
         }
 
-        mTable.addView(makeHeaderRow(), params);
+        header.addView(makeHeader(), params);
 
-        for (int holeNum = 0; holeNum < Objects.requireNonNull(scorecard).getHoles().size(); holeNum++) {
-            TableRow holeRow = makeHoleRow(holeNum);
-            mTable.addView(holeRow, params);
+        for(Hole h: scorecard.getHoles()){
+            holes.addView(makeHole(h), params);
         }
-        mTable.addView(makeBottomRow(scorecard), params);
+
+        bottom.addView(makeBottom(), params);
     }
 
-    private TableRow makeHeaderRow() {
-        TableRow row = new TableRow(getActivity());
+    private View makeHeader() {
+        TableRow row = generateTableRow();
 
-        TextView tv = generateTextView();
-        tv.setText(R.string.hole);
-        tv.setBackgroundResource(R.drawable.table_row_left);
-        row.addView(tv);
+        row.setBackgroundResource(R.drawable.table_row_header);
+        row.addView(generateStaticTextView(R.string.hole, 20, 2f));
+        row.addView(generateStaticTextView(R.string.par, 20, 2f));
 
-        tv = generateTextView();
-        tv.setText(R.string.par);
-        tv.setBackgroundResource(R.drawable.table_row_bg);
-        row.addView(tv);
-
-        List<Player> players = scorecard.getPlayers();
-        for (Player p : players) {
-            tv = generateTextView();
-            tv.setText(p.getInitials());
-            tv.setBackgroundResource(R.drawable.table_row_bg);
-            row.addView(tv);
+        for(Player p: scorecard.getPlayers()){
+            row.addView(generateStaticTextView(p.getInitials(), 20, (float) 12 / scorecard.getPlayers().size()));
         }
+
         return row;
     }
 
-    private TableRow makeHoleRow(int holeNumber) {
-        TableRow row = new TableRow(getActivity());
+    private View makeHole(Hole h) {
+        TableRow row = generateTableRow();
 
-        //Hole column
-        TextView tv = generateTextView();
-        tv.setText(String.valueOf(holeNumber + 1)); // +1 to show real hole number.
-        tv.setBackgroundResource(R.drawable.table_row_left);
-        row.addView(tv);
+        row.setBackgroundResource(R.drawable.table_row_bg1);
+        row.addView(generateStaticTextView(String.valueOf(h.getHoleNumber() + 1), 30, 2f));
+        row.addView(generateStaticTextView(String.valueOf(h.getPar()), 30, 2f));
 
-        tv = generateTextView();
-        tv.setText(String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar()));
-        tv.setBackgroundResource(R.drawable.table_row_bg);
-        row.addView(tv);
-
-
-        //Player columns
-        for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
-            tv = generateTextView();
-            scoreTextViews.get(p).add(tv);
-            tv.setText("0");
-            tv.setBackgroundResource(R.drawable.table_row_bg);
+        for(int i = 0; i < scorecard.getPlayers().size(); i++){
+            TextView tv = generateStaticTextView("0", 30, (float) 12 / scorecard.getPlayers().size());
+            scoreTextViews.get(i).add(tv);
             row.addView(tv);
         }
+
         return row;
     }
 
-    private TableRow makeBottomRow(Scorecard scorecard) {
-        TableRow row = new TableRow(getActivity());
+    private View makeBottom() {
+        TableRow row = generateTableRow();
 
-        TextView tv = generateTextView();
-        tv.setText("Tot:");
-        row.addView(tv);
+        row.setBackgroundResource(R.drawable.table_row_bottom);
+        row.addView(generateStaticTextView(R.string.total, 20, 4f));
 
-        tv = generateTextView();
-        tv.setText(String.valueOf(scorecard.getCourse().getTotalPar()));
-        tv.setBackgroundResource(R.drawable.table_row_bottom);
-        row.addView(tv);
-
-        for (int p = 0; p < Objects.requireNonNull(scorecard).getPlayers().size(); p++) {
-            tv = generateTextView();
+        for(Player p: scorecard.getPlayers()){
+            TextView tv = generateStaticTextView("0", 20, (float) 12 / scorecard.getPlayers().size());
             totalScoreTextViews.add(tv);
-            tv.setText("0");
-            tv.setBackgroundResource(R.drawable.table_row_bottom);
             row.addView(tv);
         }
+
         return row;
     }
 
-    //Generate TextViews for generateTable method
-    private TextView generateTextView() {
-        //TODO: Calculate textSize and offset from resolution
-        int textSize = 25;
-        int offset = 30;
+    private TableRow generateTableRow(){
+        TableRow row = new TableRow(getActivity());
 
+        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 16f);
+        row.setLayoutParams(params);
+
+        return row;
+    }
+
+    private TextView generateStaticTextView(String text, int size, float weight){
         TextView tv = new TextView(getActivity());
-        tv.setTextSize(textSize);
-        tv.setPadding(offset, 0, offset, 0);
+        TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, weight);
+
+        tv.setLayoutParams(params);
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        tv.setTextSize(size);
+        tv.setText(text);
+
         return tv;
     }
+
+    private TextView generateStaticTextView(int text, int size, float weight){
+        TextView tv = new TextView(getActivity());
+        TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, weight);
+
+        tv.setLayoutParams(params);
+        tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        tv.setTextSize(size);
+        tv.setText(text);
+
+        return tv;
+    }
+
 }
