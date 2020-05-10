@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -28,6 +29,7 @@ public class ScorecardFragment extends Fragment {
     private TableLayout bottom;
     private ArrayList<ArrayList> scoreTextViews;
     private ArrayList<TextView> totalScoreTextViews;
+    private ArrayList<ArrayList> awayFromPar;
     private RadioGroup selector;
     private Scorecard scorecard;
     private ScorecardViewModel viewModel;
@@ -81,13 +83,19 @@ public class ScorecardFragment extends Fragment {
     //Update to correct scores
     private void updateTable() {
         //Update score
-        for (int p = 0; p < scorecard.getPlayers().size(); p++) {
-            for (int h = 0; h < scorecard.getNumberOfHoles(); h++)
+        for (int player = 0; player < scorecard.getPlayers().size(); player++) {
+            for (int hole = 0; hole < scorecard.getNumberOfHoles(); hole++)
                 if (viewModel.getShowStrokes()) {
-                    ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(h)));
+                    ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(scorecard.getPlayers().get(player).getShotsForHole(hole)));
+                    int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
+                    if(h>0)
+                        ((TextView) awayFromPar.get(player).get(hole)).setText("+"+h);
+                    else
+                        ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
+
                 } else {
-                    int score = scorecard.getPlayers().get(p).getScoreForHole(h);
-                    ((TextView) scoreTextViews.get(p).get(h)).setText(String.valueOf(score));
+                    int score = scorecard.getPlayers().get(player).getScoreForHole(hole);
+                    ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(score));
                 }
         }
         //Update total
@@ -106,8 +114,14 @@ public class ScorecardFragment extends Fragment {
         totalScoreTextViews = new ArrayList<TextView>();
         scoreTextViews = new ArrayList<ArrayList>();
 
+        awayFromPar = new ArrayList<ArrayList>();
+
         for(Player p: scorecard.getPlayers()){
             scoreTextViews.add(new ArrayList<TextView>());
+        }
+
+        for(Player p: scorecard.getPlayers()){
+            awayFromPar.add(new ArrayList<TextView>());
         }
 
         header.addView(makeHeader(), params);
@@ -123,8 +137,8 @@ public class ScorecardFragment extends Fragment {
         TableRow row = generateTableRow();
 
         row.setBackgroundResource(R.drawable.table_row_header);
-        row.addView(generateStaticTextView(R.string.hole, 20, 2f));
-        row.addView(generateStaticTextView(R.string.par, 20, 2f));
+        row.addView(generateStaticTextView(R.string.hole, 20, 3f));
+        row.addView(generateStaticTextView(R.string.par, 20, 3f));
 
         for(Player p: scorecard.getPlayers()){
             row.addView(generateStaticTextView(p.getInitials(), 20, (float) 12 / scorecard.getPlayers().size()));
@@ -137,13 +151,32 @@ public class ScorecardFragment extends Fragment {
         TableRow row = generateTableRow();
 
         row.setBackgroundResource(R.drawable.table_row_bg1);
-        row.addView(generateStaticTextView(String.valueOf(h.getHoleNumber() + 1), 30, 2f));
-        row.addView(generateStaticTextView(String.valueOf(h.getPar()), 30, 2f));
+        row.addView(generateStaticTextView(String.valueOf(h.getHoleNumber() + 1), 50, 3f));
+        row.addView(generateStaticTextView(String.valueOf(h.getPar()), 30, 3f));
 
         for(int i = 0; i < scorecard.getPlayers().size(); i++){
-            TextView tv = generateStaticTextView("0", 30, (float) 12 / scorecard.getPlayers().size());
+            LinearLayout scoreStats = new LinearLayout(getActivity());
+
+            TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, (float) 12 / scorecard.getPlayers().size());
+            scoreStats.setLayoutParams(params);
+            scoreStats.setOrientation(LinearLayout.VERTICAL);
+
+            TextView tv = generateStaticTextView("0", 32, 0);
+            params= new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+            tv.setLayoutParams(params);
+            scoreStats.addView(tv);
+
             scoreTextViews.get(i).add(tv);
-            row.addView(tv);
+
+            tv = generateStaticTextView("0", 20, 0);
+            params= new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+            tv.setLayoutParams(params);
+            scoreStats.addView(tv);
+
+            awayFromPar.get(i).add(tv);
+// lägg till array
+
+            row.addView(scoreStats);
         }
 
         return row;
@@ -153,7 +186,7 @@ public class ScorecardFragment extends Fragment {
         TableRow row = generateTableRow();
 
         row.setBackgroundResource(R.drawable.table_row_bottom);
-        row.addView(generateStaticTextView(R.string.total, 20, 4f));
+        row.addView(generateStaticTextView(R.string.total, 20, 6f));
 
         for(Player p: scorecard.getPlayers()){
             TextView tv = generateStaticTextView("0", 20, (float) 12 / scorecard.getPlayers().size());
@@ -167,7 +200,7 @@ public class ScorecardFragment extends Fragment {
     private TableRow generateTableRow(){
         TableRow row = new TableRow(getActivity());
 
-        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 16f);
+        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 18f);
         row.setLayoutParams(params);
 
         return row;
