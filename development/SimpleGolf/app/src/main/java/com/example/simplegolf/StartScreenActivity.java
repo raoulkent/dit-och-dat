@@ -17,9 +17,6 @@ public class StartScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_menu);
 
-        TextView textFinished = findViewById(R.id.textFinished);
-        TextView textUnFinished = findViewById(R.id.textUnfinished);
-
         View newGameCard = findViewById(R.id.newGameCard);
         newGameCard.setOnClickListener(v -> newGame());
 
@@ -29,6 +26,22 @@ public class StartScreenActivity extends AppCompatActivity {
         View finishedCard = findViewById(R.id.finishedCard);
         finishedCard.setOnClickListener(v -> finishedGame());
 
+        // Onclick listener for developer options.
+        View developerCard = findViewById(R.id.developerCard);
+        developerCard.setOnClickListener(v -> developerOptions());
+
+        loadNumberOfRounds();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadNumberOfRounds();
+    }
+
+    public void loadNumberOfRounds() {
+        TextView textFinished = findViewById(R.id.textFinished);
+        TextView textUnFinished = findViewById(R.id.textUnfinished);
         new Thread(() -> {
             AppDatabase db = Repository.getRepository(this).getDb();
             int nUnfinished = db.scorecardDAO().getUnfinishedRounds().size();
@@ -56,5 +69,10 @@ public class StartScreenActivity extends AppCompatActivity {
         Intent startOldGame = new Intent(getApplicationContext(), GameHistoryActivity.class);
         startOldGame.putExtra("finished", true);
         startActivity(startOldGame);
+    }
+
+    public void developerOptions() {
+        Intent developerActivity = new Intent(getApplicationContext(), DeveloperActivity.class);
+        startActivity(developerActivity);
     }
 }
