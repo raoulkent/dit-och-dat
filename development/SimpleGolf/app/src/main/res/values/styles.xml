@@ -21,6 +21,15 @@
         <item name="cardCornerRadius">4dp</item>
         <item name="cardElevation">1dp</item>
     </style>
+
+    <style name="CardViewStyle.MainMenu" parent="Widget.MaterialComponents.CardView">
+        <item name="strokeWidth">0dp</item>
+        <item name="strokeColor">#ccc</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
     
     <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">@color/colorPrimaryDark</item>
