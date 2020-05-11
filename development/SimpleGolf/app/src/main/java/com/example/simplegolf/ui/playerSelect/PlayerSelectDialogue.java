@@ -63,9 +63,9 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
         addSpinnerTees(course, spinner);
 
-        builder.setView(view).setTitle("Please enter player details")
-                .setPositiveButton("Add player", null)
-                .setNegativeButton("Cancel",null);
+        builder.setView(view).setTitle("Vänligen ange spelardetaljer")
+                .setPositiveButton("Lägg till", null)
+                .setNegativeButton("Avbryt",null);
 
         AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
@@ -79,21 +79,20 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
                 buttonPositive.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String name = diaPlayerName.getEditText().getText().toString();
-                        String abbr = diaPlayerAbbr.getEditText().getText().toString();
-                        String teeString = spinner.getSelectedItem().toString();
-                        double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
 
+                        if (checkInput()){
+                            String name = diaPlayerName.getEditText().getText().toString();
+                            String abbr = diaPlayerAbbr.getEditText().getText().toString();
+                            String teeString = spinner.getSelectedItem().toString();
+                            double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
 
-                        Tee tee = matchStringToTee(teeString);
-
-                        diaPlayerAbbr.getEditText().setError("Initials must be entered");
-                        //if (name.isEmpty())
-                          //  diaPlayerName.setError("A player name must be entered");
+                            Tee tee = matchStringToTee(teeString);
 
 
                             listener.applyPlayerInfo(name, abbr, hcp, tee);
-
+                            dialogInterface.dismiss();
+                        }
+                       // diaPlayerAbbr.setError("Initials must be entered");
 
                     }
                 });
@@ -107,28 +106,6 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
             }
         });
-
-
-
-        /*
-        builder.setView(view).setTitle("Please enter player details")
-                .setNegativeButton("Cancel", (dialogInterface, i) -> {
-
-                }).setPositiveButton("Add player", (dialogInterface, i) -> {
-            String name = diaPlayerName.getEditText().getText().toString();
-            String abbr = diaPlayerAbbr.getEditText().getText().toString();
-            String teeString = this.spinner.getSelectedItem().toString();
-            double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
-
-            if (checkPlayerAbbr() | checkPlayerName()) {
-                Tee tee = matchStringToTee(teeString);
-                listener.applyPlayerInfo(name, abbr, hcp, tee);
-            }
-        });
-
-
-
-         */
 
         return alertDialog;
     }
@@ -170,17 +147,31 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         void applyPlayerInfo(String name, String abbr, double hcp, Tee tee);
     }
 
+    public boolean checkInput(){
+       boolean isInputValid = true;
+
+        diaPlayerName.setError(null);
+        diaPlayerAbbr.setError(null);
+        diaPlayerHCP.setError(null);
+
+        if(!checkPlayerName())
+            isInputValid = false;
+        if(!checkPlayerAbbr())
+            isInputValid = false;
+        if(!checkPlayerHCP())
+            isInputValid = false;
+
+        return isInputValid;
+    }
+
     public boolean checkPlayerName() {
         String playerName = diaPlayerName.getEditText().getText().toString();
 
         if (playerName.isEmpty()) {
-            diaPlayerName.setError("A player name must be entered");
+            diaPlayerName.setError("Ange namn");
             return false;
-        } else if (playerName.length() > 25) {
-            diaPlayerName.setError("Player name must be under 25 characters");
-        } else {
-            diaPlayerName.setError(null);
         }
+
         return true;
     }
 
@@ -188,20 +179,23 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
         String playerAbbr = diaPlayerAbbr.getEditText().getText().toString();
         if (playerAbbr.isEmpty()) {
-            diaPlayerName.setError("A player name must be entered");
+            diaPlayerAbbr.setError("Ange initialer");
             return false;
-        } else if (playerAbbr.length() > 3) {
-            diaPlayerName.setError("Maximum 3 characters");
-        } else {
-            diaPlayerName.setError(null);
         }
         return true;
     }
 
     public boolean checkPlayerHCP() {
-        double playerHCP = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
 
-        return false;
+
+        String playerHCP = diaPlayerHCP.getEditText().getText().toString();
+
+        if(playerHCP.isEmpty()) {
+            diaPlayerHCP.setError("Ange hcp");
+            return false;
+        }
+
+              return true;
     }
 
 }

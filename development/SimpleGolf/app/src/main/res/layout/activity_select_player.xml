@@ -7,7 +7,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/player_recycler"
         android:layout_width="412dp"
-        android:layout_height="516dp"
+        android:layout_height="500dp"
         android:layout_above="@+id/add_player_btn"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,11 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:onClick="onClickCreateScorecard"
+        android:onClick="onClcmdickCreateScorecard"
         android:text="@string/next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_player_btn" />
 
@@ -35,12 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/create_game_btn"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="5dp"
         android:onClick="showDialog"
         android:text="@string/add_player"
-        app:layout_constraintBottom_toTopOf="@+id/create_game_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player_recycler" />
 

@@ -10,13 +10,15 @@
         android:id="@+id/diaPlayerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Player name"
-        app:counterMaxLength="25"
+        android:layout_marginTop="6dp"
+        android:hint="Namn"
+
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:maxLength="30"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -25,30 +27,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerName"
-        android:hint="Initials"
-        app:counterMaxLength="3"
+        android:layout_marginTop="6dp"
+        android:hint="Initialer"
         app:errorEnabled="true">
-
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true" />
+            android:maxLength="3" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/diaPlayerHCP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerAbbr"
+        android:layout_marginTop="6dp"
         android:hint="Handicap"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,6 +60,7 @@
         android:id="@+id/diaSpinTee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/diaPlayerHCP" />
+        android:layout_below="@id/diaPlayerHCP"
+        android:layout_marginTop="6dp"/>
 
 </RelativeLayout>

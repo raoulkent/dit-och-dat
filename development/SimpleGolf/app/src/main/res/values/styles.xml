@@ -9,10 +9,14 @@
     </style>
 
 <!-- Alert dialog theme. -->
-    <style name="AlertDialogTheme">
+    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
         <item name="buttonBarNeutralButtonStyle">@style/Alert.Button.Neutral</item>
     </style>
+
+
+
+
 
     <style name="CardViewStyle.Light" parent="Widget.MaterialComponents.CardView">
 <!--        <item name="strokeWidth">0.1dp</item>-->
