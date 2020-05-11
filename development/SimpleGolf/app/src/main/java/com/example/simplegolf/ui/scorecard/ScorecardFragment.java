@@ -84,19 +84,22 @@ public class ScorecardFragment extends Fragment {
     private void updateTable() {
         //Update score
         for (int player = 0; player < scorecard.getPlayers().size(); player++) {
-            for (int hole = 0; hole < scorecard.getNumberOfHoles(); hole++)
+            for (int hole = 0; hole < scorecard.getNumberOfHoles(); hole++) {
                 if (viewModel.getShowStrokes()) {
                     ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(scorecard.getPlayers().get(player).getShotsForHole(hole)));
-                    int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
-                    if(h>0)
-                        ((TextView) awayFromPar.get(player).get(hole)).setText("+"+h);
-                    else
-                        ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
-
                 } else {
                     int score = scorecard.getPlayers().get(player).getScoreForHole(hole);
                     ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(score));
                 }
+
+                int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
+                if(h > 0) {
+                    ((TextView) awayFromPar.get(player).get(hole)).setText("+" + h);
+                }
+                else {
+                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
+                }
+            }
         }
         //Update total
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
@@ -113,14 +116,10 @@ public class ScorecardFragment extends Fragment {
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
         totalScoreTextViews = new ArrayList<TextView>();
         scoreTextViews = new ArrayList<ArrayList>();
-
         awayFromPar = new ArrayList<ArrayList>();
 
         for(Player p: scorecard.getPlayers()){
             scoreTextViews.add(new ArrayList<TextView>());
-        }
-
-        for(Player p: scorecard.getPlayers()){
             awayFromPar.add(new ArrayList<TextView>());
         }
 
@@ -161,20 +160,19 @@ public class ScorecardFragment extends Fragment {
             scoreStats.setLayoutParams(params);
             scoreStats.setOrientation(LinearLayout.VERTICAL);
 
-            TextView tv = generateStaticTextView("0", 32, 0);
+            //Params for textviews inside linearlayout
             params= new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+            TextView tv = generateStaticTextView("0", 32, 0);
             tv.setLayoutParams(params);
             scoreStats.addView(tv);
 
             scoreTextViews.get(i).add(tv);
 
             tv = generateStaticTextView("0", 20, 0);
-            params= new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
             tv.setLayoutParams(params);
             scoreStats.addView(tv);
 
             awayFromPar.get(i).add(tv);
-// lägg till array
 
             row.addView(scoreStats);
         }
