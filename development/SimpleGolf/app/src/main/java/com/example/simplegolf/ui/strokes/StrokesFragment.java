@@ -109,9 +109,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         }
     }
     private String getCurrentPar() {
-        List<Hole> holes = viewModel.getScorecard().getCourse().getHoles();
-
-        return String.valueOf(holes.get(viewModel.getCurrentHole()).getPar());
+        return String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar());
     }
 
     private LinearLayout createLayoutForPlayer(Player p) {
