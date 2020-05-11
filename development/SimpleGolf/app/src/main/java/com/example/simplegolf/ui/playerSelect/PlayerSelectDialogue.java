@@ -2,14 +2,17 @@ package com.example.simplegolf.ui.playerSelect;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -50,6 +53,64 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
         viewModel = new ViewModelProvider(getActivity()).get(PlayerSelectViewModel.class);
 
+        if (getActivity().getIntent().hasExtra("course"))
+            course = viewModel.getCourse();
+
+        diaPlayerName = view.findViewById(R.id.diaPlayerName);
+        diaPlayerAbbr = view.findViewById(R.id.diaPlayerAbbr);
+        diaPlayerHCP = view.findViewById(R.id.diaPlayerHCP);
+        spinner = view.findViewById(R.id.diaSpinTee);
+
+        addSpinnerTees(course, spinner);
+
+        builder.setView(view).setTitle("Please enter player details")
+                .setPositiveButton("Add player", null)
+                .setNegativeButton("Cancel",null);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCancelable(false);
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button buttonPositive = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_POSITIVE);
+                Button buttonNegative = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_NEGATIVE);
+
+                buttonPositive.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String name = diaPlayerName.getEditText().getText().toString();
+                        String abbr = diaPlayerAbbr.getEditText().getText().toString();
+                        String teeString = spinner.getSelectedItem().toString();
+                        double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
+
+
+                        Tee tee = matchStringToTee(teeString);
+
+                        diaPlayerAbbr.getEditText().setError("Initials must be entered");
+                        //if (name.isEmpty())
+                          //  diaPlayerName.setError("A player name must be entered");
+
+
+                            listener.applyPlayerInfo(name, abbr, hcp, tee);
+
+
+                    }
+                });
+
+                buttonNegative.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
+
+        /*
         builder.setView(view).setTitle("Please enter player details")
                 .setNegativeButton("Cancel", (dialogInterface, i) -> {
 
@@ -65,17 +126,11 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
             }
         });
 
-        if (getActivity().getIntent().hasExtra("course"))
-            course = viewModel.getCourse();
 
-        diaPlayerName = view.findViewById(R.id.diaPlayerName);
-        diaPlayerAbbr = view.findViewById(R.id.diaPlayerAbbr);
-        diaPlayerHCP = view.findViewById(R.id.diaPlayerHCP);
-        spinner = view.findViewById(R.id.diaSpinTee);
 
-        addSpinnerTees(course, spinner);
+         */
 
-        return builder.create();
+        return alertDialog;
     }
 
 
