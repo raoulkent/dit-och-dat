@@ -72,4 +72,16 @@ public interface ScorecardDAO {
      */
     @Query("SELECT * From Scorecard WHERE id = :id")
     Scorecard getById(long id);
+
+    /**
+     * Deletes all finished scorecards
+     */
+    @Query("DELETE FROM Scorecard WHERE finishedRound = 1")
+    void deleteAllFinished();
+
+    /**
+     * Deletes all unfinished scorecards
+     */
+    @Query("DELETE FROM Scorecard WHERE finishedRound = 0")
+    void deleteAllUnfinished();
 }

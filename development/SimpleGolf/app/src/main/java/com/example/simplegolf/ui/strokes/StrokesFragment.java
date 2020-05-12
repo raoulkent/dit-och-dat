@@ -109,16 +109,18 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         }
     }
     private String getCurrentPar() {
-        List<Hole> holes = viewModel.getScorecard().getCourse().getHoles();
-
-        return String.valueOf(holes.get(viewModel.getCurrentHole()).getPar());
+        return String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar());
     }
 
     private LinearLayout createLayoutForPlayer(Player p) {
         LinearLayout layout = new LinearLayout(getActivity());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(10,0,10,0);
+
         layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        layout.setLayoutParams(params);
         layout.setPadding(10, 0, 10, 0);
+        layout.setBackgroundResource(R.drawable.stroke_background);
 
         layout.addView(createNameTextView(p));
         layout.addView(createCurrentPar(p));
@@ -132,8 +134,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private TextView createCurrentPar(Player p) {
         TextView par = new TextView(getActivity());
-        // TODO update gePlayerPar
-        par.setText(String.valueOf(p.getPlayerPar(holeNumber)));
+        par.setText("Par: "+p.getPlayerPar(holeNumber));
         par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         par.setTextSize(20);
         return par;
@@ -141,7 +142,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private TextView createCurrentPoints(Player p) {
         TextView point = new TextView(getActivity());
-        point.setText(String.valueOf(p.getTotalScore()));
+        point.setText("Points:"+p.getTotalScore());
         point.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         point.setTextSize(20);
         points.add(point);
@@ -196,7 +197,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         updateDB();
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
             counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
-            points.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalScore()));
+            points.get(p).setText("Points: "+scorecard.getPlayers().get(p).getTotalScore());
         }
         currentPar.setText("Par " + getCurrentPar());
     }

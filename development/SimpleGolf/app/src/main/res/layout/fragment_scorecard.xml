@@ -7,14 +7,35 @@
     tools:context=".ui.scorecard.ScorecardFragment">
 
     <TableLayout
-        android:id="@+id/scorecardTable"
-        android:layout_width="wrap_content"
+        android:id="@+id/scorecardTableHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/gameTypeRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/scorecardTableBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scorecardTableHeader">
+
+        <TableLayout
+            android:id="@+id/scorecardTableHole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start" />
+    </ScrollView>
+
+    <TableLayout
+        android:id="@+id/scorecardTableBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/gameTypeRadioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/gameTypeRadioGroup"
@@ -48,6 +69,7 @@
             android:gravity="center"
             android:text="@string/selectorTextPoints"
             android:textColor="@drawable/selector_text" />
+
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
