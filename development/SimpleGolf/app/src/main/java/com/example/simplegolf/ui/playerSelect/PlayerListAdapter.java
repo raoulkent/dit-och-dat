@@ -27,14 +27,12 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     static class PlayerViewHolder extends RecyclerView.ViewHolder {
-        TextView playerName;
         TextView playerAbbr;
         TextView playerHdcp;
         TextView playerTee;
 
         PlayerViewHolder(View itemView) {
             super(itemView);
-            playerName = itemView.findViewById(R.id.player_name);
             playerAbbr = itemView.findViewById(R.id.player_abbreviation);
             playerHdcp = itemView.findViewById(R.id.player_handicap);
             playerTee = itemView.findViewById(R.id.player_tee);
@@ -57,7 +55,6 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         // - get element from your data set at this position
         // - replace the contents of the view with that element
         Player player = players.get(position);
-        holder.playerName.setText(player.getName());
         holder.playerAbbr.setText(player.getInitials());
         holder.playerHdcp.setText(Double.toString(player.getHcp()));
         holder.playerTee.setText(player.getTeeName());

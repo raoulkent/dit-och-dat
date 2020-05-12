@@ -1,10 +1,11 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/player_card_view"
     style="@style/CardViewStyle.Light"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:clickable="true"
+    android:clickable="false"
     android:focusable="true">
 
 
@@ -12,49 +13,68 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
         android:padding="1dp">
 
         <TextView
             android:id="@+id/player_abbreviation"
-            android:layout_width="80dp"
+            android:layout_width="72dp"
             android:layout_height="50dp"
             android:layout_marginStart="0dp"
-            android:text="ABR"
+            android:layout_centerVertical="true"
             android:textSize="36sp" />
-
-        <TextView
-            android:id="@+id/player_name"
-            android:layout_width="100dp"
-            android:layout_height="16sp"
-            android:layout_below="@id/player_abbreviation"
-            android:text="FULL NAME"
-            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/player_handicap"
-            android:layout_width="80dp"
+            android:layout_width="72dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/player_abbreviation"
-            android:text="HCP"
-            android:textSize="36sp" />
-
-        <TextView
-            android:id="@+id/handicap_text"
-            android:layout_width="100dp"
-            android:layout_height="16sp"
-            android:layout_below="@id/player_handicap"
-            android:layout_toEndOf="@id/player_name"
-            android:text=""
-            android:textSize="12sp" />
+            android:layout_centerVertical="true"
+            android:textSize="36sp"
+            />
 
         <TextView
             android:id="@+id/player_tee"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/player_handicap"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_button"
+            style="@style/Widget.AppCompat.Button.Edit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toStartOf="@+id/delete_button"
+            android:layout_margin="8dp"
+            android:layout_centerVertical="true"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_edit_black_24dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_button"
+            style="@style/Widget.AppCompat.Button.Delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp" />
+            android:layout_margin="8dp"
+            android:layout_centerVertical="true"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_delete_black_24dp"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>
