@@ -2,7 +2,6 @@ package com.example.simplegolf.ui.playerSelect;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +38,9 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     private PlayerSelectViewModel viewModel;
 
     public PlayerSelectDialogue(Player player) {
+        // TODO: Add edit capability to this dialog
+        //  So that if a player is sent as an argument, the dialog will fill with pre-existing data.
+        //  And instead of creating a new PlayerCard, the old one will be edited.
     }
 
     public PlayerSelectDialogue() {
@@ -63,48 +65,37 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
         addSpinnerTees(course, spinner);
 
-        builder.setView(view).setTitle("Vänligen ange spelardetaljer")
-                .setPositiveButton("Lägg till", null)
-                .setNegativeButton("Avbryt",null);
+        builder.setView(view).setTitle("Vänligen ange spelardetaljer") // TODO: Use string resources!
+                .setPositiveButton("Lägg till", null) //TODO: PositiveButton does not use correct colors
+                .setNegativeButton("Avbryt", null); // TODO: NegativeButton does not use correct colors
 
         AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
 
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                Button buttonPositive = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_POSITIVE);
-                Button buttonNegative = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_NEGATIVE);
+        alertDialog.setOnShowListener(dialogInterface -> {
+            Button buttonPositive = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_POSITIVE);
+            Button buttonNegative = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_NEGATIVE);
 
-                buttonPositive.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+            buttonPositive.setOnClickListener(view12 -> {
 
-                        if (checkInput()){
-                            String name = diaPlayerName.getEditText().getText().toString();
-                            String abbr = diaPlayerAbbr.getEditText().getText().toString();
-                            String teeString = spinner.getSelectedItem().toString();
-                            double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
+                if (checkInput()) {
+                    String name = diaPlayerName.getEditText().getText().toString();
+                    String abbr = diaPlayerAbbr.getEditText().getText().toString();
+                    String teeString = spinner.getSelectedItem().toString();
+                    double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
 
-                            Tee tee = matchStringToTee(teeString);
+                    Tee tee = matchStringToTee(teeString);
 
 
-                            listener.applyPlayerInfo(name, abbr, hcp, tee);
-                            dialogInterface.dismiss();
-                        }
-                       // diaPlayerAbbr.setError("Initials must be entered");
+                    listener.applyPlayerInfo(name, abbr, hcp, tee);
+                    dialogInterface.dismiss();
+                }
+                // diaPlayerAbbr.setError("Initials must be entered");
 
-                    }
-                });
+            });
 
-                buttonNegative.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialogInterface.dismiss();
-                    }
-                });
+            buttonNegative.setOnClickListener(view1 -> dialogInterface.dismiss());
 
-            }
         });
 
         return alertDialog;
@@ -118,7 +109,6 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
             spinnerArray.add(tee.getName());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, spinnerArray);
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         s.setAdapter(adapter);
@@ -147,18 +137,18 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         void applyPlayerInfo(String name, String abbr, double hcp, Tee tee);
     }
 
-    public boolean checkInput(){
-       boolean isInputValid = true;
+    public boolean checkInput() {
+        boolean isInputValid = true;
 
         diaPlayerName.setError(null);
         diaPlayerAbbr.setError(null);
         diaPlayerHCP.setError(null);
 
-        if(!checkPlayerName())
+        if (!checkPlayerName())
             isInputValid = false;
-        if(!checkPlayerAbbr())
+        if (!checkPlayerAbbr())
             isInputValid = false;
-        if(!checkPlayerHCP())
+        if (!checkPlayerHCP())
             isInputValid = false;
 
         return isInputValid;
@@ -166,17 +156,14 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
 
     public boolean checkPlayerName() {
         String playerName = diaPlayerName.getEditText().getText().toString();
-
         if (playerName.isEmpty()) {
             diaPlayerName.setError("Ange namn");
             return false;
         }
-
         return true;
     }
 
     public boolean checkPlayerAbbr() {
-
         String playerAbbr = diaPlayerAbbr.getEditText().getText().toString();
         if (playerAbbr.isEmpty()) {
             diaPlayerAbbr.setError("Ange initialer");
@@ -186,16 +173,12 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     }
 
     public boolean checkPlayerHCP() {
-
-
         String playerHCP = diaPlayerHCP.getEditText().getText().toString();
-
-        if(playerHCP.isEmpty()) {
+        if (playerHCP.isEmpty()) {
             diaPlayerHCP.setError("Ange hcp");
             return false;
         }
-
-              return true;
+        return true;
     }
 
 }
