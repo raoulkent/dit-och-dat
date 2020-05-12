@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -13,9 +13,6 @@
         <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
         <item name="buttonBarNeutralButtonStyle">@style/Alert.Button.Neutral</item>
     </style>
-
-
-
 
 
     <style name="CardViewStyle.Light" parent="Widget.MaterialComponents.CardView">
@@ -49,6 +46,17 @@
         <item name="android:textColor">@android:color/darker_gray</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="Widget.AppCompat.Button.Delete" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorError</item>
+        <item name="iconTint">@color/black</item>
+    </style>
+
+    <style name="Widget.AppCompat.Button.Edit" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorEdit</item>
+        <item name="iconTint">@color/black</item>
+    </style>
+
 
 
 </resources>
