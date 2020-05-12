@@ -157,7 +157,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     public boolean checkPlayerName() {
         String playerName = diaPlayerName.getEditText().getText().toString();
         if (playerName.isEmpty()) {
-            diaPlayerName.setError("Ange namn");
+            diaPlayerName.setError("Ange namn"); // TODO: Use string resources!
             return false;
         }
         return true;
@@ -166,7 +166,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     public boolean checkPlayerAbbr() {
         String playerAbbr = diaPlayerAbbr.getEditText().getText().toString();
         if (playerAbbr.isEmpty()) {
-            diaPlayerAbbr.setError("Ange initialer");
+            diaPlayerAbbr.setError("Ange initialer"); // TODO: Use string resources!
             return false;
         }
         return true;
@@ -175,7 +175,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     public boolean checkPlayerHCP() {
         String playerHCP = diaPlayerHCP.getEditText().getText().toString();
         if (playerHCP.isEmpty()) {
-            diaPlayerHCP.setError("Ange hcp");
+            diaPlayerHCP.setError("Ange hcp"); // TODO: Use string resources!
             return false;
         }
         return true;
