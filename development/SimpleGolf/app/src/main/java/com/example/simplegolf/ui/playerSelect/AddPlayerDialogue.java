@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Course;
-import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Tee;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
@@ -25,7 +24,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerSelectDialogue extends AppCompatDialogFragment {
+public class AddPlayerDialogue extends AppCompatDialogFragment {
 
     private TextInputLayout diaPlayerName;
 
@@ -36,15 +35,6 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
     private DialogListener listener;
     private Course course;
     private PlayerSelectViewModel viewModel;
-
-    public PlayerSelectDialogue(Player player) {
-        // TODO: Add edit capability to this dialog
-        //  So that if a player is sent as an argument, the dialog will fill with pre-existing data.
-        //  And instead of creating a new PlayerCard, the old one will be edited.
-    }
-
-    public PlayerSelectDialogue() {
-    }
 
     @NonNull
     @Override
@@ -76,7 +66,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
             Button buttonPositive = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_POSITIVE);
             Button buttonNegative = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_NEGATIVE);
 
-            buttonPositive.setOnClickListener(view12 -> {
+            buttonPositive.setOnClickListener(v -> {
 
                 if (checkInput()) {
                     String name = diaPlayerName.getEditText().getText().toString();
@@ -85,7 +75,6 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
                     double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
 
                     Tee tee = matchStringToTee(teeString);
-
 
                     listener.applyPlayerInfo(name, abbr, hcp, tee);
                     dialogInterface.dismiss();
@@ -137,7 +126,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         void applyPlayerInfo(String name, String abbr, double hcp, Tee tee);
     }
 
-    public boolean checkInput() {
+    private boolean checkInput() {
         boolean isInputValid = true;
 
         diaPlayerName.setError(null);
@@ -154,7 +143,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         return isInputValid;
     }
 
-    public boolean checkPlayerName() {
+    private boolean checkPlayerName() {
         String playerName = diaPlayerName.getEditText().getText().toString();
         if (playerName.isEmpty()) {
             diaPlayerName.setError("Ange namn"); // TODO: Use string resources!
@@ -163,7 +152,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         return true;
     }
 
-    public boolean checkPlayerAbbr() {
+    private boolean checkPlayerAbbr() {
         String playerAbbr = diaPlayerAbbr.getEditText().getText().toString();
         if (playerAbbr.isEmpty()) {
             diaPlayerAbbr.setError("Ange initialer"); // TODO: Use string resources!
@@ -172,7 +161,7 @@ public class PlayerSelectDialogue extends AppCompatDialogFragment {
         return true;
     }
 
-    public boolean checkPlayerHCP() {
+    private boolean checkPlayerHCP() {
         String playerHCP = diaPlayerHCP.getEditText().getText().toString();
         if (playerHCP.isEmpty()) {
             diaPlayerHCP.setError("Ange hcp"); // TODO: Use string resources!

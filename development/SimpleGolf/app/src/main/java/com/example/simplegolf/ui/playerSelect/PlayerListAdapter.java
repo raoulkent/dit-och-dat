@@ -11,31 +11,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Player;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
 public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.PlayerViewHolder> {
+    private PlayerSelectViewModel playerSelectViewModel;
     private List<Player> players;
     private Context context;
 
-    public PlayerListAdapter(List<Player> players, Context context) {
-        this.players = players;
+    public PlayerListAdapter(PlayerSelectViewModel playerSelectViewModel, Context context) {
+        this.playerSelectViewModel = playerSelectViewModel;
+        this.players = playerSelectViewModel.getPlayers();
         this.context = context;
     }
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     static class PlayerViewHolder extends RecyclerView.ViewHolder {
-        TextView playerAbbr;
-        TextView playerHdcp;
-        TextView playerTee;
+        TextView playerAbbr, playerHdcp, playerTee;
+        MaterialButton playerEdit, playerDelete;
 
         PlayerViewHolder(View itemView) {
             super(itemView);
             playerAbbr = itemView.findViewById(R.id.player_abbreviation);
             playerHdcp = itemView.findViewById(R.id.player_handicap);
             playerTee = itemView.findViewById(R.id.player_tee);
+            playerEdit = itemView.findViewById(R.id.edit_button);
+            playerDelete = itemView.findViewById(R.id.delete_button);
         }
     }
 
@@ -59,13 +60,21 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         holder.playerHdcp.setText(Double.toString(player.getHcp()));
         holder.playerTee.setText(player.getTeeName());
 
-        // TODO: Should pressing a player open an edit window?
-        holder.itemView.setOnClickListener(v -> selectPlayer(holder));
+        holder.playerEdit.setOnClickListener(v -> selectPlayer(holder));
+        holder.playerDelete.setOnClickListener(v -> deletePlayer(holder));
     }
 
     private void selectPlayer(PlayerViewHolder holder) {
         Player player = players.get(holder.getAdapterPosition());
         // TODO: Start an edit dialog
+    }
+
+    private void deletePlayer(PlayerViewHolder holder) {
+        int position = holder.getAdapterPosition();
+        Player player = players.get(position);
+
+        playerSelectViewModel.deletePlayer(player);
+        this.notifyItemRemoved(position);
     }
 
     @Override

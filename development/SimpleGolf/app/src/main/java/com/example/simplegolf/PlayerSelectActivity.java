@@ -44,7 +44,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
         mRecyclerView = findViewById(R.id.player_recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new PlayerListAdapter(viewModel.getPlayers(), this);
+        mAdapter = new PlayerListAdapter(viewModel, this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

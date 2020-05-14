@@ -21,6 +21,10 @@ public class PlayerSelectViewModel extends ViewModel {
         this.players = players;
     }
 
+    public void deletePlayer(Player player) {
+        players.remove(player);
+    }
+
     public Course getCourse() {
         return course;
     }
