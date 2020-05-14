@@ -14,11 +14,11 @@ import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.Tee;
+import com.example.simplegolf.ui.playerSelect.AddPlayerDialogue;
 import com.example.simplegolf.ui.playerSelect.PlayerListAdapter;
-import com.example.simplegolf.ui.playerSelect.PlayerSelectDialogue;
 import com.example.simplegolf.ui.playerSelect.PlayerSelectViewModel;
 
-public class PlayerSelectActivity extends AppCompatActivity implements PlayerSelectDialogue.DialogListener {
+public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialogue.DialogListener {
 
     private PlayerSelectViewModel viewModel;
     private RecyclerView mRecyclerView;
@@ -51,8 +51,8 @@ public class PlayerSelectActivity extends AppCompatActivity implements PlayerSel
     }
 
     public void showDialog(View view) {
-        PlayerSelectDialogue playerSelectDialogue = new PlayerSelectDialogue();
-        playerSelectDialogue.show(getSupportFragmentManager(), "game activity dialog");
+        AddPlayerDialogue addPlayerDialogue = new AddPlayerDialogue();
+        addPlayerDialogue.show(getSupportFragmentManager(), "game activity dialog");
     }
 
     public void onClickCreateScorecard(View view) {
