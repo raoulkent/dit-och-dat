@@ -27,13 +27,13 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
     }
 
     static class PlayerViewHolder extends RecyclerView.ViewHolder {
-        TextView playerAbbr, playerHdcp, playerTee;
+        TextView playerAbbr, playerHcp, playerTee;
         MaterialButton playerEdit, playerDelete;
 
         PlayerViewHolder(View itemView) {
             super(itemView);
             playerAbbr = itemView.findViewById(R.id.player_abbreviation);
-            playerHdcp = itemView.findViewById(R.id.player_handicap);
+            playerHcp = itemView.findViewById(R.id.player_handicap);
             playerTee = itemView.findViewById(R.id.player_tee);
             playerEdit = itemView.findViewById(R.id.edit_button);
             playerDelete = itemView.findViewById(R.id.delete_button);
@@ -57,7 +57,7 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         // - replace the contents of the view with that element
         Player player = players.get(position);
         holder.playerAbbr.setText(player.getInitials());
-        holder.playerHdcp.setText(Double.toString(player.getHcp()));
+        holder.playerHcp.setText(Double.toString(player.getHcp()));
         holder.playerTee.setText(player.getTeeName());
 
         holder.playerEdit.setOnClickListener(v -> selectPlayer(holder));

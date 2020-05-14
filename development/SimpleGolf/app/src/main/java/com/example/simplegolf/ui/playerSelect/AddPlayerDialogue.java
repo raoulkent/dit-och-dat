@@ -137,7 +137,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
             isInputValid = false;
         if (!checkPlayerAbbr())
             isInputValid = false;
-        if (!checkPlayerHCP())
+        if (!checkPlayerHcp())
             isInputValid = false;
 
         return isInputValid;
@@ -161,7 +161,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
         return true;
     }
 
-    private boolean checkPlayerHCP() {
+    private boolean checkPlayerHcp() {
         String playerHCP = diaPlayerHCP.getEditText().getText().toString();
         if (playerHCP.isEmpty()) {
             diaPlayerHCP.setError(getString(R.string.specify_handicap));
