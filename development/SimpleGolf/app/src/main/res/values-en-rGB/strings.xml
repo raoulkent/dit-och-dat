@@ -26,4 +26,5 @@
     <string name="par">Par</string>
     <string name="hole">Hole</string>
     <string name="selectorTextStrokes">Strokes</string>
+    <string name="welcome_text">Welcome to Simple Golf</string>
 </resources>

@@ -73,7 +73,7 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         int position = holder.getAdapterPosition();
         Player player = players.get(position);
 
-        playerSelectViewModel.deletePlayer(player);
+        playerSelectViewModel.removePlayer(player);
         this.notifyItemRemoved(position);
     }
 

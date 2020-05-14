@@ -26,4 +26,5 @@
     <string name="par">Par</string>
     <string name="selectorTextStrokes">Slag</string>
     <string name="selectorTextPoints">Poäng</string>
+    <string name="welcome_text">Välkommen till Simple Golf</string>
 </resources>

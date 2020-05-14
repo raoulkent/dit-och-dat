@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.ui.gameHistory.GameHistoryAdapter;
+import com.example.simplegolf.ui.gameHistory.GameHistoryViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 public class GameHistoryActivity extends AppCompatActivity implements GameHistoryAdapter.ItemClickListener {
 
     private GameHistoryAdapter adapter;
+    private GameHistoryViewModel viewModel = new GameHistoryViewModel();
     private List<Scorecard> oldGames = new ArrayList<>();
     private Repository repository;
     private boolean finishedGame;
@@ -27,31 +29,30 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_history);
 
+        repository = Repository.getRepository(this);
+        loadOldGames();
+
         RecyclerView recyclerView = findViewById(R.id.rv_oldGames);
-        adapter = new GameHistoryAdapter(this, oldGames);
+        adapter = new GameHistoryAdapter(viewModel, this);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        repository = Repository.getRepository(this);
-
         finishedGame = getIntent().getExtras().getBoolean("finished", false);
-        setOldGames();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setOldGames();
+        loadOldGames();
     }
 
-    private void setOldGames() {
+    private void loadOldGames() {
         new Thread(() -> {
             if (!finishedGame) {
-                oldGames = repository.getDb().scorecardDAO().getUnfinishedRounds();
+                viewModel.setScorecards(repository.getDb().scorecardDAO().getUnfinishedRounds());
             } else {
-                oldGames = repository.getDb().scorecardDAO().getFinishedRounds();
+                viewModel.setScorecards(repository.getDb().scorecardDAO().getFinishedRounds());
             }
 
             this.runOnUiThread(() -> {
@@ -63,7 +64,7 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
     @Override
     public void onItemClick(View view, int position) {
         Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
-        startGame.putExtra("scorecard", oldGames.get(position));
+        startGame.putExtra("scorecard", viewModel.getScorecards().get(position));
         startActivity(startGame);
     }
 }

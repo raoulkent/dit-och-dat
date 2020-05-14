@@ -21,9 +21,9 @@ import com.example.simplegolf.ui.playerSelect.PlayerSelectViewModel;
 public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialogue.DialogListener {
 
     private PlayerSelectViewModel viewModel;
-    private RecyclerView mRecyclerView;
-    private PlayerListAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView recyclerView;
+    private PlayerListAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
 
     @Override
@@ -41,13 +41,13 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     }
 
     private void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.player_recycler);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new PlayerListAdapter(viewModel, this);
+        recyclerView = findViewById(R.id.player_recycler);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new PlayerListAdapter(viewModel, this);
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     public void showDialog(View view) {
@@ -79,6 +79,6 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
 
         viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
 
-        mAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 }

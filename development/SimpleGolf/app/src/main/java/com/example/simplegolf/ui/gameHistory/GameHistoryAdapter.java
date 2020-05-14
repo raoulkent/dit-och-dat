@@ -11,33 +11,43 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.ViewHolder> {
+public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.GameHistoryViewHolder> {
+    private LayoutInflater layoutInflater;
+    private ItemClickListener itemClickListener;
+    private GameHistoryViewModel viewModel;
+    private List<Scorecard> scorecards;
 
-    private List<Scorecard> mData;
-    private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
-
-    public GameHistoryAdapter(Context context, List<Scorecard> data) {
-        this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+    public GameHistoryAdapter(GameHistoryViewModel viewModel, Context context) {
+        this.layoutInflater = LayoutInflater.from(context);
+        this.viewModel = viewModel;
+        this.scorecards = viewModel.getScorecards();
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.card_game_history, parent, false);
-        return new ViewHolder(view);
+    public GameHistoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = layoutInflater.inflate(R.layout.card_game_history, parent, false);
+        return new GameHistoryViewHolder(view);
     }
 
 
-    // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tvPlayers.setText(generatePlayersString(mData.get(position).getPlayers()));
-        holder.tvCourseName.setText(mData.get(position).getCourse().getName());
-        holder.tvDate.setText(mData.get(position).getDate());
+    public void onBindViewHolder(GameHistoryViewHolder holder, int position) {
+        holder.tvPlayers.setText(generatePlayersString(scorecards.get(position).getPlayers()));
+        holder.tvCourseName.setText(scorecards.get(position).getCourse().getName());
+        holder.tvDate.setText(scorecards.get(position).getDate());
+        holder.deleteButton.setOnClickListener(v -> deleteGame(holder));
+    }
+
+    private void deleteGame(GameHistoryViewHolder holder) {
+        int position = holder.getAdapterPosition();
+        Scorecard scorecard = scorecards.get(position);
+
+        viewModel.removeScorecard(scorecard);
+        this.notifyItemRemoved(position);
     }
 
     private String generatePlayersString(List<Player> players) {
@@ -53,35 +63,35 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return viewModel.getScorecards().size();
     }
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tvPlayers;
-        TextView tvCourseName;
-        TextView tvDate;
+    public class GameHistoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView tvPlayers, tvCourseName, tvDate;
+        MaterialButton deleteButton;
 
-        ViewHolder(View itemView) {
+        GameHistoryViewHolder(View itemView) {
             super(itemView);
             tvPlayers = itemView.findViewById(R.id.tvPlayers);
             tvCourseName = itemView.findViewById(R.id.tvCourseName);
             tvDate = itemView.findViewById(R.id.tvDate);
+            deleteButton = itemView.findViewById(R.id.delete_button);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (itemClickListener != null) itemClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 
     public Scorecard getItem(int id) {
-        return mData.get(id);
+        return scorecards.get(id);
     }
 
     public void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
+        this.itemClickListener = itemClickListener;
     }
 
     public interface ItemClickListener {
@@ -89,7 +99,7 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
     }
 
     public void update(List<Scorecard> scorecards) {
-        mData = scorecards;
+        this.scorecards = scorecards;
         notifyDataSetChanged();
     }
 }

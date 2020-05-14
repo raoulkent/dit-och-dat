@@ -32,6 +32,6 @@
     <string name="total">Total:</string>
     <string name="selectorTextStrokes">Slag</string>
     <string name="selectorTextPoints">Poäng</string>
-    <string name="">Välkommen till Simple Golf</string>
+    <string name="welcome_text">Välkommen till Simple Golf</string>
 
 </resources>

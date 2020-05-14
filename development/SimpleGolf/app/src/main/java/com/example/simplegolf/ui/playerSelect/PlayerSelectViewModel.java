@@ -21,7 +21,7 @@ public class PlayerSelectViewModel extends ViewModel {
         this.players = players;
     }
 
-    public void deletePlayer(Player player) {
+    public void removePlayer(Player player) {
         players.remove(player);
     }
 
