@@ -55,9 +55,9 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
 
         addSpinnerTees(course, spinner);
 
-        builder.setView(view).setTitle("Vänligen ange spelardetaljer") // TODO: Use string resources!
-                .setPositiveButton("Lägg till", null) //TODO: PositiveButton does not use correct colors
-                .setNegativeButton("Avbryt", null); // TODO: NegativeButton does not use correct colors
+        builder.setView(view).setTitle(R.string.request_player_details)
+                .setPositiveButton(R.string.add, null)
+                .setNegativeButton(R.string.abort, null);
 
         AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
@@ -146,7 +146,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
     private boolean checkPlayerName() {
         String playerName = diaPlayerName.getEditText().getText().toString();
         if (playerName.isEmpty()) {
-            diaPlayerName.setError("Ange namn"); // TODO: Use string resources!
+            diaPlayerName.setError(getString(R.string.specify_name));
             return false;
         }
         return true;
@@ -155,7 +155,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
     private boolean checkPlayerAbbr() {
         String playerAbbr = diaPlayerAbbr.getEditText().getText().toString();
         if (playerAbbr.isEmpty()) {
-            diaPlayerAbbr.setError("Ange initialer"); // TODO: Use string resources!
+            diaPlayerAbbr.setError(getString(R.string.specify_abbreviated_name));
             return false;
         }
         return true;
@@ -164,7 +164,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
     private boolean checkPlayerHCP() {
         String playerHCP = diaPlayerHCP.getEditText().getText().toString();
         if (playerHCP.isEmpty()) {
-            diaPlayerHCP.setError("Ange hcp"); // TODO: Use string resources!
+            diaPlayerHCP.setError(getString(R.string.specify_handicap));
             return false;
         }
         return true;

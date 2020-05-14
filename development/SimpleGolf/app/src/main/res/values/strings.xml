@@ -17,14 +17,14 @@
     <string name="next_button">Nästa</string>
     <string name="your_tag">Din tag?</string>
     <string name="tag">Tag</string>
-    <string name="holes_quantity_question">How many holes will you play?</string>
+    <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
     <string name="add_player">Lägg till spelare</string>
     <string name="request_player_details">Vänligen ange spelardetaljer</string>
     <string name="add">Lägg till</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
-    <string name="specify_initials">Ange initialer</string>
-    <string name="specify_handicap">Ange hcp</string>
+    <string name="specify_abbreviated_name">Ange initialer</string>
+    <string name="specify_handicap">Ange handicap</string>
 
     <!-- ScoreCard table -->
     <string name="hole">Hål</string>
