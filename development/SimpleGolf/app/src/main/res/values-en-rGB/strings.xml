@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simple Golf</string>
+    <string name="title_strokes">Strokes</string>
+    <string name="title_game_activity">Game</string>
+    <string name="new_game_btn">Start a new game</string>
+    <string name="tag">Tag</string>
+    <string name="select_course">Select a course</string>
+    <string name="select_tee">Select a tee</string>
+    <string name="request_player_details">Please fill player details</string>
+    <string name="title_scorecard">Scorecard</string>
+    <string name="unfinished_game_btn">Unfinished games</string>
+    <string name="next_button">Next</string>
+    <string name="add_player">Add player</string>
+    <string name="add">Add</string>
+    <string name="holes_quantity_question">How many holes will you play?</string>
+    <string name="your_tag">Your tag?</string>
+    <string name="finished_game_btn">Finished games</string>
+    <string name="abort">Cancel</string>
+    <string name="specify_name">Fill name</string>
+    <string name="specify_abbreviated_name">Fill abbreviation</string>
+    <string name="specify_handicap">Fill handicap</string>
+    <string name="selectorTextPoints">Points</string>
+    <string name="total">Total:</string>
+    <string name="total_shortened">Tot:</string>
+    <string name="par">Par</string>
+    <string name="hole">Hole</string>
+    <string name="selectorTextStrokes">Strokes</string>
+</resources>

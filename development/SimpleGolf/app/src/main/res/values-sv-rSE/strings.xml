@@ -1,16 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App-wide strings -->
     <string name="app_name">Simple Golf</string>
-
-    <!-- Splash screen -->
     <string name="new_game_btn">Starta nytt spel</string>
     <string name="unfinished_game_btn">Oavslutade spel</string>
     <string name="finished_game_btn">Avslutade spel</string>
     <string name="title_game_activity">Spel</string>
     <string name="title_strokes">Slag</string>
     <string name="title_scorecard">Protokoll</string>
-
-    <!-- Course and Player selection -->
     <string name="select_course">Välj en bana</string>
     <string name="select_tee">Välj tee</string>
     <string name="next_button">Nästa</string>
@@ -24,14 +20,10 @@
     <string name="specify_name">Ange namn</string>
     <string name="specify_abbreviated_name">Ange initialer</string>
     <string name="specify_handicap">Ange handicap</string>
-
-    <!-- ScoreCard table -->
-    <string name="hole">Hål</string>
-    <string name="par">Par</string>
     <string name="total_shortened">Tot:</string>
     <string name="total">Total:</string>
+    <string name="hole">Hål</string>
+    <string name="par">Par</string>
     <string name="selectorTextStrokes">Slag</string>
     <string name="selectorTextPoints">Poäng</string>
-    <string name="">Välkommen till Simple Golf</string>
-
 </resources>
