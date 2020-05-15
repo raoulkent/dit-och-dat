@@ -9,18 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.model.Repository;
-import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.ui.gameHistory.GameHistoryAdapter;
 import com.example.simplegolf.ui.gameHistory.GameHistoryViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GameHistoryActivity extends AppCompatActivity implements GameHistoryAdapter.ItemClickListener {
 
     private GameHistoryAdapter adapter;
     private GameHistoryViewModel viewModel = new GameHistoryViewModel();
-    private List<Scorecard> oldGames = new ArrayList<>();
     private Repository repository;
     private boolean finishedGame;
 
@@ -56,7 +51,7 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
             }
 
             this.runOnUiThread(() -> {
-                adapter.update(oldGames);
+                adapter.update(viewModel);
             });
         }).start();
     }

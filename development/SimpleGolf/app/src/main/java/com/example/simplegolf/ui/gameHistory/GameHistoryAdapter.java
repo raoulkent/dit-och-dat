@@ -19,12 +19,10 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
     private LayoutInflater layoutInflater;
     private ItemClickListener itemClickListener;
     private GameHistoryViewModel viewModel;
-    private List<Scorecard> scorecards;
 
     public GameHistoryAdapter(GameHistoryViewModel viewModel, Context context) {
         this.layoutInflater = LayoutInflater.from(context);
         this.viewModel = viewModel;
-        this.scorecards = viewModel.getScorecards();
     }
 
     @Override
@@ -36,6 +34,8 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
 
     @Override
     public void onBindViewHolder(GameHistoryViewHolder holder, int position) {
+        List<Scorecard> scorecards = viewModel.getScorecards();
+
         holder.tvPlayers.setText(generatePlayersString(scorecards.get(position).getPlayers()));
         holder.tvCourseName.setText(scorecards.get(position).getCourse().getName());
         holder.tvDate.setText(scorecards.get(position).getDate());
@@ -43,6 +43,8 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
     }
 
     private void deleteGame(GameHistoryViewHolder holder) {
+        List<Scorecard> scorecards = viewModel.getScorecards();
+
         int position = holder.getAdapterPosition();
         Scorecard scorecard = scorecards.get(position);
 
@@ -87,6 +89,8 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
     }
 
     public Scorecard getItem(int id) {
+        List<Scorecard> scorecards = viewModel.getScorecards();
+
         return scorecards.get(id);
     }
 
@@ -98,8 +102,8 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
         void onItemClick(View view, int position);
     }
 
-    public void update(List<Scorecard> scorecards) {
-        this.scorecards = scorecards;
+    public void update(GameHistoryViewModel viewModel) {
+        this.viewModel = viewModel;
         notifyDataSetChanged();
     }
 }
