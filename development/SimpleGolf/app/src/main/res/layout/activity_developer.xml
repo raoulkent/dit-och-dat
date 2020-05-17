@@ -22,7 +22,7 @@
         android:onClick="delCourses"/>
 
     <TextView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rounds"
@@ -47,4 +47,40 @@
         android:layout_height="wrap_content"
         android:text="Delete all played rounds"
         android:onClick="delAllRounds"/>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quickstart"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/start1p"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start game with 1 player"
+        android:onClick="startGame"/>
+
+    <Button
+        android:id="@+id/start2p"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start game with 2 players"
+        android:onClick="startGame"/>
+
+    <Button
+        android:id="@+id/start3p"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start game with 3 players"
+        android:onClick="startGame"/>
+
+    <Button
+        android:id="@+id/start4p"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start game with 4 players"
+        android:onClick="startGame"/>
+
 </LinearLayout>
