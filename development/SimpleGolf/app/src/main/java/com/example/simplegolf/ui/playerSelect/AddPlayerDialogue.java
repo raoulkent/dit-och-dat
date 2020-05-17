@@ -167,6 +167,11 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
             diaPlayerHCP.setError(getString(R.string.specify_handicap));
             return false;
         }
+        else if(Double.parseDouble(playerHCP)>54.0||Double.parseDouble(playerHCP)<0){
+            diaPlayerHCP.setError("Ange hcp mellan 0 och 54");
+            return false;
+        }
+
         return true;
     }
 

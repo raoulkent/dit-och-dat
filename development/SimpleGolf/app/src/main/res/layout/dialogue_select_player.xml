@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:hint="Namn"
-
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -29,7 +29,8 @@
         android:layout_below="@id/diaPlayerName"
         android:layout_marginTop="6dp"
         android:hint="Initialer"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -47,7 +48,8 @@
         android:layout_below="@id/diaPlayerAbbr"
         android:layout_marginTop="6dp"
         android:hint="Handicap"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -62,5 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerHCP"
         android:layout_marginTop="6dp"/>
+
+
 
 </RelativeLayout>
