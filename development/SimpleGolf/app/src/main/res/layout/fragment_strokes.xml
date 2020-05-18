@@ -23,7 +23,7 @@
         android:id="@+id/CurrentPar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Par 2"
+        android:text="@string/par"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/playerLayout"
         app:layout_constraintEnd_toEndOf="parent"

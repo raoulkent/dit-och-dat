@@ -6,6 +6,7 @@
     <string name="new_game_btn">Starta nytt spel</string>
     <string name="unfinished_game_btn">Oavslutade spel</string>
     <string name="finished_game_btn">Avslutade spel</string>
+    <string name="dev_options">Dev options</string>
     <string name="title_game_activity">Spel</string>
     <string name="title_strokes">Slag</string>
     <string name="title_scorecard">Protokoll</string>
@@ -14,12 +15,17 @@
     <string name="select_course">Välj en bana</string>
     <string name="select_tee">Välj tee</string>
     <string name="next_button">Nästa</string>
+    <string name="back_button">Tillbaka</string>
+    <string name="name">Namn</string>
+    <string name="initials">Initialer</string>
+    <string name="handicap">Handicap</string>
     <string name="your_tag">Din tag?</string>
     <string name="tag">Tag</string>
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
     <string name="add_player">Lägg till spelare</string>
     <string name="request_player_details">Vänligen ange spelardetaljer</string>
     <string name="add">Lägg till</string>
+    <string name="remove">Tabort</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
     <string name="specify_abbreviated_name">Ange initialer</string>
@@ -27,11 +33,12 @@
 
     <!-- ScoreCard table -->
     <string name="hole">Hål</string>
-    <string name="par">Par</string>
+    <string name="par">Par </string>
     <string name="total_shortened">Tot:</string>
     <string name="total">Total:</string>
     <string name="selectorTextStrokes">Slag</string>
     <string name="selectorTextPoints">Poäng</string>
     <string name="welcome_text">Välkommen till Simple Golf</string>
+    <string name="parColon">Par:</string>
 
 </resources>

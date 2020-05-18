@@ -10,6 +10,7 @@
     <string name="select_course">Välj en bana</string>
     <string name="select_tee">Välj tee</string>
     <string name="next_button">Nästa</string>
+    <string name="back_button">Tillbaka</string>
     <string name="your_tag">Din tag?</string>
     <string name="tag">Tag</string>
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
@@ -23,8 +24,14 @@
     <string name="total_shortened">Tot:</string>
     <string name="total">Total:</string>
     <string name="hole">Hål</string>
-    <string name="par">Par</string>
+    <string name="par">Par </string>
     <string name="selectorTextStrokes">Slag</string>
     <string name="selectorTextPoints">Poäng</string>
     <string name="welcome_text">Välkommen till Simple Golf</string>
+    <string name="parColon">Par: </string>
+    <string name="remove">Tabort</string>
+    <string name="name">Namn</string>
+    <string name="initials">Initialer</string>
+    <string name="handicap">Handicap</string>
+    <string name="dev_options">Dev options</string>
 </resources>

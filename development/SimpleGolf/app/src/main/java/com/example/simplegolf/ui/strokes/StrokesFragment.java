@@ -78,7 +78,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         layout = root.findViewById(R.id.playerLayout);
 
         currentPar = root.findViewById(R.id.CurrentPar);
-        currentPar.setText("Par " + getCurrentPar());
+        currentPar.setText( this.getString(R.string.parColon) + getCurrentPar());
 
 
         addPlayers(root);
@@ -134,7 +134,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private TextView createCurrentPar(Player p) {
         TextView par = new TextView(getActivity());
-        par.setText("Par: "+p.getPlayerPar(holeNumber));
+        par.setText(this.getString(R.string.parColon) +" "+ p.getPlayerPar(holeNumber));
         par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         par.setTextSize(20);
         return par;
@@ -142,7 +142,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private TextView createCurrentPoints(Player p) {
         TextView point = new TextView(getActivity());
-        point.setText("Points:"+p.getTotalScore());
+        point.setText(this.getString(R.string.total) +" "+ p.getTotalScore());
         point.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         point.setTextSize(20);
         points.add(point);
@@ -159,7 +159,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private Button createAddButton(Player p) {
         Button b = new MaterialButton(getActivity());
-        b.setText("add");
+        b.setText(this.getString(R.string.add));
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,7 +172,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private TextView createCounterTextView() {
         TextView stat = new TextView(getActivity());
-        stat.setText("0");
+        stat.setText(this.getString(R.string.par));
         stat.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         stat.setTextSize(60);
         counters.add(stat);
@@ -181,7 +181,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private Button createRemoveButton(Player p) {
         Button b = new MaterialButton(getActivity());
-        b.setText("remove");
+        b.setText(this.getString(R.string.remove));
         b.setPadding(0, 0, 0, 0);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,9 +197,9 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         updateDB();
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
             counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
-            points.get(p).setText("Points: "+scorecard.getPlayers().get(p).getTotalScore());
+            points.get(p).setText(this.getString(R.string.total) + " " + scorecard.getPlayers().get(p).getTotalScore());
         }
-        currentPar.setText("Par " + getCurrentPar());
+        currentPar.setText(this.getString(R.string.par) +" "+ getCurrentPar());
     }
 
     // Saves new scores etc.

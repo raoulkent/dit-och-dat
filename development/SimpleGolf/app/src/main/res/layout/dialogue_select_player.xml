@@ -3,56 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:textAlignment="center">
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/diaPlayerName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:hint="Namn"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:clipToPadding="true"
+        android:hint="@string/specify_name"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="30"/>
+            android:layout_width="308dp"
+            android:layout_height="51dp"
+            android:maxLength="30" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/diaPlayerAbbr"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerName"
         android:layout_marginTop="6dp"
-        android:hint="Initialer"
-        app:errorEnabled="true"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:hint="@string/specify_abbreviated_name"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+            android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:maxLength="3" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/diaPlayerHCP"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerAbbr"
         android:layout_marginTop="6dp"
-        android:hint="Handicap"
-        app:errorEnabled="true"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:hint="@string/specify_handicap"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+            android:layout_width="306dp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal" />
 
@@ -63,8 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerHCP"
-        android:layout_marginTop="6dp"/>
-
+        android:layout_marginTop="6dp" />
 
 
 </RelativeLayout>
