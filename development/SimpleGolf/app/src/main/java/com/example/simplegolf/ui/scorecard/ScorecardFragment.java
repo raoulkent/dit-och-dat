@@ -97,10 +97,14 @@ public class ScorecardFragment extends Fragment {
 
                 if(h > 0) {
                     ((TextView) awayFromPar.get(player).get(hole)).setText("+" + h);
-                            awayFromPar.setTextColor(Color.RED);
+                    ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.RED);
                 }
-                else {
+                if(h == 0){
                     ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
+                }
+                if(h<0){
+                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
+                    ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.BLUE);
                 }
             }
         }
