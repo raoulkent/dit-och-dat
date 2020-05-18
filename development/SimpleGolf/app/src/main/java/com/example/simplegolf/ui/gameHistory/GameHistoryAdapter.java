@@ -31,7 +31,6 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
         return new GameHistoryViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(GameHistoryViewHolder holder, int position) {
         List<Scorecard> scorecards = viewModel.getScorecards();
@@ -62,7 +61,6 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
         return res;
     }
 
-
     @Override
     public int getItemCount() {
         return viewModel.getScorecards().size();
@@ -80,6 +78,7 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
             tvDate = itemView.findViewById(R.id.tvDate);
             deleteButton = itemView.findViewById(R.id.delete_button);
             itemView.setOnClickListener(this);
+            deleteButton.setOnClickListener(this);
         }
 
         @Override
@@ -102,8 +101,7 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
         void onItemClick(View view, int position);
     }
 
-    public void update(GameHistoryViewModel viewModel) {
-        this.viewModel = viewModel;
+    public void update() {
         notifyDataSetChanged();
     }
 }
