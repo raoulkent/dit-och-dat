@@ -5,8 +5,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.example.simplegolf.model.converters.HoleConverter;
-import com.example.simplegolf.model.converters.TeeConverter;
+import com.example.simplegolf.utils.converters.HoleConverter;
+import com.example.simplegolf.utils.converters.TeeConverter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,16 +36,16 @@ public class Course implements Serializable {
     }
 
     /**
-     * Verifies if the hcpIndexes are unique
+     * Verifies if the hcpIndices are unique
      *
      * @param holes List of holes to check
      * @return true if verification is a success
      */
-    private static boolean checkUniqueHoleHcpIndices(List<Hole> holes) {
+    public static boolean checkUniqueHoleHcpIndices(List<Hole> holes) {
         List<Integer> foundHcps = new ArrayList<>();
         for (Hole hole : holes) {
             int hcp = hole.getHcpIndex();
-            if (foundHcps.contains(hcp)) {
+            if (foundHcps.contains(hcp) || hcp < 0 || hcp > 17) {
                 return false;
             }
             foundHcps.add(hcp);
@@ -59,7 +59,7 @@ public class Course implements Serializable {
      * @param holes List of holes to verify
      * @return true if verification is a success
      */
-    private static boolean checkCourseSize(List<Hole> holes) {
+    public static boolean checkCourseSize(List<Hole> holes) {
         return holes.size() > 0 && holes.size() <= 18;
     }
 

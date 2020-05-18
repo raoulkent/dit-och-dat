@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class PlayerTest {
 
@@ -233,13 +234,51 @@ public class PlayerTest {
     }
 
 
-    // TODO Fix test
     @Test
-    public void testGetExtraHoles() {
-        System.out.println("Test");
-        player.getExtraShots();
-        assertEquals(1, 1);
+    public void testGetExtraShots() {
+        int[] extraShots = player.getExtraShots();
+
+        assertEquals(2, extraShots[0]);
+        assertEquals(2, extraShots[1]);
+        assertEquals(3, extraShots[11]);
+        assertEquals(2, extraShots[9]);
     }
 
-    // TODO Needs tests for 9-hole courses
+    @Test
+    public void testGetExtraShotsForScratchPlayer() {
+        player.setHcp(0);
+        player.setTee(course.getTees().get(3)); // Vit tee = 0 SHCP
+
+        int[] extraShots = player.getExtraShots();
+
+        assertEquals(0, extraShots[0]);
+        assertEquals(0, extraShots[1]);
+        assertEquals(0, extraShots[11]);
+        assertEquals(0, extraShots[9]);
+
+    }
+
+    @Test
+    public void testGetPlayerPar() {
+        assertEquals(6, player.getPlayerPar(0));
+        assertEquals(5, player.getPlayerPar(1));
+        assertEquals(6, player.getPlayerPar(2));
+        assertEquals(6, player.getPlayerPar(9));
+        assertEquals(8, player.getPlayerPar(11));
+    }
+
+    @Test
+    public void testGetName() {
+        assertEquals("Player1", player.getName());
+    }
+
+    @Test
+    public void testEmptyConstructor() {
+        Player p = new Player();
+        assertNotNull(p);
+    }
+
+    // TODO Need tests for 9-hole courses?
+
+
 }

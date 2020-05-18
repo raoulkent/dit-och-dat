@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.example.simplegolf.model.converters.PlayerConverter;
+import com.example.simplegolf.utils.converters.PlayerConverter;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
