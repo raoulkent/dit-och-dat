@@ -1,5 +1,6 @@
 package com.example.simplegolf.ui.scorecard;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -93,8 +94,10 @@ public class ScorecardFragment extends Fragment {
                 }
 
                 int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
+
                 if(h > 0) {
                     ((TextView) awayFromPar.get(player).get(hole)).setText("+" + h);
+                            awayFromPar.setTextColor(Color.RED);
                 }
                 else {
                     ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
