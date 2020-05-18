@@ -26,17 +26,6 @@ public class Player implements Serializable {
     public Player() {
     }
 
-    /**
-     * Deprecated: Use Player(...) instead.
-     *
-     * @param initials name
-     * @param nHoles   number of holes
-     */
-    @Deprecated // Delete constructor when it's no longer used.
-    public Player(String initials, int nHoles) {
-        this.initials = initials;
-        this.shots = new int[nHoles];
-    }
 
     /**
      * The constructor to use for creating a Player object
