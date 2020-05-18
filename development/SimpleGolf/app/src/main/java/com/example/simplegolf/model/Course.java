@@ -5,8 +5,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.example.simplegolf.model.converters.HoleConverter;
-import com.example.simplegolf.model.converters.TeeConverter;
+import com.example.simplegolf.utils.converters.HoleConverter;
+import com.example.simplegolf.utils.converters.TeeConverter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
