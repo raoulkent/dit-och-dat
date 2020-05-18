@@ -12,10 +12,8 @@ public class GameHistoryViewModel {
     private List<Scorecard> scorecards;
     private boolean completedGames;
     private Repository repository;
-    private Context context;
 
     public GameHistoryViewModel(Context context){
-        this.context = context;
         scorecards = new ArrayList<>();
         repository = Repository.getRepository(context);
     }
@@ -41,18 +39,10 @@ public class GameHistoryViewModel {
                 setScorecards(repository.getDb().scorecardDAO().getFinishedRounds());
             }
         }).start();
-
-        // TODO: runOnUiThread?
     }
 
     private void deleteGame(Scorecard scorecard) {
-        new Thread(() -> {
-            if (getScorecards().contains(scorecard)) {
-                repository.getDb().scorecardDAO().delete(scorecard);
-            }
-        }).start();
-
-        // TODO: runOnUiThread?
+        new Thread(() -> repository.getDb().scorecardDAO().delete(scorecard)).start();
     }
 
     public void setCompletedGames(boolean completedGames) {
