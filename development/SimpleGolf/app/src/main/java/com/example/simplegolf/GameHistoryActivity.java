@@ -15,17 +15,17 @@ import com.example.simplegolf.ui.gameHistory.GameHistoryViewModel;
 public class GameHistoryActivity extends AppCompatActivity implements GameHistoryAdapter.ItemClickListener {
 
     private GameHistoryAdapter adapter;
-    private GameHistoryViewModel viewModel = new GameHistoryViewModel();
+    private GameHistoryViewModel viewModel;
     private Repository repository;
-    private boolean finishedGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_history);
+        boolean completedGames = getIntent().getExtras().getBoolean("finished", false);
 
-        repository = Repository.getRepository(this);
-        loadOldGames();
+        viewModel = new GameHistoryViewModel(this);
+        viewModel.setCompletedGames(completedGames);
 
         RecyclerView recyclerView = findViewById(R.id.rv_oldGames);
         adapter = new GameHistoryAdapter(viewModel, this);
@@ -33,27 +33,12 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        finishedGame = getIntent().getExtras().getBoolean("finished", false);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadOldGames();
-    }
-
-    private void loadOldGames() {
-        new Thread(() -> {
-            if (!finishedGame) {
-                viewModel.setScorecards(repository.getDb().scorecardDAO().getUnfinishedRounds());
-            } else {
-                viewModel.setScorecards(repository.getDb().scorecardDAO().getFinishedRounds());
-            }
-
-            this.runOnUiThread(() -> {
-                adapter.update(viewModel);
-            });
-        }).start();
+        viewModel.loadGames();
     }
 
     @Override
