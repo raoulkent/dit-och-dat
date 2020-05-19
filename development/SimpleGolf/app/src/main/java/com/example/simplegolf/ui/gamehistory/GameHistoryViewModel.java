@@ -1,4 +1,4 @@
-package com.example.simplegolf.ui.gameHistory;
+package com.example.simplegolf.ui.gamehistory;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,7 +1,5 @@
 package com.example.simplegolf.model;
 
-import com.example.simplegolf.model.testcourses.TestCourses;
-
 import org.junit.Before;
 import org.junit.Test;
 

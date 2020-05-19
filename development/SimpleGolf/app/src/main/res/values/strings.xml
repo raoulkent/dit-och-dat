@@ -9,7 +9,7 @@
     <string name="dev_options">Dev options</string>
     <string name="title_game_activity">Spel</string>
     <string name="title_strokes">Slag</string>
-    <string name="title_scorecard">Protokoll</string>
+    <string name="title_scorecard">Scorekort</string>
 
     <!-- Course and Player selection -->
     <string name="select_course">Välj en bana</string>
@@ -24,8 +24,10 @@
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
     <string name="add_player">Lägg till spelare</string>
     <string name="request_player_details">Vänligen ange spelardetaljer</string>
-    <string name="add">+1</string>
-    <string name="remove">-1</string>
+    <string name="add_one">+1</string>
+    <string name="add">Lägg till</string>
+    <string name="remove_one">-1</string>
+    <string name="remove">Tabort</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
     <string name="specify_abbreviated_name">Ange initialer</string>
