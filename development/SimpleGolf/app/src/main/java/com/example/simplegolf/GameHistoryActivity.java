@@ -32,13 +32,12 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        viewModel.loadGames();
+        viewModel.loadGames(adapter);
     }
 
     @Override

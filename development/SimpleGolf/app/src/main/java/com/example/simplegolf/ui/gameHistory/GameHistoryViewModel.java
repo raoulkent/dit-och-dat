@@ -1,5 +1,6 @@
 package com.example.simplegolf.ui.gameHistory;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.example.simplegolf.model.Repository;
@@ -12,10 +13,12 @@ public class GameHistoryViewModel {
     private List<Scorecard> scorecards;
     private boolean completedGames;
     private Repository repository;
+    private Activity activity;
 
-    public GameHistoryViewModel(Context context){
+    public GameHistoryViewModel(Activity activity){
         scorecards = new ArrayList<>();
-        repository = Repository.getRepository(context);
+        repository = Repository.getRepository(activity);
+        this.activity = activity;
     }
 
     public List<Scorecard> getScorecards() {
@@ -31,13 +34,18 @@ public class GameHistoryViewModel {
         scorecards.remove(scorecard);
     }
 
-    public void loadGames() {
+    public void loadGames(GameHistoryAdapter adapter) { // todo if there is time, remake to an observer pattern.
         new Thread(() -> {
+            List<Scorecard> list;
             if (!completedGames) {
-                setScorecards(repository.getDb().scorecardDAO().getUnfinishedRounds());
+                list = repository.getDb().scorecardDAO().getUnfinishedRounds();
             } else {
-                setScorecards(repository.getDb().scorecardDAO().getFinishedRounds());
+                list = repository.getDb().scorecardDAO().getFinishedRounds();
             }
+            activity.runOnUiThread(() -> {
+                setScorecards(list);
+                adapter.notifyDataSetChanged();
+            });
         }).start();
     }
 
