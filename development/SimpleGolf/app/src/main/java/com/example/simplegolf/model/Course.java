@@ -29,7 +29,7 @@ public class Course implements Serializable {
     private List<Tee> tees;
 
 
-    public Course(String name, List<Hole> holes, List<Tee> tees) {
+    public Course(@NonNull String name, List<Hole> holes, List<Tee> tees) {
         this.name = name;
         this.holes = holes;
         this.tees = tees;
@@ -76,11 +76,12 @@ public class Course implements Serializable {
         return i;
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 

@@ -41,6 +41,7 @@ public class GameActivity extends AppCompatActivity {
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
 
+        /*
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -51,6 +52,7 @@ public class GameActivity extends AppCompatActivity {
         };
 
         this.getOnBackPressedDispatcher().addCallback(this, callback);
+        */
     }
 
     private StrokesMainFragment getMainFragment() {

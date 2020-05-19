@@ -127,8 +127,7 @@ public class Player implements Serializable {
     public int getPlayerPar(int holeNumber) {
         int[] extraShotsHole = getExtraShots();
         int par = course.getHoles().get(holeNumber).getPar();
-        int playerPar = par + extraShotsHole[holeNumber];
-        return playerPar;
+        return par + extraShotsHole[holeNumber];
     }
 
     /**
@@ -245,5 +244,9 @@ public class Player implements Serializable {
 
     public void setHcp(double hcp) {
         this.hcp = hcp;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

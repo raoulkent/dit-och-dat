@@ -14,11 +14,11 @@ import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.Tee;
-import com.example.simplegolf.ui.playerSelect.AddPlayerDialogue;
-import com.example.simplegolf.ui.playerSelect.PlayerListAdapter;
-import com.example.simplegolf.ui.playerSelect.PlayerSelectViewModel;
+import com.example.simplegolf.ui.playerselect.AddPlayerDialog;
+import com.example.simplegolf.ui.playerselect.PlayerListAdapter;
+import com.example.simplegolf.ui.playerselect.PlayerSelectViewModel;
 
-public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialogue.DialogListener {
+public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialog.DialogListener {
 
     private PlayerSelectViewModel viewModel;
     private RecyclerView recyclerView;
@@ -51,8 +51,8 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     }
 
     public void showDialog(View view) {
-        AddPlayerDialogue addPlayerDialogue = new AddPlayerDialogue();
-        addPlayerDialogue.show(getSupportFragmentManager(), "game activity dialog");
+        AddPlayerDialog addPlayerDialog = new AddPlayerDialog();
+        addPlayerDialog.show(getSupportFragmentManager(), "game activity dialog");
     }
 
     public void onClickCreateScorecard(View view) {
@@ -68,16 +68,26 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
             runOnUiThread(() -> { // Start activity after DB operations are done.
                 Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
                 startGame.putExtra("scorecard", savedScorecard);
+                finish();
                 startActivity(startGame);
             });
         }).start();
     }
 
     @Override
-    public void applyPlayerInfo(String name, String abbr, double hcp, Tee tee) {
+    public void newPlayerInfo(String name, String abbr, double hcp, Tee tee) {
         Course course = viewModel.getCourse();
 
-        viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
+        viewModel.addPlayer(new Player(name, abbr.toUpperCase(), course, tee, hcp));
+
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void editPlayerInfo(Player player, String name, String abbr, double hcp, Tee tee) {
+        Course course = viewModel.getCourse();
+
+        viewModel.editPlayer(player, name, abbr, course, tee, hcp);
 
         adapter.notifyDataSetChanged();
     }
