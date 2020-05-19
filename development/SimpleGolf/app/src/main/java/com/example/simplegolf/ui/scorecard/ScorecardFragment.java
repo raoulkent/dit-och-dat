@@ -66,6 +66,8 @@ public class ScorecardFragment extends Fragment {
     }
 
     private void setupSelector(View root) {
+
+        /*
         this.selector = root.findViewById(R.id.gameTypeRadioGroup);
 
         if (viewModel.getShowStrokes()) {
@@ -82,6 +84,12 @@ public class ScorecardFragment extends Fragment {
             }
             updateTable();
         });
+
+
+         */
+
+        viewModel.setShowStrokes(true);
+        updateTable();
     }
 
     //Update to correct scores
@@ -96,19 +104,21 @@ public class ScorecardFragment extends Fragment {
                     ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(score));
                 }
 
-                int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
+                //int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
+                int h = scorecard.getPlayers().get(player).getScoreForHole(hole);
 
-                if(h > 0) {
-                    ((TextView) awayFromPar.get(player).get(hole)).setText("+" + h);
-                    ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.RED);
-                }
-                if(h == 0){
+                if(h == 0) {
                     ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
-                }
-                if(h<0){
+                    ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.RED);
+                } else if(h > 0){
                     ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
                     ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.BLUE);
                 }
+                /*
+                if(h == 0){
+                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
+                } */
+
             }
         }
         //Update total
