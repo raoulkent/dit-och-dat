@@ -1,7 +1,9 @@
 package com.example.simplegolf.ui.scorecard;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -143,11 +146,14 @@ public class ScorecardFragment extends Fragment {
         TableRow row = generateTableRow();
 
         row.setBackgroundResource(R.drawable.table_row_header);
+        int padding = Math.round(convertDpToPixel(8, getActivity()));
+        row.setPadding(0, padding, 0, padding);
+
         row.addView(generateStaticTextView(R.string.hole, 20, 3f));
         row.addView(generateStaticTextView(R.string.par, 20, 3f));
 
         for(Player p: scorecard.getPlayers()){
-            row.addView(generateStaticTextView(p.getInitials(), 20, (float) 12 / scorecard.getPlayers().size()));
+            row.addView(generateStaticTextView(p.getInitials(), 20, (float) 12 / scorecard.getPlayers().size(), R.color.white));
         }
 
         return row;
@@ -157,8 +163,8 @@ public class ScorecardFragment extends Fragment {
         TableRow row = generateTableRow();
 
         row.setBackgroundResource(R.drawable.table_row_bg1);
-        row.addView(generateStaticTextView(String.valueOf(h.getHoleNumber() + 1), 50, 3f));
-        row.addView(generateStaticTextView(String.valueOf(h.getPar()), 30, 3f));
+        row.addView(generateStaticTextView(String.valueOf(h.getHoleNumber() + 1), 50, 3f, R.color.black));
+        row.addView(generateStaticTextView(String.valueOf(h.getPar()), 30, 3f, R.color.black));
 
         for(int i = 0; i < scorecard.getPlayers().size(); i++){
             LinearLayout scoreStats = new LinearLayout(getActivity());
@@ -169,13 +175,13 @@ public class ScorecardFragment extends Fragment {
 
             //Params for textviews inside linearlayout
             params= new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-            TextView tv = generateStaticTextView("0", 32, 0);
+            TextView tv = generateStaticTextView("0", 32, 0, R.color.black);
             tv.setLayoutParams(params);
             scoreStats.addView(tv);
 
             scoreTextViews.get(i).add(tv);
 
-            tv = generateStaticTextView("0", 20, 0);
+            tv = generateStaticTextView("0", 20, 0, R.color.black);
             tv.setLayoutParams(params);
             scoreStats.addView(tv);
 
@@ -192,9 +198,11 @@ public class ScorecardFragment extends Fragment {
 
         row.setBackgroundResource(R.drawable.table_row_bottom);
         row.addView(generateStaticTextView(R.string.total, 20, 6f));
+        int padding = Math.round(convertDpToPixel(8, getActivity()));
+        row.setPadding(0, padding, 0, padding);
 
         for(Player p: scorecard.getPlayers()){
-            TextView tv = generateStaticTextView("0", 20, (float) 12 / scorecard.getPlayers().size());
+            TextView tv = generateStaticTextView("0", 20, (float) 12 / scorecard.getPlayers().size(), R.color.white);
             totalScoreTextViews.add(tv);
             row.addView(tv);
         }
@@ -211,7 +219,7 @@ public class ScorecardFragment extends Fragment {
         return row;
     }
 
-    private TextView generateStaticTextView(String text, int size, float weight){
+    private TextView generateStaticTextView(String text, int size, float weight, int color){
         TextView tv = new TextView(getActivity());
         TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, weight);
 
@@ -219,6 +227,7 @@ public class ScorecardFragment extends Fragment {
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         tv.setTextSize(size);
         tv.setText(text);
+        tv.setTextColor(ContextCompat.getColor(getActivity(), color));
 
         return tv;
     }
@@ -231,8 +240,12 @@ public class ScorecardFragment extends Fragment {
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         tv.setTextSize(size);
         tv.setText(text);
-
+        tv.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         return tv;
+    }
+
+    public static float convertDpToPixel(float dp, Context context){
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
 }
