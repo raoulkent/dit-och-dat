@@ -9,7 +9,7 @@
     <string name="dev_options">Dev options</string>
     <string name="title_game_activity">Spel</string>
     <string name="title_strokes">Slag</string>
-    <string name="title_scorecard">Protokoll</string>
+    <string name="title_scorecard">Scorekort</string>
 
     <!-- Course and Player selection -->
     <string name="select_course">Välj en bana</string>
