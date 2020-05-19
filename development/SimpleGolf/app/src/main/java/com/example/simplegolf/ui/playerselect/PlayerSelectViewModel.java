@@ -1,10 +1,11 @@
-package com.example.simplegolf.ui.playerSelect;
+package com.example.simplegolf.ui.playerselect;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;
+import com.example.simplegolf.model.Tee;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +42,15 @@ public class PlayerSelectViewModel extends ViewModel {
 
     public void addPlayer(Player player) {
         this.players.add(player);
+    }
+
+    public void editPlayer(Player player, String name, String abbr, Course course, Tee tee, double hcp) {
+        if (this.players.contains(player)) {
+            player.setName(name);
+            player.setInitials(abbr);
+            player.setCourse(course);
+            player.setTee(tee);
+            player.setHcp(hcp);
+        }
     }
 }

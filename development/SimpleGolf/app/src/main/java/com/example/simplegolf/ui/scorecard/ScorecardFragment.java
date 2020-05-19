@@ -121,9 +121,9 @@ public class ScorecardFragment extends Fragment {
 
     private void createTable(){
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
-        totalScoreTextViews = new ArrayList<TextView>();
-        scoreTextViews = new ArrayList<ArrayList>();
-        awayFromPar = new ArrayList<ArrayList>();
+        totalScoreTextViews = new ArrayList<>();
+        scoreTextViews = new ArrayList<>();
+        awayFromPar = new ArrayList<>();
 
         for(Player p: scorecard.getPlayers()){
             scoreTextViews.add(new ArrayList<TextView>());

@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.model.Repository;
-import com.example.simplegolf.ui.gameHistory.GameHistoryAdapter;
-import com.example.simplegolf.ui.gameHistory.GameHistoryViewModel;
+import com.example.simplegolf.ui.gamehistory.GameHistoryAdapter;
+import com.example.simplegolf.ui.gamehistory.GameHistoryViewModel;
 
 public class GameHistoryActivity extends AppCompatActivity implements GameHistoryAdapter.ItemClickListener {
 

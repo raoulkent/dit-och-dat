@@ -1,6 +1,9 @@
 package com.example.simplegolf.ui.strokes;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +14,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
-import com.example.simplegolf.model.Hole;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StrokesFragment extends Fragment implements View.OnClickListener {
 
@@ -112,24 +114,31 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         return String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar());
     }
 
-    private LinearLayout createLayoutForPlayer(Player p) {
-        LinearLayout layout = new LinearLayout(getActivity());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(10,0,10,0);
+    private CardView createLayoutForPlayer(Player p) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,1);
 
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setLayoutParams(params);
-        layout.setPadding(10, 0, 10, 0);
-        layout.setBackgroundResource(R.drawable.stroke_background);
+        CardView card = new CardView(getActivity());
+        card.setLayoutParams(params);
+        card.setRadius(convertDpToPixel(4, getActivity()));
+        card.setElevation(convertDpToPixel(2, getActivity()));
 
-        layout.addView(createNameTextView(p));
-        layout.addView(createCurrentPar(p));
-        layout.addView(createAddButton(p));
-        layout.addView(createCounterTextView());
-        layout.addView(createRemoveButton(p));
-        layout.addView(createCurrentPoints(p));
+        LinearLayout playerLayout = new LinearLayout(getActivity());
+        params.setMargins(5,0,5,0);
 
-        return layout;
+        playerLayout.setOrientation(LinearLayout.VERTICAL);
+        playerLayout.setLayoutParams(params);
+        playerLayout.setPadding(5, 0, 5, 0);
+
+        playerLayout.addView(createNameTextView(p));
+        playerLayout.addView(createCurrentPar(p));
+        playerLayout.addView(createAddButton(p));
+        playerLayout.addView(createCounterTextView());
+        playerLayout.addView(createRemoveButton(p));
+        playerLayout.addView(createCurrentPoints(p));
+
+        card.addView(playerLayout);
+
+        return card;
     }
 
     private TextView createCurrentPar(Player p) {
@@ -160,12 +169,9 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private Button createAddButton(Player p) {
         Button b = new MaterialButton(getActivity());
         b.setText(this.getString(R.string.add_one));
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                p.incrementHole(holeNumber);
-                updateUI();
-            }
+        b.setOnClickListener(v -> {
+            p.incrementHole(holeNumber);
+            updateUI();
         });
         return b;
     }
@@ -182,15 +188,15 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private Button createRemoveButton(Player p) {
         Button b = new MaterialButton(getActivity());
         b.setText(this.getString(R.string.remove_one));
-        b.setPadding(0, 0, 0, 0);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                p.decrementHole(holeNumber);
-                updateUI();
-            }
+        b.setOnClickListener(v -> {
+            p.decrementHole(holeNumber);
+            updateUI();
         });
         return b;
+    }
+
+    public static float convertDpToPixel(float dp, Context context){
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
     private void updateUI() {
@@ -204,8 +210,6 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     // Saves new scores etc.
     private void updateDB() {
-        new Thread(() -> {
-            repository.getDb().scorecardDAO().update(scorecard);
-        }).start();
+        new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.simplegolf.ui.playerSelect;
+package com.example.simplegolf.ui.playerselect;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.R;
@@ -66,7 +67,9 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
 
     private void selectPlayer(PlayerViewHolder holder) {
         Player player = players.get(holder.getAdapterPosition());
-        // TODO: Start an edit dialog
+
+        AddPlayerDialog addPlayerDialog = new EditPlayerDialog(player);
+        addPlayerDialog.show(((FragmentActivity)context).getSupportFragmentManager(), "game activity dialog");
     }
 
     private void deletePlayer(PlayerViewHolder holder) {

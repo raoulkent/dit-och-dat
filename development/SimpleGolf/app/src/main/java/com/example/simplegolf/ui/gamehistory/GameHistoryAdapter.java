@@ -1,4 +1,4 @@
-package com.example.simplegolf.ui.gameHistory;
+package com.example.simplegolf.ui.gamehistory;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.R;
@@ -25,8 +26,9 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
         this.viewModel = viewModel;
     }
 
+    @NonNull
     @Override
-    public GameHistoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GameHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.card_game_history, parent, false);
         return new GameHistoryViewHolder(view);
     }
@@ -52,13 +54,13 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
     }
 
     private String generatePlayersString(List<Player> players) {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int p = 0; p < players.size(); p++)
             if (p == 0)
-                res += players.get(p).getInitials();
+                res.append(players.get(p).getInitials());
             else
-                res += ", " + players.get(p).getInitials();
-        return res;
+                res.append(", ").append(players.get(p).getInitials());
+        return res.toString();
     }
 
     @Override
