@@ -1,6 +1,6 @@
 package com.example.simplegolf.ui.courseSelect;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +19,11 @@ import java.util.List;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
     private List<Course> courses;
-    private Context context;
+    private Activity activity;
 
-    public CourseListAdapter(List<Course> courses, Context context) {
+    public CourseListAdapter(List<Course> courses, Activity activity) {
         this.courses = courses;
-        this.context = context;
+        this.activity = activity;
     }
 
     // Provide a reference to the views for each data item
@@ -64,9 +64,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     private void selectCourse(CourseViewHolder holder) {
         Course course = courses.get(holder.getAdapterPosition());
-        Intent goGameActivity = new Intent(context.getApplicationContext(), PlayerSelectActivity.class);
+        Intent goGameActivity = new Intent(activity.getApplicationContext(), PlayerSelectActivity.class);
         goGameActivity.putExtra("course", course);
-        context.startActivity(goGameActivity);
+        activity.finish();
+        activity.startActivity(goGameActivity);
     }
 
     @Override

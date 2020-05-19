@@ -68,6 +68,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
             runOnUiThread(() -> { // Start activity after DB operations are done.
                 Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
                 startGame.putExtra("scorecard", savedScorecard);
+                finish();
                 startActivity(startGame);
             });
         }).start();
