@@ -10,7 +10,7 @@
     <string name="select_course">Välj en bana</string>
     <string name="select_tee">Välj tee</string>
     <string name="next_button">Nästa</string>
-    <string name="back_button">Tillbaka</string>
+    <string name="back_button">Föregående</string>
     <string name="your_tag">Din tag?</string>
     <string name="tag">Tag</string>
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
