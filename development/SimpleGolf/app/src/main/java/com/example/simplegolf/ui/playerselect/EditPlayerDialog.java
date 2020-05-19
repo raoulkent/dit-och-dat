@@ -48,7 +48,7 @@ public class EditPlayerDialog extends AddPlayerDialog {
         Objects.requireNonNull(diaPlayerName.getEditText()).setText(player.getName());
         Objects.requireNonNull(diaPlayerAbbr.getEditText()).setText(player.getInitials());
         Objects.requireNonNull(diaPlayerHCP.getEditText()).setText(String.valueOf(player.getHcp()));
-        spinner.setSelection(course.getTees().indexOf(player.getTeeName()));
+        spinner.setSelection(course.getTees().indexOf(player.getTee()));
 
         builder.setView(view).setTitle(R.string.request_player_details)
                 .setPositiveButton(R.string.add, null)
@@ -62,7 +62,6 @@ public class EditPlayerDialog extends AddPlayerDialog {
             Button buttonNegative = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_NEGATIVE);
 
             buttonPositive.setOnClickListener(v -> {
-
                 if (checkInput()) {
                     String name = diaPlayerName.getEditText().getText().toString();
                     String abbr = diaPlayerAbbr.getEditText().getText().toString();
