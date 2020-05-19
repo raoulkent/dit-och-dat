@@ -1,4 +1,4 @@
-package com.example.simplegolf.ui.courseSelect;
+package com.example.simplegolf.ui.courseselect;
 
 import androidx.lifecycle.ViewModel;
 

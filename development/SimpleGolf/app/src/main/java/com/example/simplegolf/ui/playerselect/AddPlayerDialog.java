@@ -1,4 +1,4 @@
-package com.example.simplegolf.ui.playerSelect;
+package com.example.simplegolf.ui.playerselect;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -24,26 +24,24 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddPlayerDialogue extends AppCompatDialogFragment {
+public class AddPlayerDialog extends AppCompatDialogFragment {
 
-    private TextInputLayout diaPlayerName;
 
     // made this one public because checkPlayerAbbr() method didn't find this field.
-    private TextInputLayout diaPlayerAbbr;
-    private TextInputLayout diaPlayerHCP;
-    private Spinner spinner;
-    private DialogListener listener;
-    private Course course;
-    private PlayerSelectViewModel viewModel;
+    TextInputLayout diaPlayerName, diaPlayerAbbr, diaPlayerHCP;
+    Spinner spinner;
+    DialogListener listener;
+    Course course;
+    PlayerSelectViewModel viewModel;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity(), R.style.AlertDialogTheme);
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireActivity(), R.style.AlertDialogTheme);
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialogue_select_player, null);
 
-        viewModel = new ViewModelProvider(getActivity()).get(PlayerSelectViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(PlayerSelectViewModel.class);
 
         if (getActivity().getIntent().hasExtra("course"))
             course = viewModel.getCourse();
@@ -91,7 +89,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
     }
 
 
-    private void addSpinnerTees(Course c, Spinner s) {
+    void addSpinnerTees(Course c, Spinner s) {
         List<String> spinnerArray = new ArrayList<>();
 
         for (Tee tee : c.getTees())
@@ -103,7 +101,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
         s.setAdapter(adapter);
     }
 
-    private Tee matchStringToTee(String teeName) {
+    Tee matchStringToTee(String teeName) {
         for (Tee t : course.getTees()) {
             if (t.getName().equals(teeName))
                 return t;
@@ -126,7 +124,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
         void applyPlayerInfo(String name, String abbr, double hcp, Tee tee);
     }
 
-    private boolean checkInput() {
+    boolean checkInput() {
         boolean isInputValid = true;
 
         diaPlayerName.setError(null);
@@ -143,7 +141,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
         return isInputValid;
     }
 
-    private boolean checkPlayerName() {
+    boolean checkPlayerName() {
         String playerName = diaPlayerName.getEditText().getText().toString();
         if (playerName.isEmpty()) {
             diaPlayerName.setError(getString(R.string.specify_name));
@@ -152,7 +150,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
         return true;
     }
 
-    private boolean checkPlayerAbbr() {
+    boolean checkPlayerAbbr() {
         String playerAbbr = diaPlayerAbbr.getEditText().getText().toString();
         if (playerAbbr.isEmpty()) {
             diaPlayerAbbr.setError(getString(R.string.specify_abbreviated_name));
@@ -161,7 +159,7 @@ public class AddPlayerDialogue extends AppCompatDialogFragment {
         return true;
     }
 
-    private boolean checkPlayerHcp() {
+    boolean checkPlayerHcp() {
         String playerHCP = diaPlayerHCP.getEditText().getText().toString();
         if (playerHCP.isEmpty()) {
             diaPlayerHCP.setError(getString(R.string.specify_handicap));

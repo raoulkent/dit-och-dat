@@ -127,8 +127,7 @@ public class Player implements Serializable {
     public int getPlayerPar(int holeNumber) {
         int[] extraShotsHole = getExtraShots();
         int par = course.getHoles().get(holeNumber).getPar();
-        int playerPar = par + extraShotsHole[holeNumber];
-        return playerPar;
+        return par + extraShotsHole[holeNumber];
     }
 
     /**

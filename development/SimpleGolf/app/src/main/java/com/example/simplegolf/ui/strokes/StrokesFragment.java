@@ -15,14 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
-import com.example.simplegolf.model.Hole;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StrokesFragment extends Fragment implements View.OnClickListener {
 
@@ -160,12 +158,9 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private Button createAddButton(Player p) {
         Button b = new MaterialButton(getActivity());
         b.setText(this.getString(R.string.add));
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                p.incrementHole(holeNumber);
-                updateUI();
-            }
+        b.setOnClickListener(v -> {
+            p.incrementHole(holeNumber);
+            updateUI();
         });
         return b;
     }
@@ -183,12 +178,9 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         Button b = new MaterialButton(getActivity());
         b.setText(this.getString(R.string.remove));
         b.setPadding(0, 0, 0, 0);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                p.decrementHole(holeNumber);
-                updateUI();
-            }
+        b.setOnClickListener(v -> {
+            p.decrementHole(holeNumber);
+            updateUI();
         });
         return b;
     }
@@ -204,8 +196,6 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     // Saves new scores etc.
     private void updateDB() {
-        new Thread(() -> {
-            repository.getDb().scorecardDAO().update(scorecard);
-        }).start();
+        new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
     }
 }
