@@ -68,6 +68,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
             runOnUiThread(() -> { // Start activity after DB operations are done.
                 Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
                 startGame.putExtra("scorecard", savedScorecard);
+                finish();
                 startActivity(startGame);
             });
         }).start();
@@ -77,7 +78,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     public void newPlayerInfo(String name, String abbr, double hcp, Tee tee) {
         Course course = viewModel.getCourse();
 
-        viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
+        viewModel.addPlayer(new Player(name, abbr.toUpperCase(), course, tee, hcp));
 
         adapter.notifyDataSetChanged();
     }

@@ -34,4 +34,7 @@
     <string name="initials">Initials</string>
     <string name="handicap">Handicap</string>
     <string name="dev_options">Dev options</string>
+    <string name="add_one">+1</string>
+    <string name="remove_one">-1</string>
+
 </resources>

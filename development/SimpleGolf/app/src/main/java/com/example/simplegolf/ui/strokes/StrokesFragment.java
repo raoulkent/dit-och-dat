@@ -176,7 +176,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private Button createRemoveButton(Player p) {
         Button b = new MaterialButton(getActivity());
-        b.setText(this.getString(R.string.remove));
+        b.setText(this.getString(R.string.remove_one));
         b.setPadding(0, 0, 0, 0);
         b.setOnClickListener(v -> {
             p.decrementHole(holeNumber);
