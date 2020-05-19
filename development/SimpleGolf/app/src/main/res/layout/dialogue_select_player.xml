@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:textAlignment="center">
+    android:textAlignment="center"
+    android:padding="6dp">
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -12,13 +13,13 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+
         android:clipToPadding="true"
         android:hint="@string/specify_name"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="308dp"
+            android:layout_width="match_parent"
             android:layout_height="51dp"
             android:maxLength="30" />
 
@@ -35,7 +36,7 @@
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="306dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="3" />
 
@@ -53,7 +54,7 @@
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="306dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal" />
 

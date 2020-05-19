@@ -15,7 +15,7 @@
     <string name="tag">Tag</string>
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
     <string name="add_player">Lägg till spelare</string>
-    <string name="request_player_details">Vänligen ange spelardetaljer</string>
+    <string name="request_player_details">Ange spelardetaljer</string>
     <string name="add">Lägg till</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
