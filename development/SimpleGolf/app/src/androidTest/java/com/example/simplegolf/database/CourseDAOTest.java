@@ -2,11 +2,13 @@ package com.example.simplegolf.database;
 
 import android.content.Context;
 
+import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import com.example.simplegolf.model.Course;
-import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.database.AppDatabase;
 import com.example.simplegolf.model.database.CourseDAO;
-import com.example.simplegolf.model.database.ScorecardDAO;
 import com.example.simplegolf.model.testcourses.TestCourses;
 
 import org.junit.After;
@@ -16,10 +18,6 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.List;
-
-import androidx.room.Room;
-import androidx.test.core.app.ApplicationProvider;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static junit.framework.TestCase.assertEquals;
 

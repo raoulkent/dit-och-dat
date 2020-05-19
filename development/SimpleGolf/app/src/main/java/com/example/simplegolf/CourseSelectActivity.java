@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.testcourses.TestCourses;
-import com.example.simplegolf.ui.courseSelect.CourseListAdapter;
+import com.example.simplegolf.ui.courseselect.CourseListAdapter;
 
 import java.util.ArrayList;
 
