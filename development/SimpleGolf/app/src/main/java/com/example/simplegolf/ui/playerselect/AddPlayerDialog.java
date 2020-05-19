@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Course;
+import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Tee;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
@@ -74,7 +75,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
 
                     Tee tee = matchStringToTee(teeString);
 
-                    listener.applyPlayerInfo(name, abbr, hcp, tee);
+                    listener.newPlayerInfo(name, abbr, hcp, tee);
                     dialogInterface.dismiss();
                 }
                 // diaPlayerAbbr.setError("Initials must be entered");
@@ -121,7 +122,8 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
     }
 
     public interface DialogListener {
-        void applyPlayerInfo(String name, String abbr, double hcp, Tee tee);
+        void newPlayerInfo(String name, String abbr, double hcp, Tee tee);
+        void editPlayerInfo(Player player, String name, String abbr, double hcp, Tee tee);
     }
 
     boolean checkInput() {

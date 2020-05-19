@@ -74,10 +74,19 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     }
 
     @Override
-    public void applyPlayerInfo(String name, String abbr, double hcp, Tee tee) {
+    public void newPlayerInfo(String name, String abbr, double hcp, Tee tee) {
         Course course = viewModel.getCourse();
 
         viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
+
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void editPlayerInfo(Player player, String name, String abbr, double hcp, Tee tee) {
+        Course course = viewModel.getCourse();
+
+        viewModel.editPlayer(player, name, abbr, course, tee, hcp);
 
         adapter.notifyDataSetChanged();
     }

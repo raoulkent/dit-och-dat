@@ -70,7 +70,7 @@ public class EditPlayerDialog extends AddPlayerDialog {
 
                     Tee tee = matchStringToTee(teeString);
 
-                    listener.applyPlayerInfo(name, abbr, hcp, tee);
+                    listener.editPlayerInfo(player, name, abbr, hcp, tee);
                     dialogInterface.dismiss();
                 }
             });

@@ -245,4 +245,8 @@ public class Player implements Serializable {
     public void setHcp(double hcp) {
         this.hcp = hcp;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
