@@ -159,7 +159,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private Button createAddButton(Player p) {
         Button b = new MaterialButton(getActivity());
-        b.setText(this.getString(R.string.add));
+        b.setText(this.getString(R.string.add_one));
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,7 +181,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
 
     private Button createRemoveButton(Player p) {
         Button b = new MaterialButton(getActivity());
-        b.setText(this.getString(R.string.remove));
+        b.setText(this.getString(R.string.remove_one));
         b.setPadding(0, 0, 0, 0);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
