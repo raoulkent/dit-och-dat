@@ -9,7 +9,7 @@ import com.example.simplegolf.model.Scorecard;
 /**
  * Generates Database classes based on Room and handles all DB interactions
  */
-@Database(entities = {Course.class, Scorecard.class}, version = 8)
+@Database(entities = {Course.class, Scorecard.class}, version = 9)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract CourseDAO courseDAO();
 
