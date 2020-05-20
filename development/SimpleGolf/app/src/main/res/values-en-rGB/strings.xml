@@ -39,5 +39,10 @@
     <string name="eighteen">18 holes</string>
     <string name="first9">First 9</string>
     <string name="last9">Last 9</string>
+    <string name="end_game_button">End game</string>
+    <string name="end_game_title">Do you want to end the game?</string>
+    <string name="end_game_text">Ended games can be found in the main menu.</string>
+    <string name="end_game_cancel">CANCEL</string>
+    <string name="end_game_accept">END GAME</string>
 
 </resources>

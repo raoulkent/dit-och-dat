@@ -15,7 +15,7 @@
     <string name="select_course">Välj en bana</string>
     <string name="select_tee">Välj tee</string>
     <string name="next_button">Nästa</string>
-    <string name="back_button">Tillbaka</string>
+    <string name="back_button">Föregående</string>
     <string name="name">Namn</string>
     <string name="initials">Initialer</string>
     <string name="handicap">Handicap</string>
@@ -36,6 +36,13 @@
     <string name="first9">Första 9</string>
     <string name="last9">Sista 9</string>
 
+
+    <!-- GameAcitivty -->
+    <string name="end_game_button">Avsluta spel</string>
+    <string name="end_game_title">Vill du avsluta spelet?</string>
+    <string name="end_game_text">Avslutade spel finns i huvudmenyn.</string>
+    <string name="end_game_cancel">AVBRYT</string>
+    <string name="end_game_accept">AVSLUTA</string>
 
     <!-- ScoreCard table -->
     <string name="hole">Hål</string>

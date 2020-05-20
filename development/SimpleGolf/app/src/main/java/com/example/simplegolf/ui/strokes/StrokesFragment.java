@@ -1,20 +1,22 @@
 package com.example.simplegolf.ui.strokes;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -79,8 +81,11 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         points = new ArrayList<>();
         layout = root.findViewById(R.id.playerLayout);
 
-        currentPar = root.findViewById(R.id.CurrentPar);
+        currentPar = root.findViewById(R.id.currentPar);
         currentPar.setText( this.getString(R.string.parColon) + getCurrentPar());
+
+        TextView textCurrentHole = root.findViewById(R.id.holeNumber);
+        textCurrentHole.setText(getString(R.string.hole) + " " + (holeNumber + 1));
 
 
         addPlayers(root);
@@ -117,17 +122,20 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private CardView createLayoutForPlayer(Player p) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,1);
 
+
         CardView card = new CardView(getActivity());
         card.setLayoutParams(params);
         card.setRadius(convertDpToPixel(4, getActivity()));
         card.setElevation(convertDpToPixel(2, getActivity()));
 
         LinearLayout playerLayout = new LinearLayout(getActivity());
-        params.setMargins(5,0,5,0);
+
+        int margin = Math.round(convertDpToPixel(4, getActivity()));
+        params.setMargins(margin, margin, margin, margin);
 
         playerLayout.setOrientation(LinearLayout.VERTICAL);
         playerLayout.setLayoutParams(params);
-        playerLayout.setPadding(5, 0, 5, 0);
+        playerLayout.setPadding(margin, margin, margin, margin);
 
         playerLayout.addView(createNameTextView(p));
         playerLayout.addView(createCurrentPar(p));
@@ -146,6 +154,8 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         par.setText(this.getString(R.string.parColon) +" "+ p.getPlayerPar(holeNumber));
         par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         par.setTextSize(20);
+        par.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+
         return par;
     }
 
@@ -154,6 +164,8 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         point.setText(this.getString(R.string.total) +" "+ p.getTotalScore());
         point.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         point.setTextSize(20);
+        point.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+
         points.add(point);
         return point;
     }
@@ -163,16 +175,26 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         tv.setText(p.getInitials());
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         tv.setTextSize(30);
+        tv.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
         return tv;
     }
 
     private Button createAddButton(Player p) {
         Button b = new MaterialButton(getActivity());
+
         b.setText(this.getString(R.string.add_one));
         b.setOnClickListener(v -> {
             p.incrementHole(holeNumber);
             updateUI();
         });
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        int margins = Math.round(convertDpToPixel(4, getActivity()));
+        params.setMargins(0, margins, 0, margins);
+        params.gravity = Gravity.CENTER;
+        int width = Math.round(convertDpToPixel(200, getActivity()));
+        b.setWidth(width);
+        b.setLayoutParams(params);
         return b;
     }
 
@@ -181,6 +203,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         stat.setText(this.getString(R.string.par));
         stat.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         stat.setTextSize(60);
+        stat.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
         counters.add(stat);
         return stat;
     }
@@ -192,6 +215,14 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
             p.decrementHole(holeNumber);
             updateUI();
         });
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        int margins = Math.round(convertDpToPixel(4, getActivity()));
+        params.setMargins(0, margins, 0, margins);
+        params.gravity = Gravity.CENTER;
+        int width = Math.round(convertDpToPixel(200, getActivity()));
+        b.setWidth(width);
+        b.setLayoutParams(params);
         return b;
     }
 

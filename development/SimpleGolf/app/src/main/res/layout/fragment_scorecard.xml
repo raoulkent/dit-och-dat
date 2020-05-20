@@ -33,10 +33,11 @@
         android:id="@+id/scorecardTableBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/gameTypeRadioGroup"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!--
     <RadioGroup
         android:id="@+id/gameTypeRadioGroup"
         android:layout_width="match_parent"
@@ -71,5 +72,6 @@
             android:textColor="@drawable/selector_text" />
 
     </RadioGroup>
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

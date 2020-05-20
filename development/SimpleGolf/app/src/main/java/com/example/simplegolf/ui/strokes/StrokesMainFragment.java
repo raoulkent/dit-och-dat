@@ -27,7 +27,7 @@ import java.util.List;
 public class StrokesMainFragment extends Fragment {
     private List<Fragment> fragmentHoleList = new ArrayList<>();
     private ViewPager viewPager;
-    private TextView textHoleNumber, currentPar;
+ //   private TextView textHoleNumber, currentPar;
     private StrokesViewModel viewModel;
 
     public StrokesMainFragment() {
@@ -64,8 +64,8 @@ public class StrokesMainFragment extends Fragment {
             fragmentHoleList.add(fragment);
         }
 
-        textHoleNumber = view.findViewById(R.id.holeNumber);
-        textHoleNumber.setText(getCurrentHoleNumber());
+        //textHoleNumber = view.findViewById(R.id.holeNumber);
+        //textHoleNumber.setText(getCurrentHoleNumber());
 
         StrokesPageAdapter adapter = new StrokesPageAdapter(getChildFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
@@ -111,7 +111,7 @@ public class StrokesMainFragment extends Fragment {
 
     private void updateFragment() {
         viewPager.setCurrentItem(viewModel.getCurrentHole());
-        textHoleNumber.setText(getCurrentHoleNumber());
+//        textHoleNumber.setText(getCurrentHoleNumber());
     }
 
     private String getCurrentHoleNumber() {
