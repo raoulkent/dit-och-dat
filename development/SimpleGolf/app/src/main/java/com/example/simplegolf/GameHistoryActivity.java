@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.ui.gamehistory.GameHistoryAdapter;
 import com.example.simplegolf.ui.gamehistory.GameHistoryViewModel;
 
@@ -16,7 +15,6 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
 
     private GameHistoryAdapter adapter;
     private GameHistoryViewModel viewModel;
-    private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -123,6 +123,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
 
     public interface DialogListener {
         void newPlayerInfo(String name, String abbr, double hcp, Tee tee);
+
         void editPlayerInfo(Player player, String name, String abbr, double hcp, Tee tee);
     }
 
@@ -166,8 +167,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
         if (playerHCP.isEmpty()) {
             diaPlayerHCP.setError(getString(R.string.specify_handicap));
             return false;
-        }
-        else if(Double.parseDouble(playerHCP)>54.0||Double.parseDouble(playerHCP)<0){
+        } else if (Double.parseDouble(playerHCP) > 54.0 || Double.parseDouble(playerHCP) < 0) {
             diaPlayerHCP.setError("Ange hcp mellan 0 och 54");
             return false;
         }

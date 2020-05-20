@@ -1,7 +1,6 @@
 package com.example.simplegolf.ui.gamehistory;
 
 import android.app.Activity;
-import android.content.Context;
 
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
@@ -15,7 +14,7 @@ public class GameHistoryViewModel {
     private Repository repository;
     private Activity activity;
 
-    public GameHistoryViewModel(Activity activity){
+    public GameHistoryViewModel(Activity activity) {
         scorecards = new ArrayList<>();
         repository = Repository.getRepository(activity);
         this.activity = activity;
