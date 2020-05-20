@@ -36,7 +36,7 @@
         android:layout_marginTop="6dp"
 
         android:background="@color/white"
-        android:hint="@string/specify_abbreviated_name"
+        android:hint="@string/hint_abbreviated_name"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -55,7 +55,7 @@
         android:layout_marginTop="6dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerAbbr"
-        android:hint="@string/specify_handicap"
+        android:hint="@string/hint_handicap"
         app:errorEnabled="true"
         android:background="@color/white">
 
@@ -63,7 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:background="@color/white"/>
+            android:background="@color/white"
+            android:maxLength="4"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

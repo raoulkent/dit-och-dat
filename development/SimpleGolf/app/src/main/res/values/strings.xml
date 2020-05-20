@@ -30,7 +30,9 @@
     <string name="remove">Tabort</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
-    <string name="specify_abbreviated_name">Ange initialer</string>
+    <string name="hint_abbreviated_name">Initialer</string>
+    <string name="hint_handicap">Handicap</string>
+    <string name="specify_abbreviated_name">Ange 1-3 bokstäver</string>
     <string name="specify_handicap">Ange handicap</string>
 
     <!-- ScoreCard table -->

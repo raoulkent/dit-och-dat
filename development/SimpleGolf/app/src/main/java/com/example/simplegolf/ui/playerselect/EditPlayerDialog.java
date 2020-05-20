@@ -99,7 +99,7 @@ public class EditPlayerDialog extends AddPlayerDialog {
 
                     Tee tee = matchStringToTee(teeString);
 
-                    listener.editPlayerInfo(player, null, abbr.toUpperCase(), hcp, tee);
+                    listener.editPlayerInfo(player, abbr, abbr.toUpperCase(), hcp, tee);
                     dialogInterface.dismiss();
                 }
             });

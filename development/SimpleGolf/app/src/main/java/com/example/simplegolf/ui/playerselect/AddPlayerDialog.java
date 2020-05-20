@@ -100,7 +100,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
 
                     Tee tee = matchStringToTee(teeString);
 
-                    listener.newPlayerInfo(null, abbr, hcp, tee);
+                    listener.newPlayerInfo(abbr, abbr.toUpperCase(), hcp, tee);
                     dialogInterface.dismiss();
                 }
                 // diaPlayerAbbr.setError("Initials must be entered");

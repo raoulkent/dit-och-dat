@@ -78,7 +78,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     public void newPlayerInfo(String name, String abbr, double hcp, Tee tee) {
         Course course = viewModel.getCourse();
 
-        viewModel.addPlayer(new Player(name, abbr.toUpperCase(), course, tee, hcp));
+        viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
 
         adapter.notifyDataSetChanged();
     }
