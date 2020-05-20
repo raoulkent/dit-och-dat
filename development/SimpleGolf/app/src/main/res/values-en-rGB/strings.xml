@@ -36,6 +36,9 @@
     <string name="dev_options">Dev options</string>
     <string name="add_one">+1</string>
     <string name="remove_one">-1</string>
+    <string name="confirm">Confirm</string>
+    <string name="question_delete_game">Do you wish to remove this scorecard?</string>
+
     <string name="end_game_button">End game</string>
     <string name="end_game_title">Do you want to end the game?</string>
     <string name="end_game_text">Ended games can be found in the main menu.</string>

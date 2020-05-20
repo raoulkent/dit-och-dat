@@ -26,14 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddPlayerDialog extends AppCompatDialogFragment {
-
-
     // made this one public because checkPlayerAbbr() method didn't find this field.
     TextInputLayout diaPlayerName, diaPlayerAbbr, diaPlayerHCP;
     Spinner spinner;
-    DialogListener listener;
+    PlayerDialogListener listener;
     Course course;
-    PlayerSelectViewModel viewModel;
 
     @NonNull
     @Override
@@ -42,7 +39,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialogue_select_player, null);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(PlayerSelectViewModel.class);
+        PlayerSelectViewModel viewModel = new ViewModelProvider(requireActivity()).get(PlayerSelectViewModel.class);
 
         if (getActivity().getIntent().hasExtra("course"))
             course = viewModel.getCourse();
@@ -83,7 +80,6 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
             });
 
             buttonNegative.setOnClickListener(view1 -> dialogInterface.dismiss());
-
         });
 
         return alertDialog;
@@ -115,13 +111,13 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
         super.onAttach(context);
 
         try {
-            listener = (DialogListener) context;
+            listener = (PlayerDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement DialogListener");
         }
     }
 
-    public interface DialogListener {
+    public interface PlayerDialogListener {
         void newPlayerInfo(String name, String abbr, double hcp, Tee tee);
         void editPlayerInfo(Player player, String name, String abbr, double hcp, Tee tee);
     }
@@ -166,8 +162,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
         if (playerHCP.isEmpty()) {
             diaPlayerHCP.setError(getString(R.string.specify_handicap));
             return false;
-        }
-        else if(Double.parseDouble(playerHCP)>54.0||Double.parseDouble(playerHCP)<0){
+        } else if (Double.parseDouble(playerHCP) > 54.0 || Double.parseDouble(playerHCP) < 0) {
             diaPlayerHCP.setError("Ange hcp mellan 0 och 54");
             return false;
         }

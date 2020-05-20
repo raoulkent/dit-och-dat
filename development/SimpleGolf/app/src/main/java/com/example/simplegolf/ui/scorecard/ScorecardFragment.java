@@ -107,10 +107,10 @@ public class ScorecardFragment extends Fragment {
                 //int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
                 int h = scorecard.getPlayers().get(player).getScoreForHole(hole);
 
-                if(h == 0) {
+                if (h == 0) {
                     ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
                     ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.RED);
-                } else if(h > 0){
+                } else if (h > 0) {
                     ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
                     ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.BLUE);
                 }
@@ -132,20 +132,20 @@ public class ScorecardFragment extends Fragment {
         }
     }
 
-    private void createTable(){
+    private void createTable() {
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
         totalScoreTextViews = new ArrayList<>();
         scoreTextViews = new ArrayList<>();
         awayFromPar = new ArrayList<>();
 
-        for(Player p: scorecard.getPlayers()){
+        for (Player p : scorecard.getPlayers()) {
             scoreTextViews.add(new ArrayList<TextView>());
             awayFromPar.add(new ArrayList<TextView>());
         }
 
         header.addView(makeHeader(), params);
 
-        for(Hole h: scorecard.getHoles()){
+        for (Hole h : scorecard.getHoles()) {
             holes.addView(makeHole(h), params);
         }
 
@@ -162,7 +162,7 @@ public class ScorecardFragment extends Fragment {
         row.addView(generateStaticTextView(R.string.hole, 20, 3f));
         row.addView(generateStaticTextView(R.string.par, 20, 3f));
 
-        for(Player p: scorecard.getPlayers()){
+        for (Player p : scorecard.getPlayers()) {
             row.addView(generateStaticTextView(p.getInitials(), 20, (float) 12 / scorecard.getPlayers().size(), R.color.white));
         }
 
@@ -176,7 +176,7 @@ public class ScorecardFragment extends Fragment {
         row.addView(generateStaticTextView(String.valueOf(h.getHoleNumber() + 1), 50, 3f, R.color.black));
         row.addView(generateStaticTextView(String.valueOf(h.getPar()), 30, 3f, R.color.black));
 
-        for(int i = 0; i < scorecard.getPlayers().size(); i++){
+        for (int i = 0; i < scorecard.getPlayers().size(); i++) {
             LinearLayout scoreStats = new LinearLayout(getActivity());
 
             TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, (float) 12 / scorecard.getPlayers().size());
@@ -184,7 +184,7 @@ public class ScorecardFragment extends Fragment {
             scoreStats.setOrientation(LinearLayout.VERTICAL);
 
             //Params for textviews inside linearlayout
-            params= new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+            params = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
             TextView tv = generateStaticTextView("0", 32, 0, R.color.black);
             tv.setLayoutParams(params);
             scoreStats.addView(tv);
@@ -211,7 +211,7 @@ public class ScorecardFragment extends Fragment {
         int padding = Math.round(convertDpToPixel(8, getActivity()));
         row.setPadding(0, padding, 0, padding);
 
-        for(Player p: scorecard.getPlayers()){
+        for (Player p : scorecard.getPlayers()) {
             TextView tv = generateStaticTextView("0", 20, (float) 12 / scorecard.getPlayers().size(), R.color.white);
             totalScoreTextViews.add(tv);
             row.addView(tv);
@@ -220,7 +220,7 @@ public class ScorecardFragment extends Fragment {
         return row;
     }
 
-    private TableRow generateTableRow(){
+    private TableRow generateTableRow() {
         TableRow row = new TableRow(getActivity());
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 18f);
@@ -229,7 +229,7 @@ public class ScorecardFragment extends Fragment {
         return row;
     }
 
-    private TextView generateStaticTextView(String text, int size, float weight, int color){
+    private TextView generateStaticTextView(String text, int size, float weight, int color) {
         TextView tv = new TextView(getActivity());
         TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, weight);
 
@@ -242,7 +242,7 @@ public class ScorecardFragment extends Fragment {
         return tv;
     }
 
-    private TextView generateStaticTextView(int text, int size, float weight){
+    private TextView generateStaticTextView(int text, int size, float weight) {
         TextView tv = new TextView(getActivity());
         TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, weight);
 
@@ -254,7 +254,7 @@ public class ScorecardFragment extends Fragment {
         return tv;
     }
 
-    public static float convertDpToPixel(float dp, Context context){
+    public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 

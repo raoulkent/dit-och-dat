@@ -18,7 +18,7 @@ import com.example.simplegolf.ui.playerselect.AddPlayerDialog;
 import com.example.simplegolf.ui.playerselect.PlayerListAdapter;
 import com.example.simplegolf.ui.playerselect.PlayerSelectViewModel;
 
-public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialog.DialogListener {
+public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialog.PlayerDialogListener {
 
     private PlayerSelectViewModel viewModel;
     private RecyclerView recyclerView;

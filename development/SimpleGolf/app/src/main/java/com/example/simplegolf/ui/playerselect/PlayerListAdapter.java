@@ -69,7 +69,7 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         Player player = players.get(holder.getAdapterPosition());
 
         AddPlayerDialog addPlayerDialog = new EditPlayerDialog(player);
-        addPlayerDialog.show(((FragmentActivity)context).getSupportFragmentManager(), "game activity dialog");
+        addPlayerDialog.show(((FragmentActivity) context).getSupportFragmentManager(), "game activity dialog");
     }
 
     private void deletePlayer(PlayerViewHolder holder) {

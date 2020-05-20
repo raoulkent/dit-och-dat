@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +26,7 @@ import java.util.List;
 public class StrokesMainFragment extends Fragment {
     private List<Fragment> fragmentHoleList = new ArrayList<>();
     private ViewPager viewPager;
- //   private TextView textHoleNumber, currentPar;
+    //   private TextView textHoleNumber, currentPar;
     private StrokesViewModel viewModel;
 
     public StrokesMainFragment() {

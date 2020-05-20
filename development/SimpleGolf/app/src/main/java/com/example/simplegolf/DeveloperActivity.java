@@ -1,10 +1,10 @@
 package com.example.simplegolf;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.Scorecard;
@@ -38,9 +38,9 @@ public class DeveloperActivity extends AppCompatActivity {
         new Thread(() -> repository.getDb().scorecardDAO().deleteAll()).start();
     }
 
-    public void startGame(View view){
+    public void startGame(View view) {
         int nPlayers = 1;
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.start1p:
                 nPlayers = 1;
                 break;
@@ -57,7 +57,7 @@ public class DeveloperActivity extends AppCompatActivity {
         System.out.println(nPlayers);
         Scorecard scorecard = new Scorecard(TestCourses.INSTANCE.getCourseChalmers());
 
-        for(int p = 1; p <= nPlayers; p++){
+        for (int p = 1; p <= nPlayers; p++) {
             scorecard.addPlayer("Player " + p, "P" + p, TestCourses.INSTANCE.getCourseChalmers().getTees().get(0), 0);
         }
 

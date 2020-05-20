@@ -23,7 +23,7 @@ public class EditPlayerDialog extends AddPlayerDialog {
     private PlayerSelectViewModel viewModel;
     private Player player;
 
-    EditPlayerDialog(Player player){
+    EditPlayerDialog(Player player) {
         this.player = player;
     }
 
