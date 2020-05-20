@@ -7,6 +7,17 @@
     android:textAlignment="center"
     android:padding="6dp">
 
+    <TextView
+
+        android:id="@+id/dialogPlayerHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/request_player_details"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/diaPlayerName"
@@ -16,7 +27,9 @@
         android:background="@color/white"
         android:clipToPadding="true"
         android:hint="@string/specify_name"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        android:layout_below="@id/dialogPlayerHeader"
+        android:layout_marginTop="6dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

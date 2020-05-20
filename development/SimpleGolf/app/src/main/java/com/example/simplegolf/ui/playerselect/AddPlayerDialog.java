@@ -54,7 +54,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
 
         addSpinnerTees(course, spinner);
 
-        builder.setView(view).setTitle(R.string.request_player_details)
+        builder.setView(view)
                 .setPositiveButton(R.string.add, null)
                 .setNegativeButton(R.string.abort, null);
 
