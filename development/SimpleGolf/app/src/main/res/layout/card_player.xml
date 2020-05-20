@@ -18,16 +18,7 @@
         android:padding="10dp">
 
 
-        <TextView
-            android:id="@+id/player_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="226dp"
-            android:layout_marginBottom="60dp"
-            android:textSize="28sp" />
+
 
         <TextView
             android:id="@+id/player_abbreviation"
@@ -37,7 +28,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="300dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="10dp"
             android:textSize="28sp" />
 
         <TextView
