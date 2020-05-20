@@ -37,5 +37,6 @@
     <string name="add_one">+1</string>
     <string name="remove_one">-1</string>
     <string name="confirm">Confirm</string>
+    <string name="question_delete_game">Do you wish to remove this scorecard?</string>
 
 </resources>

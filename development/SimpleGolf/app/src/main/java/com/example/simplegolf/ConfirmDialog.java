@@ -1,4 +1,4 @@
-package com.example.simplegolf.ui.gamehistory;
+package com.example.simplegolf;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -11,15 +11,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.example.simplegolf.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class ConfirmDialog extends AppCompatDialogFragment {
-    String question;
-//    MaterialButton confirm, cancel;
-    ConfirmDialogListener listener;
+    private String question;
+    //    MaterialButton confirm, cancel;
+    private ConfirmDialogListener listener;
 
-    public ConfirmDialog(String question) {
+    public ConfirmDialog(ConfirmDialogListener listener, String question) {
+        this.listener = listener;
         this.question = question;
     }
 
@@ -44,8 +44,8 @@ public class ConfirmDialog extends AppCompatDialogFragment {
             Button buttonNegative = ((AlertDialog) dialog).getButton(alertDialog.BUTTON_NEGATIVE);
 
             buttonPositive.setOnClickListener(v -> {
-                listener.confirm();
                 dialog.dismiss();
+                listener.confirm();
             });
             buttonNegative.setOnClickListener(v -> dialog.dismiss());
         });

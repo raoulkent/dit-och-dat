@@ -37,4 +37,5 @@
     <string name="add_one">+1</string>
     <string name="remove_one">-1</string>
     <string name="confirm">Bekräfta</string>
+    <string name="question_delete_game">Vill du ta bort detta spelkort?</string>
 </resources>

@@ -43,5 +43,6 @@
     <string name="welcome_text">Välkommen till Simple Golf</string>
     <string name="parColon">Par:</string>
     <string name="confirm">Bekräfta</string>
+    <string name="question_delete_game">Vill du ta bort detta spelkort?</string>
 
 </resources>
