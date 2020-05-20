@@ -47,6 +47,7 @@
             android:layout_weight="1"
             android:background="@drawable/selector_right"
             android:button="@android:color/transparent"
+            android:checked="true"
             android:gravity="center"
             android:padding="8dp"
             android:text="@string/eighteen"

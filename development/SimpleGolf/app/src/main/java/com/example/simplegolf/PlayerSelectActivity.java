@@ -73,7 +73,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
                     scorecard.setEndHole(8);
                     break;
                 case R.id.last9:
-                    scorecard.setStartHole(8);
+                    scorecard.setStartHole(9);
                     scorecard.setEndHole(17);
                     break;
                 case R.id.holes_18:

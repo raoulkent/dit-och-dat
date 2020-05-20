@@ -59,7 +59,7 @@ public class StrokesMainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        for (int i = 0; i < viewModel.getScorecard().getEndHole(); i++) {
+        for (int i = viewModel.getScorecard().getStartHole(); i <= viewModel.getScorecard().getEndHole(); i++) {
             Fragment fragment = StrokesFragment.newInstance(i);
             fragmentHoleList.add(fragment);
         }
@@ -94,23 +94,21 @@ public class StrokesMainFragment extends Fragment {
 
 
     public void goToPreviousHole(View view) {
-        if (!(viewModel.getCurrentHole() > 0)) {
-            return;
+        if ((viewModel.getCurrentHole() > viewModel.getScorecard().getStartHole())) {
+            viewModel.setCurrentHole(viewModel.getCurrentHole() - 1);
+            updateFragment();
         }
-        viewModel.setCurrentHole(viewModel.getCurrentHole() - 1);
-        updateFragment();
     }
 
     public void goToNextHole(View view) {
-        if (!(viewModel.getCurrentHole() < viewModel.getScorecard().getNumberOfHoles() - 1)) {
-            return;
+        if ((viewModel.getCurrentHole() < viewModel.getScorecard().getEndHole())) {
+            viewModel.setCurrentHole(viewModel.getCurrentHole() + 1);
+            updateFragment();
         }
-        viewModel.setCurrentHole(viewModel.getCurrentHole() + 1);
-        updateFragment();
     }
 
     private void updateFragment() {
-        viewPager.setCurrentItem(viewModel.getCurrentHole());
+        viewPager.setCurrentItem(viewModel.getCurrentHole() - viewModel.getScorecard().getStartHole());
 //        textHoleNumber.setText(getCurrentHoleNumber());
     }
 

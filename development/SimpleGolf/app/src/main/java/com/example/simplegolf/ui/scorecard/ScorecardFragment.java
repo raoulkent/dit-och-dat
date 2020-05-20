@@ -96,7 +96,7 @@ public class ScorecardFragment extends Fragment {
     private void updateTable() {
         //Update score
         for (int player = 0; player < scorecard.getPlayers().size(); player++) {
-            for (int hole = 0; hole < scorecard.getNumberOfHoles(); hole++) {
+            for (int hole = scorecard.getStartHole(); hole <= scorecard.getEndHole(); hole++) {
                 if (viewModel.getShowStrokes()) {
                     ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(scorecard.getPlayers().get(player).getShotsForHole(hole)));
                 } else {
@@ -145,8 +145,8 @@ public class ScorecardFragment extends Fragment {
 
         header.addView(makeHeader(), params);
 
-        for(Hole h: scorecard.getHoles()){
-            holes.addView(makeHole(h), params);
+        for(int h = scorecard.getStartHole(); h <= scorecard.getEndHole(); h++){
+            holes.addView(makeHole(scorecard.getHoles().get(h)), params);
         }
 
         bottom.addView(makeBottom(), params);

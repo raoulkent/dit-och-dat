@@ -60,6 +60,8 @@ public class DeveloperActivity extends AppCompatActivity {
         for(int p = 1; p <= nPlayers; p++){
             scorecard.addPlayer("Player " + p, "P" + p, TestCourses.INSTANCE.getCourseChalmers().getTees().get(0), 0);
         }
+        scorecard.setStartHole(9);
+        scorecard.setEndHole(17);
 
         Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
         startGame.putExtra("scorecard", scorecard);
