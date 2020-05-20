@@ -42,5 +42,6 @@
     <string name="selectorTextPoints">Poäng</string>
     <string name="welcome_text">Välkommen till Simple Golf</string>
     <string name="parColon">Par:</string>
+    <string name="confirm">Bekräfta</string>
 
 </resources>
