@@ -43,7 +43,7 @@ public class CourseDAOTest {
     @Test
     public void testInsertAndGetAll() {
         courseDAO.insert(course);
-        course.setName("Test");
+        course.setName("Test4");
         courseDAO.insert(course);
         List<Course> courses = courseDAO.getAll();
         assertEquals(2, courses.size());
@@ -63,7 +63,7 @@ public class CourseDAOTest {
     @Test
     public void testDeleteAll() {
         courseDAO.insert(course);
-        course.setName("Test");
+        course.setName("Test2");
         courseDAO.insert(course);
         List<Course> courses = courseDAO.getAll();
         assertEquals(2, courses.size());
@@ -75,7 +75,7 @@ public class CourseDAOTest {
     @Test
     public void testDelete() {
         courseDAO.insert(course);
-        course.setName("Test");
+        course.setName("Test3");
         courseDAO.insert(course);
         List<Course> courses = courseDAO.getAll();
         assertEquals(2, courses.size());
