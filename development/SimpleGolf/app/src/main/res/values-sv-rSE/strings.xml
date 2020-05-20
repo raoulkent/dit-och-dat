@@ -36,4 +36,9 @@
     <string name="dev_options">Dev options</string>
     <string name="add_one">+1</string>
     <string name="remove_one">-1</string>
+    <string name="end_game_button">Avsluta spel</string>
+    <string name="end_game_title">Vill du avsluta spelet?</string>
+    <string name="end_game_text">Avslutade spel finns i huvudmenyn.</string>
+    <string name="end_game_cancel">AVBRYT</string>
+    <string name="end_game_accept">AVSLUTA</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.example.simplegolf;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
@@ -18,11 +21,13 @@ import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.ui.strokes.StrokesMainFragment;
 import com.example.simplegolf.ui.strokes.StrokesViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class GameActivity extends AppCompatActivity {
 
     StrokesMainFragment mainFragment;
     private Repository repository;
+    Scorecard scorecard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +40,12 @@ public class GameActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-
-        Scorecard scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
+        
+        scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
+
+        repository = Repository.getRepository(this);
 
         /*
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
@@ -53,6 +59,43 @@ public class GameActivity extends AppCompatActivity {
 
         this.getOnBackPressedDispatcher().addCallback(this, callback);
         */
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_name:
+                createEndGameDialog();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    private void createEndGameDialog() {
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
+        dialogBuilder.setTitle(R.string.end_game_title);
+        dialogBuilder.setMessage(R.string.end_game_text);
+        dialogBuilder.setNegativeButton(R.string.end_game_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        dialogBuilder.setPositiveButton(R.string.end_game_accept, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                scorecard.setFinishedRound(true);
+                new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
+                Intent startOldGame = new Intent(getApplicationContext(), StartScreenActivity.class);
+                startActivity(startOldGame);
+            }
+        });
+        dialogBuilder.show();
     }
 
     private StrokesMainFragment getMainFragment() {

@@ -33,6 +33,13 @@
     <string name="specify_abbreviated_name">Ange initialer</string>
     <string name="specify_handicap">Ange handicap</string>
 
+    <!-- GameAcitivty -->
+    <string name="end_game_button">Avsluta spel</string>
+    <string name="end_game_title">Vill du avsluta spelet?</string>
+    <string name="end_game_text">Avslutade spel finns i huvudmenyn.</string>
+    <string name="end_game_cancel">AVBRYT</string>
+    <string name="end_game_accept">AVSLUTA</string>
+
     <!-- ScoreCard table -->
     <string name="hole">Hål</string>
     <string name="par">Par </string>
