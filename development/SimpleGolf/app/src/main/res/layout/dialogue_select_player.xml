@@ -7,44 +7,34 @@
     android:textAlignment="center"
     android:padding="6dp">
 
-    <TextView
-
-        android:id="@+id/dialogPlayerHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="@string/request_player_details"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        />
-
+<!--
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/diaPlayerName"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:background="@color/white"
-        android:clipToPadding="true"
         android:hint="@string/specify_name"
-        app:errorEnabled="true"
-        android:layout_below="@id/dialogPlayerHeader"
-        android:layout_marginTop="6dp">
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:maxLength="30"
-            android:background="@color/white"/>
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:maxLength="30" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/diaPlayerAbbr"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/diaPlayerName"
+        android:layout_marginTop="6dp"
+
         android:background="@color/white"
         android:hint="@string/specify_abbreviated_name"
         app:errorEnabled="true">
@@ -62,9 +52,9 @@
         android:id="@+id/diaPlayerHCP"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
+        android:layout_marginTop="6dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerAbbr"
-
         android:hint="@string/specify_handicap"
         app:errorEnabled="true"
         android:background="@color/white">
@@ -78,26 +68,35 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
+<!--
     <Spinner
         android:id="@+id/diaSpinTee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/diaPlayerHCP"
          />
+-->
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:id="@+id/diaParentdropdownTee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:hint="Välj tee"
-        android:layout_below="@id/diaSpinTee">
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@id/diaPlayerHCP"
+        app:errorEnabled="true">
 
         <AutoCompleteTextView
-            android:background="@color/white"
-            android:id="@+id/filled_exposed_dropdown"
+            android:id="@+id/diaDropdownTee"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:inputType="none"
+            android:shadowColor="@color/white"
+             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
