@@ -39,4 +39,9 @@
     <string name="confirm">Confirm</string>
     <string name="question_delete_game">Do you wish to remove this scorecard?</string>
 
+    <string name="end_game_button">End game</string>
+    <string name="end_game_title">Do you want to end the game?</string>
+    <string name="end_game_text">Ended games can be found in the main menu.</string>
+    <string name="end_game_cancel">CANCEL</string>
+    <string name="end_game_accept">END GAME</string>
 </resources>
