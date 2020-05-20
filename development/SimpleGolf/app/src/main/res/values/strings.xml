@@ -32,6 +32,10 @@
     <string name="specify_name">Ange namn</string>
     <string name="specify_abbreviated_name">Ange initialer</string>
     <string name="specify_handicap">Ange handicap</string>
+    <string name="eighteen">18hål</string>
+    <string name="first9">Första 9</string>
+    <string name="last9">Sista 9</string>
+
 
     <!-- ScoreCard table -->
     <string name="hole">Hål</string>

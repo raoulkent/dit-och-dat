@@ -1,19 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/player_recycler"
-        android:layout_width="412dp"
-        android:layout_height="500dp"
-        android:layout_above="@+id/add_player_btn"
-        android:orientation="vertical"
+    <RadioGroup
+        android:id="@+id/holes_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-    </androidx.recyclerview.widget.RecyclerView>
+
+        <RadioButton
+            android:id="@+id/first9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_left"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/first9"
+            android:textColor="@drawable/selector_text" />
+
+        <RadioButton
+            android:id="@+id/last9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_centre"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/last9"
+            android:textColor="@drawable/selector_text" />
+
+        <RadioButton
+            android:id="@+id/holes_18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_right"
+            android:button="@android:color/transparent"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/eighteen"
+            android:textColor="@drawable/selector_text" />
+    </RadioGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/player_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_player_btn"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/holes_selector"></androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/create_game_btn"
@@ -21,12 +70,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
         android:onClick="onClickCreateScorecard"
         android:text="@string/next_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_player_btn" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/add_player_btn"

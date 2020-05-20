@@ -59,7 +59,7 @@ public class StrokesMainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        for (int i = 0; i < viewModel.getScorecard().getNumberOfHoles(); i++) {
+        for (int i = 0; i < viewModel.getScorecard().getEndHole(); i++) {
             Fragment fragment = StrokesFragment.newInstance(i);
             fragmentHoleList.add(fragment);
         }
