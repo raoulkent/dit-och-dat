@@ -53,4 +53,5 @@
     <string name="finished_rounds">Finished rounds</string>
     <string name="no_unfinished_rounds">You don\'t have any unfinished rounds</string>
     <string name="no_finished_rounds">You don\'t have any finished rounds</string>
+    <string name="main_menu">Go Back</string>
 </resources>
