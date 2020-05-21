@@ -1,5 +1,6 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/player_card_view"
     style="@style/CardViewStyle.Light"
     android:layout_width="match_parent"
@@ -12,46 +13,87 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:padding="1dp">
+        android:padding="8dp">
 
-        <TextView
-            android:id="@+id/player_abbreviation"
-            android:layout_width="72dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_centerVertical="true"
-            android:textSize="36sp" />
-
-        <TextView
-            android:id="@+id/player_handicap"
-            android:layout_width="72dp"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@+id/player_abbreviation"
-            android:layout_centerVertical="true"
-            android:textSize="36sp"
-            />
-
-        <TextView
-            android:id="@+id/player_tee"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/player_handicap"
-            />
+            android:orientation="horizontal"
+            android:padding="8dp"
+            tools:ignore="RelativeOverlap">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Player"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/player_abbreviation"
+                    android:layout_width="72dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Handicap"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/player_handicap"
+                    android:layout_width="64dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tee"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/player_tee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/edit_button"
             style="@style/Widget.AppCompat.Button.Edit"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_toStartOf="@+id/delete_button"
-            android:layout_margin="8dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/delete_button"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
@@ -66,15 +108,19 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
+            android:shadowRadius="0"
             app:icon="@drawable/ic_delete_black_24dp"
+
             app:iconGravity="textStart"
-            app:iconPadding="0dp" />
+            app:iconPadding="0dp"
+            app:strokeWidth="0dp" />
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

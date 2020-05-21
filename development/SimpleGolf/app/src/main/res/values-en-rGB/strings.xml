@@ -7,7 +7,7 @@
     <string name="tag">Tag</string>
     <string name="select_course">Select a course</string>
     <string name="select_tee">Select a tee</string>
-    <string name="request_player_details">Please fill player details</string>
+    <string name="request_player_details">Fill player details</string>
     <string name="title_scorecard">Scorecard</string>
     <string name="unfinished_game_btn">Unfinished games</string>
     <string name="next_button">Next</string>
@@ -29,20 +29,28 @@
     <string name="selectorTextStrokes">Strokes</string>
     <string name="welcome_text">Welcome to Simple Golf</string>
     <string name="parColon">Par:</string>
-    <string name="remove">Remove</string>
+    <string name="remove">Delete</string>
     <string name="name">Name</string>
     <string name="initials">Initials</string>
     <string name="handicap">Handicap</string>
     <string name="dev_options">Dev options</string>
     <string name="add_one">+1</string>
+    <string name="hint_abbreviated_name">Initials</string>
     <string name="remove_one">-1</string>
     <string name="eighteen">18 holes</string>
     <string name="first9">First 9</string>
     <string name="last9">Last 9</string>
+    <string name="confirm">Delete</string>
+    <string name="question_delete_game">Delete scorecard?</string>
+    <string name="hint_handicap">Handicap</string>
+
     <string name="end_game_button">End game</string>
-    <string name="end_game_title">Do you want to end the game?</string>
+    <string name="end_game_title">End the game?</string>
     <string name="end_game_text">Ended games can be found in the main menu.</string>
     <string name="end_game_cancel">CANCEL</string>
     <string name="end_game_accept">END GAME</string>
-
+    <string name="unfinished_rounds">Unfinished rounds</string>
+    <string name="finished_rounds">Finished rounds</string>
+    <string name="no_unfinished_rounds">You don\'t have any unfinished rounds</string>
+    <string name="no_finished_rounds">You don\'t have any finished rounds</string>
 </resources>

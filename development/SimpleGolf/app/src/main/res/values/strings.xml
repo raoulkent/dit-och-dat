@@ -23,14 +23,16 @@
     <string name="tag">Tag</string>
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
     <string name="add_player">Lägg till spelare</string>
-    <string name="request_player_details">Vänligen ange spelardetaljer</string>
+    <string name="request_player_details">Ange spelardetaljer</string>
     <string name="add_one">+1</string>
     <string name="add">Lägg till</string>
     <string name="remove_one">-1</string>
-    <string name="remove">Tabort</string>
+    <string name="remove">Ta bort</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
-    <string name="specify_abbreviated_name">Ange initialer</string>
+    <string name="hint_abbreviated_name">Initialer</string>
+    <string name="hint_handicap">Handicap</string>
+    <string name="specify_abbreviated_name">Ange 1-3 bokstäver</string>
     <string name="specify_handicap">Ange handicap</string>
     <string name="eighteen">18hål</string>
     <string name="first9">Första 9</string>
@@ -39,7 +41,7 @@
 
     <!-- GameAcitivty -->
     <string name="end_game_button">Avsluta spel</string>
-    <string name="end_game_title">Vill du avsluta spelet?</string>
+    <string name="end_game_title">Avsluta spelet?</string>
     <string name="end_game_text">Avslutade spel finns i huvudmenyn.</string>
     <string name="end_game_cancel">AVBRYT</string>
     <string name="end_game_accept">AVSLUTA</string>
@@ -53,5 +55,11 @@
     <string name="selectorTextPoints">Poäng</string>
     <string name="welcome_text">Välkommen till Simple Golf</string>
     <string name="parColon">Par:</string>
+    <string name="confirm">Ta bort</string>
+    <string name="question_delete_game">Ta bort scorekortet?</string>
+    <string name="unfinished_rounds">Oavslutade rundor</string>
+    <string name="finished_rounds">Avslutade rundor</string>
+    <string name="no_unfinished_rounds">Du har inga oavslutade rundor</string>
+    <string name="no_finished_rounds">Du har inga avslutade rundor</string>
 
 </resources>

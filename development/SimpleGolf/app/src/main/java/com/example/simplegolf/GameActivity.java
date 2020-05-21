@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -91,8 +90,9 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 scorecard.setFinishedRound(true);
                 new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
-                Intent startOldGame = new Intent(getApplicationContext(), StartScreenActivity.class);
-                startActivity(startOldGame);
+                finish();
+                //Intent startOldGame = new Intent(getApplicationContext(), StartScreenActivity.class);
+                //startActivity(startOldGame);
             }
         });
         dialogBuilder.show();

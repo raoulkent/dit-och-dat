@@ -20,7 +20,7 @@ import com.example.simplegolf.ui.playerselect.AddPlayerDialog;
 import com.example.simplegolf.ui.playerselect.PlayerListAdapter;
 import com.example.simplegolf.ui.playerselect.PlayerSelectViewModel;
 
-public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialog.DialogListener {
+public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialog.PlayerDialogListener {
 
     private PlayerSelectViewModel viewModel;
     private RecyclerView recyclerView;
@@ -98,7 +98,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     public void newPlayerInfo(String name, String abbr, double hcp, Tee tee) {
         Course course = viewModel.getCourse();
 
-        viewModel.addPlayer(new Player(name, abbr.toUpperCase(), course, tee, hcp));
+        viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
 
         adapter.notifyDataSetChanged();
     }
