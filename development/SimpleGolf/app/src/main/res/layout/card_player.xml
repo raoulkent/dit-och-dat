@@ -1,53 +1,90 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/player_card_view"
     style="@style/CardViewStyle.Light"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/white"
     android:clickable="false"
-    android:focusable="true"
-    android:padding="6dp"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="4dp">
+    android:focusable="true">
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:padding="10dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
 
-
-        <TextView
-            android:id="@+id/player_abbreviation"
-            android:layout_width="72dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:textSize="28sp" />
+            android:orientation="horizontal"
+            android:padding="8dp"
+            tools:ignore="RelativeOverlap">
 
-        <TextView
-            android:id="@+id/player_handicap"
-            android:layout_width="72dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/player_abbreviation"
-            android:textColor="@color/black"
-            android:textSize="28sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/player_tee"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/player_handicap"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Player"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/player_abbreviation"
+                    android:layout_width="72dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Handicap"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/player_handicap"
+                    android:layout_width="64dp"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tee"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/player_tee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/edit_button"
@@ -78,9 +115,12 @@
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
+            android:shadowRadius="0"
             app:icon="@drawable/ic_delete_black_24dp"
+
             app:iconGravity="textStart"
-            app:iconPadding="0dp" />
+            app:iconPadding="0dp"
+            app:strokeWidth="0dp" />
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

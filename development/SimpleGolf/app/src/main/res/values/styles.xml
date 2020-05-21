@@ -53,11 +53,13 @@
 
     <style name="Widget.AppCompat.Button.Delete" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/white</item>
+        <item name="rippleColor">@color/colorError</item>
         <item name="iconTint">@color/black</item>
     </style>
 
     <style name="Widget.AppCompat.Button.Edit" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/white</item>
+        <item name="rippleColor">@color/colorAccentDarkDark</item>
         <item name="iconTint">@color/black</item>
     </style>
 
