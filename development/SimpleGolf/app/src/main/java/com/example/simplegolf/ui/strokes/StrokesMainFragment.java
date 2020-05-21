@@ -1,6 +1,7 @@
 package com.example.simplegolf.ui.strokes;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,7 @@ public class StrokesMainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        for (int i = 0; i < viewModel.getScorecard().getNumberOfHoles(); i++) {
+        for (int i = viewModel.getScorecard().getStartHole(); i <= viewModel.getScorecard().getEndHole(); i++) {
             Fragment fragment = StrokesFragment.newInstance(i);
             fragmentHoleList.add(fragment);
         }
@@ -69,6 +70,8 @@ public class StrokesMainFragment extends Fragment {
         StrokesPageAdapter adapter = new StrokesPageAdapter(getChildFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
+
+        Log.d("HOLE", viewModel.getCurrentHole() + "");
 
         viewPager.setCurrentItem(viewModel.getCurrentHole(), false);
 
@@ -101,7 +104,9 @@ public class StrokesMainFragment extends Fragment {
     }
 
     public void goToNextHole(View view) {
-        if (!(viewModel.getCurrentHole() < viewModel.getScorecard().getNumberOfHoles() - 1)) {
+        int size = viewModel.getScorecard().getEndHole() - viewModel.getScorecard().getStartHole();
+        Log.d("HOLE", "Size " + size);
+        if (!(viewModel.getCurrentHole() < size)) {
             return;
         }
         viewModel.setCurrentHole(viewModel.getCurrentHole() + 1);

@@ -43,7 +43,7 @@ public class GameActivity extends AppCompatActivity {
         scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
-
+        //viewModel.setCurrentHole(scorecard.getStartHole());
         repository = Repository.getRepository(this);
 
         /*

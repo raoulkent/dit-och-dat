@@ -96,22 +96,25 @@ public class ScorecardFragment extends Fragment {
     private void updateTable() {
         //Update score
         for (int player = 0; player < scorecard.getPlayers().size(); player++) {
-            for (int hole = 0; hole < scorecard.getNumberOfHoles(); hole++) {
+            int size = scorecard.getEndHole() - scorecard.getStartHole();
+            for (int hole = 0; hole <= size; hole++) {
+                int realHole = hole + scorecard.getStartHole();
                 if (viewModel.getShowStrokes()) {
-                    ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(scorecard.getPlayers().get(player).getShotsForHole(hole)));
+                    int shots = scorecard.getPlayers().get(player).getShotsForHole(realHole);
+                    ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(shots));
                 } else {
-                    int score = scorecard.getPlayers().get(player).getScoreForHole(hole);
+                    int score = scorecard.getPlayers().get(player).getScoreForHole(realHole);
                     ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(score));
                 }
 
                 //int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
-                int h = scorecard.getPlayers().get(player).getScoreForHole(hole);
+                int holeScore = scorecard.getPlayers().get(player).getScoreForHole(realHole);
 
-                if (h == 0) {
-                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
+                if(holeScore == 0) {
+                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(holeScore));
                     ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.RED);
-                } else if (h > 0) {
-                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
+                } else if(holeScore > 0){
+                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(holeScore));
                     ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.BLUE);
                 }
                 /*
@@ -124,7 +127,7 @@ public class ScorecardFragment extends Fragment {
         //Update total
         for (int p = 0; p < scorecard.getPlayers().size(); p++) {
             if (viewModel.getShowStrokes()) {
-                totalScoreTextViews.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalShots()));
+                totalScoreTextViews.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getTotalScore()));
             } else {
                 int totalScore = scorecard.getPlayers().get(p).getTotalScore();
                 totalScoreTextViews.get(p).setText(String.valueOf(totalScore));
@@ -145,8 +148,8 @@ public class ScorecardFragment extends Fragment {
 
         header.addView(makeHeader(), params);
 
-        for (Hole h : scorecard.getHoles()) {
-            holes.addView(makeHole(h), params);
+        for(int h = scorecard.getStartHole(); h <= scorecard.getEndHole(); h++){
+            holes.addView(makeHole(scorecard.getHoles().get(h)), params);
         }
 
         bottom.addView(makeBottom(), params);

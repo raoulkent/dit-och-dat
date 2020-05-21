@@ -38,6 +38,9 @@
     <string name="dev_options">Dev options</string>
     <string name="add_one">+1</string>
     <string name="remove_one">-1</string>
+    <string name="eighteen">18hål</string>
+    <string name="first9">Första 9</string>
+    <string name="last9">Sista 9</string>
     <string name="confirm">Ta bort</string>
     <string name="question_delete_game">Ta bort scorekortet?</string>
     <string name="end_game_button">Avsluta spel</string>

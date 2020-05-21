@@ -21,7 +21,7 @@ public class StrokesViewModel extends ViewModel {
         return currentHole;
     }
 
-    void setCurrentHole(int currentHole) {
+    public void setCurrentHole(int currentHole) {
         this.currentHole = currentHole;
     }
 }

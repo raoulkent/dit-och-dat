@@ -26,6 +26,8 @@ public class Scorecard implements Serializable {
     private Course course;
     private String date;
     private boolean finishedRound = false;
+    private int startHole;
+    private int endHole;
 
     @TypeConverters(PlayerConverter.class)
     private List<Player> players = new ArrayList<>();
@@ -115,6 +117,23 @@ public class Scorecard implements Serializable {
     public void setCourse(Course course) {
         this.course = course;
     }
+
+    public int getStartHole(){
+        return startHole;
+    }
+
+    public void setStartHole(int startHole){
+        this.startHole = startHole;
+    }
+    public int getEndHole(){
+        return endHole;
+    }
+
+    public void setEndHole(int endHole){
+        this.endHole = endHole;
+    }
+
+
 
     /**
      * When the round is finished / locked, this returns true. Decides which view it should

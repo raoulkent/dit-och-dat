@@ -37,6 +37,9 @@
     <string name="add_one">+1</string>
     <string name="hint_abbreviated_name">Initials</string>
     <string name="remove_one">-1</string>
+    <string name="eighteen">18 holes</string>
+    <string name="first9">First 9</string>
+    <string name="last9">Last 9</string>
     <string name="confirm">Delete</string>
     <string name="question_delete_game">Delete scorecard?</string>
     <string name="hint_handicap">Handicap</string>
