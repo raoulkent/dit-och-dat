@@ -1,6 +1,7 @@
 package com.example.simplegolf.ui.strokes;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,8 @@ public class StrokesMainFragment extends Fragment {
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
 
+        Log.d("HOLE", viewModel.getCurrentHole() + "");
+
         viewPager.setCurrentItem(viewModel.getCurrentHole(), false);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -94,21 +97,25 @@ public class StrokesMainFragment extends Fragment {
 
 
     public void goToPreviousHole(View view) {
-        if ((viewModel.getCurrentHole() > viewModel.getScorecard().getStartHole())) {
-            viewModel.setCurrentHole(viewModel.getCurrentHole() - 1);
-            updateFragment();
+        if (!(viewModel.getCurrentHole() > 0)) {
+            return;
         }
+        viewModel.setCurrentHole(viewModel.getCurrentHole() - 1);
+        updateFragment();
     }
 
     public void goToNextHole(View view) {
-        if ((viewModel.getCurrentHole() < viewModel.getScorecard().getEndHole())) {
-            viewModel.setCurrentHole(viewModel.getCurrentHole() + 1);
-            updateFragment();
+        int size = viewModel.getScorecard().getEndHole() - viewModel.getScorecard().getStartHole();
+        Log.d("HOLE", "Size " + size);
+        if (!(viewModel.getCurrentHole() < size)) {
+            return;
         }
+        viewModel.setCurrentHole(viewModel.getCurrentHole() + 1);
+        updateFragment();
     }
 
     private void updateFragment() {
-        viewPager.setCurrentItem(viewModel.getCurrentHole() - viewModel.getScorecard().getStartHole());
+        viewPager.setCurrentItem(viewModel.getCurrentHole());
 //        textHoleNumber.setText(getCurrentHoleNumber());
     }
 
