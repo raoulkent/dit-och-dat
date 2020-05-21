@@ -29,7 +29,7 @@
     <string name="selectorTextStrokes">Strokes</string>
     <string name="welcome_text">Welcome to Simple Golf</string>
     <string name="parColon">Par:</string>
-    <string name="remove">Remove</string>
+    <string name="remove">Delete</string>
     <string name="name">Name</string>
     <string name="initials">Initials</string>
     <string name="handicap">Handicap</string>
@@ -37,12 +37,12 @@
     <string name="add_one">+1</string>
     <string name="hint_abbreviated_name">Initials</string>
     <string name="remove_one">-1</string>
-    <string name="confirm">Confirm</string>
-    <string name="question_delete_game">Do you wish to remove this scorecard?</string>
+    <string name="confirm">Delete</string>
+    <string name="question_delete_game">Delete scorecard?</string>
     <string name="hint_handicap">Handicap</string>
 
     <string name="end_game_button">End game</string>
-    <string name="end_game_title">Do you want to end the game?</string>
+    <string name="end_game_title">End the game?</string>
     <string name="end_game_text">Ended games can be found in the main menu.</string>
     <string name="end_game_cancel">CANCEL</string>
     <string name="end_game_accept">END GAME</string>
