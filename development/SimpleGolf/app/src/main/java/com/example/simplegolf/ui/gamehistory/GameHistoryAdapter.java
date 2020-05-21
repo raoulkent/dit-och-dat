@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.simplegolf.ConfirmDialog;
 import com.example.simplegolf.R;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Scorecard;

@@ -80,19 +80,13 @@ public class GameActivity extends AppCompatActivity {
         MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
         dialogBuilder.setTitle(R.string.end_game_title);
         dialogBuilder.setMessage(R.string.end_game_text);
-        dialogBuilder.setNegativeButton(R.string.end_game_cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
+        dialogBuilder.setNegativeButton(R.string.end_game_cancel, (dialog, which) -> {
         });
-        dialogBuilder.setPositiveButton(R.string.end_game_accept, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scorecard.setFinishedRound(true);
-                new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
-                Intent startOldGame = new Intent(getApplicationContext(), StartScreenActivity.class);
-                startActivity(startOldGame);
-            }
+        dialogBuilder.setPositiveButton(R.string.end_game_accept, (dialog, which) -> {
+            scorecard.setFinishedRound(true);
+            new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
+            Intent startOldGame = new Intent(getApplicationContext(), StartScreenActivity.class);
+            startActivity(startOldGame);
         });
         dialogBuilder.show();
     }

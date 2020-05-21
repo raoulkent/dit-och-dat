@@ -40,7 +40,7 @@ public class ScorecardFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(ScorecardViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(ScorecardViewModel.class);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class ScorecardFragment extends Fragment {
         holes = root.findViewById(R.id.scorecardTableHole);
         bottom = root.findViewById(R.id.scorecardTableBottom);
 
-        scorecard = (Scorecard) getActivity().getIntent().getSerializableExtra("scorecard");
+        scorecard = (Scorecard) requireActivity().getIntent().getSerializableExtra("scorecard");
 
         createTable();
         setupSelector(root);
@@ -96,6 +96,7 @@ public class ScorecardFragment extends Fragment {
     private void updateTable() {
         //Update score
         for (int player = 0; player < scorecard.getPlayers().size(); player++) {
+            // TODO Conditional for range of holes
             for (int hole = 0; hole < scorecard.getNumberOfHoles(); hole++) {
                 if (viewModel.getShowStrokes()) {
                     ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(scorecard.getPlayers().get(player).getShotsForHole(hole)));
