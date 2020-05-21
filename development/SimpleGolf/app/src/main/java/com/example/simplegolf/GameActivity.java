@@ -80,12 +80,12 @@ public class GameActivity extends AppCompatActivity {
         MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
         dialogBuilder.setTitle(R.string.end_game_title);
         dialogBuilder.setMessage(R.string.end_game_text);
-        dialogBuilder.setNegativeButton(R.string.end_game_cancel, new DialogInterface.OnClickListener() {
+        dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-        dialogBuilder.setPositiveButton(R.string.end_game_accept, new DialogInterface.OnClickListener() {
+        dialogBuilder.setPositiveButton(R.string.finish, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 scorecard.setFinishedRound(true);

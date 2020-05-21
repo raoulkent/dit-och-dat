@@ -41,15 +41,19 @@
     <string name="eighteen">18hål</string>
     <string name="first9">Första 9</string>
     <string name="last9">Sista 9</string>
+    <string name="Start_game">Starta spel</string>
     <string name="confirm">Ta bort</string>
     <string name="question_delete_game">Ta bort scorekortet?</string>
     <string name="end_game_button">Avsluta spel</string>
     <string name="end_game_title">Avsluta spelet?</string>
     <string name="end_game_text">Avslutade spel finns i huvudmenyn.</string>
-    <string name="end_game_cancel">AVBRYT</string>
-    <string name="end_game_accept">AVSLUTA</string>
+    <string name="cancel">AVBRYT</string>
+    <string name="finish">AVSLUTA</string>
     <string name="unfinished_rounds">Oavslutade rundor</string>
     <string name="finished_rounds">Avslutade rundor (</string>
     <string name="no_unfinished_rounds">Du har inga oavslutade rundor</string>
     <string name="no_finished_rounds">Du har inga avslutade rundor</string>
+    <string name="add_players">Du måste lägga till spelare!</string>
+    <string name="add_players_title">Du kan inte spela golf utan spelare</string>
+
 </resources>

@@ -43,14 +43,17 @@
     <string name="confirm">Delete</string>
     <string name="question_delete_game">Delete scorecard?</string>
     <string name="hint_handicap">Handicap</string>
-
+    <string name="Start_game">Start game</string>
     <string name="end_game_button">End game</string>
     <string name="end_game_title">End the game?</string>
     <string name="end_game_text">Ended games can be found in the main menu.</string>
-    <string name="end_game_cancel">CANCEL</string>
-    <string name="end_game_accept">END GAME</string>
+    <string name="cancel">CANCEL</string>
+    <string name="finish">END GAME</string>
     <string name="unfinished_rounds">Unfinished rounds</string>
     <string name="finished_rounds">Finished rounds</string>
     <string name="no_unfinished_rounds">You don\'t have any unfinished rounds</string>
     <string name="no_finished_rounds">You don\'t have any finished rounds</string>
+    <string name="add_players">You need to add players!</string>
+    <string name="add_players_title">You cannot play golf without players</string>
+
 </resources>

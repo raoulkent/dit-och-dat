@@ -15,6 +15,7 @@
     <string name="select_course">Välj en bana</string>
     <string name="select_tee">Välj tee</string>
     <string name="next_button">Nästa</string>
+    <string name="Start_game">Starta spel</string>
     <string name="back_button">Föregående</string>
     <string name="name">Namn</string>
     <string name="initials">Initialer</string>
@@ -38,13 +39,18 @@
     <string name="first9">Första 9</string>
     <string name="last9">Sista 9</string>
 
+    <string name="add_players">Du måste lägga till spelare!</string>
+    <string name="add_players_title">Du kan inte spela golf utan spelare</string>
+
+
+
 
     <!-- GameAcitivty -->
     <string name="end_game_button">Avsluta spel</string>
     <string name="end_game_title">Avsluta spelet?</string>
     <string name="end_game_text">Avslutade spel finns i huvudmenyn.</string>
-    <string name="end_game_cancel">AVBRYT</string>
-    <string name="end_game_accept">AVSLUTA</string>
+    <string name="cancel">AVBRYT</string>
+    <string name="finish">AVSLUTA</string>
 
     <!-- ScoreCard table -->
     <string name="hole">Hål</string>

@@ -1,8 +1,10 @@
 package com.example.simplegolf;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -19,6 +21,7 @@ import com.example.simplegolf.model.Tee;
 import com.example.simplegolf.ui.playerselect.AddPlayerDialog;
 import com.example.simplegolf.ui.playerselect.PlayerListAdapter;
 import com.example.simplegolf.ui.playerselect.PlayerSelectViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialog.PlayerDialogListener {
 
@@ -26,8 +29,6 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     private RecyclerView recyclerView;
     private PlayerListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private RadioGroup radiogroup;
-    private RadioButton first9, last9, holes_18;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,6 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
             Course course = (Course) getIntent().getSerializableExtra("course");
             viewModel.setCourse(course);
         }
-
         buildRecyclerView();
     }
 
@@ -59,6 +59,10 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     }
 
     public void onClickCreateScorecard(View view) {
+        if (viewModel.getPlayers().isEmpty()){
+            createNoPlayersDialog();
+            return;
+        }
         Scorecard scorecard = viewModel.buildScorecard();
 
         // Save to DB and fetch to get correct ID, allows course to be updated/saved in the future.
@@ -97,8 +101,13 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     @Override
     public void newPlayerInfo(String name, String abbr, double hcp, Tee tee) {
         Course course = viewModel.getCourse();
+        Button addPlayerButton = (Button) findViewById(R.id.add_player_btn);
 
         viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
+
+        if (viewModel.getPlayers().size()==4){
+            addPlayerButton.setVisibility(View.GONE);
+        }
 
         adapter.notifyDataSetChanged();
     }
@@ -110,5 +119,16 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
         viewModel.editPlayer(player, name, abbr, course, tee, hcp);
 
         adapter.notifyDataSetChanged();
+    }
+    private void createNoPlayersDialog() {
+        MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
+        dialogBuilder.setTitle(R.string.add_players_title);
+        dialogBuilder.setMessage(R.string.add_players);
+        dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        dialogBuilder.show();
     }
 }
