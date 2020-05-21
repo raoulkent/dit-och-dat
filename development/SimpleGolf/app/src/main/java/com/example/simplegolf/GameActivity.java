@@ -1,6 +1,5 @@
 package com.example.simplegolf;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,7 +38,7 @@ public class GameActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        
+
         scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
@@ -68,7 +67,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.action_name:
                 createEndGameDialog();
                 break;
@@ -76,6 +75,7 @@ public class GameActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     private void createEndGameDialog() {
         MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
         dialogBuilder.setTitle(R.string.end_game_title);
