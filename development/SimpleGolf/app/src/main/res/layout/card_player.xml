@@ -6,52 +6,66 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:clickable="false"
-    android:focusable="true">
+    android:focusable="true"
+    android:background="@color/white"
+    android:padding="6dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:padding="1dp">
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:padding="10dp"
+        >
+
 
         <TextView
             android:id="@+id/player_abbreviation"
             android:layout_width="72dp"
             android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:layout_centerVertical="true"
-            android:textSize="36sp" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="300dp"
+            android:layout_marginBottom="18dp"
+            android:textSize="28sp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/player_handicap"
             android:layout_width="72dp"
             android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
-            android:layout_toEndOf="@+id/player_abbreviation"
-            android:layout_centerVertical="true"
-            android:textSize="36sp"
+            android:layout_marginEnd="210dp"
+            android:layout_marginBottom="18dp"
+            android:textSize="28sp"
+            android:textColor="@color/black"
             />
 
         <TextView
             android:id="@+id/player_tee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/player_handicap"
-            />
+            android:layout_width="120dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="25dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/edit_button"
             style="@style/Widget.AppCompat.Button.Edit"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_toStartOf="@+id/delete_button"
-            android:layout_margin="8dp"
-            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="0dp"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
@@ -65,9 +79,12 @@
             style="@style/Widget.AppCompat.Button.Delete"
             android:layout_width="40dp"
             android:layout_height="40dp"
+
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"

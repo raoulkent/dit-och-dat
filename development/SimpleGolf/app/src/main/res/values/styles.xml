@@ -52,12 +52,12 @@
     </style>
 
     <style name="Widget.AppCompat.Button.Delete" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/colorError</item>
+        <item name="backgroundTint">@color/white</item>
         <item name="iconTint">@color/black</item>
     </style>
 
     <style name="Widget.AppCompat.Button.Edit" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/colorEdit</item>
+        <item name="backgroundTint">@color/white</item>
         <item name="iconTint">@color/black</item>
     </style>
 

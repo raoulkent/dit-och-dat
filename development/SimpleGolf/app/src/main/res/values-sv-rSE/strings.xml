@@ -15,7 +15,8 @@
     <string name="tag">Tag</string>
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
     <string name="add_player">Lägg till spelare</string>
-    <string name="request_player_details">Vänligen ange spelardetaljer</string>
+    <string name="request_player_details">Ange spelardetaljer</string>
+    <string name="hint_abbreviated_name">Initialer</string>
     <string name="add">Lägg till</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
@@ -31,6 +32,7 @@
     <string name="parColon">Par: </string>
     <string name="remove">Tabort</string>
     <string name="name">Namn</string>
+    <string name="hint_handicap">Handicap</string>
     <string name="initials">Initialer</string>
     <string name="handicap">Handicap</string>
     <string name="dev_options">Dev options</string>
