@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerSelectViewModel extends ViewModel {
+    private ArrayList<PlayerSelectListener> listeners = new ArrayList<>();
     private List<Player> players = new ArrayList<>();
     private Course course;
 
@@ -20,10 +21,17 @@ public class PlayerSelectViewModel extends ViewModel {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+        notifyListeners();
+    }
+
+    public void addPlayer(Player player) {
+        this.players.add(player);
+        notifyListeners();
     }
 
     public void removePlayer(Player player) {
         players.remove(player);
+        notifyListeners();
     }
 
     public Course getCourse() {
@@ -40,10 +48,6 @@ public class PlayerSelectViewModel extends ViewModel {
         return scorecard;
     }
 
-    public void addPlayer(Player player) {
-        this.players.add(player);
-    }
-
     public void editPlayer(Player player, String name, String abbr, Course course, Tee tee, double hcp) {
         if (this.players.contains(player)) {
             player.setName(name);
@@ -52,5 +56,21 @@ public class PlayerSelectViewModel extends ViewModel {
             player.setTee(tee);
             player.setHcp(hcp);
         }
+        notifyListeners();
+    }
+
+    public void subscribeAsListener(PlayerSelectListener listener) {
+        this.listeners.add(listener);
+    }
+
+    public void unsubscribeAsListener(PlayerSelectListener listener) {
+        this.listeners.remove(listener);
+    }
+
+    private void notifyListeners() {
+        for (PlayerSelectListener listener : listeners) {
+            listener.playersChanged();
+        }
     }
 }
+
