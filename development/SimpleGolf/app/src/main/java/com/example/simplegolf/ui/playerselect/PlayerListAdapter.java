@@ -77,7 +77,7 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         Player player = players.get(position);
 
         playerSelectViewModel.removePlayer(player);
-        this.notifyItemRemoved(position);
+        this.notifyDataSetChanged();
     }
 
     @Override
