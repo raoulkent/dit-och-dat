@@ -6,7 +6,7 @@
     <string name="new_game_btn">Start a new game</string>
     <string name="tag">Tag</string>
     <string name="select_course">Select a course</string>
-    <string name="select_tee">Select a tee</string>
+    <string name="error_select_tee">Select a tee</string>
     <string name="request_player_details">Fill player details</string>
     <string name="title_scorecard">Scorecard</string>
     <string name="unfinished_game_btn">Unfinished games</string>
@@ -20,7 +20,7 @@
     <string name="abort">Cancel</string>
     <string name="specify_name">Fill name</string>
     <string name="specify_abbreviated_name">Fill abbreviation</string>
-    <string name="specify_handicap">Fill handicap</string>
+    <string name="error_specify_handicap">Fill handicap</string>
     <string name="selectorTextPoints">Points</string>
     <string name="total">Total:</string>
     <string name="total_shortened">Tot:</string>
@@ -56,4 +56,5 @@
     <string name="add_players">You need to add players!</string>
     <string name="add_players_title">You cannot play golf without players</string>
     <string name="main_menu">Go Back</string>
+    <string name="error_hcp_too_large">Select hcp between 0 and 54</string>
 </resources>

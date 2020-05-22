@@ -8,7 +8,7 @@
     <string name="title_strokes">Slag</string>
     <string name="title_scorecard">Scorekort</string>
     <string name="select_course">Välj en bana</string>
-    <string name="select_tee">Välj tee</string>
+    <string name="error_select_tee">Välj tee</string>
     <string name="next_button">Nästa</string>
     <string name="back_button">Föregående</string>
     <string name="your_tag">Din tag?</string>
@@ -21,7 +21,7 @@
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
     <string name="specify_abbreviated_name">Ange initialer</string>
-    <string name="specify_handicap">Ange handicap</string>
+    <string name="error_specify_handicap">Ange handicap</string>
     <string name="total_shortened">Tot:</string>
     <string name="total">Total:</string>
     <string name="hole">Hål</string>
@@ -56,4 +56,5 @@
     <string name="add_players">Du måste lägga till spelare!</string>
     <string name="add_players_title">Du kan inte spela golf utan spelare</string>
     <string name="main_menu">Tillbaka</string>
+    <string name="error_hcp_too_large">Ange hcp mellan 0 och 54</string>
 </resources>

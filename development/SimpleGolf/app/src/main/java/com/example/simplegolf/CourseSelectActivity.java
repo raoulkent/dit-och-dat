@@ -22,7 +22,6 @@ public class CourseSelectActivity extends AppCompatActivity {
 
         this.setTitle("Select a course");
 
-
         // TODO: Replace dummy data with real data.
         createExampleCourseList();
 

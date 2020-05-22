@@ -31,16 +31,16 @@ public class ScorecardFragment extends Fragment {
     private TableLayout header;
     private TableLayout holes;
     private TableLayout bottom;
-    private ArrayList<ArrayList> scoreTextViews;
+    private ArrayList<ArrayList<TextView>> scoreTextViews;
     private ArrayList<TextView> totalScoreTextViews;
-    private ArrayList<ArrayList> awayFromPar;
+    private ArrayList<ArrayList<TextView>> awayFromPar;
     private RadioGroup selector;
     private Scorecard scorecard;
     private ScorecardViewModel viewModel;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(ScorecardViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(ScorecardViewModel.class);
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class ScorecardFragment extends Fragment {
         holes = root.findViewById(R.id.scorecardTableHole);
         bottom = root.findViewById(R.id.scorecardTableBottom);
 
-        scorecard = (Scorecard) getActivity().getIntent().getSerializableExtra("scorecard");
+        scorecard = (Scorecard) requireActivity().getIntent().getSerializableExtra("scorecard");
 
         createTable();
         setupSelector(root);
@@ -66,28 +66,6 @@ public class ScorecardFragment extends Fragment {
     }
 
     private void setupSelector(View root) {
-
-        /*
-        this.selector = root.findViewById(R.id.gameTypeRadioGroup);
-
-        if (viewModel.getShowStrokes()) {
-            selector.check(R.id.strokesRadioButton);
-        } else {
-            selector.check(R.id.pointsRadioButton);
-        }
-
-        selector.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.strokesRadioButton) {
-                viewModel.setShowStrokes(true);
-            } else if (checkedId == R.id.pointsRadioButton) {
-                viewModel.setShowStrokes(false);
-            }
-            updateTable();
-        });
-
-
-         */
-
         viewModel.setShowStrokes(true);
         updateTable();
     }
@@ -101,26 +79,21 @@ public class ScorecardFragment extends Fragment {
                 int realHole = hole + scorecard.getStartHole();
                 if (viewModel.getShowStrokes()) {
                     int shots = scorecard.getPlayers().get(player).getShotsForHole(realHole);
-                    ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(shots));
+                    (scoreTextViews.get(player).get(hole)).setText(String.valueOf(shots));
                 } else {
                     int score = scorecard.getPlayers().get(player).getScoreForHole(realHole);
-                    ((TextView) scoreTextViews.get(player).get(hole)).setText(String.valueOf(score));
+                    (scoreTextViews.get(player).get(hole)).setText(String.valueOf(score));
                 }
 
-                //int h = scorecard.getPlayers().get(player).getShotsForHole(hole)-scorecard.getPlayers().get(player).getPlayerPar(hole);
                 int holeScore = scorecard.getPlayers().get(player).getScoreForHole(realHole);
 
                 if(holeScore == 0) {
-                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(holeScore));
-                    ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.RED);
+                    (awayFromPar.get(player).get(hole)).setText(String.valueOf(holeScore));
+                    (awayFromPar.get(player).get(hole)).setTextColor(Color.RED);
                 } else if(holeScore > 0){
-                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(holeScore));
-                    ((TextView) awayFromPar.get(player).get(hole)).setTextColor(Color.BLUE);
+                    (awayFromPar.get(player).get(hole)).setText(String.valueOf(holeScore));
+                    (awayFromPar.get(player).get(hole)).setTextColor(Color.BLUE);
                 }
-                /*
-                if(h == 0){
-                    ((TextView) awayFromPar.get(player).get(hole)).setText(String.valueOf(h));
-                } */
 
             }
         }
@@ -142,8 +115,8 @@ public class ScorecardFragment extends Fragment {
         awayFromPar = new ArrayList<>();
 
         for (Player p : scorecard.getPlayers()) {
-            scoreTextViews.add(new ArrayList<TextView>());
-            awayFromPar.add(new ArrayList<TextView>());
+            scoreTextViews.add(new ArrayList<>());
+            awayFromPar.add(new ArrayList<>());
         }
 
         header.addView(makeHeader(), params);
@@ -159,7 +132,7 @@ public class ScorecardFragment extends Fragment {
         TableRow row = generateTableRow();
 
         row.setBackgroundResource(R.drawable.table_row_header);
-        int padding = Math.round(convertDpToPixel(8, getActivity()));
+        int padding = Math.round(convertDpToPixel(8, requireActivity()));
         row.setPadding(0, padding, 0, padding);
 
         row.addView(generateStaticTextView(R.string.hole, 20, 3f));
@@ -180,7 +153,7 @@ public class ScorecardFragment extends Fragment {
         row.addView(generateStaticTextView(String.valueOf(h.getPar()), 30, 3f, R.color.black));
 
         for (int i = 0; i < scorecard.getPlayers().size(); i++) {
-            LinearLayout scoreStats = new LinearLayout(getActivity());
+            LinearLayout scoreStats = new LinearLayout(requireActivity());
 
             TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, (float) 12 / scorecard.getPlayers().size());
             scoreStats.setLayoutParams(params);
@@ -211,7 +184,7 @@ public class ScorecardFragment extends Fragment {
 
         row.setBackgroundResource(R.drawable.table_row_bottom);
         row.addView(generateStaticTextView(R.string.total, 20, 6f));
-        int padding = Math.round(convertDpToPixel(8, getActivity()));
+        int padding = Math.round(convertDpToPixel(8, requireActivity()));
         row.setPadding(0, padding, 0, padding);
 
         for (Player p : scorecard.getPlayers()) {
@@ -224,7 +197,7 @@ public class ScorecardFragment extends Fragment {
     }
 
     private TableRow generateTableRow() {
-        TableRow row = new TableRow(getActivity());
+        TableRow row = new TableRow(requireActivity());
 
         TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 18f);
         row.setLayoutParams(params);
@@ -233,27 +206,27 @@ public class ScorecardFragment extends Fragment {
     }
 
     private TextView generateStaticTextView(String text, int size, float weight, int color) {
-        TextView tv = new TextView(getActivity());
+        TextView tv = new TextView(requireActivity());
         TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, weight);
 
         tv.setLayoutParams(params);
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         tv.setTextSize(size);
         tv.setText(text);
-        tv.setTextColor(ContextCompat.getColor(getActivity(), color));
+        tv.setTextColor(ContextCompat.getColor(requireActivity(), color));
 
         return tv;
     }
 
     private TextView generateStaticTextView(int text, int size, float weight) {
-        TextView tv = new TextView(getActivity());
+        TextView tv = new TextView(requireActivity());
         TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, weight);
 
         tv.setLayoutParams(params);
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         tv.setTextSize(size);
         tv.setText(text);
-        tv.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+        tv.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
         return tv;
     }
 

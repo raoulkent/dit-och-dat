@@ -37,6 +37,7 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
 
         TextView tvPlayers, tvCourseName, tvDate;
         MaterialButton deleteButton;
+
         GameHistoryViewHolder(View itemView) {
             super(itemView);
             tvPlayers = itemView.findViewById(R.id.tvPlayers);
@@ -54,6 +55,7 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
         }
 
     }
+
     @NonNull
     @Override
     public GameHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
