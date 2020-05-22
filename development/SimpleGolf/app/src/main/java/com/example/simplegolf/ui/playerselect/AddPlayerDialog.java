@@ -4,8 +4,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -15,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplegolf.R;
@@ -35,97 +43,68 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
     PlayerDialogListener listener;
     Course course;
 
-    @NonNull
     @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireActivity(), R.style.AlertDialogTheme);
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialogue_select_player, null);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.FullScreenDialogTheme);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialogue_select_player, container);
 
         PlayerSelectViewModel viewModel = new ViewModelProvider(requireActivity()).get(PlayerSelectViewModel.class);
 
-        if (getActivity().getIntent().hasExtra("course"))
+        if (getActivity().getIntent().hasExtra("course")) {
             course = viewModel.getCourse();
+        }
 
-        //diaPlayerName = view.findViewById(R.id.diaPlayerName);
         diaPlayerAbbr = view.findViewById(R.id.diaPlayerAbbr);
         diaPlayerHCP = view.findViewById(R.id.diaPlayerHCP);
         diaParentDropdownTee = view.findViewById(R.id.diaParentdropdownTee);
         diaDropdownTee = view.findViewById(R.id.diaDropdownTee);
 
         diaDropdownTee.setBackgroundColor(Color.TRANSPARENT);
-       // spinner = view.findViewById(R.id.diaSpinTee);
 
+        addDropdownTees(course, diaDropdownTee);
 
-        //addSpinnerTees(course, spinner);
-        //addDropdownTees(course, diaDropdownTee);
+        Button btn = view.findViewById(R.id.btnAddPlayer);
 
+        btn.setOnClickListener((v) -> {
+            if (checkInput()) {
+                // String name = diaPlayerName.getEditText().getText().toString();
+                String abbr = diaPlayerAbbr.getEditText().getText().toString();
 
-        // Adding tees to dropdown menu
-        List<String> teeStrings = new ArrayList<>();
-        for(Tee tee:course.getTees())
-            teeStrings.add(tee.getName());
+                String teeString = diaDropdownTee.getText().toString();
+                //String teeString = spinner.getSelectedItem().toString();
+                double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
 
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(
-                        getContext(),
-                        R.layout.dia_dropdown_menu_item,
-                        teeStrings);
-        diaDropdownTee.setAdapter(adapter);
+                Tee tee = matchStringToTee(teeString);
 
-
-        builder.setView(view).setTitle(R.string.request_player_details)
-                .setPositiveButton(R.string.add, null)
-                .setNegativeButton(R.string.abort, null);
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.setCancelable(false);
-
-        alertDialog.setOnShowListener(dialogInterface -> {
-            Button buttonPositive = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_POSITIVE);
-            Button buttonNegative = ((AlertDialog) dialogInterface).getButton(alertDialog.BUTTON_NEGATIVE);
-
-            buttonPositive.setOnClickListener(v -> {
-
-                if (checkInput()) {
-                   // String name = diaPlayerName.getEditText().getText().toString();
-                    String abbr = diaPlayerAbbr.getEditText().getText().toString();
-
-                    String teeString = diaDropdownTee.getText().toString();
-                    //String teeString = spinner.getSelectedItem().toString();
-                    double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
-
-                    Tee tee = matchStringToTee(teeString);
-
-                    listener.newPlayerInfo(abbr, abbr.toUpperCase(), hcp, tee);
-                    dialogInterface.dismiss();
-                }
-                // diaPlayerAbbr.setError("Initials must be entered");
-
-            });
-
-            buttonNegative.setOnClickListener(view1 -> dialogInterface.dismiss());
+                listener.newPlayerInfo(abbr, abbr.toUpperCase(), hcp, tee);
+                dismiss();
+            }
         });
 
-        return alertDialog;
+
+
+        return view;
     }
+
 
 
     void addDropdownTees(Course c, AutoCompleteTextView autoCompleteTextView){
 
         List<String> teeList = new ArrayList<>();
 
-        for (Tee tee : c.getTees())
+        for (Tee tee : c.getTees()) {
             teeList.add(tee.getName());
+        }
 
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(
-                        getContext(),
-                        R.layout.dropdown_menu_popup_item,
-                        teeList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.dia_dropdown_menu_item, teeList);
 
         autoCompleteTextView.setAdapter(adapter);
-
     }
 
     void addSpinnerTees(Course c, Spinner s) {

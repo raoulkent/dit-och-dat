@@ -16,6 +16,14 @@
         <item name="cornerRadius">4dp</item>
     </style>
 
+    <style name="FullScreenDialogTheme" parent="Theme.MaterialComponents.Light.DialogWhenLarge">
+        <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Negative</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
+    </style>
+
 
     <style name="CardViewStyle.Light" parent="Widget.MaterialComponents.CardView">
 <!--        <item name="strokeWidth">0.1dp</item>-->
