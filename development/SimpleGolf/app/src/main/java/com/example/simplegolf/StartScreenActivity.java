@@ -8,14 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.database.AppDatabase;
 import com.google.android.material.card.MaterialCardView;
 
 public class StartScreenActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -80,8 +78,7 @@ public class StartScreenActivity extends AppCompatActivity {
             textUnfinished.setTextColor(getColor(R.color.black));
             imageUnfinished.getDrawable().setTint(getColor(R.color.black));
             cardUnfinished.setOnClickListener(v -> unFinishedGame());
-        }
-        else {
+        } else {
             textUnfinished.setTextColor(getColor(R.color.gray));
             imageUnfinished.getDrawable().setTint(getColor(R.color.gray));
             cardUnfinished.setOnClickListener(v -> {
@@ -98,8 +95,7 @@ public class StartScreenActivity extends AppCompatActivity {
             textFinished.setTextColor(getColor(R.color.black));
             imageFinished.getDrawable().setTint(getColor(R.color.black));
             cardFinished.setOnClickListener(v -> finishedGame());
-        }
-        else {
+        } else {
             textFinished.setTextColor(getColor(R.color.gray));
             imageFinished.getDrawable().setTint(getColor(R.color.gray));
             cardFinished.setOnClickListener(v -> {

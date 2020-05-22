@@ -40,11 +40,11 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
 
     @Override
     public void onItemClick(View view, int position) {
-        if(viewModel.getScorecards().get(position).isFinishedRound()) {
+        if (viewModel.getScorecards().get(position).isFinishedRound()) {
             Intent startGame = new Intent(getApplicationContext(), FinishedGameViewerActivity.class);
             startGame.putExtra("scorecard", viewModel.getScorecards().get(position));
             startActivity(startGame);
-        }else {
+        } else {
             Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
             startGame.putExtra("scorecard", viewModel.getScorecards().get(position));
             startActivity(startGame);

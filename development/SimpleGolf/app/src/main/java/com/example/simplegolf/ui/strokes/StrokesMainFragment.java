@@ -95,7 +95,7 @@ public class StrokesMainFragment extends Fragment {
     }
 
 
-    public void goToPreviousHole(View view) {
+    public void goToPreviousHole() {
         if (!(viewModel.getCurrentHole() > 0)) {
             return;
         }
@@ -103,7 +103,7 @@ public class StrokesMainFragment extends Fragment {
         updateFragment();
     }
 
-    public void goToNextHole(View view) {
+    public void goToNextHole() {
         int size = viewModel.getScorecard().getEndHole() - viewModel.getScorecard().getStartHole();
         Log.d("HOLE", "Size " + size);
         if (!(viewModel.getCurrentHole() < size)) {
