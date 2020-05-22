@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="16dp"
+        android:layout_margin="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -56,6 +56,7 @@
     </RadioGroup>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="@dimen/layout_padding"
         android:id="@+id/player_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,19 +69,21 @@
 
     <Button
         android:id="@+id/create_game_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
         android:onClick="onClickCreateScorecard"
         android:text="@string/Start_game"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        style="@style/HoleButtons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+        android:layout_margin="@dimen/layout_padding"
         android:id="@+id/add_player_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
