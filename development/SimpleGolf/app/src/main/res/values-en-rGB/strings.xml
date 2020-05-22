@@ -56,4 +56,5 @@
     <string name="add_players">You need to add players!</string>
     <string name="add_players_title">You cannot play golf without players</string>
     <string name="main_menu">Go Back</string>
+    <string name="save">Save</string>
 </resources>

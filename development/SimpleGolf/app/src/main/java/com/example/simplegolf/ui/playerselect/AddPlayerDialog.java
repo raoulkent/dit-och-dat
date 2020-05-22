@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +33,7 @@ import com.example.simplegolf.R;
 import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Player;
 import com.example.simplegolf.model.Tee;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -39,7 +44,6 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
     // made this one public because checkPlayerAbbr() method didn't find this field.
     TextInputLayout diaPlayerName, diaPlayerAbbr, diaPlayerHCP, diaParentDropdownTee;
     AutoCompleteTextView diaDropdownTee;
-    Spinner spinner;
     PlayerDialogListener listener;
     Course course;
 
@@ -49,10 +53,16 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
         setStyle(DialogFragment.STYLE_NORMAL, R.style.FullScreenDialogTheme);
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialogue_select_player, container);
+        View view = inflater.inflate(R.layout.dialogue_select_player, container, false);
+
+        MaterialToolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(v -> dismiss());
+        View item = toolbar.findViewById(R.id.action_name);
+        item.setOnClickListener(v -> addPlayer());
 
         PlayerSelectViewModel viewModel = new ViewModelProvider(requireActivity()).get(PlayerSelectViewModel.class);
 
@@ -69,30 +79,30 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
 
         addDropdownTees(course, diaDropdownTee);
 
-        Button btn = view.findViewById(R.id.btnAddPlayer);
-
-        btn.setOnClickListener((v) -> {
-            if (checkInput()) {
-                // String name = diaPlayerName.getEditText().getText().toString();
-                String abbr = diaPlayerAbbr.getEditText().getText().toString();
-
-                String teeString = diaDropdownTee.getText().toString();
-                //String teeString = spinner.getSelectedItem().toString();
-                double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
-
-                Tee tee = matchStringToTee(teeString);
-
-                listener.newPlayerInfo(abbr, abbr.toUpperCase(), hcp, tee);
-                dismiss();
+        diaDropdownTee.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                diaDropdownTee.showDropDown();
             }
         });
-
-
 
         return view;
     }
 
+    private void addPlayer() {
+        if (checkInput()) {
+            // String name = diaPlayerName.getEditText().getText().toString();
+            String abbr = diaPlayerAbbr.getEditText().getText().toString();
 
+            String teeString = diaDropdownTee.getText().toString();
+            //String teeString = spinner.getSelectedItem().toString();
+            double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
+
+            Tee tee = matchStringToTee(teeString);
+
+            listener.newPlayerInfo(abbr, abbr.toUpperCase(), hcp, tee);
+            dismiss();
+        }
+    }
 
     void addDropdownTees(Course c, AutoCompleteTextView autoCompleteTextView){
 
@@ -200,10 +210,16 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
            return false;
        }
 
+        String teeString = diaDropdownTee.getText().toString();
+        Tee tee = matchStringToTee(teeString);
+
+        if (tee == null) {
+            diaParentDropdownTee.setError("Välj en giltig tee");
+            return false;
+        }
 
 
         return true;
     }
-
 }
 
