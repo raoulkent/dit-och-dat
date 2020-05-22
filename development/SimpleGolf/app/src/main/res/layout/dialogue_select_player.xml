@@ -43,7 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="3"
-            android:background="@color/white"/>
+            android:background="@color/white"
+            android:singleLine="true"
+            android:nextFocusDown="@+id/diaPlayerHCP"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +66,8 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:background="@color/white"
-            android:maxLength="4"/>
+            android:maxLength="4"
+            android:imeOptions="actionDone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

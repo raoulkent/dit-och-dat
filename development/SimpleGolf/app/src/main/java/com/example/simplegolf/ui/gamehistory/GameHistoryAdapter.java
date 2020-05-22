@@ -35,7 +35,7 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
     // stores and recycles views as they are scrolled off screen
     public class GameHistoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvPlayers, tvCourseName, tvDate;
+        TextView tvPlayers, tvCourseName, tvDate, tvCourseHoles;
         MaterialButton deleteButton;
         GameHistoryViewHolder(View itemView) {
             super(itemView);
@@ -43,6 +43,7 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
             tvCourseName = itemView.findViewById(R.id.tvCourseName);
             tvDate = itemView.findViewById(R.id.tvDate);
             deleteButton = itemView.findViewById(R.id.delete_button);
+            tvCourseHoles = itemView.findViewById(R.id.tvCourseHoles);
             itemView.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
         }
@@ -69,6 +70,18 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
         holder.tvCourseName.setText(scorecards.get(position).getCourse().getName());
         holder.tvDate.setText(scorecards.get(position).getDate());
         holder.deleteButton.setOnClickListener(v -> startDeleteDialog(holder));
+        holder.tvCourseHoles.setText(generateHolesPlayed(scorecards.get(position)));
+    }
+
+    private String generateHolesPlayed(Scorecard scorecard) {
+        if(scorecard.getStartHole() == 0){
+            if(scorecard.getEndHole() == 8){
+                return " " + context.getString(R.string.first9);
+            } else {
+                return " " + context.getString(R.string.eighteen);
+            }
+        }
+        return " " + context.getString(R.string.last9);
     }
 
     private void startDeleteDialog(GameHistoryViewHolder holder) {
@@ -99,9 +112,9 @@ public class GameHistoryAdapter extends RecyclerView.Adapter<GameHistoryAdapter.
         StringBuilder res = new StringBuilder();
         for (int p = 0; p < players.size(); p++)
             if (p == 0)
-                res.append(players.get(p).getInitials());
+                res.append("  " + players.get(p).getInitials() + " - " + players.get(p).getTotalScore() + "p");
             else
-                res.append(", ").append(players.get(p).getInitials());
+                res.append("\n  ").append(players.get(p).getInitials() + " - " + players.get(p).getTotalScore() + "p");
         return res.toString();
     }
 

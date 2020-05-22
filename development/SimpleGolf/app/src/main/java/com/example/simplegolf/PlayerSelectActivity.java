@@ -41,6 +41,8 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
             viewModel.setCourse(course);
         }
         buildRecyclerView();
+
+        this.setTitle(R.string.add_player);
     }
 
     private void buildRecyclerView() {
