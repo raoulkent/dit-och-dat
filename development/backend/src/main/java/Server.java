@@ -27,6 +27,8 @@ public class Server {
         CourseDAO courseDAO = new CourseDAO(sql2o);
 
         get("/course", "application/json", (req, res) -> {
+            res.type("application/json");
+            System.out.println("Grabbing courses");
             return courseDAO.getAll();
         }, gson::toJson);
     }
