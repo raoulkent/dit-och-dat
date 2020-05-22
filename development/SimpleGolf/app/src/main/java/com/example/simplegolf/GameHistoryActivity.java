@@ -30,6 +30,12 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        if(completedGames){
+            this.setTitle(R.string.finished_game_btn);
+        } else {
+            this.setTitle(R.string.unfinished_game_btn);
+        }
+
     }
 
     @Override

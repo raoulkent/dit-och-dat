@@ -24,7 +24,7 @@ public class CourseSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_selection);
 
-        this.setTitle("Select a course");
+        this.setTitle(R.string.select_course);
 
 
         // TODO: Replace dummy data with real data.

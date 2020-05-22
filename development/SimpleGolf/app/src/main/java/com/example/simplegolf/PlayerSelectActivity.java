@@ -1,12 +1,10 @@
 package com.example.simplegolf;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +19,11 @@ import com.example.simplegolf.model.Scorecard;
 import com.example.simplegolf.model.Tee;
 import com.example.simplegolf.ui.playerselect.AddPlayerDialog;
 import com.example.simplegolf.ui.playerselect.PlayerListAdapter;
+import com.example.simplegolf.ui.playerselect.PlayerSelectListener;
 import com.example.simplegolf.ui.playerselect.PlayerSelectViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialog.PlayerDialogListener {
+public class PlayerSelectActivity extends AppCompatActivity implements AddPlayerDialog.PlayerDialogListener, PlayerSelectListener {
 
     private PlayerSelectViewModel viewModel;
     private RecyclerView recyclerView;
@@ -36,19 +35,22 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_player);
         viewModel = new ViewModelProvider(this).get(PlayerSelectViewModel.class);
+        viewModel.subscribeAsListener(this);
 
         if (getIntent().hasExtra("course")) {
             Course course = (Course) getIntent().getSerializableExtra("course");
             viewModel.setCourse(course);
         }
         buildRecyclerView();
+
+        this.setTitle(R.string.add_player);
     }
 
     private void buildRecyclerView() {
         recyclerView = findViewById(R.id.player_recycler);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new PlayerListAdapter(viewModel,this);
+        adapter = new PlayerListAdapter(viewModel, this);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -61,7 +63,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     }
 
     public void onClickCreateScorecard(View view) {
-        if (viewModel.getPlayers().isEmpty()){
+        if (viewModel.getPlayers().isEmpty()) {
             createNoPlayersDialog();
             return;
         }
@@ -70,7 +72,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
         // Save to DB and fetch to get correct ID, allows course to be updated/saved in the future.
         new Thread(() -> {
             Repository repository = Repository.getRepository(this);
-            final RadioGroup group= (RadioGroup) findViewById(R.id.holes_selector);
+            final RadioGroup group = (RadioGroup) findViewById(R.id.holes_selector);
 
             int id = group.getCheckedRadioButtonId();
             switch (id) {
@@ -103,13 +105,8 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     @Override
     public void newPlayerInfo(String name, String abbr, double hcp, Tee tee) {
         Course course = viewModel.getCourse();
-        Button addPlayerButton = (Button) findViewById(R.id.add_player_btn);
 
         viewModel.addPlayer(new Player(name, abbr, course, tee, hcp));
-
-        if (viewModel.getPlayers().size()==4){
-            addPlayerButton.setVisibility(View.GONE);
-        }
 
         adapter.notifyDataSetChanged();
     }
@@ -122,15 +119,23 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
 
         adapter.notifyDataSetChanged();
     }
+
     private void createNoPlayersDialog() {
         MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
         dialogBuilder.setTitle(R.string.add_players_title);
         dialogBuilder.setMessage(R.string.add_players);
-        dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
+        dialogBuilder.setNegativeButton(R.string.cancel, (dialog, which) -> {
         });
         dialogBuilder.show();
+    }
+
+    @Override
+    public void playersChanged() {
+        Button addPlayerButton = findViewById(R.id.add_player_btn);
+        if (viewModel.getPlayers().size() >= 4) {
+            addPlayerButton.setVisibility(View.GONE);
+        } else {
+            addPlayerButton.setVisibility(View.VISIBLE);
+        }
     }
 }
