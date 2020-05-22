@@ -3,6 +3,7 @@ package com.example.simplegolf;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
@@ -58,6 +59,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     public void showDialog(View view) {
         AddPlayerDialog addPlayerDialog = new AddPlayerDialog();
         addPlayerDialog.show(getSupportFragmentManager(), "game activity dialog");
+
     }
 
     public void onClickCreateScorecard(View view) {

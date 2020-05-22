@@ -31,7 +31,7 @@ public interface ScorecardDAO {
      *
      * @return A list of all unfinished scorecards
      */
-    @Query("SELECT * FROM Scorecard WHERE finishedRound = 0")
+    @Query("SELECT * FROM Scorecard WHERE finishedRound = 0 ORDER BY id DESC")
     List<Scorecard> getUnfinishedRounds();
 
     /**
@@ -39,7 +39,7 @@ public interface ScorecardDAO {
      *
      * @return A list of all finished scorecards
      */
-    @Query("SELECT * FROM Scorecard WHERE finishedRound = 1 ")
+    @Query("SELECT * FROM Scorecard WHERE finishedRound = 1 ORDER BY id DESC")
     List<Scorecard> getFinishedRounds();
 
     /**

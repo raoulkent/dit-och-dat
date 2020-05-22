@@ -1,108 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:textAlignment="center"
-    android:padding="6dp">
+    android:textAlignment="center">
 
-<!--
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/diaPlayerName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:background="@color/white"
-        android:hint="@string/specify_name"
-        app:errorEnabled="true">
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/toolbar"
+            app:menu="@menu/menu_player"
+            app:title="@string/request_player_details"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            app:navigationIcon="@drawable/ic_clear_white_24dp"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/activity_vertical_margin">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/diaPlayerAbbr"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@color/white"
+            android:hint="@string/hint_abbreviated_name"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:maxLength="3"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/diaPlayerHCP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:maxLength="30" />
+            android:hint="@string/hint_handicap"
+            app:errorEnabled="true">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:inputType="numberDecimal"
+                android:maxLength="4" />
 
--->
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/diaPlayerAbbr"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-
-        android:background="@color/white"
-        android:hint="@string/hint_abbreviated_name"
-        app:errorEnabled="true">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/diaParentdropdownTee"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="3"
+            android:layout_below="@id/diaPlayerHCP"
             android:background="@color/white"
-            android:singleLine="true"
-            android:nextFocusDown="@+id/diaPlayerHCP"/>
+            android:hint="Välj tee"
+            app:errorEnabled="true">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <AutoCompleteTextView
+                android:id="@+id/diaDropdownTee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:completionThreshold="1"
+                android:inputType="textAutoComplete"
+                android:shadowColor="@color/white" />
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/diaPlayerHCP"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="match_parent"
-        android:layout_marginTop="6dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/diaPlayerAbbr"
-        android:hint="@string/hint_handicap"
-        app:errorEnabled="true"
-        android:background="@color/white">
+    </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+    <!--
+        <Spinner
+            android:id="@+id/diaSpinTee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:background="@color/white"
-            android:maxLength="4"
-            android:imeOptions="actionDone"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-<!--
-    <Spinner
-        android:id="@+id/diaSpinTee"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/diaPlayerHCP"
-         />
--->
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        android:id="@+id/diaParentdropdownTee"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:hint="Välj tee"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@id/diaPlayerHCP"
-        app:errorEnabled="true">
-
-        <AutoCompleteTextView
-            android:id="@+id/diaDropdownTee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:inputType="none"
-            android:shadowColor="@color/white"
+            android:layout_below="@id/diaPlayerHCP"
              />
+    -->
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-
-</RelativeLayout>
+</LinearLayout>
