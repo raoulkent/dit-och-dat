@@ -54,7 +54,7 @@ public enum TestCourses {
         tees.add(new Tee("Blå - Damer", 73.2, 125));
         tees.add(new Tee("Gul - Damer", 76.3, 132));
         try {
-            courseChalmers = new Course("Chalmers GK - 18 hål", holes, tees);
+            courseChalmers = new Course("Chalmers GK", holes, tees);
         } catch (Exception e) {
             e.printStackTrace();
         }

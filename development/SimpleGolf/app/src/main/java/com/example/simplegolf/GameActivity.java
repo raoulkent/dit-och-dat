@@ -23,7 +23,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.Objects;
 
 public class GameActivity extends AppCompatActivity {
-
     StrokesMainFragment mainFragment;
     private Repository repository;
     Scorecard scorecard;

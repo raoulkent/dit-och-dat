@@ -33,6 +33,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_player);
+
         viewModel = new ViewModelProvider(this).get(PlayerSelectViewModel.class);
         viewModel.subscribeAsListener(this);
 
@@ -40,9 +41,16 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
             Course course = (Course) getIntent().getSerializableExtra("course");
             viewModel.setCourse(course);
         }
+
         buildRecyclerView();
 
-        this.setTitle(R.string.add_player);
+        String titleText = new StringBuilder()
+                .append(getString(R.string.settings))
+                .append(" - ")
+                .append(viewModel.getCourse().getName())
+                .toString();
+
+        this.setTitle(titleText);
     }
 
     private void buildRecyclerView() {
