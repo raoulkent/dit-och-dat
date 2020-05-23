@@ -46,6 +46,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
     AutoCompleteTextView diaDropdownTee;
     PlayerDialogListener listener;
     Course course;
+    MaterialToolbar toolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialogue_select_player, container, false);
 
-        MaterialToolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar = view.findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(v -> dismiss());
         View item = toolbar.findViewById(R.id.action_name);
         item.setOnClickListener(v -> addPlayer());
