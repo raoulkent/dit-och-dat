@@ -88,11 +88,11 @@ public class GameActivity extends AppCompatActivity {
 
     public void goToPreviousHole(View view) {
         mainFragment = getMainFragment();
-        Objects.requireNonNull(mainFragment).goToPreviousHole(view);
+        Objects.requireNonNull(mainFragment).goToPreviousHole();
     }
 
     public void goToNextHole(View view) {
         mainFragment = getMainFragment();
-        Objects.requireNonNull(mainFragment).goToNextHole(view);
+        Objects.requireNonNull(mainFragment).goToNextHole();
     }
 }
