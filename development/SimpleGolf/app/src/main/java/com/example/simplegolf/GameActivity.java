@@ -1,7 +1,5 @@
 package com.example.simplegolf;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,7 +37,7 @@ public class GameActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        
+
         scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
@@ -68,32 +66,23 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.action_name:
-                createEndGameDialog();
-                break;
+        if (item.getItemId() == R.id.action_name) {
+            createEndGameDialog();
         }
 
         return super.onOptionsItemSelected(item);
     }
+
     private void createEndGameDialog() {
         MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
         dialogBuilder.setTitle(R.string.end_game_title);
         dialogBuilder.setMessage(R.string.end_game_text);
-        dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
+        dialogBuilder.setNegativeButton(R.string.cancel, (dialog, which) -> {
         });
-        dialogBuilder.setPositiveButton(R.string.finish, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scorecard.setFinishedRound(true);
-                new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
-                finish();
-                //Intent startOldGame = new Intent(getApplicationContext(), StartScreenActivity.class);
-                //startActivity(startOldGame);
-            }
+        dialogBuilder.setPositiveButton(R.string.finish, (dialog, which) -> {
+            scorecard.setFinishedRound(true);
+            new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
+            finish();
         });
         dialogBuilder.show();
     }
