@@ -20,6 +20,8 @@ import com.example.simplegolf.ui.strokes.StrokesViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.Objects;
+
 public class GameActivity extends AppCompatActivity {
 
     StrokesMainFragment mainFragment;
@@ -41,21 +43,7 @@ public class GameActivity extends AppCompatActivity {
         scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
-        //viewModel.setCurrentHole(scorecard.getStartHole());
         repository = Repository.getRepository(this);
-
-        /*
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                Intent startScreen = new Intent(getApplicationContext(), StartScreenActivity.class);
-                startScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(startScreen);
-            }
-        };
-
-        this.getOnBackPressedDispatcher().addCallback(this, callback);
-        */
     }
 
     @Override
@@ -90,7 +78,7 @@ public class GameActivity extends AppCompatActivity {
     private StrokesMainFragment getMainFragment() {
         Fragment navHostFragment = getSupportFragmentManager().getPrimaryNavigationFragment(); // Requires view to be initialized.
 
-        for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()) {
+        for (Fragment fragment : Objects.requireNonNull(navHostFragment).getChildFragmentManager().getFragments()) {
             if (fragment instanceof StrokesMainFragment) {
                 return (StrokesMainFragment) fragment;
             }
@@ -100,11 +88,11 @@ public class GameActivity extends AppCompatActivity {
 
     public void goToPreviousHole(View view) {
         mainFragment = getMainFragment();
-        mainFragment.goToPreviousHole(view);
+        Objects.requireNonNull(mainFragment).goToPreviousHole(view);
     }
 
     public void goToNextHole(View view) {
         mainFragment = getMainFragment();
-        mainFragment.goToNextHole(view);
+        Objects.requireNonNull(mainFragment).goToNextHole(view);
     }
 }
