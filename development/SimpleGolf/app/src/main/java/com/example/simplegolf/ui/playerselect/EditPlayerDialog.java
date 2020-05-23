@@ -32,7 +32,6 @@ public class EditPlayerDialog extends AddPlayerDialog {
         View item = toolbar.findViewById(R.id.action_name);
         item.setOnClickListener(v -> editPlayer());
 
-
         return view;
     }
 
@@ -41,7 +40,6 @@ public class EditPlayerDialog extends AddPlayerDialog {
             String abbr = Objects.requireNonNull(diaPlayerAbbr.getEditText()).getText().toString();
             String teeString = diaDropdownTee.getText().toString();
             double hcp = Double.parseDouble(Objects.requireNonNull(diaPlayerHCP.getEditText()).getText().toString());
-
             Tee tee = matchStringToTee(teeString);
 
             listener.editPlayerInfo(player, abbr, abbr.toUpperCase(), hcp, tee);

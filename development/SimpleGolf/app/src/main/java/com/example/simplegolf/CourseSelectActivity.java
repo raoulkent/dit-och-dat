@@ -6,18 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.testcourses.TestCourses;
 import com.example.simplegolf.ui.courseselect.CourseListAdapter;
-
-import java.util.ArrayList;
+import com.example.simplegolf.ui.courseselect.CourseSelectViewModel;
 
 public class CourseSelectActivity extends AppCompatActivity {
-    ArrayList<Course> courses = new ArrayList<>();
-
-    private RecyclerView mRecyclerView;
-    private CourseListAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    CourseSelectViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +20,7 @@ public class CourseSelectActivity extends AppCompatActivity {
 
         this.setTitle(R.string.select_course);
 
+        viewModel = new CourseSelectViewModel();
 
         // TODO: Replace dummy data with real data.
         createExampleCourseList();
@@ -34,33 +29,25 @@ public class CourseSelectActivity extends AppCompatActivity {
     }
 
     private void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.course_recycler);
+        RecyclerView mRecyclerView = findViewById(R.id.course_recycler);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new CourseListAdapter(courses, this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        CourseListAdapter mAdapter = new CourseListAdapter(viewModel, this);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     public void createExampleCourseList() {
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
+        viewModel.addCourse(TestCourses.INSTANCE.getCourseChalmers());
     }
 }

@@ -224,11 +224,11 @@ public class ScorecardFragment extends Fragment {
         tv.setTextSize(size);
         tv.setText(text);
         tv.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white));
+
         return tv;
     }
 
     private static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
-
 }
