@@ -2,6 +2,9 @@ package com.example.simplegolf;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,12 +47,12 @@ public class CourseSelectActivity extends AppCompatActivity {
 
     private void loadCourses() {
         Repository repository = Repository.getRepository(this);
-        Log.d("COURSES", "ATTEMPTING FETCH REMOTE ");
+        Log.d("COURSES", "ATTEMPTING TO FETCH REMOTE ");
 
         repository.getAllCoursesFromRemote(new Callback<List<Course>>() {
             @Override
             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
-                Log.d("COURSES", "Success");
+                Log.d("COURSES", "Success, showing remote courses");
                 courses = response.body();
 
                 runOnUiThread(() -> {
@@ -59,16 +62,21 @@ public class CourseSelectActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
-                Log.d("COURSES", "Failure ");
+                Log.d("COURSES", "Failure, load local courses ");
 
                 runOnUiThread(() -> {
                     createExampleCourseList();
+                    buildRecyclerView();
                 });
             }
         });
     }
 
     private void buildRecyclerView() {
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        TextView textLoading = findViewById(R.id.textLoading);
+        progressBar.setVisibility(View.INVISIBLE);
+        textLoading.setVisibility(View.INVISIBLE);
         mRecyclerView = findViewById(R.id.course_recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
