@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.simplegolf.ui.gamehistory.GameHistoryAdapter;
 import com.example.simplegolf.ui.gamehistory.GameHistoryViewModel;
 
+import java.util.Objects;
+
 public class GameHistoryActivity extends AppCompatActivity implements GameHistoryAdapter.ItemClickListener {
 
     private GameHistoryAdapter adapter;
@@ -20,7 +22,7 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_history);
-        boolean completedGames = getIntent().getExtras().getBoolean("finished", false);
+        boolean completedGames = Objects.requireNonNull(getIntent().getExtras()).getBoolean("finished", false);
 
         viewModel = new GameHistoryViewModel(this);
         viewModel.setCompletedGames(completedGames);

@@ -33,7 +33,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private int holeNumber;
 
     private Scorecard scorecard;
-    private TextView currentPar;
+    private TextView textViewCurrentPar;
 
     private LinearLayout layout;
     private ArrayList<TextView> counters;
@@ -65,8 +65,8 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         if (getArguments() != null) {
             holeNumber = getArguments().getInt(ARG_HOLE);
         }
-        viewModel = new ViewModelProvider(getActivity()).get(StrokesViewModel.class);
-        repository = Repository.getRepository(getActivity());
+        viewModel = new ViewModelProvider(requireActivity()).get(StrokesViewModel.class);
+        repository = Repository.getRepository(requireActivity());
     }
 
     @Override
@@ -79,11 +79,24 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         points = new ArrayList<>();
         layout = root.findViewById(R.id.playerLayout);
 
-        currentPar = root.findViewById(R.id.currentPar);
-        currentPar.setText(this.getString(R.string.parColon) + getCurrentPar());
+        textViewCurrentPar = root.findViewById(R.id.currentPar);
 
-        TextView textCurrentHole = root.findViewById(R.id.holeNumber);
-        textCurrentHole.setText(getString(R.string.hole) + " " + (holeNumber + 1));
+        String currentPar = new StringBuilder()
+                .append(this.getString(R.string.parColon))
+                .append(getTextViewCurrentPar())
+                .toString();
+
+        textViewCurrentPar.setText(currentPar);
+
+        TextView textViewCurrentHole = root.findViewById(R.id.holeNumber);
+
+        String currentHole = new StringBuilder()
+                .append(getString(R.string.hole))
+                .append(" ")
+                .append(holeNumber + 1)
+                .toString();
+
+        textViewCurrentHole.setText(currentHole);
 
 
         addPlayers(root);
@@ -114,7 +127,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private String getCurrentPar() {
+    private String getTextViewCurrentPar() {
         return String.valueOf(scorecard.getCourse().getHoles().get(holeNumber).getPar());
     }
 
@@ -122,14 +135,14 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
 
 
-        CardView card = new CardView(getActivity());
+        CardView card = new CardView(requireActivity());
         card.setLayoutParams(params);
-        card.setRadius(convertDpToPixel(4, getActivity()));
-        card.setElevation(convertDpToPixel(2, getActivity()));
+        card.setRadius(convertDpToPixel(4, requireActivity()));
+        card.setElevation(convertDpToPixel(2, requireActivity()));
 
-        LinearLayout playerLayout = new LinearLayout(getActivity());
+        LinearLayout playerLayout = new LinearLayout(requireActivity());
 
-        int margin = Math.round(convertDpToPixel(4, getActivity()));
+        int margin = Math.round(convertDpToPixel(4, requireActivity()));
         params.setMargins(margin, margin, margin, margin);
 
         playerLayout.setOrientation(LinearLayout.VERTICAL);
@@ -149,37 +162,51 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     }
 
     private TextView createCurrentPar(Player p) {
-        TextView par = new TextView(getActivity());
-        par.setText(this.getString(R.string.parColon) + " " + p.getPlayerPar(holeNumber));
+        TextView par = new TextView(requireActivity());
+
+        String currentPar = new StringBuilder()
+                .append(this.getString(R.string.parColon))
+                .append(" ")
+                .append(p.getPlayerPar(holeNumber))
+                .toString();
+
+        par.setText(currentPar);
         par.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         par.setTextSize(20);
-        par.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+        par.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black));
 
         return par;
     }
 
     private TextView createCurrentPoints(Player p) {
-        TextView point = new TextView(getActivity());
-        point.setText(this.getString(R.string.total) + " " + p.getTotalScore());
+        TextView point = new TextView(requireActivity());
+
+        String currentPoints = new StringBuilder()
+                .append(this.getString(R.string.total))
+                .append(" ")
+                .append(p.getTotalScore())
+                .toString();
+
+        point.setText(currentPoints);
         point.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         point.setTextSize(20);
-        point.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+        point.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black));
 
         points.add(point);
         return point;
     }
 
     private TextView createNameTextView(Player p) {
-        TextView tv = new TextView(getActivity());
+        TextView tv = new TextView(requireActivity());
         tv.setText(p.getInitials());
         tv.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         tv.setTextSize(30);
-        tv.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+        tv.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black));
         return tv;
     }
 
     private Button createAddButton(Player p) {
-        Button b = new MaterialButton(getActivity());
+        Button b = new MaterialButton(requireActivity());
 
         b.setText(this.getString(R.string.add_one));
         b.setTextSize(20);
@@ -189,27 +216,27 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         });
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        int margins = Math.round(convertDpToPixel(4, getActivity()));
+        int margins = Math.round(convertDpToPixel(4, requireActivity()));
         params.setMargins(0, margins, 0, margins);
         params.gravity = Gravity.CENTER;
-        int width = Math.round(convertDpToPixel(200, getActivity()));
+        int width = Math.round(convertDpToPixel(200, requireActivity()));
         b.setWidth(width);
         b.setLayoutParams(params);
         return b;
     }
 
     private TextView createCounterTextView() {
-        TextView stat = new TextView(getActivity());
+        TextView stat = new TextView(requireActivity());
         stat.setText(this.getString(R.string.par));
         stat.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         stat.setTextSize(60);
-        stat.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+        stat.setTextColor(ContextCompat.getColor(requireActivity(), R.color.black));
         counters.add(stat);
         return stat;
     }
 
     private Button createRemoveButton(Player p) {
-        Button b = new MaterialButton(getActivity());
+        Button b = new MaterialButton(requireActivity());
         b.setText(this.getString(R.string.remove_one));
         b.setTextSize(20);
         b.setOnClickListener(v -> {
@@ -218,30 +245,54 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         });
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        int margins = Math.round(convertDpToPixel(4, getActivity()));
+        int margins = Math.round(convertDpToPixel(4, requireActivity()));
         params.setMargins(0, margins, 0, margins);
         params.gravity = Gravity.CENTER;
-        int width = Math.round(convertDpToPixel(200, getActivity()));
+        int width = Math.round(convertDpToPixel(200, requireActivity()));
         b.setWidth(width);
         b.setLayoutParams(params);
         return b;
     }
 
-    public static float convertDpToPixel(float dp, Context context) {
+    private static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
     private void updateUI() {
         updateDB();
-        for (int p = 0; p < scorecard.getPlayers().size(); p++) {
-            counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
-            points.get(p).setText(this.getString(R.string.total) + " " + scorecard.getPlayers().get(p).getTotalScore());
-        }
-        currentPar.setText(this.getString(R.string.par) + " " + getCurrentPar());
+        updateCounters();
+        updatePar();
     }
 
-    // Saves new scores etc.
     private void updateDB() {
         new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
+    }
+
+    private void updateCounters() {
+        try {
+            for (int p = 0; p < scorecard.getPlayers().size(); p++) {
+                counters.get(p).setText(String.valueOf(scorecard.getPlayers().get(p).getShotsForHole(holeNumber)));
+
+                String totalScore = new StringBuilder()
+                        .append(this.getString(R.string.total))
+                        .append("\n")
+                        .append(scorecard.getPlayers().get(p).getTotalScore())
+                        .toString();
+
+                points.get(p).setText(totalScore);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Counters or Points are smaller than scorecards.getPlayers()");
+        }
+    }
+
+    private void updatePar() {
+        String parString = new StringBuilder()
+                .append(this.getString(R.string.par))
+                .append(" ")
+                .append(getTextViewCurrentPar())
+                .toString();
+
+        textViewCurrentPar.setText(parString);
     }
 }
