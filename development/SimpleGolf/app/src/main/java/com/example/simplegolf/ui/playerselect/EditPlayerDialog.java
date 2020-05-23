@@ -43,15 +43,10 @@ public class EditPlayerDialog extends AddPlayerDialog {
         if (getActivity().getIntent().hasExtra("course"))
             course = viewModel.getCourse();
 
-        //diaPlayerName = view.findViewById(R.id.diaPlayerName);
         diaPlayerAbbr = view.findViewById(R.id.diaPlayerAbbr);
         diaPlayerHCP = view.findViewById(R.id.diaPlayerHCP);
-        //spinner = view.findViewById(R.id.diaSpinTee);
         diaDropdownTee = view.findViewById(R.id.diaDropdownTee);
         diaDropdownTee.setBackgroundColor(Color.TRANSPARENT);
-
-
-        //addSpinnerTees(course, spinner);
 
         // Adding tees to dropdown menu /Joar
         List<String> teeStrings = new ArrayList<>();
@@ -59,24 +54,16 @@ public class EditPlayerDialog extends AddPlayerDialog {
             teeStrings.add(tee.getName());
 
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(
-                        getContext(),
+                new ArrayAdapter<>(
+                        requireContext(),
                         R.layout.dia_dropdown_menu_item,
                         teeStrings);
         diaDropdownTee.setAdapter(adapter);
 
-
-        //Objects.requireNonNull(diaPlayerName.getEditText()).setText(player.getName());
         Objects.requireNonNull(diaPlayerAbbr.getEditText()).setText(player.getInitials());
         Objects.requireNonNull(diaPlayerHCP.getEditText()).setText(String.valueOf(player.getHcp()));
 
-        //added by Joar
-        //diaDropdownTee.setText(player.getTee());
-        //diaDropdownTee.setListSelection(course.getTees().indexOf(player.getTee().getName()));
         diaDropdownTee.setText(player.getTee().getName(),false);
-
-
-        //spinner.setSelection(course.getTees().indexOf(player.getTee()));
 
         builder.setView(view).setTitle(R.string.request_player_details)
                 .setPositiveButton(R.string.add, null)
@@ -91,9 +78,7 @@ public class EditPlayerDialog extends AddPlayerDialog {
 
             buttonPositive.setOnClickListener(v -> {
                 if (checkInput()) {
-                   // String name = diaPlayerName.getEditText().getText().toString();
                     String abbr = diaPlayerAbbr.getEditText().getText().toString();
-                    //String teeString = spinner.getSelectedItem().toString();
                     String teeString = diaDropdownTee.getText().toString();
                     double hcp = Double.parseDouble(diaPlayerHCP.getEditText().getText().toString());
 
@@ -103,11 +88,8 @@ public class EditPlayerDialog extends AddPlayerDialog {
                     dialogInterface.dismiss();
                 }
             });
-
             buttonNegative.setOnClickListener(view1 -> dialogInterface.dismiss());
-
         });
-
         return alertDialog;
     }
 }
