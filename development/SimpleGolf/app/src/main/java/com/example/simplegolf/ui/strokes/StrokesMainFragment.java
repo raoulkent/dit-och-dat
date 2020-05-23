@@ -45,7 +45,7 @@ public class StrokesMainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(StrokesViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(StrokesViewModel.class);
     }
 
     @Override
