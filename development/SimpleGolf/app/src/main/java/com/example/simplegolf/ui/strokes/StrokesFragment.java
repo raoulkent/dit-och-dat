@@ -209,6 +209,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
         Button b = new MaterialButton(requireActivity());
 
         b.setText(this.getString(R.string.add_one));
+        b.setTextSize(20);
         b.setOnClickListener(v -> {
             p.incrementHole(holeNumber);
             updateUI();
@@ -237,6 +238,7 @@ public class StrokesFragment extends Fragment implements View.OnClickListener {
     private Button createRemoveButton(Player p) {
         Button b = new MaterialButton(requireActivity());
         b.setText(this.getString(R.string.remove_one));
+        b.setTextSize(20);
         b.setOnClickListener(v -> {
             p.decrementHole(holeNumber);
             updateUI();

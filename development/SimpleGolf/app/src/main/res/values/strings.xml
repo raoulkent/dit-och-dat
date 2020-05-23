@@ -25,9 +25,9 @@
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
     <string name="add_player">Lägg till spelare</string>
     <string name="request_player_details">Ange spelardetaljer</string>
-    <string name="add_one">+1</string>
+    <string name="add_one">+</string>
     <string name="add">Lägg till</string>
-    <string name="remove_one">-1</string>
+    <string name="remove_one">-</string>
     <string name="remove">Ta bort</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
