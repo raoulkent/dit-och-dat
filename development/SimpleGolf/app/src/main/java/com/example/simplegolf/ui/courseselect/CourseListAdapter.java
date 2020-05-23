@@ -56,7 +56,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         // - get element from your data set at this position
         // - replace the contents of the view with that element
         holder.courseName.setText(courses.get(position).getName());
-        holder.thumbnail.setImageResource(R.drawable.chgk_logo); // TODO: Replace with dynamic logo loading
+        holder.thumbnail.setImageResource(R.drawable.ic_golf_course_black_24dp); // TODO: Replace with dynamic logo loading
         holder.thumbnail.setPadding(2, 2, 2, 2);
 
         holder.itemView.setOnClickListener(v -> selectCourse(holder));
