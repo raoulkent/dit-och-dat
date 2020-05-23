@@ -49,31 +49,6 @@ public class StartScreenActivity extends AppCompatActivity {
         developerCard.setOnClickListener(v -> developerOptions());
 
         loadNumberOfRounds();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http:192.168.1.131:4567/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        CourseService courseService = retrofit.create(CourseService.class);
-        Log.d("COURSES", "ATTEMPTING FETCH REMOTE ");
-
-        courseService.courses().enqueue(new Callback<List<Course>>() {
-            @Override
-            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
-                Log.d("COURSES", "Success");
-
-                List<Course> courses = response.body();
-                Log.d("COURSES", "size " + courses.size());
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Course>> call, Throwable t) {
-                Log.d("COURSES", "Failure ");
-
-            }
-        });
     }
 
     @Override

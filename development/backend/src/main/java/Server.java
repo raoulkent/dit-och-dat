@@ -26,7 +26,7 @@ public class Server {
         Sql2o sql2o = new Sql2o("jdbc:mysql://localhost:3306/simplegolf?serverTimezone=UTC", "root", "root1234");
         CourseDAO courseDAO = new CourseDAO(sql2o);
 
-        get("/course", "application/json", (req, res) -> {
+        get("/course", (req, res) -> {
             res.type("application/json");
             System.out.println("Grabbing courses");
             return courseDAO.getAll();
