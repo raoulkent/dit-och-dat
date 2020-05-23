@@ -23,12 +23,13 @@ public class Server {
 
         Course course = new Course("Chalmers GK", holes, tees);
 
-        Sql2o sql2o = new Sql2o("jdbc:mysql://localhost:3306/simplegolf?serverTimezone=UTC", "root", "root1234");
+        Sql2o sql2o = new Sql2o("jdbc:mysql://127.0.0.1:3306/simplegolf", "simplegolf", "xxx");
         CourseDAO courseDAO = new CourseDAO(sql2o);
 
+        System.out.println("Starting server...");
+        port(6543);
         get("/course", (req, res) -> {
             res.type("application/json");
-            System.out.println("Grabbing courses");
             return courseDAO.getAll();
         }, gson::toJson);
     }

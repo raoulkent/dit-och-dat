@@ -26,7 +26,7 @@ public class Repository {
                 .fallbackToDestructiveMigration().build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http:192.168.1.131:4567/")
+                .baseUrl("http://178.128.246.146:6543/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
