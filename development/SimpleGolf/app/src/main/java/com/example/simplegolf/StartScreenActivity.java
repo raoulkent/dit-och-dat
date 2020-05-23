@@ -8,14 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.database.AppDatabase;
 import com.google.android.material.card.MaterialCardView;
 
 public class StartScreenActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -54,8 +52,23 @@ public class StartScreenActivity extends AppCompatActivity {
             int nFinished = db.scorecardDAO().getFinishedRounds().size();
 
             runOnUiThread(() -> {
-                textUnFinished.setText(getString(R.string.unfinished_rounds) + " (" + nUnfinished + ")");
-                textFinished.setText(getString(R.string.finished_rounds) + " (" + nFinished + ")");
+
+                String unfinished = new StringBuilder()
+                        .append(getString(R.string.unfinished_rounds))
+                        .append(" (")
+                        .append(nUnfinished)
+                        .append(")")
+                        .toString();
+
+                String finished = new StringBuilder()
+                        .append(getString(R.string.finished_rounds))
+                        .append(" (")
+                        .append(nFinished)
+                        .append(")")
+                        .toString();
+
+                textUnFinished.setText(unfinished);
+                textFinished.setText(finished);
 
                 if (nUnfinished == 0) {
                     setUnfinishedBtnState(false);
@@ -80,13 +93,10 @@ public class StartScreenActivity extends AppCompatActivity {
             textUnfinished.setTextColor(getColor(R.color.black));
             imageUnfinished.getDrawable().setTint(getColor(R.color.black));
             cardUnfinished.setOnClickListener(v -> unFinishedGame());
-        }
-        else {
+        } else {
             textUnfinished.setTextColor(getColor(R.color.gray));
             imageUnfinished.getDrawable().setTint(getColor(R.color.gray));
-            cardUnfinished.setOnClickListener(v -> {
-                Toast.makeText(this, R.string.no_unfinished_rounds, Toast.LENGTH_SHORT).show();
-            });
+            cardUnfinished.setOnClickListener(v -> Toast.makeText(this, R.string.no_unfinished_rounds, Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -98,13 +108,10 @@ public class StartScreenActivity extends AppCompatActivity {
             textFinished.setTextColor(getColor(R.color.black));
             imageFinished.getDrawable().setTint(getColor(R.color.black));
             cardFinished.setOnClickListener(v -> finishedGame());
-        }
-        else {
+        } else {
             textFinished.setTextColor(getColor(R.color.gray));
             imageFinished.getDrawable().setTint(getColor(R.color.gray));
-            cardFinished.setOnClickListener(v -> {
-                Toast.makeText(this, R.string.no_finished_rounds, Toast.LENGTH_SHORT).show();
-            });
+            cardFinished.setOnClickListener(v -> Toast.makeText(this, R.string.no_finished_rounds, Toast.LENGTH_SHORT).show());
         }
     }
 

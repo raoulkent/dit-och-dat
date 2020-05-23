@@ -27,7 +27,6 @@ import java.util.List;
 public class StrokesMainFragment extends Fragment {
     private List<Fragment> fragmentHoleList = new ArrayList<>();
     private ViewPager viewPager;
-    //   private TextView textHoleNumber, currentPar;
     private StrokesViewModel viewModel;
 
     public StrokesMainFragment() {
@@ -46,7 +45,7 @@ public class StrokesMainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(StrokesViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(StrokesViewModel.class);
     }
 
     @Override
@@ -64,9 +63,6 @@ public class StrokesMainFragment extends Fragment {
             fragmentHoleList.add(fragment);
         }
 
-        //textHoleNumber = view.findViewById(R.id.holeNumber);
-        //textHoleNumber.setText(getCurrentHoleNumber());
-
         StrokesPageAdapter adapter = new StrokesPageAdapter(getChildFragmentManager(), StrokesPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragmentHoleList);
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(adapter);
@@ -78,7 +74,6 @@ public class StrokesMainFragment extends Fragment {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -89,13 +84,12 @@ public class StrokesMainFragment extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
 
 
-    public void goToPreviousHole(View view) {
+    public void goToPreviousHole() {
         if (!(viewModel.getCurrentHole() > 0)) {
             return;
         }
@@ -103,7 +97,7 @@ public class StrokesMainFragment extends Fragment {
         updateFragment();
     }
 
-    public void goToNextHole(View view) {
+    public void goToNextHole() {
         int size = viewModel.getScorecard().getEndHole() - viewModel.getScorecard().getStartHole();
         Log.d("HOLE", "Size " + size);
         if (!(viewModel.getCurrentHole() < size)) {
@@ -115,7 +109,6 @@ public class StrokesMainFragment extends Fragment {
 
     private void updateFragment() {
         viewPager.setCurrentItem(viewModel.getCurrentHole());
-//        textHoleNumber.setText(getCurrentHoleNumber());
     }
 
     private String getCurrentHoleNumber() {
