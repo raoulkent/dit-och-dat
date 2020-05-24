@@ -59,4 +59,5 @@
     <string name="save">Save</string>
     <string name="error_hcp_range">Please input hcp between 0 and 54</string>
     <string name="error_select_valid_tee">Select a valid tee</string>
+    <string name="game_settings">Game settings</string>
 </resources>

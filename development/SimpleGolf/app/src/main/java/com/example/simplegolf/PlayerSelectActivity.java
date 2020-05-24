@@ -42,7 +42,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
         }
         buildRecyclerView();
 
-        this.setTitle(R.string.add_player);
+        this.setTitle(this.getString(R.string.game_settings ) + " - "  + viewModel.getCourse().getName());
     }
 
     private void buildRecyclerView() {

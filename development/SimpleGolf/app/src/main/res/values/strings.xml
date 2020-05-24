@@ -38,6 +38,7 @@
     <string name="eighteen">18 Hål</string>
     <string name="first9">Första 9</string>
     <string name="last9">Sista 9</string>
+    <string name="game_settings">Spelinställningar</string>
 
     <string name="add_players">Du måste lägga till spelare!</string>
     <string name="add_players_title">Du kan inte spela golf utan spelare</string>
