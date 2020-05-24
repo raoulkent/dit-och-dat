@@ -57,7 +57,7 @@
     <string name="hole">Hål</string>
     <string name="par">Par </string>
     <string name="total_shortened">Tot:</string>
-    <string name="total">Total:</string>
+    <string name="total">Poäng:</string>
     <string name="selectorTextStrokes">Slag</string>
     <string name="selectorTextPoints">Poäng</string>
     <string name="welcome_text">Välkommen till Simple Golf</string>
@@ -70,7 +70,7 @@
     <string name="no_finished_rounds">Du har inga avslutade rundor</string>
     <string name="main_menu">Tillbaka</string>
     <string name="save">Spara</string>
-    <string name="error_hcp_range">Ange hcp mellan 0 och 54</string>
+    <string name="error_hcp_range">Ange ett hcp mellan -4 och 54</string>
     <string name="error_select_valid_tee">Välj en giltig tee</string>
     <string name="player">Spelare</string>
 
