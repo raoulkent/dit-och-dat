@@ -72,5 +72,6 @@
     <string name="save">Spara</string>
     <string name="error_hcp_range">Ange hcp mellan 0 och 54</string>
     <string name="error_select_valid_tee">Välj en giltig tee</string>
+    <string name="player">Spelare</string>
 
 </resources>
