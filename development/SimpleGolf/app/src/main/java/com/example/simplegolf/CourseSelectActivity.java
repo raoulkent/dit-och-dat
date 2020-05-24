@@ -88,22 +88,7 @@ public class CourseSelectActivity extends AppCompatActivity {
 
     public void createExampleCourseList() {
         courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
-        courses.add(TestCourses.INSTANCE.getCourseChalmers());
+        courses.add(TestCourses.INSTANCE.getCourseAlingsas());
+        courses.add(TestCourses.INSTANCE.getCourseOijared());
     }
 }

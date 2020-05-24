@@ -25,9 +25,9 @@
     <string name="holes_quantity_question">Hur många hål kommer du spela?</string>
     <string name="add_player">Lägg till spelare</string>
     <string name="request_player_details">Ange spelardetaljer</string>
-    <string name="add_one">+1</string>
+    <string name="add_one">+</string>
     <string name="add">Lägg till</string>
-    <string name="remove_one">-1</string>
+    <string name="remove_one">-</string>
     <string name="remove">Ta bort</string>
     <string name="abort">Avbryt</string>
     <string name="specify_name">Ange namn</string>
@@ -69,5 +69,7 @@
     <string name="no_finished_rounds">Du har inga avslutade rundor</string>
     <string name="main_menu">Tillbaka</string>
     <string name="save">Spara</string>
+    <string name="error_hcp_range">Ange hcp mellan 0 och 54</string>
+    <string name="error_select_valid_tee">Välj en giltig tee</string>
 
 </resources>

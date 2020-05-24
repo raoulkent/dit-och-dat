@@ -34,9 +34,9 @@
     <string name="initials">Initials</string>
     <string name="handicap">Handicap</string>
     <string name="dev_options">Dev options</string>
-    <string name="add_one">+1</string>
+    <string name="add_one">+</string>
     <string name="hint_abbreviated_name">Initials</string>
-    <string name="remove_one">-1</string>
+    <string name="remove_one">-</string>
     <string name="eighteen">18 holes</string>
     <string name="first9">First 9</string>
     <string name="last9">Last 9</string>
@@ -57,4 +57,6 @@
     <string name="add_players_title">You cannot play golf without players</string>
     <string name="main_menu">Go Back</string>
     <string name="save">Save</string>
+    <string name="error_hcp_range">Please input hcp between 0 and 54</string>
+    <string name="error_select_valid_tee">Select a valid tee</string>
 </resources>

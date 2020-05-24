@@ -36,8 +36,8 @@
     <string name="initials">Initialer</string>
     <string name="handicap">Handicap</string>
     <string name="dev_options">Dev options</string>
-    <string name="add_one">+1</string>
-    <string name="remove_one">-1</string>
+    <string name="add_one">+</string>
+    <string name="remove_one">-</string>
     <string name="eighteen">18 Hål</string>
     <string name="first9">Första 9</string>
     <string name="last9">Sista 9</string>
@@ -50,11 +50,13 @@
     <string name="cancel">AVBRYT</string>
     <string name="finish">AVSLUTA</string>
     <string name="unfinished_rounds">Oavslutade rundor</string>
-    <string name="finished_rounds">Avslutade rundor (</string>
+    <string name="finished_rounds">Avslutade rundor</string>
     <string name="no_unfinished_rounds">Du har inga oavslutade rundor</string>
     <string name="no_finished_rounds">Du har inga avslutade rundor</string>
     <string name="add_players">Du måste lägga till spelare!</string>
     <string name="add_players_title">Du kan inte spela golf utan spelare</string>
     <string name="main_menu">Tillbaka</string>
     <string name="save">Spara</string>
+    <string name="error_hcp_range">Ange hcp mellan 0 och 54</string>
+    <string name="error_select_valid_tee">Välj en giltig tee</string>
 </resources>

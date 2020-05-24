@@ -3,7 +3,6 @@ package com.example.simplegolf;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
@@ -72,7 +71,7 @@ public class PlayerSelectActivity extends AppCompatActivity implements AddPlayer
         // Save to DB and fetch to get correct ID, allows course to be updated/saved in the future.
         new Thread(() -> {
             Repository repository = Repository.getRepository(this);
-            final RadioGroup group = (RadioGroup) findViewById(R.id.holes_selector);
+            final RadioGroup group = findViewById(R.id.holes_selector);
 
             int id = group.getCheckedRadioButtonId();
             switch (id) {

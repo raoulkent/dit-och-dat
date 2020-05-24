@@ -1,7 +1,5 @@
 package com.example.simplegolf;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +20,8 @@ import com.example.simplegolf.ui.strokes.StrokesViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.util.Objects;
+
 public class GameActivity extends AppCompatActivity {
 
     StrokesMainFragment mainFragment;
@@ -39,25 +39,11 @@ public class GameActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        
+
         scorecard = (Scorecard) getIntent().getSerializableExtra("scorecard");
         StrokesViewModel viewModel = new ViewModelProvider(this).get(StrokesViewModel.class);
         viewModel.setScorecard(scorecard);
-        //viewModel.setCurrentHole(scorecard.getStartHole());
         repository = Repository.getRepository(this);
-
-        /*
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                Intent startScreen = new Intent(getApplicationContext(), StartScreenActivity.class);
-                startScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(startScreen);
-            }
-        };
-
-        this.getOnBackPressedDispatcher().addCallback(this, callback);
-        */
     }
 
     @Override
@@ -68,32 +54,23 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.action_name:
-                createEndGameDialog();
-                break;
+        if (item.getItemId() == R.id.action_name) {
+            createEndGameDialog();
         }
 
         return super.onOptionsItemSelected(item);
     }
+
     private void createEndGameDialog() {
         MaterialAlertDialogBuilder dialogBuilder = new MaterialAlertDialogBuilder(this);
         dialogBuilder.setTitle(R.string.end_game_title);
         dialogBuilder.setMessage(R.string.end_game_text);
-        dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
+        dialogBuilder.setNegativeButton(R.string.cancel, (dialog, which) -> {
         });
-        dialogBuilder.setPositiveButton(R.string.finish, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scorecard.setFinishedRound(true);
-                new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
-                finish();
-                //Intent startOldGame = new Intent(getApplicationContext(), StartScreenActivity.class);
-                //startActivity(startOldGame);
-            }
+        dialogBuilder.setPositiveButton(R.string.finish, (dialog, which) -> {
+            scorecard.setFinishedRound(true);
+            new Thread(() -> repository.getDb().scorecardDAO().update(scorecard)).start();
+            finish();
         });
         dialogBuilder.show();
     }
@@ -101,7 +78,7 @@ public class GameActivity extends AppCompatActivity {
     private StrokesMainFragment getMainFragment() {
         Fragment navHostFragment = getSupportFragmentManager().getPrimaryNavigationFragment(); // Requires view to be initialized.
 
-        for (Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()) {
+        for (Fragment fragment : Objects.requireNonNull(navHostFragment).getChildFragmentManager().getFragments()) {
             if (fragment instanceof StrokesMainFragment) {
                 return (StrokesMainFragment) fragment;
             }
@@ -111,11 +88,11 @@ public class GameActivity extends AppCompatActivity {
 
     public void goToPreviousHole(View view) {
         mainFragment = getMainFragment();
-        mainFragment.goToPreviousHole(view);
+        Objects.requireNonNull(mainFragment).goToPreviousHole();
     }
 
     public void goToNextHole(View view) {
         mainFragment = getMainFragment();
-        mainFragment.goToNextHole(view);
+        Objects.requireNonNull(mainFragment).goToNextHole();
     }
 }
