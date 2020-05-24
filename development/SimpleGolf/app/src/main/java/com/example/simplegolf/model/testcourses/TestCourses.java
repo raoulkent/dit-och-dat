@@ -56,7 +56,7 @@ public enum TestCourses {
         tees.add(new Tee("Blå - Damer", 73.2, 125));
         tees.add(new Tee("Gul - Damer", 76.3, 132));
         try {
-            courseChalmers = new Course("Chalmers GK - 18 hål", holes, tees);
+            courseChalmers = new Course("Chalmers GK", holes, tees);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,7 +91,7 @@ public enum TestCourses {
         tees1.add(new Tee("Röd - Damer", 70.9, 126));
         tees1.add(new Tee("Gul - Damer", 76.7, 136));
         try {
-            courseAlingsas = new Course("Alingsås GK - 18 hål", holes, tees);
+            courseAlingsas = new Course("Alingsås GK", holes, tees);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,7 +129,7 @@ public enum TestCourses {
         tees2.add(new Tee("Gul - Damer", 80.1, 139));
         tees2.add(new Tee("Vit - Damer", 80.1, 139));
         try {
-            courseOijared = new Course("Öijared GK Gamla banan - 18 hål", holes, tees);
+            courseOijared = new Course("Öijared GK Gamla banan", holes, tees);
         } catch (Exception e) {
             e.printStackTrace();
         }
