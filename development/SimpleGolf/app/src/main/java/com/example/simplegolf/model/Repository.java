@@ -5,6 +5,13 @@ import android.content.Context;
 import androidx.room.Room;
 
 import com.example.simplegolf.model.database.AppDatabase;
+import com.example.simplegolf.model.remote.CourseService;
+
+import java.util.List;
+
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Singleton Repository, holds Database and Remote service
@@ -12,10 +19,16 @@ import com.example.simplegolf.model.database.AppDatabase;
 public class Repository {
     private static Repository INSTANCE;
     private AppDatabase db;
+    private Retrofit retrofit;
 
     private Repository(Context context) {
         db = Room.databaseBuilder(context, AppDatabase.class, "golf-db")
                 .fallbackToDestructiveMigration().build();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://178.128.246.146:6543/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     /**
@@ -38,6 +51,11 @@ public class Repository {
      */
     public AppDatabase getDb() {
         return db;
+    }
+
+    public void getAllCoursesFromRemote(Callback<List<Course>> callback) {
+        CourseService courseService = retrofit.create(CourseService.class);
+        courseService.courses().enqueue(callback);
     }
 }
 

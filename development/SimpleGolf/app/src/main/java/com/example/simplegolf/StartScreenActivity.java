@@ -2,6 +2,7 @@ package com.example.simplegolf;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,9 +10,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.simplegolf.model.Course;
 import com.example.simplegolf.model.Repository;
 import com.example.simplegolf.model.database.AppDatabase;
+import com.example.simplegolf.model.remote.CourseService;
 import com.google.android.material.card.MaterialCardView;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StartScreenActivity extends AppCompatActivity {
 

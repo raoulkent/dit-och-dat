@@ -1,0 +1,52 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="backend:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/backend_jar</output-path>
+    <root id="archive" name="backend.jar">
+      <element id="module-output" name="backend" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-io/9.4.18.v20190429/jetty-io-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.20/mysql-connector-java-8.0.20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-simple/1.7.30/slf4j-simple-1.7.30.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-client/9.4.18.v20190429/websocket-client-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-util/9.4.18.v20190429/jetty-util-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/sparkjava/spark-core/2.9.1/spark-core-2.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-http/9.4.18.v20190429/jetty-http-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-servlet/9.4.18.v20190429/websocket-servlet-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-server/9.4.18.v20190429/websocket-server-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-servlet/9.4.18.v20190429/jetty-servlet-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-server/9.4.18.v20190429/jetty-server-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/sql2o/sql2o/1.6.0/sql2o-1.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-xml/9.4.18.v20190429/jetty-xml-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-api/9.4.18.v20190429/websocket-api-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-common/9.4.18.v20190429/websocket-common-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-client/9.4.18.v20190429/jetty-client-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-webapp/9.4.18.v20190429/jetty-webapp-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-security/9.4.18.v20190429/jetty-security-9.4.18.v20190429.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: com.sparkjava:spark-core:2.9.1" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-server:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-http:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-io:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-webapp:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-xml:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-servlet:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-security:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-server:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-common:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-client:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-client:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-servlet:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.eclipse.jetty.websocket:websocket-api:9.4.18.v20190429" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.7.30" />
+      <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
+      <element id="library" level="project" name="Maven: org.sql2o:sql2o:1.6.0" />
+      <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.20" />
+      <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
+    </root>
+  </artifact>
+</component>
