@@ -65,6 +65,7 @@ public class AddPlayerDialog extends AppCompatDialogFragment {
 
         addDropdownTees(course, diaDropdownTee);
 
+
         diaDropdownTee.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 diaDropdownTee.showDropDown();

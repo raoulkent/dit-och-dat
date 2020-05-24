@@ -27,11 +27,10 @@ public class EditPlayerDialog extends AddPlayerDialog {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         Objects.requireNonNull(diaPlayerAbbr.getEditText()).setText(player.getInitials());
         Objects.requireNonNull(diaPlayerHCP.getEditText()).setText(String.valueOf(player.getHcp()));
-        diaDropdownTee.setText(player.getTee().getName());
+        diaDropdownTee.setText(player.getTee().getName(), false);
 
         View item = toolbar.findViewById(R.id.action_name);
         item.setOnClickListener(v -> editPlayer());
-
 
         return view;
     }
