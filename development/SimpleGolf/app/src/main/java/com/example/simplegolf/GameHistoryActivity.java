@@ -52,9 +52,10 @@ public class GameHistoryActivity extends AppCompatActivity implements GameHistor
             Intent startGame = new Intent(getApplicationContext(), FinishedGameViewerActivity.class);
             startGame.putExtra("scorecard", viewModel.getScorecards().get(position));
             startActivity(startGame);
-        }else {
+        } else {
             Intent startGame = new Intent(getApplicationContext(), GameActivity.class);
             startGame.putExtra("scorecard", viewModel.getScorecards().get(position));
+            finish();
             startActivity(startGame);
         }
     }
