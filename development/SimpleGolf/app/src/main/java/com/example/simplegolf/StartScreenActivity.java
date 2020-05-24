@@ -44,6 +44,7 @@ public class StartScreenActivity extends AppCompatActivity {
 
         // Onclick listener for developer options.
         View developerCard = findViewById(R.id.developerCard);
+        developerCard.setVisibility(View.GONE); // Comment out when debugging.
         developerCard.setOnClickListener(v -> developerOptions());
 
         loadNumberOfRounds();

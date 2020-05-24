@@ -75,8 +75,8 @@ public class CourseSelectActivity extends AppCompatActivity {
     private void buildRecyclerView() {
         ProgressBar progressBar = findViewById(R.id.progressBar);
         TextView textLoading = findViewById(R.id.textLoading);
-        progressBar.setVisibility(View.INVISIBLE);
-        textLoading.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
+        textLoading.setVisibility(View.GONE);
         mRecyclerView = findViewById(R.id.course_recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
