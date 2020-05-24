@@ -50,7 +50,7 @@
     <string name="cancel">AVBRYT</string>
     <string name="finish">AVSLUTA</string>
     <string name="unfinished_rounds">Oavslutade rundor</string>
-    <string name="finished_rounds">Avslutade rundor (</string>
+    <string name="finished_rounds">Avslutade rundor</string>
     <string name="no_unfinished_rounds">Du har inga oavslutade rundor</string>
     <string name="no_finished_rounds">Du har inga avslutade rundor</string>
     <string name="add_players">Du måste lägga till spelare!</string>

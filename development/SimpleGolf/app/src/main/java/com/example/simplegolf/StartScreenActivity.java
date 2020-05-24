@@ -53,19 +53,11 @@ public class StartScreenActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
 
-                String unfinished = new StringBuilder()
-                        .append(getString(R.string.unfinished_rounds))
-                        .append(" (")
-                        .append(nUnfinished)
-                        .append(")")
-                        .toString();
+                String unfinished = getString(R.string.unfinished_rounds) +
+                        " (" + nUnfinished + ")";
 
-                String finished = new StringBuilder()
-                        .append(getString(R.string.finished_rounds))
-                        .append(" (")
-                        .append(nFinished)
-                        .append(")")
-                        .toString();
+                String finished = getString(R.string.finished_rounds) +
+                        " (" + nFinished + ")";
 
                 textUnFinished.setText(unfinished);
                 textFinished.setText(finished);
