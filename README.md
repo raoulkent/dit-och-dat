@@ -6,8 +6,8 @@ DAT257 / DIT543 Agile software project management lp4 VT20 (7.5 hp). Course is o
 2. Raoul Kent (raoulk)
 3. Alfred Kjeller (akjeller)
 4. Marcus Gedda (geddsson)
-5. Joar Hellqvist (JoarHellqvist)
-Hussein Joudah (xslimShadyx), dropped out of course early in the project
+5. Joar Hellqvist (JoarHellqvist)  
+6. ~~Hussein Joudah (xslimShadyx)~~ - dropped out of the course early in the project
 
 # Navigating the repository
 ## development
