@@ -1,5 +1,5 @@
 # What do I want to learn or understand better?
-Jag vill bli bättre på att uppskatta den tiden det tar att göra saker, denna vecka har vi haft lite problem med att estimaten inte stämde. Genom att bli bättre på att estimera kommer arbetet att flyta på bättre.
+Jag har tycker att denna vecka har varit intressant. Jag har lärt mig mycket inom git och android development och vill fortsätta att lära mig mer inom dessa områden.
 
 # How can I help someone else, or the entire team, to learn something new?
 Genom att aktivt hjälp andra i gruppen om jag kan något som de inte kan. 
