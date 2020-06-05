@@ -17,5 +17,9 @@ Here is where you will find:
 1. Personal- and team-reflections
 2. Diagrams (UML, ER, BMC etc.)
 3. gitinspector html dump
+4. Deliverables (containing: Business model canvas, app mockup, project description)
+5. Design documentation, (DoD is found within file Designbeslut kod.docx)
+6. Final Team Reflection
+7. Social Contract
 ## release
 The application apk file, compiled from source.
