@@ -12,6 +12,7 @@ DAT257 / DIT543 Agile software project management lp4 VT20 (7.5 hp). Course is o
 # Navigating the repository
 ## development
 Here's where you will find source-code, including javadocs where applicable.
+
 ## documents-and-deliverables
 Here is where you will find:
 1. Personal- and team-reflections
@@ -21,5 +22,9 @@ Here is where you will find:
 5. Design documentation, (DoD is found within file Designbeslut kod.docx)
 6. Final Team Reflection
 7. Social Contract
+
 ## release
 The application apk file, compiled from source.
+
+## Trello
+https://trello.com/b/VYr23VPf/scrum-board
